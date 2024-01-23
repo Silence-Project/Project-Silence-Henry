@@ -18,7 +18,7 @@ Para ver todas las ramas, tanto locales como remotas, usamos el comando git bran
 ```
 
 ## Crear una nueva rama
-Las ramas se crean a partir de la rama principal, que se denomina `master` que es la rama de producción. Para crear una nueva rama, usamos el comando:
+Las ramas se crean a partir de la rama principal, que se denomina `main` que es la rama de producción. Para crear una nueva rama, usamos el comando:
 
 ```bash
   git checkout -b NombreRama 
@@ -46,12 +46,12 @@ Para movernos entre ramas y trabajar desde una rama en especifica podemos usar e
   git checkout NombreRama
 ```
 
-## Actualizar avances con la rama de producción, master
+## Actualizar avances con la rama de producción, main
 
 Para actualizar cambios o novedades de mis avances, podemos hacer esto:
 
 ```bash
-  git checkout master
+  git checkout main
   git merge NombreDeMiRama
 ```
 
@@ -60,12 +60,12 @@ Para actualizar cambios o novedades de mis avances, podemos hacer esto:
 Si queremos actualizar un archivo en especifico y no todos los cambios tendremos que hacer lo siguiente:
 
 ```bash
-  git checkout master
-  git merge-file NombreDeMiRama/NombreArchivo.html master
+  git checkout main
+  git merge-file NombreDeMiRama/NombreArchivo.html main
 ```
 
-*Acá estamos agregando el archivo* `NombreArchivo.html` *a master para solamente agregar ese nuevo archivo a master*
+*Acá estamos agregando el archivo* `NombreArchivo.html` *a main para solamente agregar ese nuevo archivo a main*
 
 ## Observación
 
-Para mezclar cambios, agregar archivos a una rama en especifico tenemos que estar parados en esa rama, si estamos en master, todos los cambios surgiran cambios ahí mismo.
+Para mezclar cambios, agregar archivos a una rama en especifico tenemos que estar parados en esa rama, si estamos en main, todos los cambios surgiran cambios ahí mismo.
