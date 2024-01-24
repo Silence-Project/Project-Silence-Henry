@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import ROUTES from "../../../Helpers/Routes.helper";
 import styles from "./Home.module.css";
 
 const Home = () => {
@@ -11,10 +13,10 @@ const Home = () => {
 
 
       <div className={styles.navbar}>
-        navBar
+      <Link to={ROUTES.LOGGING}>Registro</Link>
       </div>
 
-      {/* Div medio para cards */}
+     
       <div className={styles.cardContainer}>
       cardsHome
       </div>

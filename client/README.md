@@ -10,6 +10,13 @@
           silence-app/<br>
           |-- src/<br>
           |   |-- components/<br>
+          |   |-- Auth/<br>
+          |   |   |-- Login/
+          |   |   |   |-- LoginForm.jsx
+          |   |   |   |-- LoginForm.module.css          
+          |   |   |-- UserPersonalData/
+          |   |   |   |-- UserPersonalData.jsx
+          |   |   |   |-- UserPersonalData.module.css
           |   |   |-- Common/<br>
           |   |   |   |-- Header/<br>
           |   |   |   |   |-- Header.jsx<br>
@@ -32,12 +39,6 @@
           |   |   |   |-- ShoppingCart/<br>
           |   |   |   |   |-- ShoppingCart.jsx<br>
           |   |   |   |   |-- ShoppingCart.module.css<br>
-          |   |   |   |-- FAQSection/<br>
-          |   |   |   |   |-- FAQList.jsx<br>
-          |   |   |   |   |-- FAQList.module.css<br>
-          |   |   |   |-- AboutUs/<br>
-          |   |   |   |   |-- AboutUsContent.jsx<br>
-          |   |   |   |   |-- AboutUsContent.module.css<br>
           |   |   |   |-- Search/<br>
           |   |   |   |   |-- SearchResults.jsx<br>
           |   |   |   |   |-- SearchResults.module.css<br>
@@ -65,9 +66,9 @@
           |   |-- Landing/<br>
           |   |   |-- Landing.jsx<br>
           |   |   |-- Landing.module.css<br>
-          |   |-- FAQ/<br>
-          |   |   |-- FAQPage.jsx<br>
-          |   |   |-- FAQPage.module.css<br>
+          |   |-- FAQSection/<br>
+          |   |   |-- FAQSection.jsx<br>
+          |   |   |-- FAQSection.module.css<br>
           |   |-- UserProfile/<br>
           |   |   |-- UserProfile.jsx<br>
           |   |   |-- UserProfile.module.css<br>
@@ -96,8 +97,9 @@
 <details> <summary> Dependencies </summary> 
 
 <ul> 
-<li> Framer Motion  </li>
+<li> Framer Motion - Fluidez </li>
 <li> "react-router-dom": "^6.21.3" - Enrutamaientos </li>
+<li> "formik": "^2.4.5", "yup": "^1.3.3" & "react-datepicker": "^5.0.0", - Formularios </li>
 </ul>
 
  </detail>

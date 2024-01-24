@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import ROUTES from "./Helpers/Routes.helper"
-import Landing from './Components/Commons/Landing/Landing';
-import Home from './Components/Commons/Home/Home';
+import Landing from './Components/Pages/Landing/Landing';
+import Home from './Components/Pages/Home/Home';
 import './App.css'
+import LoginForm from './Auth/Login/LoginForm';
 
 function App() {
 
@@ -21,6 +22,11 @@ function App() {
         <Route 
         path={ROUTES.HOME} 
         element={<Home />}>
+        </Route>
+
+        <Route 
+        path={ROUTES.LOGGING} 
+        element={<LoginForm />}>
         </Route>
 
       </Routes>
