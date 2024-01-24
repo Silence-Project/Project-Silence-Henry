@@ -1,3 +1,7 @@
-:root {
-  font-family: canvas, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+@font-face {
+  font-family: 'Now';
+  src: url('./assets/fontNow/Now-Regular.otf') format('opentype'); 
+  font-weight: normal;
+  font-style: normal;
 }

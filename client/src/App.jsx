@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import ROUTES from "./Helpers/Routes.helper"
-import './App.css'
 import Landing from './Components/Commons/Landing/Landing';
 import Home from './Components/Commons/Home/Home';
+import './App.css'
 
 function App() {
 

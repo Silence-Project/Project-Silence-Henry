@@ -34,7 +34,7 @@ const Landing = () => {
 
       <div className={`${styles.welcomeContainer} ${styles.slideInRight}`}>
         <h1 className={`${styles.welcomeMessage} ${styles.fadeIn}`}>
-      Bienvenidos a Silence
+      Bienvenidos <br />  a Silence
         </h1>
       </div>
     </div>

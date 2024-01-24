@@ -51,7 +51,8 @@
   text-align: center;
   color: #817667;
   font-size: 80px;
-  animation: slideInRight 2s ease-in-out; /* Ajusta la duración según tus preferencias */
+  font-family: 'Now';
+  animation: slideInRight 2s ease-in-out; 
 }
 
 .welcomeMessage {

@@ -1,11 +1,30 @@
+import React from "react";
 import styles from "./Home.module.css";
 
 const Home = () => {
   return (
     <>
-      <div className={styles.containerHome}>
-        👋🏽👋🏽👋🏽 Hola, soy el componente llamado Home
+<div className={styles.homeContainer}> 
+      <div className={styles.topMessage}>
+        20% de descuento por pago en efectivo
       </div>
+
+
+      <div className={styles.navbar}>
+        navBar
+      </div>
+
+      {/* Div medio para cards */}
+      <div className={styles.cardContainer}>
+      cardsHome
+      </div>
+
+      {/* Div bajo para Footer */}
+      <div className={styles.footer}>
+       footer
+      </div>
+      </div>
+
     </>
   );
 };
