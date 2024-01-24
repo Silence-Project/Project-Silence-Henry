@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 # **SILENCE** | Proyecto Final
@@ -37,3 +38,15 @@ Utilizando `Postgres` como BD y `Sequelize ORM` para su manejo.
 
     // Es necesario crear base de datos local
     CREATE DATABASE silencebd
+=======
+Bienvenido al Backend de Silence Project! 
+
+Una vez clonado el proyecto, en la ubicación del server, hacer npm install para instalar las siguientes dependencias:
+		👉 axios --> Peticiones a API
+		👉 express --> Crear servidor
+		👉 nodemon --> Monitorear cambios del servidor 
+		👉 sequelize y sus drivers (pg | pg-hstore) --> ORM para hacer la conexión a la base de datos 
+
+ NOTA:
+ El presente proyecto utiliza PostgreSQL para su base de datos, por consiguiente, son datos relacionales. El dicho de dicha base de datos es silencebd
+>>>>>>> 9bb7eef5e743a6d911a40988db16318de2fd93cc
