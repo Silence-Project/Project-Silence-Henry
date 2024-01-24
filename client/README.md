@@ -1,6 +1,6 @@
 # Frontend
 
-<img src="./imgs/silenceImg.png" alt="Silence" width="100" height="100">
+<img src="./src/img/silenceImg.png" alt="Silence" width="100" height="100">
 
 <details><summary> Estructura Carpetas </summary>
   <details>
@@ -90,4 +90,11 @@
 </details>
 
 
-<details> <summary> Dependencies </summary> explanation </detail>
+<details> <summary> Dependencies </summary> 
+
+<ul> 
+<li> Framer Motion  </li>
+<li> "react-router-dom": "^6.21.3" - Enrutamaientos </li>
+</ul>
+
+ </detail>
