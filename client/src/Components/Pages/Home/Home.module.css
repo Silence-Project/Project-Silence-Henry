@@ -1,4 +1,3 @@
-
 .homeContainer {
   display: flex;
   flex-direction: column;
@@ -10,7 +9,7 @@
   align-items: center;
   justify-content: center;
   height: 5vh;
-  background-color: lightblue;
+  background-color: var(--Rose);
   font-family: 'Now';
   font-size: 1.4rem; 
   color: #333;
@@ -22,7 +21,6 @@
   justify-content: center;
   height: 10vh; 
   font-family: 'Now';
-  background-color: lightgreen; 
 }
 
 .cardContainer {
@@ -31,7 +29,6 @@
   justify-content: center;
   font-family: 'Now';
   height: 80vh; 
-  background-color: lightcoral; 
 }
 
 .footer {
@@ -40,7 +37,6 @@
   justify-content: center;
   font-family: 'Now';
   height: 10vh; 
-  background-color: lightgray; 
 }
 
 

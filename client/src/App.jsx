@@ -13,24 +13,24 @@ function App() {
     <>
 
       <div>
-      <Routes>
+        <Routes>
 
-        <Route 
-        path={ROUTES.LANDING} 
-        element={<Landing />}>
-        </Route>
+          <Route 
+          path={ROUTES.LANDING} 
+          element={<Landing />}>
+          </Route>
 
-        <Route 
-        path={ROUTES.HOME} 
-        element={<Home />}>
-        </Route>
+          <Route 
+          path={ROUTES.HOME} 
+          element={<Home />}>
+          </Route>
 
-        <Route 
-        path={ROUTES.LOGGING} 
-        element={<LoginForm />}>
-        </Route>
+          <Route 
+          path={ROUTES.LOGGING} 
+          element={<LoginForm />}>
+          </Route>
 
-      </Routes>
+        </Routes>
       </div>
 
     </>
