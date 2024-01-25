@@ -1,0 +1,70 @@
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.containerLanding {
+  display: flex;
+  justify-content: space-around;
+  height: 100vh;
+  width: 100vw;
+  background-color: #F4F4F4;
+}
+
+.logo {
+  width: 220px;
+  height: auto;
+  margin-top: 3%;
+  margin-left: 6%;
+  border-radius: 50%;
+  border: 2px solid #CCC9C0;
+  animation: slideInLeft 1.5s ease-in-out; 
+}
+
+.welcomeContainer {
+  text-align: center;
+  color: #817667;
+  font-size: 80px;
+  font-family: 'Now';
+  animation: slideInRight 2s ease-in-out; 
+}
+
+.welcomeMessage {
+  display: inline-block;
+  animation: fadeInText 1.5s ease-in-out; /* Ajusta la duración según tus preferencias */
+}
+
+.welcomeMessage span {
+  opacity: 0;
+  transition: opacity 3s ease-in-out; /* Mantén la transición para el texto */
+}
+
+.fadeIn span {
+  opacity: 1;
+}

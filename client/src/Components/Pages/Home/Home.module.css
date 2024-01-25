@@ -1,0 +1,46 @@
+
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; 
+}
+
+.topMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  background-color: lightblue;
+  font-family: 'Now';
+  font-size: 1.4rem; 
+  color: #333;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh; 
+  font-family: 'Now';
+  background-color: lightgreen; 
+}
+
+.cardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Now';
+  height: 80vh; 
+  background-color: lightcoral; 
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Now';
+  height: 10vh; 
+  background-color: lightgray; 
+}
+
+
