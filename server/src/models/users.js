@@ -9,8 +9,10 @@ const Usuario = (sequelize) => {
     //   allowNull: false,
     //   autoIncrement: true
     // },
+    //DNI de usuario, NO utilizada como primaryKey
     cedulaId: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -32,6 +34,7 @@ const Usuario = (sequelize) => {
     password: {
       type: DataTypes.STRING,
       validate: {
+        //Min 3 characters, max 30, at least one letter, one number
         is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,30}$/,
         notEmpty: true,
         min: 3,
