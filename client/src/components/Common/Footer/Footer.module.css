@@ -1,0 +1,15 @@
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--WindsorGreige);
+  min-height: 50px;
+  border-radius: 5px;
+}
+
+.f{
+  float: left;
+  color: white;
+  margin: 0.8%;
+  font-size: 25px;
+}

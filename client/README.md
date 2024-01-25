@@ -1,6 +1,6 @@
 # Frontend
 
-<img src="./imgs/silenceImg.png" alt="Silence" width="100" height="100">
+<img src="./src/img/silenceImg.png" alt="Silence" width="100" height="100">
 
 <details><summary> Estructura Carpetas </summary>
   <details>
@@ -10,79 +10,83 @@
           silence-app/<br>
           |-- src/<br>
           |   |-- components/<br>
+          |   |-- Auth/<br>
+          |   |   |-- Login/
+          |   |   |   |-- LoginForm.jsx
+          |   |   |   |-- LoginForm.module.css          
+          |   |   |-- UserPersonalData/
+          |   |   |   |-- UserPersonalData.jsx
+          |   |   |   |-- UserPersonalData.module.css
           |   |   |-- Common/<br>
           |   |   |   |-- Header/<br>
-          |   |   |   |   |-- Header.js<br>
+          |   |   |   |   |-- Header.jsx<br>
           |   |   |   |   |-- Header.module.css<br>
           |   |   |   |-- Footer/<br>
-          |   |   |   |   |-- Footer.js<br>
+          |   |   |   |   |-- Footer.jsx<br>
           |   |   |   |   |-- Footer.module.css<br>
           |   |   |   |-- ProductList/<br>
-          |   |   |   |   |-- ProductListItem.js<br>
+          |   |   |   |   |-- ProductListItem.jsx<br>
           |   |   |   |   |-- ProductListItem.module.css<br>
           |   |   |   |-- Review/<br>
-          |   |   |   |   |-- ReviewItem.js<br>
+          |   |   |   |   |-- ReviewItem.jsx<br>
           |   |   |   |   |-- ReviewItem.module.css<br>
           |   |   |   |-- UserDashboard/<br>
-          |   |   |   |   |-- UserDashboard.js<br>
+          |   |   |   |   |-- UserDashboard.jsx<br>
           |   |   |   |   |-- UserDashboard.module.css<br>
           |   |   |   |-- AdminDashboard/<br>
-          |   |   |   |   |-- AdminDashboard.js<br>
+          |   |   |   |   |-- AdminDashboard.jsx<br>
           |   |   |   |   |-- AdminDashboard.module.css<br>
           |   |   |   |-- ShoppingCart/<br>
-          |   |   |   |   |-- ShoppingCart.js<br>
+          |   |   |   |   |-- ShoppingCart.jsx<br>
           |   |   |   |   |-- ShoppingCart.module.css<br>
-          |   |   |   |-- FAQSection/<br>
-          |   |   |   |   |-- FAQList.js<br>
-          |   |   |   |   |-- FAQList.module.css<br>
-          |   |   |   |-- AboutUs/<br>
-          |   |   |   |   |-- AboutUsContent.js<br>
-          |   |   |   |   |-- AboutUsContent.module.css<br>
           |   |   |   |-- Search/<br>
-          |   |   |   |   |-- SearchResults.js<br>
+          |   |   |   |   |-- SearchResults.jsx<br>
           |   |   |   |   |-- SearchResults.module.css<br>
           |   |   |-- Admin/<br>
           |   |   |   |-- AdminProfile/<br>
-          |   |   |   |   |-- AdminProfile.js<br>
+          |   |   |   |   |-- AdminProfile.jsx<br>
           |   |   |   |   |-- AdminProfile.module.css<br>
           |   |   |   |-- ProductManagement/<br>
-          |   |   |   |   |-- ProductForm.js<br>
+          |   |   |   |   |-- ProductForm.jsx<br>
           |   |   |   |   |-- ProductForm.module.css<br>
-          |   |   |   |   |-- OrderManagement.js<br>
+          |   |   |   |   |-- OrderManagement.jsx<br>
           |   |   |   |   |-- OrderManagement.module.css<br>
-          |   |   |   |   |-- UserManagement.js<br>
+          |   |   |   |   |-- UserManagement.jsx<br>
           |   |   |   |   |-- UserManagement.module.css<br>
           |   |   |   |-- StatsDashboard/<br>
-          |   |   |   |   |-- StatsDashboard.js<br>
+          |   |   |   |   |-- StatsDashboard.jsx<br>
           |   |   |   |   |-- StatsDashboard.module.css<br>
           |-- pages/<br>
           |   |-- Home/<br>
-          |   |   |-- Home.js<br>
+          |   |   |-- Home.jsx<br>
           |   |   |-- Home.module.css<br>
           |   |-- About/<br>
-          |   |   |-- About.js<br>
+          |   |   |-- About.jsx<br>
           |   |   |-- About.module.css<br>
-          |   |-- FAQ/<br>
-          |   |   |-- FAQPage.js<br>
-          |   |   |-- FAQPage.module.css<br>
+          |   |-- Landing/<br>
+          |   |   |-- Landing.jsx<br>
+          |   |   |-- Landing.module.css<br>
+          |   |-- FAQSection/<br>
+          |   |   |-- FAQSection.jsx<br>
+          |   |   |-- FAQSection.module.css<br>
           |   |-- UserProfile/<br>
-          |   |   |-- UserProfile.js<br>
+          |   |   |-- UserProfile.jsx<br>
           |   |   |-- UserProfile.module.css<br>
-          |   |-- AdminDashboardPage.js<br>
-          |   |-- ShoppingCartPage.js<br>
-          |   |-- ReviewsPage.js<br>
-          |   |-- ProductDetailsPage.js<br>
-          |   |-- SearchResultsPage.js<br>
+          |   |-- AdminDashboardPage.jsx<br>
+          |   |-- ShoppingCartPage.jsx<br>
+          |   |-- ReviewsPage.jsx<br>
+          |   |-- ProductDetailsPage.jsx<br>
+          |   |-- SearchResultsPage.jsx<br>
           |-- store/<br>
-          |   |-- index.js<br>
-          |   |-- actions.js<br>
-          |   |-- reducers.js<br>
+          |   |-- index.jsx<br>
+          |   |-- actions.jsx<br>
+          |   |-- reducers.jsx<br>
           |-- utils/<br>
-          |   |-- api.js<br>
+          |   |-- api.jsx<br>
           |-- .env<br>
           |-- .gitignore<br>
-          |-- package.json<br>
-          |-- vite.config.js<br>
+          |-- package.jsxon<br>
+          |-- vite.config.jsx<br>
         </code>
       </div>
     </summary>
@@ -90,4 +94,12 @@
 </details>
 
 
-<details> <summary> Dependencies </summary> explanation </detail>
+<details> <summary> Dependencies </summary> 
+
+<ul> 
+<li> Framer Motion - Fluidez </li>
+<li> "react-router-dom": "^6.21.3" - Enrutamaientos </li>
+<li> "formik": "^2.4.5", "yup": "^1.3.3" & "react-datepicker": "^5.0.0", - Formularios </li>
+</ul>
+
+ </detail>

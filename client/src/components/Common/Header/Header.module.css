@@ -1,0 +1,13 @@
+.header{
+  width: 98%;
+  background-color: var(--WindsorGreige);
+  min-height: 50px;
+  border-radius: 5px;
+  margin: 1% auto;
+}
+.silence{
+  float: left;
+  color: white;
+  margin: 0.8%;
+  font-size: 25px;
+}
