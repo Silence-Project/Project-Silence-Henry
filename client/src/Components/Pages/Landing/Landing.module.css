@@ -40,8 +40,8 @@
 .logo {
   width: 220px;
   height: auto;
-  margin-top: 3%;
-  margin-left: 6%;
+  margin-top: 15%;
+  margin-left: 20%;
   border-radius: 50%;
   border: 2px solid #CCC9C0;
   animation: slideInLeft 1.5s ease-in-out; 
@@ -51,6 +51,7 @@
   text-align: center;
   color: #817667;
   font-size: 80px;
+  margin-top: 15%;
   font-family: 'Now';
   animation: slideInRight 2s ease-in-out; 
 }
