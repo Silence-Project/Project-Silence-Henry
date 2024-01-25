@@ -1,52 +1,22 @@
-.form {
+
+.formContainer {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
+}
+
+
+.signInForm {
+  width: 40%;
   max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  background-color: ;
+  height: 80%; 
 }
 
-h2 {
-  color: #333;
+.signUpForm {
+  width: 40%;
+  max-width: 400px;
+  height: 80%; 
+  margin-right: 33%;
 }
 
-.field {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  color: #555;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.error {
-  color: #ff4b2b;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.submitBtn {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.submitBtn:hover {
-  background-color: #45a049;
-}
