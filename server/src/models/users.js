@@ -26,13 +26,14 @@ const Usuario = (sequelize) => {
     },
     lastName: {
       type: DataTypes.STRING,
+      defaultValue: "",
       // allowNull: true,
     },
     fullName: {
       //Dato virtual, no setear
       type: DataTypes.VIRTUAL,
       get() {
-        return `${this.firstName} ${lastName}`;
+        return `${this.firstName} ${this.lastName ? this.lastName : ""}`;
       },
       set(value) {
         throw new Error("NO intentar setear valor a `fullName`!");
@@ -65,8 +66,8 @@ const Usuario = (sequelize) => {
     password: {
       type: DataTypes.STRING,
       validate: {
-        //Min 3 characters, max 30, at least one letter, one number
-        is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,30}$/,
+        //Min 3 characters, at least one letter, one number
+        is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/,
         notEmpty: true,
         min: 3,
         max: 30,
@@ -75,6 +76,7 @@ const Usuario = (sequelize) => {
     email: {
       type: DataTypes.STRING,
       unique: true,
+      allowNull: false,
       validate: {
         isEmail: true,
         notNull: false,

@@ -5,7 +5,7 @@ const { conn } = require('./src/config/bd');
 conn.sync({ force: false })
     .then(() => {
         server.listen(PORT, () => {
-            console.log('listening on PORT 3001')
+            console.log(`listening on PORT ${PORT}`)
         })
     }).catch(error => console.error(error))
 

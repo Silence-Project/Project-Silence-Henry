@@ -1,8 +1,7 @@
 require('dotenv').config();
-const { USER, PASSWORD, HOST, BDD } = process.env
-const Usuarios = require('../models/users');
-
 const { Sequelize } = require('sequelize');
+const { USER, PASSWORD, HOST, BDD } = process.env
+const modeloUsuario = require('../models/users.js');
 
 //config
 const sequelize = new Sequelize(
@@ -10,8 +9,10 @@ const sequelize = new Sequelize(
 )
 
 //ejecucion de funciones para creacion de modelos
-Usuarios(sequelize);
+modeloUsuario(sequelize);
+console.log(sequelize.models);
 
 module.exports = {
-    conn: sequelize
+    conn: sequelize,
+    ...sequelize.models
 }
