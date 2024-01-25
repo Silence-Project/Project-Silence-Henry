@@ -2,8 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 import styles from "./Home.module.css";
+import Cards from "../../Common/ProductList/ProductList";
+import { useDispatch, useSelector } from 'react-redux'
 
 const Home = () => {
+
+  const dispatch = useDispatch();
+  
+  const Products = useSelector((state) => state.products)
+
+
   return (
     <>
 <div className={styles.homeContainer}> 
@@ -18,7 +26,11 @@ const Home = () => {
 
      
       <div className={styles.cardContainer}>
-      cardsHome
+      {/* {Products.map((card) => (
+        <Cards key={card.id} products={card} />
+      ))} */}
+
+      
       </div>
 
       {/* Div bajo para Footer */}
