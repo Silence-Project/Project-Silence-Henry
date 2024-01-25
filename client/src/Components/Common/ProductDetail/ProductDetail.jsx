@@ -40,16 +40,29 @@ export default function Details(props) {
         <div  className="h4">
 
             <h4 >📜 Description:</h4> <p className="description"> <div dangerouslySetInnerHTML={{__html: products.description}}>
+
+            <h4>SKU : {products.SKU}</h4>
+
+            <h4>🏷️ Categoría: {products.categoria}</h4>
             
-            <h4>👘 Stock disponible: {products.stock}</h4>
+            <h4>📦 Stock disponible: {products.stock}</h4>
         
             <h4>🎨 Color: {products.color}</h4>
 
-            <h4>📦 Peso: {products.peso}</h4>
+            <h4>🧱 Peso: {products.peso}</h4>
+
+            <h4>📏 Tallas disponibles: <br/>
+            {products.tallas?.map((talla, i) => (
+              <li key={i}>{talla.name}</li>
+            ))}</h4>
+
+            <h4>👘 Caracteristicas de la tela: {products.caracteristicasTela}</h4>
 
             <h4>💸 Precio: {products.price}</h4>
          
-         
+         {/* Características de los productos:
+          puesto de Relevancia en la visualización, rating, comparación con los otros talles,
+           características de la tela.  */}
           
            {/* <h4>🌟 Rating: {COMPONENTE.rating} </h4> */}
             {/* <h4>🌟 Carrito: {COMPONENTE.carrito} </h4> */}
