@@ -69,3 +69,12 @@ Si queremos actualizar un archivo en especifico y no todos los cambios tendremos
 ## Observación
 
 Para mezclar cambios, agregar archivos a una rama en especifico tenemos que estar parados en esa rama, si estamos en main, todos los cambios surgiran cambios ahí mismo.
+
+## Adiciones
+
+git push origin main 
+git branch --track main origin/main
+git branch --set-upstream-to origin/main main
+git config --global push.default current  # Empujar a la rama con el mismo nombre
+git config --global push.default upstream  # Empujar a la rama upstream
+git config --global branch.autoSetupMerge simple
