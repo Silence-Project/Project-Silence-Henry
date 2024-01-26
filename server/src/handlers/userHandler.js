@@ -8,7 +8,6 @@ const userHandler = Router();
 //POST
 userHandler.post("/", async (req, res) => {
   const { name, email, password } = req.body;
-  // console.log('lo que recibi por BODY: ', req.body);
 
   try {
     const nuevoUsuario = await createUser(name, email, password);
@@ -21,6 +20,15 @@ userHandler.post("/", async (req, res) => {
 
 
 //GET by param email
+/**
+ * Necesidad de verificar/validar que no exista una cuenta ya 
+ * con el correo proporcionado a través del formulario de 'Crear cuenta'
+ * Retorna {
+ *  idUser ? Int 
+ *  email exists ? boolean
+ *  isActive ? boolean
+ * }
+*/
 userHandler.get("/", async (req, res) => {
   const { email } = req.query;
 

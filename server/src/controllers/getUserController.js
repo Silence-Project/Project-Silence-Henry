@@ -2,19 +2,22 @@ const { Usuario } = require("../config/bd");
 
 const getUserByEmail = async (email) => {
   try {
-    const uniqueUser = await Usuario.findOne({
+    const findUserByEmail = await Usuario.findOne({
       where: { email },
-      attributes: {
-        exclude: ["createdAt", "updatedAt"],
-      },
+      attributes: ["id", "email", "isActive"],
+
+      // exclude: ["createdAt", "updatedAt"],
+      // },
     });
 
-    // console.log('controller uniqueUser: ', uniqueUser);
+    // if(!findUserByEmail) throw Error(false);
+    if (!findUserByEmail) return { exists: false };
 
-    if(!uniqueUser || uniqueUser === null) throw Error("Usuario no existe.");
-    
-    return uniqueUser;
-
+    return {
+      exists: true,
+      id: findUserByEmail.id,
+      isActive: findUserByEmail.isActive,
+    };
   } catch (error) {
     return error.message;
   }
