@@ -1,13 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
+const server = express();
 const routes = require('./routes/index.js');
 
 require('./config/bd.js');
 
-const server = express();
 server.use(express.json());
-
-server.name = 'API';
 
 server.use(morgan('dev'));
 server.use((req, res, next) => {
