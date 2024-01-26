@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
     color: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
+    },
     material: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
     peso: {
       type: DataTypes.FLOAT,
       allowNull: false,
-  },
+    },
     image: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -43,12 +43,12 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     preferencia: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     estado: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true
-      },
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
   }, { timestamps : false});
 };

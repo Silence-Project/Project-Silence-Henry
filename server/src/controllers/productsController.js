@@ -24,8 +24,9 @@ const postNewProducts = async(codigo, descripcion, talla, color, material, peso,
     if (data.length>0) {
         throw new Error(`Ya existe un producto con el codigo: ${codigo}`);
     }
-    const newProducts = await Products.create({codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado})
-    
+    else {
+        const newProducts = await Products.create({codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado})
+    }
     return [...newProducts];
 }
 
