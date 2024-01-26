@@ -5,6 +5,7 @@ const routes = require('./routes/index.js');
 require('./config/bd.js');
 
 const server = express();
+server.use(express.json());
 
 server.name = 'API';
 
