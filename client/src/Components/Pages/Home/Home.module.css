@@ -24,11 +24,16 @@
 }
 
 .cardContainer {
-  display: flex;
+  width: 100%;
+  /* height: auto; */
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 5%;
+  /* display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Now';
-  height: 80vh; 
+  height: 80vh;  */
 }
 
 .footer {
@@ -39,4 +44,11 @@
   height: 10vh; 
 }
 
+.home-card{
+  width: 100%;
+  /* height: auto; */
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 5%;
 
+}

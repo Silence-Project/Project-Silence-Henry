@@ -4,6 +4,7 @@ import ROUTES from "./Helpers/Routes.helper"
 import Landing from './Components/Pages/Landing/Landing';
 import Home from './components/Pages/Home/Home';
 import LoginForm from './Auth/Login/LoginForm';
+
 import Details from './components/Common/ProductDetail/ProductDetail';
 
 import './App.css'
@@ -33,10 +34,10 @@ function App() {
             element={<LoginForm />}>
           </Route>
 
-          <Route>
-            path={ROUTES.DETAIL}
-            element={<Details/>}
-          </Route>
+            <Route
+              path={ROUTES.DETAIL}
+              element={<Details />}>
+            </Route>
 
         </Routes>
       </div>
