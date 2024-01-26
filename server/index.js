@@ -8,4 +8,3 @@ conn.sync({ force: false })
             console.log('listening on PORT 3001')
         })
     }).catch(error => console.error(error))
-
