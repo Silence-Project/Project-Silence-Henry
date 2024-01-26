@@ -8,7 +8,8 @@ const getAllProducts = async()=>{
 }
 
 const getProductsById = async(id)=>{
-    const productsDB = await Products.findByPk(id);
+    console.log("id al controller---> ", id);
+    const productsDB = await Products.findAll({where: {id:id}});
     return [...productsDB];
 }
 
@@ -18,16 +19,14 @@ const getProductsByCodigo = async(codigo)=>{
 }
 
 const postNewProducts = async(codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado )=>{
-    console.log('codigo--->', codigo);
-    console.log('estado--->', estado)
     const data = await Products.findAll({where: {codigo: codigo}})
     if (data.length>0) {
         throw new Error(`Ya existe un producto con el codigo: ${codigo}`);
     }
     else {
         const newProducts = await Products.create({codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado})
+        return [...newProducts];
     }
-    return [...newProducts];
 }
 
 module.exports = {

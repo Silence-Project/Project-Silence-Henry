@@ -23,21 +23,21 @@ const getProductsHandler = async (req,res)=>{
     }
 }
 const getProductsDetailHandler = async(req,res)=>{
-const {id} = req.params
-try {
-    const response = await getProductsById(id)
-    res.status(200).json(response)
-}
-catch(error){
-    res.status(400).send(`No se pudo recuperar información del producto.`);
-}
+    const {id} = req.params
+    console.log("id--->", id);
+    try {
+        const response = await getProductsById(id)
+        res.status(200).json(response)
+    }
+    catch(error){
+        res.status(400).send(`No se pudo recuperar información del producto con id--> ${id}`);
+    }
 }
 
 const postNewProductHandler = async(req,res)=>{
-    console.log("body--->",req.body);
-const {codigo, descripcion, talla, color, material, image, precio_base, precio_venta, preferencia, estado} = req.body;
+const {codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado} = req.body;
 try{
-    const newProduct = await postNewProducts(codigo, descripcion, talla, color, material, image, precio_base, precio_venta, preferencia, estado)
+    const newProduct = await postNewProducts(codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado)
     res.status(200).json(newProduct)
 }catch(error){
     console.log(error);
