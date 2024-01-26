@@ -7,11 +7,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import Header from '../../Common/Header/Header'
 import Footer from '../../Common/Footer/Footer'
 
+import { getProducts } from "../../../Redux/Store/Actions/Products";
+
 const Home = () => {
 
   const dispatch = useDispatch();
   
   const Products = useSelector((state) => state.products)
+
+
+  const currentProducts = Array.isArray(Products) ? Products.slice(indexOfFirstVideogame, indexOfLastVideogame) : [Products];
 
 
   return (
@@ -30,16 +35,15 @@ const Home = () => {
 
      
       <div className={styles.cardContainer}>
-      {/* {Products.map((card) => (
+      {currentProducts?.map((card) => (
         <Cards key={card.id} products={card} />
-      ))} */}
-
+      ))}
       
       </div>
       
-        <div className={styles.cardContainer}>
+        {/* <div className={styles.cardContainer}>
         cardsHome
-        </div>
+        </div> */}
 
         <Footer/>
 
