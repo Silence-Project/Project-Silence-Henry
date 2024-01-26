@@ -1,66 +1,62 @@
 import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import GMAIL from "../../img/gmail.png";
+import styles from "./SignIn.module.css";
+
 function SignInForm() {
-  const [state, setState] = React.useState({
-    email: "",
-    password: ""
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: ""
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Dirección de correo invalida").required("Campo requerido"),
+      password: Yup.string().required("Campo requerido")
+    }),
+
   });
-  const handleChange = evt => {
-    const value = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value
-    });
-  };
-
-  const handleOnSubmit = evt => {
-    evt.preventDefault();
-
-    const { email, password } = state;
-    alert(`You are login with email: ${email} and password: ${password}`);
-
-    for (const key in state) {
-      setState({
-        ...state,
-        [key]: ""
-      });
-    }
-  };
 
   return (
-    <div className="form-container sign-in-container">
-      <form onSubmit={handleOnSubmit}>
-        <h1>Sign in</h1>
-        <div className="social-container">
-          <a href="#" className="social">
-            <i className="fab fa-facebook-f" />
-          </a>
-          <a href="#" className="social">
-            <i className="fab fa-google-plus-g" />
-          </a>
-          <a href="#" className="social">
-            <i className="fab fa-linkedin-in" />
+    <div className={`${styles.formContainer} ${styles.signInContainer}`}>
+      <form onSubmit={formik.handleSubmit} className={styles.form}>
+        <h1>Iniciar Sesión</h1>
+        <div className={styles.socialContainer}>
+          <a href="#" className={styles.google}>
+          <img src={GMAIL} alt="Gmail" className={styles.google}/>
           </a>
         </div>
-        <span>or use your account</span>
+        <span>o usa tu cuenta</span>
         <input
           type="email"
-          placeholder="Email"
+          placeholder="📧 Email ... "
           name="email"
-          value={state.email}
-          onChange={handleChange}
+          className={styles.input}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
+        {formik.touched.email && formik.errors.email ? (
+          <div className={styles.error}>{formik.errors.email}</div>
+        ) : null}
         <input
           type="password"
           name="password"
           placeholder="Password"
-          value={state.password}
-          onChange={handleChange}
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          className={styles.input}
         />
-        <a href="#">Forgot your password?</a>
-        <button>Sign In</button>
+        {formik.touched.password && formik.errors.password ? (
+          <div className={styles.error}>{formik.errors.password}</div>
+        ) : null}
+        <a className={styles.forgotPassword} href="#">Olvidé mi password</a>
+        <button className={styles.btnSubmit} type="submit">Iniciar</button>
       </form>
     </div>
   );
 }
 
 export default SignInForm;
+

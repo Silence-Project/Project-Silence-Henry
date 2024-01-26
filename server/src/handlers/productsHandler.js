@@ -35,9 +35,9 @@ catch(error){
 
 const postNewProductHandler = async(req,res)=>{
     console.log("body--->",req.body);
-const {codigo, descripcion, talla, color, material, image, precio_base, precio_venta, preferencia, estado} = req.body;
+const {codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado} = req.body;
 try{
-    const newProduct = await postNewProducts(codigo, descripcion, talla, color, material, image, precio_base, precio_venta, preferencia, estado)
+    const newProduct = await postNewProducts(codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado)
     res.status(200).json(newProduct)
 }catch(error){
     console.log(error);

@@ -8,4 +8,3 @@ conn.sync({ force: true })
             console.log(`listening on PORT ${PORT}`)
         })
     }).catch(error => console.error(error))
-

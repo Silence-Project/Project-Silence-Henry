@@ -6,8 +6,8 @@ const { getProductsHandler,
 
 const productsRouter = Router()
 
-productsRouter.get    ("/products/",    getProductsHandler)
-productsRouter.get    ("/products/:id", getProductsDetailHandler)
-productsRouter.post   ("/products/new", postNewProductHandler)
+productsRouter.get    ("/",    getProductsHandler)
+productsRouter.get    ("/:id", getProductsDetailHandler)
+productsRouter.post   ("/new", postNewProductHandler)
 
 module.exports = productsRouter

@@ -3,6 +3,6 @@ const { userHandler } = require("../handlers/userHandler");
 
 const router = Router();
 
-router.use("/usuarios", userHandler);
+router.use("/", userHandler);
 
 module.exports = router;
