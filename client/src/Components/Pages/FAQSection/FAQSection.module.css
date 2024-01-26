@@ -1,0 +1,12 @@
+.container{
+  width: 70vw;
+  margin: auto;
+  padding: 8% 12%;
+}
+.ul{
+  list-style-type: disc;
+  margin-left: 60px;
+}
+.h1{
+  text-align: center;
+}

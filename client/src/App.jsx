@@ -5,6 +5,7 @@ import Landing from './Components/Pages/Landing/Landing';
 import Home from './Components/Pages/Home/Home';
 import './App.css'
 import LoginForm from './Auth/Login/LoginForm';
+import FAQSection from './components/Pages/FAQSection/FAQSection';
 
 function App() {
 
@@ -28,6 +29,11 @@ function App() {
           <Route 
           path={ROUTES.LOGGING} 
           element={<LoginForm />}>
+          </Route>
+
+          <Route 
+          path={ROUTES.FAQSECTION} 
+          element={<FAQSection />}>
           </Route>
 
         </Routes>
