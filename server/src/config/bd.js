@@ -1,18 +1,17 @@
 require('dotenv').config();
+const { USER, PASSWORD, HOST, PORT, BDD } = process.env
 const { Sequelize } = require('sequelize');
-const { USER, PASSWORD, HOST, BDD } = process.env
+const modelProducts = require('../models/products');
 const modeloUsuario = require('../models/users.js');
-
-//config
 const sequelize = new Sequelize(
-    `postgres://${USER}:${PASSWORD}@${HOST}/${BDD}`, { logging: false }
+    `postgres://${USER}:${PASSWORD}@${HOST}:${PORT}/${BDD}`, { logging: false, native: false }
 )
-
-//ejecucion de funciones para creacion de modelos
+modelProducts(sequelize);
 modeloUsuario(sequelize);
-console.log(sequelize.models);
+
+const { Products, Usuario } = sequelize.models;
 
 module.exports = {
-    conn: sequelize,
-    ...sequelize.models
+    ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+   conn: sequelize
 }

@@ -1,14 +1,21 @@
 .header{
-  width: 98%;
+  width: 100vw;
   min-height: 60px;
   background-color: var(--WindsorGreige);
   border-radius: 5px;
-  margin: 1% auto;
   padding: 5px;
   text-align: center;
+  position: fixed;
+  top: 0;
+  margin-top: 2.5%;
+}
+.ghost{
+  width: 100vw;
+  height: 28vh;
 }
 .silence{
   position: absolute;
+  left: 47.8vw;
   max-width: 60px;
 }
 .hamburger{
@@ -21,14 +28,15 @@
   cursor: pointer;
 }
 .inputSearch{
-  width: 250px;
-  margin: 1%;
+  width: 150px;
+  margin: 1.25% 0.2%;
+  padding: 5PX;
   float: left;
 }
 .search{
   max-width: 25px;
   float: left;
-  margin: 1.2% 0;
+  margin: 1.4% 0;
 }
 .search:hover{
   cursor: pointer;
@@ -37,6 +45,9 @@
   max-width: 30px;
   float: right;
   margin: 1%;
+}
+.kartMarket{
+  margin-right: 2.5%;
 }
 .kartMarket:hover, .mailInbox:hover{
   cursor: pointer;
