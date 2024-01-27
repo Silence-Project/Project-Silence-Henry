@@ -6,6 +6,7 @@ const ROUTES = {
   LOGGING: "/logging",
   ERROR404: "*",
   DETAIL: "/detail/:id",
+  REGISTER: "/userRegister",
 }
 
 export default ROUTES

@@ -1,6 +1,6 @@
 
 .formContainer {
-  max-width: 400px;
+  width: 400px;
   margin: auto;
   padding: 20px;
   background-color: var(--PureWhite);
@@ -67,6 +67,11 @@ a {
   color: var(--BalancedGray);
 }
 
+.btnAndCheck {
+  display: flex;
+  flex-direction: column;
+}
+
 .btnSubmit {
   background-color: var(--AgreableGray);
   color: black;
@@ -78,4 +83,36 @@ a {
 
 .btnSubmit:hover {
   background-color: var(--ReposeGray);
+}
+
+
+.checkboxLabel {
+  display: block;
+  margin-top: 1px;
+  font-size: 0.7rem;
+  color: rgb(22, 22, 22);
+}
+
+.checkbox {
+  margin-bottom: 5px;
+  margin-top: 35px;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + span::before {
+  content: "\2714"; 
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border: 1px solid var(--ModerneGray);
+  border-radius: 3px;
+  background-color: var(--AgreableGray);
+  color: rgb(22, 22, 22);
+  font-weight: bold;
 }

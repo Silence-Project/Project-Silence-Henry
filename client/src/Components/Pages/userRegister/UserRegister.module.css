@@ -1,0 +1,23 @@
+
+
+.containeruserView {
+  float: right;
+  width: 70%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #C5B4A0, #FFFFFF);
+  align-items: center; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center;
+}
+
+.containeruserRegister {
+  float: left;
+  height: 100vh;
+  background: linear-gradient(to bottom, #FAD2D1, #FFFFFF);
+  width: 30%;
+  align-items: center; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center; 
+}

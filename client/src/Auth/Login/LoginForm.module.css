@@ -4,7 +4,23 @@
   justify-content: center; 
   align-items: center; 
   height: 100vh; 
+  background: linear-gradient(-45deg, var(--WindsorGreige), #ab9378d1,  var(--BalancedGray), #726250ad, var(--PureWhite));
+  background-size: 400% 400%; 
+  animation: gradientMovement 15s ease infinite; 
 }
+
+@keyframes gradientMovement {
+  0% {
+    background-position: 0% 50%; 
+  }
+  50% {
+    background-position: 100% 50%; 
+  }
+  100% {
+    background-position: 0% 50%; 
+  }
+}
+
 
 
 .signInForm {

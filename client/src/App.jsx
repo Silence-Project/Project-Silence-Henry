@@ -5,6 +5,8 @@ import Landing from './Components/Pages/Landing/Landing';
 import Home from './Components/Pages/Home/Home';
 import './App.css'
 import LoginForm from './Auth/Login/LoginForm';
+import UserRegister from './Components/Pages/userRegister/UserRegister';
+
 
 function App() {
 
@@ -28,6 +30,11 @@ function App() {
           <Route 
           path={ROUTES.LOGGING} 
           element={<LoginForm />}>
+          </Route>
+
+          <Route 
+          path={ROUTES.REGISTER} 
+          element={<UserRegister />}>
           </Route>
 
         </Routes>

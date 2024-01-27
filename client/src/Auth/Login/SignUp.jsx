@@ -1,22 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import GMAIL from "../../img/gmail.png";
+import ROUTES from "../../Helpers/Routes.helper";
 import styles from "./SignUp.module.css";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../Redux/Store/Slices/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
+  const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
-      password: ""
+      password: "",
+      allowPrivacy: false,
     },
     validationSchema: Yup.object({
       name: Yup.string().required("El campo 'nombre' es requerido"),
-      email: Yup.string().email("Dirección de correo invalida").required("Required"),
-      password: Yup.string().required("El campo 'password' es requerido")
+
+      email: Yup.string()
+        .email("Dirección de correo inválida")
+        .matches(
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          "Formato de correo electrónico inválido"
+        )
+        .required("Campo requerido"),
+      password: Yup.string()
+        .required("El campo 'password' es requerido")
+        .matches(
+          /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/,
+          "La contraseña debe tener al menos una letra y un número"
+        )
+        .min(3, "La contraseña debe tener al menos 3 caracteres")
+        .max(30, "La contraseña no puede tener más de 30 caracteres"),
+      allowPrivacy: Yup.boolean().oneOf(
+        [true],
+        "Debes aceptar las condiciones y la política de privacidad"
+      ),
     }),
-  
+
+    onSubmit: async (values) => {
+      if (values.allowPrivacy) {
+        let userCredentials = {
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        };
+        try {
+          await dispatch(signUp(userCredentials));
+          navigate(ROUTES.REGISTER);
+        } catch (error) {
+          setError("Error al registrar el usuario: " + error.message);
+          console.error("Error durante el registro:", error);
+        }
+      }
+    },
   });
 
   return (
@@ -25,10 +69,10 @@ function SignUpForm() {
         <h1>Crear Cuenta</h1>
         <div className={styles.socialContainer}>
           <a href="#" className={styles.google}>
-          <img src={GMAIL} alt="Gmail" className={styles.google}/>
+            <img src={GMAIL} alt="Gmail" className={styles.google} />
           </a>
         </div>
-        <span>O usa tu coreo</span>
+        <span>O usa tu correo</span>
         <input
           type="text"
           name="name"
@@ -65,9 +109,28 @@ function SignUpForm() {
         {formik.touched.password && formik.errors.password ? (
           <div className={styles.error}>{formik.errors.password}</div>
         ) : null}
+        {error && <div className={styles.error}>{error}</div>}
+
+        <div className={styles.btnAndCheck}>   
         <button type="submit" className={styles.btnSubmit}>
           Sign Up
         </button>
+
+        <input
+          type="checkbox"
+          name="allowPrivacy"
+          checked={formik.values.allowPrivacy}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          className={styles.checkbox}
+        />
+        <label htmlFor="allowPrivacy" className={styles.checkboxLabel}>
+          He leído y acepto las condiciones y la política de privacidad
+        </label>
+        {formik.touched.allowPrivacy && formik.errors.allowPrivacy ? (
+          <div className={styles.error}>{formik.errors.allowPrivacy}</div>
+          ) : null}
+          </div>
       </form>
     </div>
   );
