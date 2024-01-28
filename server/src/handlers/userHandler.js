@@ -64,20 +64,30 @@ userHandler.get("/:id", async (req, res) => {
   }
 });
 
-//GET all
-// userHandler.get("/", async (req, res) => {
-//   try {
-//     const usuarios = await Usuario.findAll({
-//       attributes: {
-//         exclude: ["createdAt", "updatedAt"],
-//       },
-//     });
+//PATCH update user data - /:id param
+userHandler.patch("/:id", async (req, res) => {
+  const userIdToUpdate = parseInt(req.params.id);
 
-//     res.status(200).json(usuarios);
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// });
+  const dataToUpdate = req.body;
+
+  try {
+    const updatedUser = await Usuario.update(dataToUpdate, {
+      where: { id: userIdToUpdate },
+    });
+    // console.log(updatedUser);
+    if (updatedUser[0] === 0) throw Error("User not found.");
+
+    res
+      .status(200)
+      .json({
+        userUpdated: true,
+        message: "User successfully updated!",
+        updatedUser,
+      });
+  } catch (error) {
+    res.status(400).json({ userUpdated: false, error: error.message });
+  }
+});
 
 module.exports = {
   userHandler,
