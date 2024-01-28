@@ -67,6 +67,11 @@ a {
   color: var(--BalancedGray);
 }
 
+.btnSubmit:disabled {
+  opacity: 0.5; 
+  cursor: not-allowed; 
+}
+
 .btnAndCheck {
   display: flex;
   flex-direction: column;

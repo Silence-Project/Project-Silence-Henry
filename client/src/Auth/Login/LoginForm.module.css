@@ -1,12 +1,11 @@
-
 .formContainer {
   display: flex;
   justify-content: center; 
   align-items: center; 
   height: 100vh; 
-  background: linear-gradient(-45deg, var(--WindsorGreige), #ab9378d1,  var(--BalancedGray), #726250ad, var(--PureWhite));
+  background: linear-gradient(-45deg, var(--WindsorGreige), var(--PureWhite), var(--BalancedGray), var(--ModerneWhite)); 
   background-size: 400% 400%; 
-  animation: gradientMovement 15s ease infinite; 
+  animation: gradientMovement 8s linear infinite; 
 }
 
 @keyframes gradientMovement {

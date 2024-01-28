@@ -10,9 +10,9 @@ import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
   const [error, setError] = useState("");
+  const [passwordEnabled, setPasswordEnabled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   const formik = useFormik({
     initialValues: {
@@ -23,7 +23,6 @@ function SignUpForm() {
     },
     validationSchema: Yup.object({
       name: Yup.string().required("El campo 'nombre' es requerido"),
-
       email: Yup.string()
         .email("Dirección de correo inválida")
         .matches(
@@ -46,22 +45,47 @@ function SignUpForm() {
     }),
 
     onSubmit: async (values) => {
-      if (values.allowPrivacy) {
-        let userCredentials = {
-          name: values.name,
-          email: values.email,
-          password: values.password,
-        };
-        try {
+      try {
+        const emailExists = await checkEmailExists(values.email);
+        if (emailExists) {
+          setError("Tu correo electrónico ya está registrado, debes iniciar sesión");
+        } else {
+          let userCredentials = {
+            name: values.name,
+            email: values.email,
+            password: values.password,
+          };
           await dispatch(signUp(userCredentials));
           navigate(ROUTES.REGISTER);
-        } catch (error) {
-          setError("Error al registrar el usuario: " + error.message);
-          console.error("Error durante el registro:", error);
         }
+      } catch (error) {
+        setError("Error al registrar el usuario: " + error.message);
+        console.error("Error durante el registro:", error);
       }
     },
   });
+
+  const checkEmailExists = async (email) => {
+    try {
+      const response = await fetch(`http://localhost:3001/usuarios?email=${email}`);
+      const data = await response.json();
+      return data.exists;
+    } catch (error) {
+      console.error("Error al verificar el correo electrónico:", error);
+      return false;
+    }
+  };
+
+  const handleEmailBlur = async (event) => {
+    const { value } = event.target;
+    const emailExists = await checkEmailExists(value);
+    if (emailExists) {
+      setError("Tu correo electrónico ya está registrado, debes iniciar sesión");
+    } else {
+      setError("");
+      setPasswordEnabled(true);
+    }
+  };
 
   return (
     <div className={`${styles.formContainer} ${styles.signUpContainer}`}>
@@ -90,7 +114,7 @@ function SignUpForm() {
           name="email"
           value={formik.values.email}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          onBlur={handleEmailBlur}
           placeholder="📧 Email ... "
           className={styles.input}
         />
@@ -105,32 +129,33 @@ function SignUpForm() {
           onBlur={formik.handleBlur}
           placeholder="Password"
           className={styles.input}
+          disabled={!passwordEnabled}
         />
         {formik.touched.password && formik.errors.password ? (
           <div className={styles.error}>{formik.errors.password}</div>
         ) : null}
         {error && <div className={styles.error}>{error}</div>}
 
-        <div className={styles.btnAndCheck}>   
-        <button type="submit" className={styles.btnSubmit}>
-          Sign Up
-        </button>
+        <div className={styles.btnAndCheck}>
+          <button type="submit" className={styles.btnSubmit} disabled={!formik.isValid || !passwordEnabled || !!error} >
+            Sign Up
+          </button>
 
-        <input
-          type="checkbox"
-          name="allowPrivacy"
-          checked={formik.values.allowPrivacy}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          className={styles.checkbox}
-        />
-        <label htmlFor="allowPrivacy" className={styles.checkboxLabel}>
-          He leído y acepto las condiciones y la política de privacidad
-        </label>
-        {formik.touched.allowPrivacy && formik.errors.allowPrivacy ? (
-          <div className={styles.error}>{formik.errors.allowPrivacy}</div>
+          <input
+            type="checkbox"
+            name="allowPrivacy"
+            checked={formik.values.allowPrivacy}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className={styles.checkbox}
+          />
+          <label htmlFor="allowPrivacy" className={styles.checkboxLabel}>
+            He leído y acepto las condiciones y la política de privacidad
+          </label>
+          {formik.touched.allowPrivacy && formik.errors.allowPrivacy ? (
+            <div className={styles.error}>{formik.errors.allowPrivacy}</div>
           ) : null}
-          </div>
+        </div>
       </form>
     </div>
   );
