@@ -18,6 +18,27 @@ userHandler.post("/", async (req, res) => {
   }
 });
 
+//GET validate email&&password - body
+userHandler.get("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    if (!email || !password) throw Error("Email and password are required.");
+    // Find user by email
+    const userCredentials = await Usuario.findOne({ where: { email } });
+    // console.log("que es user?? ", userCredentials);
+
+    // If user not found, or password doesn't match, throw error
+    if (!userCredentials || userCredentials.password !== password) {
+      throw new Error("Invalid user credentials.");
+    }
+
+    res.status(202).json({ access: true, userCredentials });
+  } catch (error) {
+    res.status(400).json({ access: false, error: error.message });
+  }
+});
+
 //GET by param email - /email@mail.com
 /**
  * Necesidad de verificar/validar que no exista una cuenta ya
@@ -77,13 +98,11 @@ userHandler.patch("/:id", async (req, res) => {
     // console.log(updatedUser);
     if (updatedUser[0] === 0) throw Error("User not found.");
 
-    res
-      .status(200)
-      .json({
-        userUpdated: true,
-        message: "User successfully updated!",
-        updatedUser,
-      });
+    res.status(200).json({
+      userUpdated: true,
+      message: "User successfully updated!",
+      updatedUser,
+    });
   } catch (error) {
     res.status(400).json({ userUpdated: false, error: error.message });
   }
