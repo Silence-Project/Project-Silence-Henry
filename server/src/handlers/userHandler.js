@@ -29,7 +29,7 @@ userHandler.get("/login", async (req, res) => {
     // console.log("que es user?? ", userCredentials);
 
     // If user not found, or password doesn't match, throw error
-    if (!userCredentials || userCredentials.password !== password) {
+    if (!userCredentials || userCredentials.email !== email || userCredentials.password !== password) {
       throw new Error("Invalid user credentials.");
     }
 
