@@ -1,10 +1,25 @@
-
 .formContainer {
   display: flex;
   justify-content: center; 
   align-items: center; 
   height: 100vh; 
+  background: linear-gradient(-45deg, var(--WindsorGreige), var(--PureWhite), var(--BalancedGray), var(--ModerneWhite)); 
+  background-size: 400% 400%; 
+  animation: gradientMovement 8s linear infinite; 
 }
+
+@keyframes gradientMovement {
+  0% {
+    background-position: 0% 50%; 
+  }
+  50% {
+    background-position: 100% 50%; 
+  }
+  100% {
+    background-position: 0% 50%; 
+  }
+}
+
 
 
 .signInForm {

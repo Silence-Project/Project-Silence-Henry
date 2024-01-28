@@ -1,10 +1,10 @@
 import styles from './Header.module.css'
-
 import imgLogo from '../../../img/silenceImg.png'
 import hamburgerIcon from '../../../img/icons/hamburger.png'
 import searchIcon from '../../../img/icons/search.png'
 import shoppingCartIcon from '../../../img/icons/shopping-cart.png'
 import mailInboxIcon from '../../../img/icons/mail-inbox-app.png'
+
 
 const Header = () => {
   return (

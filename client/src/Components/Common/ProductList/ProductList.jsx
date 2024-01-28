@@ -1,41 +1,44 @@
+
 import React from 'react'
 
-import Card from '../../Common/ProductCard/ProductCard.jsx'
+import Card from "../ProductCard/ProductCard";
 
-const ProductList = ({products}) => {
- 
-    
+import styles from './ProductList.module.css'
+
+
+const ProductList = ({ products }) => {
+
+  console.log("PRODUCTOS EN PRODUCTLIST ->", products);
+
   if (Array.isArray(products)) {
     if (products.length === 0) {
       return (
-        <div className="product-list">
+        <div className={styles.productList}>
           <p>Cargando datos...</p>
         </div>
       );
     }
     return (
-      <div className="product-list">
-        {products.map((element) => (
-          <Card element={element} key={element.id} />
+      <div className={styles.productList}>
+        {products.map((product) => (
+          <Card product={product} key={product.id} />
         ))}
       </div>
     );
   } else if (typeof products === 'object') {
     return (
-      <div className="product-list">
-        <Card element={products} key={products.id} />
+      <div className={styles.productList}>
+        <Card product={products} key={products.id} />
       </div>
     );
 
   } else {
     return (
-      <div className="product-list">
-        <p>No se encontraron productos con ese nombre o id.</p>
+      <div className={styles.productList}>
+        <p>No se encontraron videojuegos con ese nombre o id.</p>
       </div>
     );
   }
+};
 
-
-}
-
-export default ProductList
+export default ProductList;
