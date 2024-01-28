@@ -2,9 +2,13 @@ import styles from './Footer.module.css'
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <p className={styles.f}>Footer</p>
-    </footer>
+    <>
+      <div className={styles.ghost}></div>
+      <footer className={styles.footer}>
+        <a href="/FAQSection" className={styles.faqSection}>FAQSection</a>
+        <a href=""></a>
+      </footer>
+    </>
   )
 }
 
