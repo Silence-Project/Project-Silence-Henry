@@ -5,12 +5,14 @@ import GMAIL from "../../img/gmail.png";
 import ROUTES from "../../Helpers/Routes.helper";
 import styles from "./SignUp.module.css";
 import { useDispatch } from "react-redux";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { signUp } from "../../Redux/Store/Slices/UserSlice";
 import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
   const [error, setError] = useState("");
   const [passwordEnabled, setPasswordEnabled] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -46,46 +48,73 @@ function SignUpForm() {
 
     onSubmit: async (values) => {
       try {
-        const emailExists = await checkEmailExists(values.email);
-        if (emailExists) {
-          setError("Tu correo electrónico ya está registrado, debes iniciar sesión");
+        const { exists, isActive } = await checkEmailExists(values.email);
+    
+        if (exists) {
+          if (isActive) {
+            setError("Tu correo electrónico ya está registrado, debes iniciar sesión.");
+          } else {
+            setError("Tu correo electrónico está registrado pero no está activo. Comunícate con el administrador.");
+          }
         } else {
+  
           let userCredentials = {
             name: values.name,
             email: values.email,
             password: values.password,
           };
+    
           await dispatch(signUp(userCredentials));
           navigate(ROUTES.REGISTER);
         }
       } catch (error) {
-        setError("Error al registrar el usuario: " + error.message);
-        console.error("Error durante el registro:", error);
+        setError("Error al verificar el correo electrónico: " + error.message);
+        console.error("Error durante la verificación del correo electrónico:", error);
       }
     },
+    
   });
 
-  const checkEmailExists = async (email) => {
+    const checkEmailExists = async (email) => {
     try {
       const response = await fetch(`http://localhost:3001/usuarios?email=${email}`);
       const data = await response.json();
-      return data.exists;
+      
+      return {
+        exists: data.exists,
+        isActive: data.isActive,
+      };
     } catch (error) {
       console.error("Error al verificar el correo electrónico:", error);
-      return false;
+      return {
+        exists: false,
+        isActive: false,
+      };
     }
   };
-
+  
+  
   const handleEmailBlur = async (event) => {
     const { value } = event.target;
-    const emailExists = await checkEmailExists(value);
-    if (emailExists) {
-      setError("Tu correo electrónico ya está registrado, debes iniciar sesión");
+    const { exists, isActive } = await checkEmailExists(value);
+  
+    if (exists) {
+      if (!isActive) {
+        setError("Tu correo electrónico se encuentra suspendido No puedes iniciar sesión. Comunícate con el administrador.");
+      } else {
+        setError("Tu correo electrónico ya está registrado, debes iniciar sesión.");
+      }
+      setPasswordEnabled(false); 
     } else {
-      setError("");
-      setPasswordEnabled(true);
+      setError(""); 
+      setPasswordEnabled(true); 
     }
   };
+  
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
 
   return (
     <div className={`${styles.formContainer} ${styles.signUpContainer}`}>
@@ -121,8 +150,9 @@ function SignUpForm() {
         {formik.touched.email && formik.errors.email ? (
           <div className={styles.error}>{formik.errors.email}</div>
         ) : null}
+        <div className={styles.inputContainer}>        
         <input
-          type="password"
+          type={passwordVisible ? "text" : "password"}
           name="password"
           value={formik.values.password}
           onChange={formik.handleChange}
@@ -131,16 +161,17 @@ function SignUpForm() {
           className={styles.input}
           disabled={!passwordEnabled}
         />
+         <span className={styles.eyeIcon} onClick={togglePasswordVisibility}>
+        {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+      </span>
+      </div>
+
         {formik.touched.password && formik.errors.password ? (
           <div className={styles.error}>{formik.errors.password}</div>
         ) : null}
         {error && <div className={styles.error}>{error}</div>}
 
-        <div className={styles.btnAndCheck}>
-          <button type="submit" className={styles.btnSubmit} disabled={!formik.isValid || !passwordEnabled || !!error} >
-            Sign Up
-          </button>
-
+      
           <input
             type="checkbox"
             name="allowPrivacy"
@@ -152,9 +183,17 @@ function SignUpForm() {
           <label htmlFor="allowPrivacy" className={styles.checkboxLabel}>
             He leído y acepto las condiciones y la política de privacidad
           </label>
+
+          <button type="submit" className={styles.btnSubmit} disabled={!formik.isValid || !passwordEnabled || !!error} >
+            Sign Up
+          </button>
+
           {formik.touched.allowPrivacy && formik.errors.allowPrivacy ? (
             <div className={styles.error}>{formik.errors.allowPrivacy}</div>
           ) : null}
+  <div className={styles.btnAndCheck}>
+         
+
         </div>
       </form>
     </div>
