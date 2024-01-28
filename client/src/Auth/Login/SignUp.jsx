@@ -63,9 +63,27 @@ function SignUpForm() {
             email: values.email,
             password: values.password,
           };
+          const response = await fetch(`http://localhost:3001/usuarios`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userCredentials)
+          });
     
-          await dispatch(signUp(userCredentials));
-          navigate(ROUTES.REGISTER);
+          const userData = await response.json();
+    console.log(userData)
+          // Verificar si el usuario se registró con éxito
+          if (response.ok) {
+            // Obtener el ID del usuario recién creado
+            const userId = userData.id;
+    
+            // Redirigir al usuario a la página de visualización de datos
+            navigate(`/userRegister/${userId}`);
+          } else {
+            // Manejar errores si la solicitud no fue exitosa
+            setError("Hubo un error al registrar el usuario.");
+          }
         }
       } catch (error) {
         setError("Error al verificar el correo electrónico: " + error.message);

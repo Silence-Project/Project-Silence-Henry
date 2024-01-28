@@ -15,7 +15,7 @@ const UserRegister = () => {
 
 <div>
   <div className={styles.containeruserRegister}>
-    <UserPersonalData />
+    <UserPersonalData  />
   </div>
 </div>
 
