@@ -29,9 +29,40 @@ const postNewProducts = async(codigo, descripcion, talla, color, material, peso,
     }
 }
 
+const changeProducts = async(id, codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado )=>{
+    const data = await Products.findAll({where: {id: id}})
+    if (data.length===0) {
+        throw new Error(`El ID del producto no existe ${id}`);
+    }
+    else {
+        const product = await Products.update({codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado}, {where: {id:id}})
+        const changeProduct = await Products.findAll({where: {id: id}})
+        console.log('changeProduct-->', changeProduct);
+        return [...changeProduct];
+    }
+}
+
+const deleteProducts = async(id,sw)=>{
+    //si estado es true se borra el registro de la tabla, si es false se desactiva el registro y no se elimina
+    const data = await Products.findAll({where: {id: id}})
+    if (data.length===0) {
+        throw new Error(`El ID del producto no existe ${id}`);
+    }
+    else {
+        if(sw==='true'){
+            const product = await Products.destroy({where: {id:id}})
+        }
+        else {
+            const product = await Products.update({estado: sw}, {where: {id:id}})
+        }
+    }
+}
+
 module.exports = {
     getAllProducts,
     getProductsById,
     getProductsByCodigo,
     postNewProducts,
+    changeProducts,
+    deleteProducts
 }
