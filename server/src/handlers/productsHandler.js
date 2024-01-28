@@ -37,9 +37,9 @@ const getProductsDetailHandler = async(req,res)=>{
 }
 
 const postNewProductHandler = async(req,res)=>{
-    const {codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado} = req.body;
+    const {codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo} = req.body;
     try{
-        const newProduct = await postNewProducts(codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado)
+        const newProduct = await postNewProducts(codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo)
         res.status(200).json(newProduct)
     }catch(error){
         console.log(error);
@@ -48,9 +48,9 @@ const postNewProductHandler = async(req,res)=>{
 }
 
 const changeProductHandler = async(req,res)=>{
-    const {id, codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado} = req.body;
+    const {id, codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo} = req.body;
     try{
-        const product = await changeProducts(id, codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado)
+        const product = await changeProducts(id, codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo)
         console.log('product---> ', product);
         res.status(200).json(product)
     }catch(error){
@@ -60,6 +60,7 @@ const changeProductHandler = async(req,res)=>{
 }
 
 const deleteProductHandler = async(req,res)=>{
+    //si sw es true se borra el registro de la tabla, si es false se desactiva el registro y no se elimina
     const {id, sw} = req.query
     try {
         const response = await deleteProducts(id, sw)
