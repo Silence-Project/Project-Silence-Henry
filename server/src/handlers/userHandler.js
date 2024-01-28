@@ -20,19 +20,6 @@ userHandler.post("/", async (req, res) => {
 });
 
 
-//GET by param email
-userHandler.get("/", async (req, res) => {
-  const { email } = req.query;
-
-  try {
-    let userByEmail = await getUserByEmail(email);
-    res.status(200).json(userByEmail);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-
 //GET all
 userHandler.get("/", async (req, res) => {
   try {
@@ -47,6 +34,20 @@ userHandler.get("/", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+
+
+//GET by param email
+userHandler.get("/", async (req, res) => {
+  const { email } = req.query;
+
+  try {
+    let userByEmail = await getUserByEmail(email);
+    res.status(200).json(userByEmail);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 
 module.exports = {
   userHandler,

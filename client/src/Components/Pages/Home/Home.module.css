@@ -15,18 +15,25 @@
   color: #333;
 }
 
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 10vh; 
   font-family: 'Now';
+  margin-top: -55%;
 }
+
+.navbar a {
+  color: red; /* Aplica el color rojo al enlace */
+}
+
 
 .cardContainer {
   width: 100%;
   /* height: auto; */
   flex-wrap: wrap;
+  
   justify-content: center;
   padding-bottom: 5%;
   /* display: flex;
@@ -34,6 +41,10 @@
   justify-content: center;
   font-family: 'Now';
   height: 80vh;  */
+}
+
+.cardContainer p {
+  color: green;
 }
 
 .footer {
@@ -45,10 +56,9 @@
 }
 
 .home-card{
-  width: 100%;
-  /* height: auto; */
+  width: 100vw;
+  height: auto; 
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 5%;
-
 }
