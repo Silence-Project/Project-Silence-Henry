@@ -6,6 +6,7 @@ import searchIcon from '../../../img/icons/search.png'
 import shoppingCartIcon from '../../../img/icons/shopping-cart.png'
 import mailInboxIcon from '../../../img/icons/mail-inbox-app.png'
 
+
 const Header = ({ estilosCss }) => {
 
   if(estilosCss === 'Home'){

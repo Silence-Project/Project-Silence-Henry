@@ -1,6 +1,6 @@
 
 .formContainer {
-  max-width: 400px;
+  width: 400px;
   margin: auto;
   padding: 20px;
   background-color: var(--PureWhite);
@@ -58,7 +58,7 @@
 .error {
   color: #ff4c5e;
   margin-top: 2px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: 0.7rem;
 }
 
@@ -67,10 +67,21 @@ a {
   color: var(--BalancedGray);
 }
 
+.btnSubmit:disabled {
+  opacity: 0.5; 
+  cursor: not-allowed; 
+}
+
+.btnAndCheck {
+  display: flex;
+  flex-direction: column;
+}
+
 .btnSubmit {
   background-color: var(--AgreableGray);
   color: black;
   padding: 10px 15px;
+  margin-top: 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -78,4 +89,54 @@ a {
 
 .btnSubmit:hover {
   background-color: var(--ReposeGray);
+}
+
+
+.checkboxLabel {
+  display: block;
+  margin-top: 1px;
+  font-size: 0.7rem;
+  color: rgb(22, 22, 22);
+}
+
+.checkbox {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.inputContainer .input {
+  padding-right: 2.5rem; 
+}
+
+.inputContainer .eyeIcon {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem; 
+  transform: translateY(-40%);
+  cursor: pointer;
+  color: var(--WindsorGreige);
+}
+
+
+.checkboxLabel input[type="checkbox"] {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + span::before {
+  content: "\2714"; 
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border: 1px solid var(--ModerneGray);
+  border-radius: 3px;
+  background-color: var(--AgreableGray);
+  color: rgb(22, 22, 22);
+  font-weight: bold;
 }

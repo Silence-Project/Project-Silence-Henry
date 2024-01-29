@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import ROUTES from "../../../Helpers/Routes.helper";
-
 import styles from "./Home.module.css";
-
 import Cards from "../../Common/ProductList/ProductList";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
-
+import { Link } from "react-router-dom";
+import ROUTES from "../../../Helpers/Routes.helper";
 import Header from '../../Common/Header/Header';
 import Footer from '../../Common/Footer/Footer';
 import Descuento from '../../Common/Descuento/Descuento'
@@ -34,16 +31,12 @@ const Home = () => {
 
         <Header estilosCss={estilosCss}/>
 
-        <div className={styles.navbar}>
-          <Link to={ROUTES.LOGGING}>Registro</Link>
+        <div className={styles.cardContainer}>
+              <Cards className='card' products={products}/>
         </div>
 
-        <div className={styles.cardContainer}>
-
-              <Cards className='card'
-              products={products}
-            />
-         
+        <div className={styles.navbar}>
+          <Link to={ROUTES.LOGGING}>Inicia Sesión</Link>
         </div>
 
         <Footer/>

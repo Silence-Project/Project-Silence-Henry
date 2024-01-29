@@ -5,6 +5,8 @@ import Landing from './Components/Pages/Landing/Landing';
 import Home from './components/Pages/Home/Home';
 import LoginForm from './Auth/Login/LoginForm';
 import FAQSection from './components/Pages/FAQSection/FAQSection';
+import UserRegister from './Components/Pages/userRegister/UserRegister';
+
 
 import Details from './components/Common/ProductDetail/ProductDetail';
 
@@ -38,6 +40,11 @@ function App() {
           <Route 
           path={ROUTES.FAQSECTION} 
           element={<FAQSection />}>
+          </Route>
+
+          <Route 
+          path={ROUTES.REGISTER} 
+          element={<UserRegister/>}>
           </Route>
      
           <Route
