@@ -3,9 +3,14 @@ import Header from '../../Common/Header/Header'
 import Footer from '../../Common/Footer/Footer'
 
 const FAQSection = () => {
+
+  const estilosCss = 'FAQSection'
+
   return(
     <>
-      <Header/>
+
+      <Header estilosCss={estilosCss}/>
+
       <div className={styles.container}>
         
         <h1 className={styles.h1}>FAQ Section</h1>
@@ -180,8 +185,6 @@ const FAQSection = () => {
         </ol>
 
       </div>
-
-      <br />
 
       <Footer/>
       

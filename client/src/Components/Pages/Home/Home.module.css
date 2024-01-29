@@ -4,17 +4,6 @@
   height: 100vh; 
 }
 
-.topMessage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 5vh;
-  background-color: var(--Rose);
-  font-family: 'Now';
-  font-size: 1.4rem; 
-  color: #333;
-}
-
 .navbar {
   display: flex;
   align-items: center;
@@ -34,14 +23,6 @@
   justify-content: center;
   font-family: 'Now';
   height: 80vh;  */
-}
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Now';
-  height: 10vh; 
 }
 
 .home-card{

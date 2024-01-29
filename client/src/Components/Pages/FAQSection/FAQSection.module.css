@@ -1,7 +1,7 @@
 .container{
   width: 70vw;
   margin: auto;
-  padding: 8% 12%;
+  padding: 8% 0;
 }
 .ul{
   list-style-type: disc;

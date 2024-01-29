@@ -10,6 +10,7 @@ import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
 
 import Header from '../../Common/Header/Header';
 import Footer from '../../Common/Footer/Footer';
+import Descuento from '../../Common/Descuento/Descuento'
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,14 +24,15 @@ const Home = () => {
 
   console.log("PRODUCTOS ->", products);
 
+  const estilosCss = 'Home'
+
   return (
     <>
       <div className={styles.homeContainer}>
-        <div className={styles.topMessage}>
-          20% de descuento por pago en efectivo
-        </div>
 
-        <Header/>
+        <Descuento/>
+
+        <Header estilosCss={estilosCss}/>
 
         <div className={styles.navbar}>
           <Link to={ROUTES.LOGGING}>Registro</Link>
