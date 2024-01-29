@@ -10,6 +10,8 @@ userHandler.post("/", async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
+    if (!name || !email || !password) throw Error("Email and password are required.");
+
     const nuevoUsuario = await createUser(name, email, password);
 
     res.status(201).json(nuevoUsuario);
