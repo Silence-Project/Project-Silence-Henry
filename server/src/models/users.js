@@ -40,7 +40,13 @@ module.exports =  (sequelize) => {
       },
     },
     phoneNumber: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      validate: {
+        isNumeric: true,
+        isPhoneNumberFormat(value) {
+          if(!/^[0-9]{3,15}$/.test(value)) throw Error("Invalid phone number format.")
+        }
+      }
     },
     birthday: {
       type: DataTypes.DATEONLY, // (2000-07-06 with no timestamp)

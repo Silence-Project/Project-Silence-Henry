@@ -1,13 +1,16 @@
 .footer{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   background-color: var(--WindsorGreige);
   min-height: 50px;
   border-radius: 5px;
 }
-
-.f{
+.ghost{
+  width: 100vw;
+  height: 28vh;
+}
+.faqSection{
   float: left;
   color: white;
   margin: 0.8%;
