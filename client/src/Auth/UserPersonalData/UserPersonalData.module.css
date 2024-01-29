@@ -2,7 +2,7 @@
 
 .formContainer {
   width: 300px;
-  margin: auto;
+  margin-top: 20%;
   padding: 20px;
   background-color: var(--PureWhite);
   border-radius: 8px;
@@ -11,7 +11,7 @@
   font-family: 'Now';
   position: relative;
   overflow: hidden;
-  z-index: 2;
+  z-index: 0;
   display: flex; 
   flex-direction: column; 
   align-items: center; 
@@ -69,6 +69,28 @@
 .btnSubmit:hover {
   background-color: var(--ReposeGray);
 }
+
+.inputContainer {
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.inputContainer .input {
+  padding-right: 2.5rem; 
+}
+
+.inputContainer .eyeIcon {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem; 
+  transform: translateY(-40%);
+  cursor: pointer;
+  color: var(--WindsorGreige);
+}
+
 
 .questionsOne {
   display: flex; 

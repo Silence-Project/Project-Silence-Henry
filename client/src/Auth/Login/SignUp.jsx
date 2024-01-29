@@ -18,6 +18,7 @@ function SignUpForm() {
 
   const formik = useFormik({
     initialValues: {
+      firstName: "",
       name: "",
       email: "",
       password: "",
@@ -26,20 +27,21 @@ function SignUpForm() {
     validationSchema: Yup.object({
       name: Yup.string().required("El campo 'nombre' es requerido"),
       email: Yup.string()
-        .email("Dirección de correo inválida")
-        .matches(
-          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          "Formato de correo electrónico inválido"
-        )
-        .required("Campo requerido"),
+      .required("Campo requerido")
+      .email("Dirección de correo inválida")
+      .matches(
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        "Formato de correo electrónico inválido"
+        ),
       password: Yup.string()
         .required("El campo 'password' es requerido")
+        .min(5, "La contraseña debe tener al menos 5 caracteres")
+        .max(30, "La contraseña no puede tener más de 30 caracteres")
         .matches(
-          /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/,
+          /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,30}$/,
           "La contraseña debe tener al menos una letra y un número"
-        )
-        .min(3, "La contraseña debe tener al menos 3 caracteres")
-        .max(30, "La contraseña no puede tener más de 30 caracteres"),
+        ),
+
       allowPrivacy: Yup.boolean().oneOf(
         [true],
         "Debes aceptar las condiciones y la política de privacidad"
@@ -59,6 +61,7 @@ function SignUpForm() {
         } else {
   
           let userCredentials = {
+            firstName: values.name,
             name: values.name,
             email: values.email,
             password: values.password,
@@ -73,13 +76,15 @@ function SignUpForm() {
     
           const userData = await response.json();
     console.log(userData)
-          // Verificar si el usuario se registró con éxito
+          // Si se registró 
           if (response.ok) {
-            // Obtener el ID del usuario recién creado
+            // Obtien el ID del usuario  creado
             const userId = userData.id;
     
-            // Redirigir al usuario a la página de visualización de datos
-            navigate(`/userRegister/${userId}`);
+
+            dispatch(signUp(userData));
+            navigate(`${ROUTES.REGISTER}${userId}`);
+
           } else {
             // Manejar errores si la solicitud no fue exitosa
             setError("Hubo un error al registrar el usuario.");
@@ -175,7 +180,7 @@ function SignUpForm() {
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="Password"
+          placeholder="Contraseña...✍🏻"
           className={styles.input}
           disabled={!passwordEnabled}
         />
