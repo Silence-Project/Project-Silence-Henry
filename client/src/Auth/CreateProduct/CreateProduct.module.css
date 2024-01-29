@@ -46,7 +46,8 @@
   
   
   .input {
-    width: 100%;
+    margin-left: 30px;
+    width: 20%;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -56,10 +57,11 @@
   }
   
   .error {
-    color: #ff4c5e;
+    margin-left: 30px;
+    color: #ff0019;
     margin-top: 2px;
     margin-bottom: 12px;
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
   
   a {
@@ -74,6 +76,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin: 20px;
   }
   
   .btnSubmit:hover {

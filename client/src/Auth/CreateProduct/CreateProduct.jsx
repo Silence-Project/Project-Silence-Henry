@@ -5,6 +5,8 @@ import * as Yup from "yup";
 // import styles from "../Login/SingUp.module.css";
 
 import styles from "./CreateProduct.module.css";
+import { Link } from "react-router-dom";
+import ROUTES from "../../Helpers/Routes.helper";
 
 
 function CreateProduct() {
@@ -169,6 +171,7 @@ function CreateProduct() {
           <div className={styles.error}>{formik.errors.peso}</div>
         ) : null}
 
+
         <input
           type="text"
           name="tallas"
@@ -186,6 +189,8 @@ function CreateProduct() {
           Crear Producto
         </button>
       </form>
+
+      <Link to={ROUTES.HOME} className={styles.btnSubmit}>Volver al home</Link>
     </div>
   );
 }
