@@ -10,7 +10,8 @@ userHandler.post("/", async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    if (!name || !email || !password) throw Error("Email and password are required.");
+    if (!name || !email || !password)
+      throw Error("Email and password are required.");
 
     const nuevoUsuario = await createUser(name, email, password);
 
@@ -92,6 +93,12 @@ userHandler.patch("/:id", async (req, res) => {
   const userIdToUpdate = parseInt(req.params.id);
 
   const dataToUpdate = req.body;
+
+  //Check if property 'name' is being updated
+  if (dataToUpdate.name) { //Adapt 'name' property to 'firstName'
+    dataToUpdate.firstName = dataToUpdate.name;
+    delete dataToUpdate.name; //Pues no lo necesito
+  }
 
   try {
     const updatedUser = await Usuario.update(dataToUpdate, {
