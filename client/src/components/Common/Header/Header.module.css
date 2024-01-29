@@ -1,4 +1,4 @@
-.header{
+.header1, .header2{
   width: 100vw;
   min-height: 60px;
   background-color: var(--WindsorGreige);
@@ -7,11 +7,20 @@
   text-align: center;
   position: fixed;
   top: 0;
+}
+.header1{
   margin-top: 2.5%;
 }
-.ghost{
+.header2{
+  margin-top: 0;
+}
+.ghost1{
   width: 100vw;
-  height: 28vh;
+  height: 20vh;
+}
+.ghost2{
+  width: 0;
+  height: 0;
 }
 .silence{
   position: absolute;
@@ -52,3 +61,4 @@
 .kartMarket:hover, .mailInbox:hover{
   cursor: pointer;
 }
+

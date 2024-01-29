@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 
-const Usuario = (sequelize) => {
+module.exports =  (sequelize) => {
   //definir modelo
   sequelize.define("Usuario", {
     // id: {
@@ -26,7 +26,6 @@ const Usuario = (sequelize) => {
     },
     lastName: {
       type: DataTypes.STRING,
-      defaultValue: "",
       // allowNull: true,
     },
     fullName: {
@@ -40,10 +39,18 @@ const Usuario = (sequelize) => {
       },
     },
     phoneNumber: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      defaultValue: "0000000000",
+      validate: {
+        // isNumeric: true,
+        isPhoneNumberFormat(value) {
+          if(!/^[0-9]{3,15}$/.test(value)) throw Error("Invalid phone number format.")
+        }
+      }
     },
     birthday: {
       type: DataTypes.DATEONLY, // (2000-07-06 with no timestamp)
+      defaultValue: "2000-01-15",
       validate: {
         isDate: true,
       },
@@ -66,7 +73,7 @@ const Usuario = (sequelize) => {
     password: {
       type: DataTypes.STRING,
       validate: {
-        //Min 3 characters, at least one letter, one number
+        //Min 3 characters, at least one letter a-z, one number 0-9
         is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/,
         notEmpty: true,
         min: 3,
@@ -95,6 +102,7 @@ const Usuario = (sequelize) => {
     allowPrivacy: {
       //User needs to accept privacy policy and personal info usage
       type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
     address: {
       type: DataTypes.STRING,
@@ -111,5 +119,3 @@ const Usuario = (sequelize) => {
     },
   });
 };
-
-module.exports = Usuario;

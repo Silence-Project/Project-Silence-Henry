@@ -4,36 +4,41 @@ import { Link } from 'react-router-dom'
 
 import ROUTES from '../../../Helpers/Routes.helper'
 
-const ProductCard = ({products}) => {
+import style from './ProductCard.module.css'
+
+const ProductCard = ({product}) => {
+
+  const { id, name, image, precio_venta, descripcion, stock, color, categoria, peso, codigo } = product
+
   return (
-    <div className="product-detail">
+    <div className={style.productDetail}>
 
-        <Link to={`${ROUTES.DETAIL}${products.id}`}>
+        <Link to={`${ROUTES.DETAIL}?codigo=${codigo}`}>
 
-            <div>
+            <div className='info'>
 
-            <h2>{products.name}</h2>
+            <h2 className={style.productName}>{descripcion}</h2>
 {/* 
-            <img src={products.image.map((image, index) => 
+            <img src={image.map((image, index) => 
             <p key={index} className="card-image">{image}</p>)} 
             
-            alt={products.name}/> */}
+            alt={name}/> */}
 
-            <img src={products.image} alt={products.name}/>
+            <img className={style.productImage} src={'https://i.pinimg.com/236x/0e/4f/ce/0e4fce603341659d87362c2666530f3d.jpg'} alt={descripcion}/>
 
-             <p>{products.price}</p>
+             <p>💸 {precio_venta}</p>
           
           
 {/*             
-            <p>{products.description}</p>
-            <p>{products.stock}</p>
+            <p>{description}</p>
+            <p>{stock}</p>
            
-            <p>{products.color}</p>
-            <p>{products.categoria}</p>
-            <p>{products.peso}</p> */}
+            <p>{color}</p>
+            <p>{categoria}</p>
+            <p>{peso}</p> */}
 
 
-            {/* <button>{COMPONENT.carrito}</button> */}
+            {/*  <button>{COMPONENT.carrito}</button> */}
             {/* <p>{COMPONENT.rating}</p> */}
 
             </div>
@@ -45,3 +50,5 @@ const ProductCard = ({products}) => {
 }
 
 export default ProductCard;
+
+

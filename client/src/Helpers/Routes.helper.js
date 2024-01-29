@@ -5,7 +5,10 @@ const ROUTES = {
   AboutUs: "/AboutUs",
   LOGGING: "/logging",
   ERROR404: "*",
-  DETAIL: "/detail/:id",
+  DETAIL: "/detail/",
+  PRODUCT: "/products",
+  CREATE_PRODUCT: "/create",
+  REGISTER: "/userRegister/:id",
 }
 
 export default ROUTES
