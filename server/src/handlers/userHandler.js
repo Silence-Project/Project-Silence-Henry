@@ -8,7 +8,6 @@ const userHandler = Router();
 userHandler.post("/", async (req, res) => {
   const { name, email, password } = req.body;
   // console.log('lo que recibi por BODY: ', req.body);
-
   try {
     const nuevoUsuario = await createUser(name, email, password);
 
