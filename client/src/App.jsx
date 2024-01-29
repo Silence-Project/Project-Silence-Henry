@@ -2,13 +2,16 @@ import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import ROUTES from "./Helpers/Routes.helper"
 import Landing from './Components/Pages/Landing/Landing';
-import Home from './components/Pages/Home/Home';
+import Home from './Components/Pages/Home/Home';
 import LoginForm from './Auth/Login/LoginForm';
+import CreateProduct from './Auth/CreateProduct/CreateProduct';
+
+
+import Details from './Components/Common/ProductDetail/ProductDetail';
 import FAQSection from './components/Pages/FAQSection/FAQSection';
 import UserRegister from './Components/Pages/userRegister/UserRegister';
 
 
-import Details from './components/Common/ProductDetail/ProductDetail';
 
 import './App.css'
 
@@ -24,18 +27,18 @@ function App() {
 
           <Route 
             path={ROUTES.LANDING} 
-            element={<Landing />}>
-          </Route>
+            element={<Landing />}
+            ></Route>
 
           <Route 
             exact path={ROUTES.HOME} 
-            element={<Home/>}>
-          </Route>
+            element={<Home/>}
+            ></Route>
 
           <Route 
             path={ROUTES.LOGGING} 
-            element={<LoginForm />}>
-          </Route>
+            element={<LoginForm />}
+            ></Route>
 
           <Route 
           path={ROUTES.FAQSECTION} 
@@ -51,6 +54,11 @@ function App() {
             path={ROUTES.DETAIL}
             element={<Details />}>
           </Route>
+
+            <Route
+              path={ROUTES.CREATE_PRODUCT}
+              element={<CreateProduct/>}
+            ></Route>
 
         </Routes>
       </div>
