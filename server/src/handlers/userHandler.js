@@ -10,6 +10,8 @@ userHandler.post("/", async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
+    if (!name || !email || !password) throw Error("Email and password are required.");
+
     const nuevoUsuario = await createUser(name, email, password);
 
     res.status(201).json(nuevoUsuario);
@@ -29,7 +31,7 @@ userHandler.get("/login", async (req, res) => {
     // console.log("que es user?? ", userCredentials);
 
     // If user not found, or password doesn't match, throw error
-    if (!userCredentials || userCredentials.password !== password) {
+    if (!userCredentials || userCredentials.email !== email || userCredentials.password !== password) {
       throw new Error("Invalid user credentials.");
     }
 

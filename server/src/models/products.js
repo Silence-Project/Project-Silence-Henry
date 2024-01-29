@@ -50,5 +50,11 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
+    stock: {
+      type: DataTypes.INTEGER,
+    },
+    minimo: {
+      type: DataTypes.INTEGER,
+    },
   }, { timestamps : false});
 };
