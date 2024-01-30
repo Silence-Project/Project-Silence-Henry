@@ -1,12 +1,45 @@
-.container{
-  width: 70vw;
-  margin: auto;
-  padding: 8% 0;
+.container {
+  background-color: var(--BalancedGray);
+  max-width: 600px;
+  padding: 10px 20px 20px;
+  border-radius: 5px;
+  margin: 12vh auto;
 }
-.ul{
-  list-style-type: disc;
-  margin-left: 60px;
-}
-.h1{
+
+.title {
+  margin: 0 auto;
   text-align: center;
+  padding: 10px 0 20px 0;
+}
+
+.info{
+  border-bottom: 15px var(--BalancedGray) solid;
+}
+
+.button {
+  background: var(--BalancedGray);
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.question div,
+.question p {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin: 0 0 0 10px;
+}
+
+.question p {
+  padding: 25px;
+}
+
+.question > div.closed {
+  margin-bottom: 20px;
 }
