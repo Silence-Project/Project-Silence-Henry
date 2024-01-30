@@ -11,7 +11,7 @@ userHandler.post("/", async (req, res) => {
 
   try {
     if (!firstName || !email || !password)
-      throw Error("Email and password are required.");
+      throw Error("Missing required data.");
 
     const nuevoUsuario = await createUser(firstName, email, password);
 
@@ -83,7 +83,7 @@ userHandler.get("/:id", async (req, res) => {
     const singleUser = await Usuario.findByPk(id);
 
     if (!singleUser)
-      return response.status(404).send(`Usuario con código ${code} no existe.`);
+      return res.status(404).send(`Usuario con ID ${id} no existe.`);
 
     return res.status(200).json(singleUser);
   } catch (error) {
