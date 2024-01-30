@@ -1,4 +1,4 @@
-const { Usuario } = require("../config/bd");
+const { Usuario } = require("../../config/bd");
 
 const getUserByEmail = async (email) => {
   try {
