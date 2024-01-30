@@ -7,13 +7,13 @@ const userHandler = Router();
 
 //POST
 userHandler.post("/", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { firstName, email, password } = req.body;
 
   try {
-    if (!name || !email || !password)
+    if (!firstName || !email || !password)
       throw Error("Email and password are required.");
 
-    const nuevoUsuario = await createUser(name, email, password);
+    const nuevoUsuario = await createUser(firstName, email, password);
 
     res.status(201).json(nuevoUsuario);
   } catch (error) {
@@ -61,6 +61,9 @@ userHandler.get("/", async (req, res) => {
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
+        order: [
+          ["id", "ASC"],
+        ]
       });
       //return para cortar bloque
       return res.status(200).json(usuarios);
@@ -95,10 +98,10 @@ userHandler.patch("/:id", async (req, res) => {
   const dataToUpdate = req.body;
 
   //Check if property 'name' is being updated
-  if (dataToUpdate.name) { //Adapt 'name' property to 'firstName'
-    dataToUpdate.firstName = dataToUpdate.name;
-    delete dataToUpdate.name; //Pues no lo necesito
-  }
+  // if (dataToUpdate.name) { //Adapt 'name' property to 'firstName'
+  //   dataToUpdate.firstName = dataToUpdate.name;
+  //   delete dataToUpdate.name; //Pues no lo necesito
+  // }
 
   try {
     const updatedUser = await Usuario.update(dataToUpdate, {

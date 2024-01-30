@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 
-module.exports =  (sequelize) => {
+module.exports = (sequelize) => {
   //definir modelo
   sequelize.define("Usuario", {
     // id: {
@@ -44,9 +44,14 @@ module.exports =  (sequelize) => {
       validate: {
         // isNumeric: true,
         isPhoneNumberFormat(value) {
-          if(!/^[0-9]{3,15}$/.test(value)) throw Error("Invalid phone number format.")
-        }
-      }
+          if (!/^[0-9]{3,15}$/.test(value))
+            throw Error("Invalid phone number format.");
+        },
+      },
+    },
+    sex: {
+      type: DataTypes.ENUM("hombre", "mujer", "otro"),
+      defaultValue: "otro",
     },
     birthday: {
       type: DataTypes.DATEONLY, // (2000-07-06 with no timestamp)
@@ -112,7 +117,7 @@ module.exports =  (sequelize) => {
     },
     country: {
       type: DataTypes.STRING,
-      defaultValue: "Argentina",
+      defaultValue: "argentina",
     },
     postalCode: {
       type: DataTypes.STRING,

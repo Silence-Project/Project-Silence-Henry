@@ -5,7 +5,6 @@ const getUserByEmail = async (email) => {
     const findUserByEmail = await Usuario.findOne({
       where: { email },
       attributes: ["id", "email", "isActive"],
-
       // exclude: ["createdAt", "updatedAt"],
       // },
     });
