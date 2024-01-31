@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
     // },
 
     idCategory: {
-      type: DataTypes.STRING, 
+      type: DataTypes.INTEGER, 
       allowNull: false
     },
     // Esto para la relación uno a muchos 

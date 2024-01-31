@@ -15,7 +15,7 @@ module.exports = (database) => {
             allowNull: false,
         },
         totalOrder: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT,
             allowNull: false,
         }
     })

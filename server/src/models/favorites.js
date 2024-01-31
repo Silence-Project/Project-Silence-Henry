@@ -12,7 +12,7 @@ module.exports = (database) => {
             allowNull: false
         },
         name: {
-            defaultValue: "Favorites user" + `${this.userId}`
+            type: DataTypes.STRING
         }
     })
 }
