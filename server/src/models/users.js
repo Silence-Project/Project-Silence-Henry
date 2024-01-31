@@ -81,8 +81,9 @@ module.exports = (sequelize) => {
         //Min 3 characters, at least one letter a-z, one number 0-9
         is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/,
         notEmpty: true,
-        min: 3,
-        max: 30,
+        len: [3,30]
+        // min: 3,
+        // max: 30,
       },
     },
     email: {
