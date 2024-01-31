@@ -27,15 +27,6 @@
   left: 47.8vw;
   max-width: 60px;
 }
-.hamburger{
-  max-width: 30px;
-  max-height: 30px;
-  margin: 1.2%;
-  float: left;
-}
-.hamburger:hover {
-  cursor: pointer;
-}
 .inputSearch{
   width: 150px;
   margin: 1.25% 0.2%;

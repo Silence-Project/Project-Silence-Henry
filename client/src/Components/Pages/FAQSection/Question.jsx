@@ -1,9 +1,9 @@
-import styles from "./FAQSection.module.css";
+import styles from "./FAQSection.module.css"
 
-import { useState } from "react";
+import { useState } from "react"
 
 export default function Question({ question }) {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false)
 
   return (
     <section className={styles.question}>
@@ -15,5 +15,5 @@ export default function Question({ question }) {
         {isOpen && <p>{question.info}</p>}
       </div>      
     </section>
-  );
+  )
 }
