@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Usuario } = require("../config/bd");
+const { User } = require("../config/bd");
 const { createUser } = require("../controllers/users/createUserController");
 const {
   getUserByEmail,
@@ -18,9 +18,9 @@ userHandler.post("/", async (req, res) => {
     if (!firstName || !email || !password)
       throw Error("Missing required data.");
 
-    const nuevoUsuario = await createUser(firstName, email, password);
+    const newUser = await createUser(firstName, email, password);
 
-    res.status(201).json(nuevoUsuario);
+    res.status(201).json(newUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -56,14 +56,14 @@ userHandler.get("/", async (req, res) => {
 
   try {
     if (!email) {
-      const usuarios = await Usuario.findAll({
+      const users = await User.findAll({
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
         order: [["id", "ASC"]],
       });
       //return para cortar bloque
-      return res.status(200).json(usuarios);
+      return res.status(200).json(users);
     }
 
     let userByEmail = await getUserByEmail(email);
@@ -77,7 +77,7 @@ userHandler.get("/", async (req, res) => {
 userHandler.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const singleUser = await Usuario.findByPk(id);
+    const singleUser = await User.findByPk(id);
 
     if (!singleUser)
       return res.status(404).send(`Usuario con ID ${id} no existe.`);
@@ -95,7 +95,7 @@ userHandler.patch("/:id", async (req, res) => {
   const dataToUpdate = req.body;
 
   try {
-    const updatedUser = await Usuario.update(dataToUpdate, {
+    const updatedUser = await User.update(dataToUpdate, {
       where: { id: userIdToUpdate },
     });
     // console.log(updatedUser);

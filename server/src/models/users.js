@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  //definir modelo
-  sequelize.define("Usuario", {
+  //definir modelo. Nombre del modelo corregido
+  sequelize.define("User", {
     // id: { //Comentado para que lo cree en automatico
     //   type: DataTypes.INTEGER,
     //   primaryKey: true,

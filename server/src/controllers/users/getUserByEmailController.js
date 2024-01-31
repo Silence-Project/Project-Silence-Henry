@@ -1,8 +1,8 @@
-const { Usuario } = require("../../config/bd");
+const { User } = require("../../config/bd");
 
 const getUserByEmail = async (email) => {
   try {
-    const findUserByEmail = await Usuario.findOne({
+    const findUserByEmail = await User.findOne({
       where: { email },
       attributes: ["id", "email", "isActive"],
       // exclude: ["createdAt", "updatedAt"],

@@ -1,9 +1,9 @@
-const { Usuario } = require("../../config/bd");
+const { User } = require("../../config/bd");
 
 const createUser = async (firstName, email, password) => {
   // console.log(`nombre: ${firstName}, email: ${email}, y password: ${password}`);
   try {
-    const nuevoUser = await Usuario.create({
+    const nuevoUser = await User.create({
       firstName, 
       email, 
       password,

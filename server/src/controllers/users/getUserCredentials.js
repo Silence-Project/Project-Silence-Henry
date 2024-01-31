@@ -1,8 +1,8 @@
-const { Usuario } = require("../../config/bd");
+const { User } = require("../../config/bd");
 
 const getUserCredentials = async (email, password) => {
   try {
-    const validateUserCredentials = await Usuario.findOne({ where: { email } });
+    const validateUserCredentials = await User.findOne({ where: { email } });
 
     if (
       !validateUserCredentials ||
