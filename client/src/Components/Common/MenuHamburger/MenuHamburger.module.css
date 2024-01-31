@@ -43,7 +43,6 @@
 
 .menuClosed{
   display: none;
-  overflow: hidden;
 }
 
 .createProducts, .login{
@@ -64,7 +63,7 @@
 }
 
 .imgHover2{
-  margin: 13% 16%;
+  margin: 13% 5.3%;
 }
 
 .navbarVertical{
