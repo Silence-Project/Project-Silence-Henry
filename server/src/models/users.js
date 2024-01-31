@@ -1,23 +1,14 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  //definir modelo. Nombre del modelo corregido
+  //definir modelo
   sequelize.define("User", {
-    // id: { //Comentado para que lo cree en automatico
-    //   type: DataTypes.INTEGER,
-    //   primaryKey: true,
-    //   allowNull: false,
-    //   autoIncrement: true
-    // },
     //DNI de usuario, NO utilizada como primaryKey
     dniUser: {
       type: DataTypes.STRING,
       unique: true,
-      // allowNull: false,
       validate: {
-        len: [5,20]
-        // min: 5,
-        // max: 20,
+        len: [5,20],
       },
     },
     firstName: {
@@ -55,7 +46,7 @@ module.exports = (sequelize) => {
     },
     birthday: {
       type: DataTypes.DATEONLY, // (2000-07-06 with no timestamp)
-      defaultValue: "2000-01-15",
+      defaultValue: DataTypes.NOW,
       validate: {
         isDate: true,
       },
@@ -82,8 +73,6 @@ module.exports = (sequelize) => {
         is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/,
         notEmpty: true,
         len: [3,30]
-        // min: 3,
-        // max: 30,
       },
     },
     email: {
@@ -92,7 +81,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
         isEmail: true,
-        notNull: false,
+        notNull: true,
       },
     },
     isActive: {

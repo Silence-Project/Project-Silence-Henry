@@ -9,7 +9,7 @@ const createUser = async (firstName, email, password) => {
       password,
       lastName: "", //providing default values
       phoneNumber: "0000000000",
-      birthday: "1900-08-08",
+      // birthday: "1900-08-08",
       allowPrivacy: false,
       address: "",
       city: "",
