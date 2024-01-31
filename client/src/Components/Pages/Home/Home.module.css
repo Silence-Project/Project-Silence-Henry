@@ -1,7 +1,7 @@
 .homeContainer {
   display: flex;
   flex-direction: column;
-  height: 100vh; 
+  min-height: 100vh; 
 }
 
 .topMessage {
@@ -15,6 +15,20 @@
   color: #333;
 }
 
+
+/* .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Now';
+  margin-top: -55%;
+} */
+
+.navbar a {
+  color: red; /* Aplica el color rojo al enlace */
+}
+
+/*NO UTILIZADO - BORRAR*/
 .cardContainer {
   width: 100%;
   /* height: auto; */
@@ -33,10 +47,18 @@
   color: green;
 }
 
-.home-card{
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Now';
+  height: 10vh; 
+}
+
+/* .home-card{
   width: 100vw;
   height: auto; 
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 5%;
-}
+} */

@@ -11,7 +11,6 @@ const Navbar = ({ setShowPersonalData, id }) => {
   };
 
   return (
-    <>
       <nav id="test" className={styles.navBar}>
        
 
@@ -49,7 +48,6 @@ const Navbar = ({ setShowPersonalData, id }) => {
         </ul>
       </nav>
 
-    </>
   );
 };
 

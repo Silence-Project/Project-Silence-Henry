@@ -1,34 +1,49 @@
 import styles from './Header.module.css'
 
 import imgLogo from '../../../img/silenceImg.png'
+import hamburgerIcon from '../../../img/icons/hamburger.png'
 import searchIcon from '../../../img/icons/search.png'
 import shoppingCartIcon from '../../../img/icons/shopping-cart.png'
-import mailInboxIcon from '../../../img/icons/mail-inbox-app.png'
+// import mailInboxIcon from '../../../img/icons/mail-inbox-app.png'
+import userIcon from '../../../img/icons/user-icon.png'
+import { Link, NavLink } from "react-router-dom";
+import ROUTES from "../../../Helpers/Routes.helper";
 
-import MenuHamburger from '../MenuHamburger/MenuHamburger'
+const Header = () => {
 
-
-const Header = ({ estilosCss }) => {
-
-  const ghostClass = estilosCss === 'Home' ? styles.ghost1 : styles.ghost2;
-  const headerClass = estilosCss !== 'Home' ? styles.header1 : styles.header2
+  // const ghostClass = estilosCss === 'Home' ? styles.ghost1 : styles.ghost2;
+  // const headerClass = estilosCss === 'Home' ? styles.header1 : styles.header2
 
   return (
-    <>
-      <div className={ghostClass}></div>
-      <header className={headerClass}>
-        <a href="/home">
-          <img src={imgLogo} alt='silence' className={styles.silence} />
-        </a>
-        <MenuHamburger/>
-        <input type='text' className={styles.inputSearch} placeholder='Buscar' />
-        <img src={searchIcon} alt="search" className={styles.search} />
-        <img src={shoppingCartIcon} alt="kart martket" className={styles.kartMarket} />
-        <img src={mailInboxIcon} alt='message' className={styles.mailInbox} />
-      </header>
-    </>
+    <div className={styles.header1}>
+      {/* <nav className={styles.navMenu}> */}
+      <ul>
+        <li>
+          <img src={hamburgerIcon} alt='menu' className={styles.hamburger} />
+        </li>
+        <li>
+          <input type='text' className={styles.inputSearch} placeholder='Buscar' />
+        </li>
+        <li>
+          <img src={searchIcon} alt="search" className={styles.search} />
+        </li>
+        <li className={styles.silencelogo}>
+          <NavLink to={ROUTES.HOME}>
+            <img src={imgLogo} alt='silence' className={styles.silence} />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={ROUTES.LOGGING}>
+            <img src={userIcon} alt='user icon' className={styles.mailInbox} />
+          </NavLink>
+        </li>
+        <li>
+          <img src={shoppingCartIcon} alt="kart market" className={styles.kartMarket} />
+        </li>
+      </ul>
+      {/* </nav> */}
+    </div>
   )
-
 }
 
 export default Header

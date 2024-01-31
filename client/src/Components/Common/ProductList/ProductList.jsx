@@ -35,7 +35,7 @@ const ProductList = ({ products }) => {
   } else {
     return (
       <div className={styles.productList}>
-        <p>No se encontraron videojuegos con ese nombre o id.</p>
+        <p>No se encontraron productos con ese nombre o id.</p>
       </div>
     );
   }

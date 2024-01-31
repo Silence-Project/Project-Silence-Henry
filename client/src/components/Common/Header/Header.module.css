@@ -1,17 +1,35 @@
-.header1, .header2{
-  width: 100vw;
+.header1 {
+  /* width: 100vw; */
   min-height: 60px;
   background-color: var(--WindsorGreige);
-  border-radius: 5px;
+  /* border-radius: 5px; */
   padding: 5px;
-  text-align: center;
-  position: fixed;
-  top: 0;
+  /* text-align: center; */
+  /* position: fixed; */
+  /* top: 0; */
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  padding: 0 16px;
 }
-.header1{
-  margin-top: 2.5%;
+
+.header1 ul {
+  display: flex;
+  /* flex-direction: row; */
+  list-style-type: none;
+  /* justify-content: center; */
+  align-items: center;
+  width: 95%;
+  gap: 16px;
+  /* padding: 0px; */
+  /* margin: 0; */
 }
-.header2{
+
+.silencelogo {
+  margin: 0 auto;
+}
+
+/* .header2{
   margin-top: 0;
 }
 .ghost1{
@@ -21,35 +39,45 @@
 .ghost2{
   width: 0;
   height: 0;
+} */
+.silence {
+  /* position: absolute;
+  left: 47.8vw; */
+  max-width: 55px;
 }
-.silence{
-  position: absolute;
-  left: 47.8vw;
-  max-width: 60px;
+.hamburger {
+  max-width: 30px;
+  max-height: 30px;
+  margin: 1.2%;
+  /* float: left; */
 }
-.inputSearch{
+.hamburger:hover {
+  cursor: pointer;
+}
+.inputSearch {
   width: 150px;
   margin: 1.25% 0.2%;
-  padding: 5PX;
+  padding: 5px;
   float: left;
 }
-.search{
+.search {
   max-width: 25px;
   float: left;
   margin: 1.4% 0;
 }
-.search:hover{
+.search:hover {
   cursor: pointer;
 }
-.kartMarket, .mailInbox{
+.kartMarket,
+.mailInbox {
   max-width: 30px;
   float: right;
   margin: 1%;
 }
-.kartMarket{
+.kartMarket {
   margin-right: 2.5%;
 }
-.kartMarket:hover, .mailInbox:hover{
+.kartMarket:hover,
+.mailInbox:hover {
   cursor: pointer;
 }
-
