@@ -27,9 +27,9 @@ const MenuHamburger = () => {
           <div className={styles.option1}>
             <NavLink className={styles.createProducts} to={ROUTES.CREATE_PRODUCT}>Crear Producto</NavLink>
           </div>
-          <div className={styles.option2}>
+          {/* <div className={styles.option2}>
             <NavLink className={styles.login} to={ROUTES.LOGGING}>Inicia Sesión</NavLink>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

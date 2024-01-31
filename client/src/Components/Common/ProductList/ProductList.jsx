@@ -14,7 +14,7 @@ const ProductList = ({ products }) => {
     if (products.length === 0) {
       return (
         <div className={styles.productList}>
-          <p>Cargando datos...</p>
+          <p className={styles.cargandoDatos}>Cargando datos...</p>
         </div>
       );
     }

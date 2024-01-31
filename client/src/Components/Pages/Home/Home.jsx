@@ -30,17 +30,7 @@ const Home = () => {
 
       <Header />
 
-      <div className={styles.navbar}>
-        <Link to={ROUTES.CREATE_PRODUCT}>Crear Producto</Link>
-      </div>
-
-      {/* <div className={styles.cardContainer}> */}
-        <ProductList className='card' products={products} />
-      {/* </div> */}
-
-      {/* <div className={styles.navbar}>
-        <Link to={ROUTES.LOGGING}>Inicia Sesión</Link>
-      </div> */}
+      <ProductList className='card' products={products} />
 
       <Footer />
     </div>

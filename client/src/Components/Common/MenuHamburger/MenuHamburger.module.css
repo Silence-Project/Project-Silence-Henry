@@ -18,10 +18,10 @@
 }
 
 .option1{
-  top: 22vh;
+  top: 15vh;
 }
 .option2{
-  top: 15vh;
+  top: 22vh;
 }
 
 .option1:hover, .option2:hover{
@@ -31,16 +31,19 @@
 
 .menuOpen{
   position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background-color: #0000007c;
-  padding: 5px;
   left: 0;
   top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: hidden;
+  background-color: #0000007c;
+  padding: 5px;
 }
 
 .menuClosed{
   display: none;
+  overflow: hidden;
 }
 
 .createProducts, .login{
@@ -55,14 +58,13 @@
   align-items: center;
   justify-content: center;
   float: left;
-  margin: 0.8%;
 }
 .imgHover:hover, .imgHover2:hover{
   background-color: #8080808f;
 }
 
 .imgHover2{
-  margin: 4.75%;
+  margin: 13% 16%;
 }
 
 .navbarVertical{
