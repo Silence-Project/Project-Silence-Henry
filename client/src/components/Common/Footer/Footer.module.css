@@ -1,18 +1,16 @@
 .footer{
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   background-color: var(--WindsorGreige);
   min-height: 50px;
-  border-radius: 5px;
-}
-.ghost{
-  width: 100vw;
-  height: 28vh;
 }
 .faqSection{
   float: left;
   color: white;
   margin: 0.8%;
   font-size: 25px;
+}
+.faqSection:hover{
+  color: black
 }

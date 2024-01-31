@@ -7,7 +7,8 @@ const ROUTES = {
   ERROR404: "*",
   DETAIL: "/detail/",
   PRODUCT: "/products",
-  REGISTER: "/userRegister",
+  CREATE_PRODUCT: "/create",
+  REGISTER: "/userRegister/:id",
 }
 
 export default ROUTES

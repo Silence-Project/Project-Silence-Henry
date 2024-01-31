@@ -1,0 +1,10 @@
+.topMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  background-color: var(--Rose);
+  font-family: 'Now';
+  font-size: 1.4rem; 
+  color: #333;
+}

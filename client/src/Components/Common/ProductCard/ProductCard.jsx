@@ -38,7 +38,7 @@ const ProductCard = ({product}) => {
             <p>{peso}</p> */}
 
 
-            {/* <button>{COMPONENT.carrito}</button> */}
+            {/*  <button>{COMPONENT.carrito}</button> */}
             {/* <p>{COMPONENT.rating}</p> */}
 
             </div>
