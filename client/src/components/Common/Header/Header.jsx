@@ -6,7 +6,7 @@ import searchIcon from '../../../img/icons/search.png'
 import shoppingCartIcon from '../../../img/icons/shopping-cart.png'
 // import mailInboxIcon from '../../../img/icons/mail-inbox-app.png'
 import userIcon from '../../../img/icons/user-icon.png'
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 
 const Header = () => {
