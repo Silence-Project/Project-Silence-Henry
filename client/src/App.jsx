@@ -51,7 +51,7 @@ function App() {
           </Route>
      
           <Route
-            path={ROUTES.DETAIL}
+            path={"/detail/:id"}
             element={<Details />}>
           </Route>
 

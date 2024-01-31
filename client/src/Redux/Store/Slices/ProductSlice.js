@@ -18,12 +18,13 @@ export const getProducts = createAsyncThunk(
         }}
 )
 
-export const getByCodigo = createAsyncThunk(
-    "getByCodigo",
-    async (codigo) => {
+export const getById = createAsyncThunk(
+    "productsDetails",
+    async (id) => {
         try {
-            const response = await axios.get(`http://127.0.0.1:3001/products/?codigo=${codigo}`);
-            localStorage.setItem("products", JSON.stringify(response.data));
+            const response = await axios.get(`http://127.0.0.1:3001/products/${id}`);
+
+            localStorage.setItem("productsDetails", JSON.stringify(response.data));
 
             return response.data;
         }   
@@ -33,6 +34,22 @@ export const getByCodigo = createAsyncThunk(
     }
 )
 
+export const postProduct = createAsyncThunk(
+    "products",
+    async (product) => {
+        try {
+            const response = await axios.post("http://127.0.0.1:3001/products/new" , product);
+
+            return response.data;
+        }
+
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+)
+
 
 
 const productSlice = createSlice({
@@ -40,6 +57,7 @@ const productSlice = createSlice({
     initialState: {
         loading: false,
         products: [],
+        productsDetails: [],
         error: null,
     },
     // name: "productDetail",
@@ -50,44 +68,100 @@ const productSlice = createSlice({
     // },
     reducers: { 
        
-     },
-    extraReducers: (builder) => {
+      },
+      extraReducers: (builder) => {
         builder
-        .addCase(getProducts.pending, (state) => {
-            state.loading = true
-            state.products = []
-            state.error = null
-        })
-        .addCase(getProducts.fulfilled, (state, action) => {
-            if (action.payload) {
-            state.loading = false
-            state.products = action.payload
-            state.error = null   
-            } else {
-                state.loading = false
-                state.products = []
-                state.error = action.error.message
-            }
+          .addCase(getById.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+          .addCase(getById.fulfilled, (state, action) => {
+            state.loading = false;
+            state.productsDetails = action.payload;
+            state.error = null;
+          })
+          .addCase(getById.rejected, (state, action) => {
+            state.loading = false;
+            state.productsDetails = [];
+            state.error = action.error.message;
+          })
+          .addCase(getProducts.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+          .addCase(getProducts.fulfilled, (state, action) => {
+            state.loading = false;
+            state.products = action.payload;
+            state.error = null;
+          })
+          .addCase(getProducts.rejected, (state, action) => {
+            state.loading = false;
+            state.products = [];
+            state.error = action.error.message;
+          });
+      }
+    });
+//     extraReducers: (builder) => {
+//         builder
+
+//         .addCase(getById.pending, (state) => {
+//             state.loading = true
+//             state.productsDetails = action.payload + "hola"
+//             state.error = null
+//         })
+
+//         .addCase(getById.fulfilled, (state, action) => {
+//                 state.loading = false
+//                 state.productsDetails = action.payload + "hola"
+//                 state.error = null
             
-        }  )
-        .addCase(getProducts.rejected, (state, action) => {
-            state.loading = false
-            state.products = []
-            state.error = action.error.message
-        })
-    }
+//         })
+
+//         .addCase(getById.rejected, (state, action) => {
+//             state.loading = false
+//             state.productsDetails = []
+//             state.error = action.error.message
+//         })
+
+//         .addCase(getProducts.pending, (state) => {
+//             state.loading = true
+//             state.products = []
+//             state.error = null
+//         })
+//         .addCase(getProducts.fulfilled, (state, action) => {
+//             if (action.payload) {
+//             state.loading = false
+//             state.products = action.payload
+           
+//             state.error = null   
+//             } else {
+//                 state.loading = false
+//                 state.products = []
+
+//                 state.error = action.error.message
+//             }
+            
+//         }  )
+//         .addCase(getProducts.rejected, (state, action) => {
+//             state.loading = false
+//             state.products = []
+//             state.productsDetails = action.payload
+//             state.error = action.error.message
+//         })
+
+//     }
     
 
-        // productsDetail: (state, action) => {
+//         // productsDetail: (state, action) => {
 
-        //     state.loading = false;
-        //     state.productsDetail = action.payload;
-        //     state.error = error.message
+//         //     state.loading = false;
+//         //     state.productsDetail = action.payload;
+//         //     state.error = error.message
 
-        // }
+//         // }
 
-    }
-);
+//     }
+// );
 
 
 // export const { getProducts  } = productSlice.actions;

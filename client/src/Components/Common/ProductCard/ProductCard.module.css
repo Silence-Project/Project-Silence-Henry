@@ -1,6 +1,12 @@
+.absolute {
+  width: auto;
+  height: auto;
+}
+
 .productDetail {
+    height: 350px;
+    width: 250px;
     display: flex;
-    flex-direction: column;
     background-color:#95dada54;         
     border: 1px solid grey;            
     border-radius: 50px;

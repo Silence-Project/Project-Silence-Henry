@@ -40,17 +40,28 @@ function CreateProduct() {
   });
 
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    formik.handleSubmit();
+  }
+
   return (
     <div className="{`${styles.formContainer} ${styles.signUpContainer}`}">
-      <form onSubmit={formik.handleSubmit} className={styles.form}>
+    
+
+      <form onSubmit={handleSubmit} className={styles.form} >
         <h1>Crear Producto</h1>
 
-        <input
+        
+    <div className={styles.divForm}>
+
+           <input
           type="text"
           name="name"
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+
           placeholder="Nombre..."
           className={styles.input}
         />
@@ -59,7 +70,10 @@ function CreateProduct() {
             <div className={styles.error}>{formik.errors.name}</div>
           ) : null}
 
+    </div>
+   
 
+    <div className={styles.divForm}>
         <input
           type="text"
           name="image"
@@ -73,8 +87,10 @@ function CreateProduct() {
         {formik.touched.image && formik.errors.image ? (
           <div className={styles.error}>{formik.errors.image}</div>
         ) : null}
-
+    </div>
     
+
+    <div className={styles.divForm}>
         <input
           type="text"
           name="description"
@@ -88,8 +104,9 @@ function CreateProduct() {
         {formik.touched.description && formik.errors.description ? (
           <div className={styles.error}>{formik.errors.description}</div>
         ) : null}
+    </div>
 
-
+    <div className={styles.divForm}>
         <input
           type="precio"
           name="precio"
@@ -102,7 +119,10 @@ function CreateProduct() {
         {formik.touched.precio && formik.errors.precio ? (
           <div className={styles.error}>{formik.errors.precio}</div>
         ) : null}
+    </div>
 
+
+    <div className={styles.divForm}>
 
         <input
           type="text"
@@ -116,7 +136,9 @@ function CreateProduct() {
         {formik.touched.SKU && formik.errors.SKU ? (
           <div className={styles.error}>{formik.errors.SKU}</div>
         ) : null}
+    </div>
 
+    <div className={styles.divForm}>
         <input
           type="text"
           name="stock"
@@ -129,7 +151,9 @@ function CreateProduct() {
         {formik.touched.stock && formik.errors.stock ? (
           <div className={styles.error}>{formik.errors.stock}</div>
         ) : null}
+    </div>
 
+    <div className={styles.divForm}>
         <input
           type="text"
           name="categoria"
@@ -142,8 +166,10 @@ function CreateProduct() {
         {formik.touched.categoria && formik.errors.categoria ? (
           <div className={styles.error}>{formik.errors.categoria}</div>
         ) : null}
+    </div>
+    
 
-        
+    <div className={styles.divForm}>
         <input
           type="color"
           name="color"
@@ -156,8 +182,9 @@ function CreateProduct() {
         {formik.touched.color && formik.errors.color ? (
           <div className={styles.error}>{formik.errors.color}</div>
         ) : null}
-
-
+    </div>
+      
+    <div className={styles.divForm}>
         <input
           type="text"
           name="peso"
@@ -171,7 +198,10 @@ function CreateProduct() {
           <div className={styles.error}>{formik.errors.peso}</div>
         ) : null}
 
+    </div>
 
+    <div className={styles.divForm}>
+      
         <input
           type="text"
           name="tallas"
@@ -185,13 +215,21 @@ function CreateProduct() {
           <div className={styles.error}>{formik.errors.tallas}</div>
         ) : null}
 
-        <button type="submit" className={styles.btnSubmit}>
+    </div>
+    
+
+    <button type="submit" className={styles.btnSubmit}>
           Crear Producto
         </button>
       </form>
 
       <Link to={ROUTES.HOME} className={styles.btnSubmit}>Volver al home</Link>
+
+        
+      
     </div>
+
+    
   );
 }
 

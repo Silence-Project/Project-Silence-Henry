@@ -15,14 +15,13 @@ import Descuento from '../../Common/Descuento/Descuento'
 const Home = () => {
   const dispatch = useDispatch();
 
+const products = useSelector((state) => state.product.products);
+
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
- 
-
-
-  const products = useSelector((state) => state.product.products);
 
   console.log("PRODUCTOS ->", products);
 
@@ -40,13 +39,15 @@ const Home = () => {
           <Link to={ROUTES.CREATE_PRODUCT}>Crear Producto</Link>
         </div>
 
+        <div className={styles.navbar}>
+          <Link to={ROUTES.LOGGING}>Inicia Sesión</Link>
+        </div>
+      
         <div className={styles.cardContainer}>
               <Cards className='card' products={products}/>
         </div>
 
-        <div className={styles.navbar}>
-          <Link to={ROUTES.LOGGING}>Inicia Sesión</Link>
-        </div>
+    
 
         <Footer/>
       </div>
