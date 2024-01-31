@@ -1,6 +1,7 @@
 import styles from './MenuHamburger.module.css'
 
 import hamburgerIcon from '../../../img/icons/hamburger.png'
+import xmark from '../../../img/icons/x-mark.png'
 
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
@@ -22,7 +23,7 @@ const MenuHamburger = () => {
       <div className={isOpen ? styles.menuOpen : styles.menuClosed}>
         <div className={styles.navbarVertical}>
           <div className={styles.imgHover2}>
-            <img src={hamburgerIcon} alt='menu' className={styles.hamburger2} onClick={handlerMenu} />
+            <img src={xmark} alt='menu' className={styles.hamburger2} onClick={handlerMenu} />
           </div>
           <div className={styles.option1}>
             <NavLink className={styles.createProducts} to={ROUTES.CREATE_PRODUCT}>Crear Producto</NavLink>

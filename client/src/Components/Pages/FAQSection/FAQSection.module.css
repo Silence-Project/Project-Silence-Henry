@@ -1,9 +1,11 @@
 .container {
   background-color: var(--BalancedGray);
   max-width: 600px;
+  max-height: 72vh;
   padding: 10px 20px 20px;
   border-radius: 5px;
-  margin: 12vh auto;
+  margin: 4vh auto;
+  overflow: auto;
 }
 
 .title {
