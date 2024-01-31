@@ -15,20 +15,6 @@
   color: #333;
 }
 
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Now';
-  margin-top: -55%;
-}
-
-.navbar a {
-  color: red; /* Aplica el color rojo al enlace */
-}
-
-
 .cardContainer {
   width: 100%;
   /* height: auto; */
@@ -45,14 +31,6 @@
 
 .cardContainer p {
   color: green;
-}
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Now';
-  height: 10vh; 
 }
 
 .home-card{

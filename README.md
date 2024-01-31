@@ -80,6 +80,9 @@ git config --global push.default upstream  # Empujar a la rama upstream
 git config --global branch.autoSetupMerge simple
 git branch -vv
 
+git fetch para obtener los cambios remotos
+git merge origin/main para fusionar los cambios remotos en tu rama local
+
 hamburger.png
 <a href="https://www.flaticon.com/free-icons/hamburger-menu" title="hamburger-menu icons">Hamburger-menu icons created by azmianshori - Flaticon</a>
 
