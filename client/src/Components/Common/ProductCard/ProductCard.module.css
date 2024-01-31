@@ -33,7 +33,7 @@
 
     );
     /* border-radius: calc(2 * var(--borderWidth)); */
-    z-index: -1;
+    /* z-index: -1; */
     animation: animatedgradient 3s ease infinite;
   }
   
