@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   //definir modelo
   sequelize.define("Usuario", {
-    // id: {
+    // id: { //Comentado para que lo cree en automatico
     //   type: DataTypes.INTEGER,
     //   primaryKey: true,
     //   allowNull: false,
@@ -15,9 +15,9 @@ module.exports = (sequelize) => {
       unique: true,
       // allowNull: false,
       validate: {
-        // notEmpty: true,
-        min: 5,
-        max: 20,
+        len: [5,20]
+        // min: 5,
+        // max: 20,
       },
     },
     firstName: {
@@ -34,9 +34,9 @@ module.exports = (sequelize) => {
       get() {
         return `${this.firstName} ${this.lastName ? this.lastName : ""}`;
       },
-      set(value) {
-        throw new Error("NO intentar setear valor a `fullName`!");
-      },
+      // set(value) {
+      //   throw new Error("NO intentar setear valor a `fullName`!");
+      // },
     },
     phoneNumber: {
       type: DataTypes.STRING,
