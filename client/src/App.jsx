@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import ROUTES from "./Helpers/Routes.helper"
 import Landing from './Components/Pages/Landing/Landing';
@@ -9,6 +8,7 @@ import CreateProduct from './Auth/CreateProduct/CreateProduct';
 
 import Details from './Components/Common/ProductDetail/ProductDetail';
 import FAQSection from './components/Pages/FAQSection/FAQSection';
+import PolicyReturn from './Components/Pages/PolicyReturn/PolicyReturn'
 import UserRegister from './Components/Pages/userRegister/UserRegister';
 
 import './App.css'
@@ -52,6 +52,12 @@ function App() {
         <Route
           path={ROUTES.CREATE_PRODUCT}
           element={<CreateProduct />}
+        ></Route>
+
+        
+        <Route
+          path={ROUTES.PolicyReturn}
+          element={<PolicyReturn />}
         ></Route>
 
       </Routes>
