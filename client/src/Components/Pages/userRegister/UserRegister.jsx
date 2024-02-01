@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import UserPersonalData from "../../../Auth/UserPersonalData/UserPersonalData";
-import styles from "./userRegister.module.css";
+import styles from "../userRegister/UserRegister.module.css";
 import ROUTES from "../../../Helpers/Routes.helper";
 import { useParams } from "react-router-dom";
 import Navbar from "../../../Auth/UserPersonalData/NavBar";
