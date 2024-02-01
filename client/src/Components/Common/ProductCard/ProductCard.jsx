@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import ROUTES from '../../../Helpers/Routes.helper'
 
@@ -13,7 +13,7 @@ const ProductCard = ({product}) => {
   return (
     <div className={style.productDetail}>
 
-        <Link to={`${ROUTES.DETAIL}?codigo=${codigo}`}>
+        <NavLink to={`${ROUTES.DETAIL}?codigo=${codigo}`}>
 
             <div className='info'>
 
@@ -43,7 +43,7 @@ const ProductCard = ({product}) => {
 
             </div>
 
-        </Link>
+        </NavLink>
 
     </div>
   )

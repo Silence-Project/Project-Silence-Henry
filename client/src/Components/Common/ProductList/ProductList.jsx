@@ -14,7 +14,7 @@ const ProductList = ({ products }) => {
     if (products.length === 0) {
       return (
         <div className={styles.productList}>
-          <p>Cargando datos...</p>
+          <p className={styles.cargandoDatos}>Cargando datos...</p>
         </div>
       );
     }
@@ -35,7 +35,7 @@ const ProductList = ({ products }) => {
   } else {
     return (
       <div className={styles.productList}>
-        <p>No se encontraron videojuegos con ese nombre o id.</p>
+        <p>No se encontraron productos con ese nombre o id.</p>
       </div>
     );
   }

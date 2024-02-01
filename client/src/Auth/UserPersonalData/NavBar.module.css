@@ -1,6 +1,6 @@
 
 
-nav {
+nav.navBar {
   display: block;
   justify-content: space-between;
   position: sticky;
@@ -16,18 +16,18 @@ nav {
 }
 
 
-nav ul {
+nav.navBar ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; 
 }
 
-nav ul li {
+nav.navBar ul li {
   list-style: none;
   flex: 1;
 }
  
- nav ul li a {
+ nav.navBar ul li a {
 background: rgba(84, 76, 69, 1);
    display: block;
    text-decoration: none;
@@ -43,13 +43,13 @@ background: rgba(84, 76, 69, 1);
    transition: .4s; 
   }
   
-  nav ul li a:hover {
+  nav.navBar ul li a:hover {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255 .4), transparent);
   
 }
 
 
-nav .menu {
+nav.navBar .menu {
   position: absolute;
   top: 1.2rem;
   left: 2.8rem;
@@ -61,12 +61,12 @@ nav .menu {
   cursor: pointer;
 }
 
-nav ul.open {
+nav.navBar ul.open {
   display: flex;
 
 }
 
-nav .menu span {
+nav.navBar .menu span {
   height: 0.4rem;
   width: 100%;
   border-radius: 0.2rem;
@@ -79,7 +79,7 @@ nav .menu span {
 }
 
 
-  nav .menu {
+  nav.navBar .menu {
   display: flex;
  }
 
@@ -87,30 +87,30 @@ nav .menu span {
   display: none;
  }
 
- nav {
+ nav.navBar {
 flex-direction: column;
 align-items: start;
   }
 
-nav ul {
+nav.navBar ul {
   display: none;
   flex-direction: column;
   width: 100%;
   margin-bottom: 0.25rem;
   }
 
-  nav ul.open {
+  nav.navBar ul.open {
     display: flex;
   }
 
-  nav ul li {
+  nav.navBar ul li {
     /* display: none; */
     width: 100%;
     text-align: center;
     }
 
     
-  nav ul li a {
+  nav.navBar ul li a {
     /* display: none; */
 margin: 0.02rem 0.5rem;
     }

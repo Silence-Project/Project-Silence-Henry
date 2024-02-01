@@ -1,64 +1,58 @@
-.header1, .header2{
-  width: 100vw;
+.header1 {
   min-height: 60px;
   background-color: var(--WindsorGreige);
-  border-radius: 5px;
   padding: 5px;
-  text-align: center;
-  position: fixed;
-  top: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
 }
-.header1{
-  margin-top: 2.5%;
-}
-.header2{
-  margin-top: 0;
-}
-.ghost1{
+
+.header1 ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
   width: 100vw;
-  height: 20vh;
+  gap: 16px;
 }
-.ghost2{
-  width: 0;
-  height: 0;
+
+.silencelogo {
+  margin: 0 auto;
 }
-.silence{
-  position: absolute;
-  left: 47.8vw;
-  max-width: 60px;
+.silence {
+  max-width: 55px;
 }
-.hamburger{
+.hamburger {
   max-width: 30px;
   max-height: 30px;
   margin: 1.2%;
-  float: left;
 }
 .hamburger:hover {
   cursor: pointer;
 }
-.inputSearch{
+.inputSearch {
   width: 150px;
   margin: 1.25% 0.2%;
-  padding: 5PX;
+  padding: 5px;
   float: left;
 }
-.search{
+.search {
   max-width: 25px;
   float: left;
   margin: 1.4% 0;
 }
-.search:hover{
+.search:hover {
   cursor: pointer;
 }
-.kartMarket, .mailInbox{
+.kartMarket,
+.mailInbox {
   max-width: 30px;
   float: right;
   margin: 1%;
 }
-.kartMarket{
+.kartMarket {
   margin-right: 2.5%;
 }
-.kartMarket:hover, .mailInbox:hover{
+.kartMarket:hover,
+.mailInbox:hover {
   cursor: pointer;
 }
-
