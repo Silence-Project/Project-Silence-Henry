@@ -9,9 +9,14 @@ import { NavLink } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 
 import MenuHamburger from '../MenuHamburger/MenuHamburger'
+import LoginButton from '../../Authentication/LoginBtn/LoginBtn'
+import LogoutButton from '../../Authentication/LogoutBtn/LogoutBtn'
+import Profile from '../../Authentication/ProfileUser/ProfileUser'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const Header = () => {
 
+  const { isAuthenticated } = useAuth0();
   // const ghostClass = estilosCss === 'Home' ? styles.ghost1 : styles.ghost2;
   // const headerClass = estilosCss === 'Home' ? styles.header1 : styles.header2
 
@@ -20,7 +25,7 @@ const Header = () => {
       {/* <nav className={styles.navMenu}> */}
       <ul>
         <li>
-          <MenuHamburger/>
+          <MenuHamburger />
         </li>
         <li>
           <input type='text' className={styles.inputSearch} placeholder='Buscar' />
@@ -33,6 +38,19 @@ const Header = () => {
             <img src={imgLogo} alt='silence' className={styles.silence} />
           </NavLink>
         </li>
+        {/* LOGEOOOOOOOOOOOOOOS AUTH0 */}
+        {
+          !isAuthenticated ?
+            <li>
+              <LoginButton />
+            </li> :
+            <><li>
+              <Profile />
+            </li>
+        <li>
+          <LogoutButton />
+        </li></>
+        }
         <li>
           <NavLink to={ROUTES.LOGGING}>
             <img src={userIcon} alt='user icon' className={styles.mailInbox} />
@@ -40,7 +58,7 @@ const Header = () => {
         </li>
         <li>
           <img src={shoppingCartIcon} alt="kart market" className={styles.kartMarket} />
-        </li>        
+        </li>
       </ul>
       {/* </nav> */}
     </div>
