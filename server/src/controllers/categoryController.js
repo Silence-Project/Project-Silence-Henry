@@ -44,7 +44,23 @@ const viewCategories = async () => {
 
 // Update category
 
+const updateCategory = async (categoryId, name) => {
+    try {
+        const existingCategory= await Category.findByPk(categoryId);
+
+        if(!existingCategory) {
+            throw new Error ('Category doesnt exist')
+        }
+
+        const newNameCategory= await existingCategory.update({name})
+        return newNameCategory
+    } catch(error) {
+        return error.message
+    }
+}
+
 module.exports = {
     createCategory,
-    viewCategories
+    viewCategories,
+    updateCategory
 }
