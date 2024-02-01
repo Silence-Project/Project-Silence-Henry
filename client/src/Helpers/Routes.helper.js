@@ -9,6 +9,7 @@ const ROUTES = {
   PRODUCT: "/products",
   CREATE_PRODUCT: "/create",
   REGISTER: "/userRegister/:id",
+  PolicyReturn: "/PolicyReturn"
 }
 
 export default ROUTES

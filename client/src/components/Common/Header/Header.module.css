@@ -1,58 +1,12 @@
 .header1 {
-  /* width: 100vw; */
+  width: 100vw;
   min-height: 60px;
   background-color: var(--WindsorGreige);
-  /* border-radius: 5px; */
-  padding: 5px;
-  /* text-align: center; */
-  /* position: fixed; */
-  /* top: 0; */
-  display: flex;
-  /* align-items: center; */
-  justify-content: center;
-  padding: 0 16px;
+  text-align: center;
 }
-
-.header1 ul {
-  display: flex;
-  /* flex-direction: row; */
-  list-style-type: none;
-  /* justify-content: center; */
-  align-items: center;
-  width: 95%;
-  gap: 16px;
-  /* padding: 0px; */
-  /* margin: 0; */
-}
-
-.silencelogo {
-  margin: 0 auto;
-}
-
-/* .header2{
-  margin-top: 0;
-}
-.ghost1{
-  width: 100vw;
-  height: 20vh;
-}
-.ghost2{
-  width: 0;
-  height: 0;
-} */
 .silence {
-  /* position: absolute;
-  left: 47.8vw; */
+  margin: 5px 0;
   max-width: 55px;
-}
-.hamburger {
-  max-width: 30px;
-  max-height: 30px;
-  margin: 1.2%;
-  /* float: left; */
-}
-.hamburger:hover {
-  cursor: pointer;
 }
 .inputSearch {
   width: 150px;
@@ -68,16 +22,12 @@
 .search:hover {
   cursor: pointer;
 }
-.kartMarket,
-.mailInbox {
+.kartMarket, .userIcon {
   max-width: 30px;
   float: right;
-  margin: 1%;
-}
-.kartMarket {
-  margin-right: 2.5%;
+  margin: 18px;
 }
 .kartMarket:hover,
-.mailInbox:hover {
+.userIcon:hover {
   cursor: pointer;
 }

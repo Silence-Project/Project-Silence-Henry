@@ -16,7 +16,7 @@ const MenuHamburger = () => {
   }
 
   return(
-    <>
+    <div className={styles.containerHamburger}>
       <div className={styles.imgHover}>
         <img src={hamburgerIcon} alt='menu' className={styles.hamburger1} onClick={handlerMenu} />
       </div>
@@ -33,7 +33,7 @@ const MenuHamburger = () => {
           </div> */}
         </div>
       </div>
-    </>
+    </div>
   )
 
 }

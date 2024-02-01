@@ -1,3 +1,7 @@
+.containerHamburger{
+  float: left;
+  margin: 12.5px;
+}
 .hamburger1, .hamburger2{
   max-width: 30px;
   max-height: 30px;
