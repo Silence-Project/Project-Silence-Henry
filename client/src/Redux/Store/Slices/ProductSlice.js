@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+
 import axios from "axios";
 
 
@@ -35,7 +36,7 @@ export const getById = createAsyncThunk(
 )
 
 export const postProduct = createAsyncThunk(
-    "products",
+    "products/new",
     async (product) => {
         try {
             const response = await axios.post("http://127.0.0.1:3001/products/new" , product);
@@ -85,6 +86,7 @@ const productSlice = createSlice({
             state.productsDetails = [];
             state.error = action.error.message;
           })
+
           .addCase(getProducts.pending, (state) => {
             state.loading = true;
             state.error = null;
@@ -97,6 +99,24 @@ const productSlice = createSlice({
           .addCase(getProducts.rejected, (state, action) => {
             state.loading = false;
             state.products = [];
+            state.error = action.error.message;
+          })
+
+          .addCase(postProduct.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+
+          })
+
+          .addCase(postProduct.fulfilled, (state, action) => {
+            state.loading = false;
+            state.products = action.payload;
+            state.error = null;
+          })
+
+          .addCase(postProduct.rejected, (state, action) => {
+            state.loading = false;
+            state.products = "ERROR FORM POST";
             state.error = action.error.message;
           });
       }

@@ -5,36 +5,48 @@ import * as Yup from "yup";
 // import styles from "../Login/SingUp.module.css";
 
 import styles from "./CreateProduct.module.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import ROUTES from "../../Helpers/Routes.helper";
+import { useDispatch } from "react-redux";
+import { postProduct } from "../../Redux/Store/Slices/ProductSlice";
 
 
 function CreateProduct() {
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       name: "",
       image: "",
-      description: "",
-      precio: "",
-      SKU: "",
+      descripcion: "",
+      precio_base: "",
+      precio_venta: "",
+      codigo: "",
       stock: "",
       categoria: "",
       color: "",
       peso: "",
-      tallas: "",
+      talla: "",
+      material: "",
 
     },
     validationSchema: Yup.object({
       name: Yup.string().required("El campo 'nombre' es requerido"),
       image: Yup.string().required("El campo 'imagen' es requerido"),
-      description: Yup.string().required("Añada una descripcion al producto"),
-      precio: Yup.string().required("El campo 'precio' es requerido"),
-      SKU: Yup.string().required("El campo 'Codigo' es requerido"),
+      descripcion: Yup.string().required("Añada una descripcion al producto"),
+      precio_base: Yup.number().positive().integer().required("El campo 'precio base' es requerido"),
+      precio_venta: Yup.number().positive().integer().required("El campo 'precio venta' es requerido"),
+      codigo: Yup.string().required("El campo 'Codigo' es requerido"),
       stock: Yup.string().required("El campo 'stock' es requerido"),
       categoria: Yup.string().required("El campo 'categoria' es requerido"),
       color: Yup.string().required("El campo 'color' es requerido"),
       peso: Yup.string().required("El campo 'peso' es requerido"),
-      tallas: Yup.string().required("El campo 'tallas' es requerido"),
+      talla: Yup.string().required("El campo 'talla' es requerido"),
+      material: Yup.string().required("El campo 'material' es requerido"),
+      preferencia: Yup.string().required("El campo 'preferencia' es requerido"),
     }),
   
   });
@@ -42,8 +54,19 @@ function CreateProduct() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    formik.handleSubmit();
-  }
+    
+    formik.validateForm().then((errors) => {
+      if (Object.keys(errors).length === 0) {
+        dispatch(postProduct(formik.values));
+        navigate(ROUTES.HOME);
+      } else {
+        alert("Faltan campos por completar o hay codigos repetidos");
+      }
+    } )
+
+}
+
+
 
   return (
     <div className="{`${styles.formContainer} ${styles.signUpContainer}`}">
@@ -54,7 +77,7 @@ function CreateProduct() {
 
         
     <div className={styles.divForm}>
-
+          <p>Nombre:</p>
            <input
           type="text"
           name="name"
@@ -74,6 +97,7 @@ function CreateProduct() {
    
 
     <div className={styles.divForm}>
+    <p>Imagen URL:</p>
         <input
           type="text"
           name="image"
@@ -91,54 +115,75 @@ function CreateProduct() {
     
 
     <div className={styles.divForm}>
+    <p>Descripcion:</p>
         <input
           type="text"
-          name="description"
-          value={formik.values.description}
+          name="descripcion"
+          value={formik.values.descripcion}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="📧 descripcion..."
           className={styles.input}
         />
 
-        {formik.touched.description && formik.errors.description ? (
-          <div className={styles.error}>{formik.errors.description}</div>
+        {formik.touched.descripcion && formik.errors.descripcion ? (
+          <div className={styles.error}>{formik.errors.descripcion}</div>
         ) : null}
     </div>
 
     <div className={styles.divForm}>
+    <p>Precio Base:</p>
         <input
-          type="precio"
-          name="precio"
-          value={formik.values.precio}
+          type="number"
+          name="precio_base"
+          value={formik.values.precio_base}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="💸precio..."
+          placeholder="💸precio base..."
           className={styles.input}
         />
-        {formik.touched.precio && formik.errors.precio ? (
-          <div className={styles.error}>{formik.errors.precio}</div>
+        {formik.touched.precio_base && formik.errors.precio_base ? (
+          <div className={styles.error}>{formik.errors.precio_base}</div>
+        ) : null}
+    </div>
+
+    <div className={styles.divForm}>
+    <p>Precio Venta:</p>
+        <input
+          type="number"
+          name="precio_venta"
+          value={formik.values.precio_venta}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          placeholder="💸precio venta..."
+          className={styles.input}
+        />
+        {formik.touched.precio_venta && formik.errors.precio_venta ? (
+          <div className={styles.error}>{formik.errors.precio_venta}</div>
         ) : null}
     </div>
 
 
-    <div className={styles.divForm}>
 
+    <div className={styles.divForm}>
+    <p>SKU O CODIGO:</p>
         <input
+        
           type="text"
-          name="SKU"
-          value={formik.values.SKU}
+          name="codigo"
+          value={formik.values.codigo}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="📝Codigo SKU..."
+          placeholder="📝Codigo ..."
           className={styles.input}
         />
-        {formik.touched.SKU && formik.errors.SKU ? (
-          <div className={styles.error}>{formik.errors.SKU}</div>
+        {formik.touched.codigo && formik.errors.codigo ? (
+          <div className={styles.error}>{formik.errors.codigo}</div>
         ) : null}
     </div>
 
     <div className={styles.divForm}>
+    <p>Stock disponible:</p>
         <input
           type="text"
           name="stock"
@@ -154,6 +199,7 @@ function CreateProduct() {
     </div>
 
     <div className={styles.divForm}>
+    <p>Categoria:</p>
         <input
           type="text"
           name="categoria"
@@ -170,6 +216,7 @@ function CreateProduct() {
     
 
     <div className={styles.divForm}>
+    <p>Color:</p>
         <input
           type="color"
           name="color"
@@ -185,6 +232,7 @@ function CreateProduct() {
     </div>
       
     <div className={styles.divForm}>
+    <p>Peso:</p>
         <input
           type="text"
           name="peso"
@@ -201,24 +249,57 @@ function CreateProduct() {
     </div>
 
     <div className={styles.divForm}>
+    <p>Talla:</p>
       
         <input
           type="text"
-          name="tallas"
-          value={formik.values.tallas}
+          name="talla"
+          value={formik.values.talla}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="📏tallas..."
+          placeholder="📏talla..."
           className={styles.input}
         />
-        {formik.touched.tallas && formik.errors.tallas ? (
-          <div className={styles.error}>{formik.errors.tallas}</div>
+        {formik.touched.talla && formik.errors.talla ? (
+          <div className={styles.error}>{formik.errors.talla}</div>
         ) : null}
 
     </div>
-    
 
-    <button type="submit" className={styles.btnSubmit}>
+    <div className={styles.divForm}>
+          
+    <p>Material de la tela:</p>
+        <input
+          type="text"
+          name="material"
+          value={formik.values.material}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          placeholder="🎨material..."
+          className={styles.input}
+        />
+        {formik.touched.material && formik.errors.material ? (
+          <div className={styles.error}>{formik.errors.material}</div>
+        ) : null}
+    </div>
+
+    <div className={styles.divForm}>
+    <p>Preferencia:</p>
+        <input
+          type="text"
+          name="preferencia"
+          value={formik.values.preferencia}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          placeholder="🌟preferencia..."
+          className={styles.input}
+        />
+        {formik.touched.preferencia && formik.errors.preferencia ? (
+          <div className={styles.error}>{formik.errors.preferencia}</div>
+        ) : null}
+    </div>    
+
+    <button type="submit"  className={styles.btnSubmit}>
           Crear Producto
         </button>
       </form>
