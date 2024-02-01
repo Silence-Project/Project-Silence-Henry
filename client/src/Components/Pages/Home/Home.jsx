@@ -33,7 +33,7 @@ const products = useSelector((state) => state.product.products);
       <Header />
 
         <div className={styles.navbar}>
-          <Link to={ROUTES.CREATE_PRODUCT}>Crear Producto</Link>
+          <Link to={"/create"}>Crear Producto</Link>
         </div>
 
         <div className={styles.navbar}>
