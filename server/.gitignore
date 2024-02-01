@@ -1,4 +1,4 @@
-# Logs
+# Archivos registro
 logs
 *.log
 npm-debug.log*
@@ -7,15 +7,14 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Dependency directories
+# Directorios de dependencias
 node_modules
 
+# elements construcción
 dist
 dist-ssr
-.env
-*.local
 
-# Editor directories and files
+# Directorios y archivos del editor
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -26,6 +25,15 @@ dist-ssr
 *.sln
 *.sw?
 
-# dotenv environment variables file
+# Archivos de variables de entorno dotenv
+# Ignorar el archivo .env en la raíz
 .env
+
+# .env de entornos
 .env.test
+
+# .env en el server
+server/.env
+
+# archivos locales de entorno
+*.local
