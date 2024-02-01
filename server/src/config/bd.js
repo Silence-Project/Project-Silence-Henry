@@ -8,6 +8,7 @@ const modelShopingCar = require('../models/Car.js');
 const modelOrder = require('../models/order.js');
 const modelPayments = require('../models/Payments.js');
 const modelFavorite = require('../models/favorites.js');
+const favorites = require('../models/favorites.js');
 
 
 
@@ -24,9 +25,28 @@ modelPayments(sequelize);
 modelFavorite(sequelize);
 
 
+const { Products, User, Category, Car, Order, Payments, Favorite } = sequelize.models;
 
-const { Products, User, Category, Car, Order, Payments } = sequelize.models;
+//Una categoria puede tener muchos productos, pero los productos pertenecen a una sola categoría
+Category.hasMany(Products, {foreignKey: 'idCategory', as: 'products'})
+Products.belongsTo(Category, {foreignKey: 'idCategory', as: 'products'})
 
+//Un usuario debe tener asignado un carro de compras 
+// Y ese carro le pertenece a ese usuario
+User.hasOne(Car, {foreignKey: 'idUser', as: 'car'})
+Car.belongsTo(User, {foreignKey: 'idUser', as: 'car'})
+
+//Un usuario debe tener asignado una lista de favoritos
+// Y esa lista le pertenece a ese usuario
+User.hasOne(Favorite, {foreignKey: 'userId', as: 'favorites'})
+Favorite.belongsTo(User, {foreignKey: 'userId', as: 'favorites'})
+
+
+// Un usuario puede tener muchas órdenes de venta
+User.hasMany(Order, {foreignKey: 'userId', as: 'orders'})
+
+//Cada orden tendrá un único método de pago de las opciones que hayan existentes
+Order.hasOne(Payments, {foreignKey: 'PaymentId', as: 'payments'})
 
 
 module.exports = {
