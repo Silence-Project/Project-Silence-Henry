@@ -11,9 +11,11 @@ const ProductCard = ({product}) => {
   const { id, name, image, precio_venta, descripcion, stock, color, categoria, peso, codigo } = product
 
   return (
-    <div className={style.productDetail}>
 
-        <NavLink to={`${ROUTES.DETAIL}?codigo=${codigo}`}>
+    <div className={style.absolute}>
+      <div className={style.productDetail}>
+
+        <Link to={/detail/+id}>
 
             <div className='info'>
 
@@ -24,7 +26,7 @@ const ProductCard = ({product}) => {
             
             alt={name}/> */}
 
-            <img className={style.productImage} src={'https://i.pinimg.com/236x/0e/4f/ce/0e4fce603341659d87362c2666530f3d.jpg'} alt={descripcion}/>
+            <img className={style.productImage} src={image} alt={descripcion}/>
 
              <p>💸 {precio_venta}</p>
           
@@ -43,9 +45,11 @@ const ProductCard = ({product}) => {
 
             </div>
 
-        </NavLink>
+        </Link>
 
+    |</div>
     </div>
+
   )
 }
 

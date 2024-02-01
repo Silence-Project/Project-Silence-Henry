@@ -21,8 +21,10 @@
   align-items: center;
   justify-content: center;
   font-family: 'Now';
-  margin-top: -55%;
-} */
+  margin-top: 150px;
+  height: 10vh;
+}
+
 
 .navbar a {
   color: red; /* Aplica el color rojo al enlace */
@@ -30,17 +32,20 @@
 
 /*NO UTILIZADO - BORRAR*/
 .cardContainer {
-  width: 100%;
-  /* height: auto; */
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+
   flex-wrap: wrap;
   
-  justify-content: center;
+  /* justify-content: center; */
   padding-bottom: 5%;
-  /* display: flex;
+   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-family: 'Now';
-  height: 80vh;  */
+  height: 80vh; 
 }
 
 .cardContainer p {
@@ -61,4 +66,4 @@
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 5%;
-} */
+}
