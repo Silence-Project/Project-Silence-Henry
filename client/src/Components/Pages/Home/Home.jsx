@@ -5,7 +5,7 @@ import Cards from "../../Common/ProductList/ProductList"
 import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
 import { Link } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
-import Header from '../../Common/Header/Header';
+import Header from '../../Common/Header/Header.jsx';
 import Footer from '../../Common/Footer/Footer';
 import Descuento from '../../Common/Descuento/Descuento'
 
