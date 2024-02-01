@@ -1,4 +1,4 @@
-const { Category } = require('../config/bd');
+const { Category, Products } = require('../config/bd');
 
 // Create Category
 // Tiene relación uno a muchos con productos
@@ -20,13 +20,25 @@ const createCategory = async (name) => {
 
 const viewCategories = async () => {
     try{
-        const categories = await Category.findAll();
+        const categories = await Category.findAll(({
+            include: [{
+              model: Products,
+              as: 'products',
+              attributes: ['id','descripcion']
+            }],
+          }));
         
         const categoriesMap = categories.map((category) => {
             return {
                 id: category.id,
                 name: category.name,
-                isActive: category.isActive
+                isActive: category.isActive,
+                products: category.products.map((product) => {
+                    return {
+                        id: product.id,
+                        descripcion: product.descripcion
+                    }
+                })
             }
         })
 
