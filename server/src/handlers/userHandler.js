@@ -1,21 +1,26 @@
 const { Router } = require("express");
-const { Usuario } = require("../config/bd");
-const { createUser } = require("../controllers/createUserController");
-const { getUserByEmail } = require("../controllers/getUserController");
+const { User } = require("../config/bd");
+const { createUser } = require("../controllers/users/createUserController");
+const {
+  getUserByEmail,
+} = require("../controllers/users/getUserByEmailController");
+const {
+  getUserCredentials,
+} = require("../controllers/users/getUserCredentials");
 
 const userHandler = Router();
 
 //POST
 userHandler.post("/", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { firstName, email, password } = req.body;
 
   try {
-    if (!name || !email || !password)
-      throw Error("Email and password are required.");
+    if (!firstName || !email || !password)
+      throw Error("Missing required data.");
 
-    const nuevoUsuario = await createUser(name, email, password);
+    const newUser = await createUser(firstName, email, password);
 
-    res.status(201).json(nuevoUsuario);
+    res.status(201).json(newUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -28,17 +33,11 @@ userHandler.get("/login", async (req, res) => {
   try {
     if (!email || !password) throw Error("Email and password are required.");
     // Find user by email
-    const userCredentials = await Usuario.findOne({ where: { email } });
-    // console.log("que es user?? ", userCredentials);
+    const userCredentials = await getUserCredentials(email, password);
 
-    // If user not found, or password doesn't match, throw error
-    if (!userCredentials || userCredentials.email !== email || userCredentials.password !== password) {
-      throw new Error("Invalid user credentials.");
-    }
-
-    res.status(202).json({ access: true, userCredentials });
+    res.status(202).json(userCredentials);
   } catch (error) {
-    res.status(400).json({ access: false, error: error.message });
+    res.status(400).json({ error: error.message });
   }
 });
 
@@ -57,13 +56,14 @@ userHandler.get("/", async (req, res) => {
 
   try {
     if (!email) {
-      const usuarios = await Usuario.findAll({
+      const users = await User.findAll({
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
+        order: [["id", "ASC"]],
       });
       //return para cortar bloque
-      return res.status(200).json(usuarios);
+      return res.status(200).json(users);
     }
 
     let userByEmail = await getUserByEmail(email);
@@ -77,10 +77,10 @@ userHandler.get("/", async (req, res) => {
 userHandler.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const singleUser = await Usuario.findByPk(id);
+    const singleUser = await User.findByPk(id);
 
     if (!singleUser)
-      return response.status(404).send(`Usuario con código ${code} no existe.`);
+      return res.status(404).send(`Usuario con ID ${id} no existe.`);
 
     return res.status(200).json(singleUser);
   } catch (error) {
@@ -94,14 +94,8 @@ userHandler.patch("/:id", async (req, res) => {
 
   const dataToUpdate = req.body;
 
-  //Check if property 'name' is being updated
-  if (dataToUpdate.name) { //Adapt 'name' property to 'firstName'
-    dataToUpdate.firstName = dataToUpdate.name;
-    delete dataToUpdate.name; //Pues no lo necesito
-  }
-
   try {
-    const updatedUser = await Usuario.update(dataToUpdate, {
+    const updatedUser = await User.update(dataToUpdate, {
       where: { id: userIdToUpdate },
     });
     // console.log(updatedUser);

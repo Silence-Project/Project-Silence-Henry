@@ -1,23 +1,14 @@
 const { DataTypes } = require("sequelize");
 
-module.exports =  (sequelize) => {
+module.exports = (sequelize) => {
   //definir modelo
-  sequelize.define("Usuario", {
-    // id: {
-    //   type: DataTypes.INTEGER,
-    //   primaryKey: true,
-    //   allowNull: false,
-    //   autoIncrement: true
-    // },
+  sequelize.define("User", {
     //DNI de usuario, NO utilizada como primaryKey
     dniUser: {
       type: DataTypes.STRING,
       unique: true,
-      // allowNull: false,
       validate: {
-        // notEmpty: true,
-        min: 5,
-        max: 20,
+        len: [5,20],
       },
     },
     firstName: {
@@ -34,9 +25,9 @@ module.exports =  (sequelize) => {
       get() {
         return `${this.firstName} ${this.lastName ? this.lastName : ""}`;
       },
-      set(value) {
-        throw new Error("NO intentar setear valor a `fullName`!");
-      },
+      // set(value) {
+      //   throw new Error("NO intentar setear valor a `fullName`!");
+      // },
     },
     phoneNumber: {
       type: DataTypes.STRING,
@@ -44,13 +35,18 @@ module.exports =  (sequelize) => {
       validate: {
         // isNumeric: true,
         isPhoneNumberFormat(value) {
-          if(!/^[0-9]{3,15}$/.test(value)) throw Error("Invalid phone number format.")
-        }
-      }
+          if (!/^[0-9]{3,15}$/.test(value))
+            throw Error("Invalid phone number format.");
+        },
+      },
+    },
+    sex: {
+      type: DataTypes.ENUM("hombre", "mujer", "otro"),
+      defaultValue: "otro",
     },
     birthday: {
       type: DataTypes.DATEONLY, // (2000-07-06 with no timestamp)
-      defaultValue: "2000-01-15",
+      defaultValue: DataTypes.NOW,
       validate: {
         isDate: true,
       },
@@ -76,8 +72,7 @@ module.exports =  (sequelize) => {
         //Min 3 characters, at least one letter a-z, one number 0-9
         is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/,
         notEmpty: true,
-        min: 3,
-        max: 30,
+        len: [3,30]
       },
     },
     email: {
@@ -86,7 +81,7 @@ module.exports =  (sequelize) => {
       allowNull: false,
       validate: {
         isEmail: true,
-        notNull: false,
+        notNull: true,
       },
     },
     isActive: {
@@ -112,7 +107,7 @@ module.exports =  (sequelize) => {
     },
     country: {
       type: DataTypes.STRING,
-      defaultValue: "Argentina",
+      defaultValue: "argentina",
     },
     postalCode: {
       type: DataTypes.STRING,
