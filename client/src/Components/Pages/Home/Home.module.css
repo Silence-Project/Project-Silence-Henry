@@ -27,10 +27,12 @@
 
 
 .navbar a {
-  color: red; /* Aplica el color rojo al enlace */
+  color: red; /* Aplica el color rojo al enlace 
 }
+NO UTILIZADO - BORRAR
+*/
 
-/*NO UTILIZADO - BORRAR*/
+
 .cardContainer {
   width: auto;
   height: auto;
@@ -66,4 +68,5 @@
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 5%;
-}
+} 
+*/
