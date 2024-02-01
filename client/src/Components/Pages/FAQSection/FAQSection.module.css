@@ -1,10 +1,10 @@
 .container {
   background-color: var(--BalancedGray);
   max-width: 600px;
-  max-height: 72vh;
+  max-height: 67.5vh;
   padding: 10px 20px 20px;
   border-radius: 5px;
-  margin: 4vh auto;
+  margin: 0 auto 4vh;
   overflow: auto;
 }
 
@@ -26,6 +26,10 @@
   height: 25px;
   margin: 5px;
   cursor: pointer;
+}
+
+.heading{
+  margin: 25px;
 }
 
 .question div,
