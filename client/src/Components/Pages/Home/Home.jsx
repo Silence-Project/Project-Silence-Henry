@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styles from "./Home.module.css";
-import ProductList from "../../Common/ProductList/ProductList";
 import { useDispatch, useSelector } from 'react-redux';
 import Cards from "../../Common/ProductList/ProductList"
 import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
