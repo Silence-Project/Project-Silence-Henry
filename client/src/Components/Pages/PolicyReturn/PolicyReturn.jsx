@@ -1,6 +1,6 @@
 import styles from "./PolicyReturn.module.css";
 import Head from "../../Common/Header/Head.jsx";
-import Footer from "../../Common/Footer/Footer";
+import Footer from "../../Common/FooterView/Footer.jsx";
 
 const PolicyReturn = () => {
   return (

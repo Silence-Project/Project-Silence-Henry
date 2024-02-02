@@ -1,7 +1,7 @@
 import styles from "./FAQSection.module.css";
 
 import Head from "../../Common/Header/Head";
-import Footer from "../../Common/Footer/Footer";
+import Footer from "../../Common/FooterView/Footer";
 import QuestionDataDevoluciones from "./QuestionDataDevoluciones";
 import Question from "./Question";
 
