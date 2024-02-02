@@ -33,8 +33,8 @@ Products.belongsTo(Category, {foreignKey: 'idCategory', as: 'products'})
 
 //Un usuario debe tener asignado un carro de compras 
 // Y ese carro le pertenece a ese usuario
-User.hasOne(Car, {foreignKey: 'idUser', as: 'car'})
-Car.belongsTo(User, {foreignKey: 'idUser', as: 'car'})
+// User.hasOne(Car, {foreignKey: 'idUser', as: 'car'})
+// Car.belongsTo(User, {foreignKey: 'idUser', as: 'car'})
 
 //Un usuario debe tener asignado una lista de favoritos
 // Y esa lista le pertenece a ese usuario

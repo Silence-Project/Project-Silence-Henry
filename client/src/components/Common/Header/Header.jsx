@@ -13,6 +13,7 @@ import LoginButton from '../../Authentication/LoginBtn/LoginBtn'
 import LogoutButton from '../../Authentication/LogoutBtn/LogoutBtn'
 import Profile from '../../Authentication/ProfileUser/ProfileUser'
 import { useAuth0 } from '@auth0/auth0-react'
+import SignUpForm from '../../Authentication/login2/login2'
 
 const Header = () => {
 
@@ -39,6 +40,9 @@ const Header = () => {
           </NavLink>
         </li>
         {/* LOGEOOOOOOOOOOOOOOS AUTH0 */}
+        <li>
+          <SignUpForm />
+        </li>
         {
           !isAuthenticated ?
             <li>
@@ -47,9 +51,9 @@ const Header = () => {
             <><li>
               <Profile />
             </li>
-        <li>
-          <LogoutButton />
-        </li></>
+              <li>
+                <LogoutButton />
+              </li></>
         }
         <li>
           <NavLink to={ROUTES.LOGGING}>

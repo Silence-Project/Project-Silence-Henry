@@ -6,7 +6,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import store from './Redux/Store/Index.js';
 import {Auth0ProviderWithNavigate} from './Helpers/auth0ProviderWithNavigate.jsx';
-import { Auth0Provider } from "@auth0/auth0-react";
+// import { Auth0Provider } from "@auth0/auth0-react";
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
