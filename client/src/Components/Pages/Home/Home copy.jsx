@@ -9,7 +9,7 @@ import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
 import Header from '../../Common/Header/Header';
 import Footer from '../../Common/Footer/Footer';
 import Descuento from '../../Common/Descuento/Descuento'
-import Sidebar from "../../Common/Sidebar/Sidebar";
+import Sidebar from '../../Common/Sidebar/Sidebar'
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -30,14 +30,15 @@ const products = useSelector((state) => state.product.products);
         <Descuento />
 
         <Header />
-
-        <Sidebar />
         
         <div className={styles.cardContainer}>
           <Cards className='card' products={products}/>
         </div>    
 
         <Footer/>
+
+        <Sidebar/>
+
       </div>
     </>
   )
