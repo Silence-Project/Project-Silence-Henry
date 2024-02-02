@@ -6,7 +6,7 @@ import styles from "./Home.module.css";
 import Cards from '../../Common/ProductList/ProductList'
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
-import Header from '../../Common/Header/Header';
+import Header from '../../../Components/Common/Header/Header.jsx';
 import Footer from '../../Common/Footer/Footer';
 import Descuento from '../../Common/Descuento/Descuento'
 
