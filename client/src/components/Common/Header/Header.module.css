@@ -1,33 +1,12 @@
 .header1 {
+  width: 100vw;
   min-height: 60px;
   background-color: var(--WindsorGreige);
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  padding: 0 16px;
-}
-
-.header1 ul {
-  display: flex;
-  list-style-type: none;
-  align-items: center;
-  width: 100vw;
-  gap: 16px;
-}
-
-.silencelogo {
-  margin: 0 auto;
+  text-align: center;
 }
 .silence {
+  margin: 5px 0;
   max-width: 55px;
-}
-.hamburger {
-  max-width: 30px;
-  max-height: 30px;
-  margin: 1.2%;
-}
-.hamburger:hover {
-  cursor: pointer;
 }
 .inputSearch {
   width: 150px;
@@ -43,16 +22,12 @@
 .search:hover {
   cursor: pointer;
 }
-.kartMarket,
-.mailInbox {
+.kartMarket, .userIcon {
   max-width: 30px;
   float: right;
-  margin: 1%;
-}
-.kartMarket {
-  margin-right: 2.5%;
+  margin: 18px;
 }
 .kartMarket:hover,
-.mailInbox:hover {
+.userIcon:hover {
   cursor: pointer;
 }

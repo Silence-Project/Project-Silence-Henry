@@ -1,19 +1,16 @@
 .footer{
-  /* position: fixed; */
-  /* bottom: 0; */
   display: flex;
   margin-top: auto;
-  /* width: 100vw; */
   background-color: var(--WindsorGreige);
   min-height: 50px;
   border-top: solid white 1px;
 }
-.faqSection{
-  float: left;
+.faqSection, .policyreturn{
   color: white;
   margin: 0.8%;
   font-size: 25px;
 }
-.faqSection:hover{
+
+.faqSection:hover, .policyreturn:hover{
   color: black
 }

@@ -1,34 +1,23 @@
 .productList {
-  /* width: 350px; */
-  /* height: 400px; */
-  color: rgba(255, 255, 255, 0.938);
-  /* background: linear-gradient(163deg, #03010536 0%, #d791e744); */
-  /* border-radius: 50px; */
-  transition: all 0.3s;
-  /* margin: 20px 30px 20px 30px; */
-  /* float: left;
-  margin-right: 30px;
-  margin: 50px;
-  text-decoration: none; */
-  /* margin-top: 20px; */
-  /* margin-bottom: 160px; */
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  /* width: 400px; */
-}
+    width: 350px;
+    height: 400px;
+    color: rgba(255, 255, 255, 0.938);
+    /* background: linear-gradient(163deg, #03010536 0%, #d791e744); */
+    border-radius: 50px;
+    transition: all 0.3s;
+    /* margin: 20px 30px 20px 30px; */
+    float: left;
+    margin-right: 30px;
+    margin: 50px;
+    text-decoration: none;
+    /* margin-top: 20px; */
+    /* margin-bottom: 160px; */
+  }
+  
 
-
-.card {
-  /* Agrega estilos adicionales para las cards según tus preferencias */
-  margin: 10px;
-  border-radius: 50px;
-}
-
-.cargandoDatos{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: green;
-}
+  .card {
+    /* Agrega estilos adicionales para las cards según tus preferencias */
+    margin: 10px;
+    border-radius: 50px;
+  }
