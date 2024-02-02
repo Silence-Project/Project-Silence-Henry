@@ -37,9 +37,9 @@ const getProductsDetailHandler = async(req,res)=>{
 }
 
 const postNewProductHandler = async(req,res)=>{
-    const {codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo} = req.body;
+    const {codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo, idCategory} = req.body;
     try{
-        const newProduct = await postNewProducts(codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo)
+        const newProduct = await postNewProducts(codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo, idCategory)
         res.status(200).json(newProduct)
     }catch(error){
         console.log(error);

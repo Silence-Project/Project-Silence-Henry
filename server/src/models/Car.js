@@ -12,6 +12,5 @@ module.exports = (database) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        
     })
 }

@@ -10,17 +10,7 @@ module.exports = (sequelize) => {
     // puede estar relacionada en muchos productos, pero, estos productos solo pueden tener una categoría.
     // Cambiar a inglés las propiedades
    // Añadir nombre del producto 
-   
-    // name: {
-    //   type: DataTypes.STRING, 
-    //   allowNull: false
-    // },
-
-    idCategory: {
-      type: DataTypes.INTEGER, 
-      allowNull: false
-    },
-    // Esto para la relación uno a muchos 
+  
 
     codigo: {
       type: DataTypes.STRING,
@@ -86,4 +76,5 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
     },
   }, { timestamps : false});
+
 };

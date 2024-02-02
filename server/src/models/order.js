@@ -12,7 +12,11 @@ module.exports = (database) => {
         },
         userId: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: false
+        },
+        PaymentId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         totalOrder: {
             type: DataTypes.FLOAT,

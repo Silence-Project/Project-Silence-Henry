@@ -18,13 +18,42 @@ const getProductsByCodigo = async(codigo)=>{
     return [...productsDB];
 }
 
-const postNewProducts = async(codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo )=>{
+const postNewProducts = async(codigo, 
+    descripcion, 
+    talla, 
+    color, 
+    material, 
+    peso, 
+    image, 
+    precio_base, 
+    precio_venta, 
+    preferencia, 
+    estado, 
+    stock, 
+    minimo,
+    idCategory
+    )=>{
     const data = await Products.findAll({where: {codigo: codigo}})
     if (data.length>0) {
         throw new Error(`Ya existe un producto con el codigo: ${codigo}`);
     }
     else {
-        const newProducts = await Products.create({codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo})
+        const newProducts = await Products.create(
+            {codigo, 
+            descripcion, 
+            talla, 
+            color, 
+            material, 
+            peso, 
+            image, 
+            precio_base, 
+            precio_venta, 
+            preferencia, 
+            estado, 
+            stock, 
+            minimo,
+            idCategory
+            })
         return [newProducts];
     }
 }
