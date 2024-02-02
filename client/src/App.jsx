@@ -9,6 +9,8 @@ import Details from './Components/Common/ProductDetail/ProductDetail';
 import PolicyReturn from './Components/Pages/PolicyReturn/PolicyReturn'
 import UserRegister from './Components/Pages/userRegister/UserRegister';
 
+import CarritoSlides from "./Components/Common/Carrito/Carrito";
+
 import './App.css'
 
 function App() {
@@ -59,6 +61,11 @@ function App() {
         <Route
           path={ROUTES.PolicyReturn}
           element={<PolicyReturn />}
+        ></Route>
+
+        <Route
+          path="/carrito"
+          element={<CarritoSlides />}
         ></Route>
 
       </Routes>

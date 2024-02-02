@@ -7,8 +7,8 @@ import * as Yup from "yup";
 import styles from "./CreateProduct.module.css";
 import { Link , useNavigate } from "react-router-dom";
 import ROUTES from "../../Helpers/Routes.helper";
-import { useDispatch } from "react-redux";
-import { postProduct } from "../../Redux/Store/Slices/ProductSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { postProduct , getCategories } from "../../Redux/Store/Slices/ProductSlice";
 
 
 function CreateProduct() {
@@ -26,7 +26,7 @@ function CreateProduct() {
       precio_venta: "",
       codigo: "",
       stock: "",
-      categoria: "",
+      idCategory: "",
       color: "",
       peso: "",
       talla: "",
@@ -41,7 +41,7 @@ function CreateProduct() {
       precio_venta: Yup.number().positive().integer().required("El campo 'precio venta' es requerido"),
       codigo: Yup.string().required("El campo 'Codigo' es requerido"),
       stock: Yup.string().required("El campo 'stock' es requerido"),
-      categoria: Yup.string().required("El campo 'categoria' es requerido"),
+      idCategory: Yup.string().required("Seleccione una categoria"),
       color: Yup.string().required("El campo 'color' es requerido"),
       peso: Yup.string().required("El campo 'peso' es requerido"),
       talla: Yup.string().required("El campo 'talla' es requerido"),
@@ -51,6 +51,13 @@ function CreateProduct() {
   
   });
 
+
+  const categories = useSelector((state) => state.product.categories);
+
+  React.useEffect(() => {
+     dispatch(getCategories());
+
+  }) , [dispatch];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -65,6 +72,8 @@ function CreateProduct() {
     } )
 
 }
+
+
 
 
 
@@ -199,19 +208,26 @@ function CreateProduct() {
     </div>
 
     <div className={styles.divForm}>
-    <p>Categoria:</p>
-        <input
-          type="text"
-          name="categoria"
-          value={formik.values.categoria}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="🏷️categoria..."
-          className={styles.input}
-        />
-        {formik.touched.categoria && formik.errors.categoria ? (
-          <div className={styles.error}>{formik.errors.categoria}</div>
-        ) : null}
+          <label htmlFor="idCategory">Categorias:</label>
+          <select
+            name="idCategory"
+            value={formik.values.idCategory}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className={styles.input}
+          >
+              <option value="">Seleccionar Categoria</option>
+              {categories.map((idCategory) => (
+                <option key={idCategory.id} value={idCategory.id}>
+                  {idCategory.name}
+                </option>
+              ))}
+          </select>
+
+          {formik.touched.idCategory && formik.errors.idCategory ? (
+            <div className={styles.error}>{formik.errors.idCategory}</div>
+
+          ) : null}
     </div>
     
 
