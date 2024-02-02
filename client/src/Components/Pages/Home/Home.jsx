@@ -4,7 +4,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
-import Header from "../../Common/Header/Header";
+import Header from "../../../../src/Components/Common/Header/Header";
 import Cards from "../../Common/ProductList/ProductList";
 import Footer from "../../Common/Footer/Footer";
 import Descuento from "../../Common/Descuento/Descuento";
