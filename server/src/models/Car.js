@@ -8,9 +8,9 @@ module.exports = (database) => {
             autoIncrement: true,
             primaryKey: true
         },
-        idUser: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        totalPrice: {
+            type: DataTypes.INTEGER,
+            defaultValue: "0"
+        }
     })
 }

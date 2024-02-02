@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import ROUTES from "../../Helpers/Routes.helper";
-import styles from "./Navbar.module.css";
+import ROUTES from "../../../Helpers/Routes.helper";
+import styles from "../NavBar/NavBar.module.css";
 
 const Navbar = ({ setShowPersonalData, id }) => {
   const [menuOpen, setMenuOpen] = useState(false);

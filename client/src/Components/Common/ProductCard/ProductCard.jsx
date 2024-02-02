@@ -12,7 +12,7 @@ import { anadirProducto } from '../../../Redux/Store/Slices/CarritoSlice';
 
 const ProductCard = ({product}) => {
 
-  const { id, name, image, precio_venta, descripcion, stock, color, categoria, peso, codigo } = product
+  const { id, name, image, price, description, stock, color, categoria, peso, codigo } = product
 
   const dispatch = useDispatch();
 
@@ -32,16 +32,16 @@ const ProductCard = ({product}) => {
 
             <div className='info'>
 
-            <h2 className={style.productName}>{descripcion}</h2>
+            <h2 className={style.productName}>{name}</h2>
 {/* 
             <img src={image.map((image, index) => 
             <p key={index} className="card-image">{image}</p>)} 
             
             alt={name}/> */}
 
-            <img className={style.productImage} src={image} alt={descripcion}/>
+            <img className={style.productImage} src={image} alt={description}/>
 
-             <p>💸 {precio_venta}</p>
+             <p>💸 {price}</p>
           
             <button className={style.button} onClick={() => handleAddProduct(product)}>Añadir al carrito</button>
             

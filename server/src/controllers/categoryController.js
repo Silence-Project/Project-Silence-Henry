@@ -24,7 +24,7 @@ const viewCategories = async () => {
             include: [{
               model: Products,
               as: 'products',
-              attributes: ['id','descripcion']
+              attributes: ['id','name']
             }],
           }));
         
@@ -36,7 +36,7 @@ const viewCategories = async () => {
                 products: category.products.map((product) => {
                     return {
                         id: product.id,
-                        descripcion: product.descripcion
+                        name: product.name
                     }
                 })
             }

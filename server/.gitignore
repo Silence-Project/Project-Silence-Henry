@@ -11,8 +11,7 @@ lerna-debug.log*
 node_modules
 
 # elements construcción
-dist
-dist-ssr
+
 
 # Directorios y archivos del editor
 .vscode/*
