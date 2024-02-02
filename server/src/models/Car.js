@@ -7,10 +7,6 @@ module.exports = (database) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
-        },
-        idUser: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        }
     })
 }
