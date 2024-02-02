@@ -24,7 +24,9 @@ createRoot(document.getElementById('root')).render(
         </Auth0ProviderWithNavigate>
 
       </BrowserRouter>
-    </Provider>
+
+
+</Provider>
 
   </React.StrictMode>
 );

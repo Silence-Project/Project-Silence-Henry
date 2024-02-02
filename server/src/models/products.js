@@ -12,17 +12,20 @@ module.exports = (sequelize) => {
    // Añadir nombre del producto 
   
 
-    codigo: {
+    code: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    descripcion: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     //Talla puede ser una tabla o una opcion multiple usando .ENUM y poniendo las opciones de una vez
-    talla: {
+    size: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -36,7 +39,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    peso: {
+    weight: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
@@ -46,11 +49,11 @@ module.exports = (sequelize) => {
     },
 
     //Reconsiderar precios. Poner solo precio y costo. 
-    precio_base: {
+    cost: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    precio_venta: {
+    price: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
@@ -59,11 +62,11 @@ module.exports = (sequelize) => {
     //Y que la ruta permita promediar conforme se califiquen. 
     // Debe tener una ruta de update y esa haría el trabajo, y aquí igual iria no referencia sino idPreferencia 
     // con ese idPreferencia y idProduct de una tabla intermedia, nos traemos el promedio de calificaciones de ese producto
-    preferencia: {
+    preference: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    estado: {
+    state: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
@@ -72,7 +75,7 @@ module.exports = (sequelize) => {
     },
     //Validar si este campo es necesario. Toca es hacer una ruta que actualice el stock restandole unidades del
     // Carro de compras o de la order
-    minimo: {
+    min: {
       type: DataTypes.INTEGER,
     },
   }, { timestamps : false});

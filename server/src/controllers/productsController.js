@@ -13,58 +13,60 @@ const getProductsById = async(id)=>{
     return [...productsDB];
 }
 
-const getProductsByCodigo = async(codigo)=>{
-    const productsDB = await Products.findAll({where: {codigo:codigo}});
+const getProductsByCodigo = async(code)=>{
+    const productsDB = await Products.findAll({where: {code:code}});
     return [...productsDB];
 }
 
-const postNewProducts = async(codigo, 
-    descripcion, 
-    talla, 
+const postNewProducts = async(code, 
+    name,
+    description, 
+    size, 
     color, 
     material, 
-    peso, 
+    weight, 
     image, 
-    precio_base, 
-    precio_venta, 
-    preferencia, 
-    estado, 
+    cost, 
+    price, 
+    preference, 
+    state, 
     stock, 
-    minimo,
+    min,
     idCategory
     )=>{
-    const data = await Products.findAll({where: {codigo: codigo}})
+    const data = await Products.findAll({where: {code: code}})
     if (data.length>0) {
-        throw new Error(`Ya existe un producto con el codigo: ${codigo}`);
+        throw new Error(`Ya existe un producto con el codigo: ${code}`);
     }
     else {
         const newProducts = await Products.create(
-            {codigo, 
-            descripcion, 
-            talla, 
+            {code,
+            name, 
+            description, 
+            size, 
             color, 
             material, 
-            peso, 
+            weight, 
             image, 
-            precio_base, 
-            precio_venta, 
-            preferencia, 
-            estado, 
+            cost, 
+            price, 
+            preference, 
+            state, 
             stock, 
-            minimo,
+            min,
             idCategory
             })
         return [newProducts];
     }
 }
 
-const changeProducts = async(id, codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado )=>{
+const changeProducts = async(id, code, name, description, size, color, material, weight, image, cost, price, preference, state )=>{
     const data = await Products.findAll({where: {id: id}})
     if (data.length===0) {
         throw new Error(`El ID del producto no existe ${id}`);
     }
     else {
-        const product = await Products.update({codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo}, {where: {id:id}})
+        const product = await Products.update({code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min}, {where: {id:id}})
         const changeProduct = await Products.findAll({where: {id: id}})
         console.log('changeProduct-->', changeProduct);
         return [...changeProduct];

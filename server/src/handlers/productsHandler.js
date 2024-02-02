@@ -8,11 +8,11 @@ const {
   } = require('../controllers/productsController');
 
 const getProductsHandler = async (req,res)=>{
-    const {codigo} = req.query
-    console.log('codigo--->', codigo)
+    const {code} = req.query
+    console.log('codigo--->', code)
     try {
-        if(codigo){
-            const getProductByCodigo = await getProductsByCodigo(codigo)
+        if(code){
+            const getProductByCodigo = await getProductsByCodigo(code)
             res.status(200).json(getProductByCodigo)
         }
         else{
@@ -37,25 +37,25 @@ const getProductsDetailHandler = async(req,res)=>{
 }
 
 const postNewProductHandler = async(req,res)=>{
-    const {codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo, idCategory} = req.body;
+    const {code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min, idCategory} = req.body;
     try{
-        const newProduct = await postNewProducts(codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo, idCategory)
+        const newProduct = await postNewProducts(code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min, idCategory)
         res.status(200).json(newProduct)
     }catch(error){
         console.log(error);
-        res.status(400).send(`No se pudo crear el registro del producto ${codigo} ${descripcion}`)
+        res.status(400).send(`No se pudo crear el registro del producto ${code} ${description}`)
     }
 }
 
 const changeProductHandler = async(req,res)=>{
-    const {id, codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo} = req.body;
+    const {code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min} = req.body;
     try{
-        const product = await changeProducts(id, codigo, descripcion, talla, color, material, peso, image, precio_base, precio_venta, preferencia, estado, stock, minimo)
+        const product = await changeProducts(code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min)
         console.log('product---> ', product);
         res.status(200).json(product)
     }catch(error){
         console.log(error);
-        res.status(400).send(`No se pudo actualizar el producto ${codigo} ${descripcion}`)
+        res.status(400).send(`No se pudo actualizar el producto ${code} ${description}`)
     }
 }
 
