@@ -33,7 +33,7 @@ const getCarsWithProducts = async () => {
                 model: Products,
                 through: 'car_products', 
                 as: 'shoppingCar',
-                attributes: ['id', 'descripcion', 'precio_venta']
+                attributes: ['id', 'name', 'price']
             }],
         });
 
@@ -45,8 +45,8 @@ const getCarsWithProducts = async () => {
                     car.shoppingCar.map((product) => {
                         return {
                             id: product.id,
-                            name: product.descripcion,
-                            price: product.precio_venta,
+                            name: product.name,
+                            price: product.price,
                         };
                     }) : [] 
             };
