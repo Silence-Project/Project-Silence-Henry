@@ -9,7 +9,7 @@ import MenuHamburger from '../MenuHamburger/MenuHamburger'
 // import mailInboxIcon from '../../../img/icons/mail-inbox-app.png'
 
 
-const Header = () => {
+const Head = () => {
 
   return (
     <div className={styles.header1}>
@@ -29,4 +29,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Head
