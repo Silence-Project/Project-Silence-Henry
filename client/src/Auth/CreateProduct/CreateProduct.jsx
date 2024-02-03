@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -8,7 +8,10 @@ import styles from "./CreateProduct.module.css";
 import { Link , useNavigate } from "react-router-dom";
 import ROUTES from "../../Helpers/Routes.helper";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { postProduct , getCategories } from "../../Redux/Store/Slices/ProductSlice";
+
+
 
 
 function CreateProduct() {
@@ -27,7 +30,7 @@ function CreateProduct() {
       codigo: "",
       stock: "",
       idCategory: "",
-      color: "",
+      color: "#000000",
       peso: "",
       talla: "",
       material: "",
@@ -52,12 +55,18 @@ function CreateProduct() {
   });
 
 
+  
+  useEffect(() => {
+    dispatch(getCategories());
+
+ } ,[]);
+
+
+
+
+ 
   const categories = useSelector((state) => state.product.categories);
 
-  React.useEffect(() => {
-     dispatch(getCategories());
-
-  }) , [dispatch];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -224,10 +233,10 @@ function CreateProduct() {
               ))}
           </select>
 
-          {formik.touched.idCategory && formik.errors.idCategory ? (
+          {/* {formik.touched.idCategory && formik.errors.idCategory ? (
             <div className={styles.error}>{formik.errors.idCategory}</div>
 
-          ) : null}
+          ) : null} */}
     </div>
     
 
@@ -301,7 +310,7 @@ function CreateProduct() {
 
     <div className={styles.divForm}>
     <p>Preferencia:</p>
-        <input
+        <select
           type="text"
           name="preferencia"
           value={formik.values.preferencia}
@@ -309,7 +318,17 @@ function CreateProduct() {
           onBlur={formik.handleBlur}
           placeholder="🌟preferencia..."
           className={styles.input}
-        />
+        > 
+
+          <option value="">Seleccionar Preferencia</option>
+          <option value="1">1 - Prioridad maxima</option>
+          <option value="2">2 </option>
+          <option value="3">3 </option>
+          <option value="4">4 </option>
+          <option value="5">5 - Prioridad minima</option>
+
+        </select>
+
         {formik.touched.preferencia && formik.errors.preferencia ? (
           <div className={styles.error}>{formik.errors.preferencia}</div>
         ) : null}

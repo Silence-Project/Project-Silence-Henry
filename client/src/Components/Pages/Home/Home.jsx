@@ -20,6 +20,7 @@ const products = useSelector((state) => state.product.products);
     dispatch(getProducts());
   }, [dispatch]);
 
+  const sortedProducts = products.slice().sort((a, b) => a.preferencia - b.preferencia);
 
   console.log("PRODUCTOS ->", products);
 
@@ -31,7 +32,7 @@ const products = useSelector((state) => state.product.products);
         <Header />
         
         <div className={styles.cardContainer}>
-          <Cards className='card' products={products}/>
+          <Cards className='card' products={sortedProducts}/>
         </div>    
 
         <Footer/>
