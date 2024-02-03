@@ -27,7 +27,7 @@ const Home = () => {
       <div className={styles.homeContainer}>
         <Descuento />
 
-        <Header />
+        <Head />
         
         <div className={styles.cardContainer}>
           <Cards className='card' products={sortedProducts}/>
@@ -36,7 +36,7 @@ const Home = () => {
         <Footer/>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 
