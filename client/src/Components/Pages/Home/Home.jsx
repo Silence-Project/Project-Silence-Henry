@@ -10,6 +10,7 @@ import Footer from "../../Common/FooterView/Footer";
 import Descuento from "../../Common/Descuento/Descuento";
 import styles from "./Home.module.css";
 
+
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
@@ -18,7 +19,12 @@ const Home = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const sortedProducts = products.slice().sort((a, b) => a.preferencia - b.preferencia);
+  
+    const sortedProducts = products.slice().sort((a, b) => a.preferencia - b.preferencia);
+  
+
+
+
 
   console.log("PRODUCTOS ->", products);
 
