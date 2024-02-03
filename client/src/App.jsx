@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import ROUTES from "./Helpers/Routes.helper"
 import Landing from './Components/Pages/Landing/Landing';
 import Home from './Components/Pages/Home/Home';
 import LoginForm from './Auth/Login/LoginForm';
 import CreateProduct from './Auth/CreateProduct/CreateProduct';
-
-
 import Details from './Components/Common/ProductDetail/ProductDetail';
-import FAQSection from './components/Pages/FAQSection/FAQSection';
+
+import PolicyReturn from './Components/Pages/PolicyReturn/PolicyReturn'
 import UserRegister from './Components/Pages/userRegister/UserRegister';
 
 import './App.css'
@@ -34,10 +32,13 @@ function App() {
           element={<LoginForm />}
         ></Route>
 
+{/*
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
+
+        */}
 
         <Route
           path={ROUTES.REGISTER}
@@ -45,13 +46,19 @@ function App() {
         </Route>
 
         <Route
-          path={ROUTES.DETAIL}
+          path={"/detail/:id"}
           element={<Details />}>
         </Route>
 
         <Route
           path={ROUTES.CREATE_PRODUCT}
           element={<CreateProduct />}
+        ></Route>
+
+        
+        <Route
+          path={ROUTES.PolicyReturn}
+          element={<PolicyReturn />}
         ></Route>
 
       </Routes>

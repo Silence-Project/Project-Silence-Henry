@@ -1,3 +1,7 @@
+.containerHamburger{
+  float: left;
+  margin: 12.5px;
+}
 .hamburger1, .hamburger2{
   max-width: 30px;
   max-height: 30px;
@@ -63,7 +67,7 @@
 }
 
 .imgHover2{
-  margin: 13% 5.3%;
+  margin: 5%;
 }
 
 .navbarVertical{
