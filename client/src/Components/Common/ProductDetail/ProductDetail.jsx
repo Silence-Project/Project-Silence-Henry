@@ -31,6 +31,7 @@ useEffect(() => {
 
   const handleAddProduct = (product) => {
     dispatch(anadirProducto(product));
+   
   }
 
 
@@ -48,7 +49,7 @@ useEffect(() => {
           height="250px"
         />
         <div className="h4">
-          <h1>NOMBRE QUE NO EXISTE PORQUE NO ESTA EN EL MODELO {product.name}</h1>
+          <h1> {product.name}</h1>
           <h1> ID: {product.id}</h1>
           <h4>📜 Description:</h4>
           <p className="description"> Descripcion: {product.descripcion}</p>

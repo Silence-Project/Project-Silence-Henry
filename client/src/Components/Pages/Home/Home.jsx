@@ -18,14 +18,22 @@ const Home = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
+  const sortedProducts = products.slice().sort((a, b) => a.preferencia - b.preferencia);
+
   console.log("PRODUCTOS ->", products);
 
   return (
-    <div className={styles.homeContainer}>
-      <Descuento />
-      <Head />
-      <div className={styles.cardContainer}>
-        <Cards className="card" products={products} />
+    <>
+      <div className={styles.homeContainer}>
+        <Descuento />
+
+        <Header />
+        
+        <div className={styles.cardContainer}>
+          <Cards className='card' products={sortedProducts}/>
+        </div>    
+
+        <Footer/>
       </div>
       <Footer />
     </div>

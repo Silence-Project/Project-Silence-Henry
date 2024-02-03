@@ -1,6 +1,21 @@
 // carritoSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
+
+// export const getCarrito = createAsyncThunk(
+//   "carrito",
+//   async () => {
+//     try {
+//       const response = await axios.get("http://127.0.0.1:3001/carrito");
+
+//       return response.data;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// )
+
+
 export const carritoSlice = createSlice({
   name: 'carrito',
   initialState: {
@@ -15,6 +30,7 @@ export const carritoSlice = createSlice({
       //Buenas santi, aca esta el error, de que me devuelve undefined envez del producto, no se porque JAJAJA. pero avance bastante
       console.log("ACA ESTA EL PRODUCTO DEL AÑADIR " + producto)
       const existingProduct = state.productos.find(item => item.id === producto.id);
+
       if (existingProduct) {
         existingProduct.cantidad++;
       } else {
