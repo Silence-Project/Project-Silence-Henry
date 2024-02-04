@@ -49,18 +49,18 @@ useEffect(() => {
           height="250px"
         />
         <div className="h4">
-          <h1> {product.name}</h1>
+          <h1>Nombre: {product.name}</h1>
           <h1> ID: {product.id}</h1>
           <h4>📜 Description:</h4>
-          <p className="description"> Descripcion: {product.descripcion}</p>
-          <h4>SKU : {product.codigo}</h4>
+          <p className="description"> Descripcion: {product.description}</p>
+          <h4>SKU : {product.code}</h4>
           <h4>🏷️ Categoría : {" "}
             {categories.find((category) => category.id === product.idCategory)?.name}</h4>
           <h4>📦 Stock disponible: {product.stock}</h4>
           <h4>🎨 Color: {product.color}</h4>
-          <h4>🧱 Peso: {product.peso}</h4>
+          <h4>🧱 Peso: {product.weight}</h4>
           <h4>👘 Caracteristicas de la tela: {product.material}</h4>
-          <h4>💸 Precio: {product.precio_venta}</h4>
+          <h4>💸 Precio: {product.price}</h4>
         </div>
       </div>
     ))}
