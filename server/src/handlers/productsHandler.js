@@ -39,7 +39,7 @@ const getProductsDetailHandler = async(req,res)=>{
 const postNewProductHandler = async(req,res)=>{
     const {code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min, idCategory} = req.body;
     try{
-        const newProduct = await postNewProducts(code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min, idCategory)
+        const newProduct = await postNewProducts(code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min, quantity=1, idCategory)
         res.status(200).json(newProduct)
     }catch(error){
         console.log(error);

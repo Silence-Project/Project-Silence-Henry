@@ -32,6 +32,7 @@ const postNewProducts = async(code,
     state, 
     stock, 
     min,
+    quantity,
     idCategory
     )=>{
     const data = await Products.findAll({where: {code: code}})
@@ -54,6 +55,7 @@ const postNewProducts = async(code,
             state, 
             stock, 
             min,
+            quantity,
             idCategory
             })
         return [newProducts];
