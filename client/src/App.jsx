@@ -11,6 +11,8 @@ import UserRegister from './Components/Pages/userRegister/UserRegister';
 
 import CarritoSlides from "./Components/Common/Carrito/Carrito";
 
+import Checkout from "./Components/Common/Checkout/Checkout";
+
 import './App.css'
 
 function App() {
@@ -66,6 +68,11 @@ function App() {
         <Route
           path="/carrito"
           element={<CarritoSlides />}
+        ></Route>
+
+        <Route
+          path="/checkout"
+          element={<Checkout />}
         ></Route>
 
       </Routes>

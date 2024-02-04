@@ -15,6 +15,17 @@ import { createSlice } from '@reduxjs/toolkit';
 //   }
 // )
 
+export const createOrder = async () => {
+  try {
+    const response = await axios.post("http://127.0.0.1:3001/carrito");
+
+    return response.data;
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
 
 export const carritoSlice = createSlice({
   name: 'carrito',
@@ -27,7 +38,6 @@ export const carritoSlice = createSlice({
       const { producto } = action.payload;
 
 
-      //Buenas santi, aca esta el error, de que me devuelve undefined envez del producto, no se porque JAJAJA. pero avance bastante
       console.log("ACA ESTA EL PRODUCTO DEL AÑADIR " + producto)
       const existingProduct = state.productos.find(item => item.id === producto.id);
 
