@@ -10,6 +10,7 @@ import PolicyReturn from './Components/Pages/PolicyReturn/PolicyReturn'
 import UserRegister from './Components/Pages/userRegister/UserRegister';
 
 import './App.css'
+import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 
 function App() {
 
@@ -32,7 +33,9 @@ function App() {
           element={<LoginForm />}
         ></Route>
 
-{/*
+        <Route path="/profile" element={<MyProfile />} />
+
+        {/*
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
@@ -55,11 +58,15 @@ function App() {
           element={<CreateProduct />}
         ></Route>
 
-        
+
         <Route
           path={ROUTES.PolicyReturn}
           element={<PolicyReturn />}
         ></Route>
+
+
+        {/* Redirigir en ruta no existente */}
+        <Route path='*' element={<Home />} />
 
       </Routes>
 
