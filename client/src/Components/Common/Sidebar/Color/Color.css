@@ -1,15 +1,5 @@
-.price-title {
-  margin-top: 20px;
-}
-
-.ml {
-  margin-left: 20px;
-}
-
-.sidebar-title {
-  font-size: 22px;
-  font-weight: normal;
-  margin-bottom: 20px;
+.color-title {
+  margin-top: 2rem;
 }
 
 .sidebar-items {
@@ -19,10 +9,8 @@
 .sidebar-label-container {
   display: block;
   position: relative;
-  padding-left: 50px;
-  padding: -5px;
-  margin-bottom: 8px;
-  font-size: .75rem;
+  padding-left: 35px;
+  margin-bottom: 12px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -47,7 +35,7 @@
 }
 
 .all {
-  background: linear-gradient(blue, crimson);
+  background: linear-gradient(gray, black);
 }
 
 .sidebar-label-container:hover input ~ .checkmark {

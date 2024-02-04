@@ -8,15 +8,8 @@ import imgLogo from '../../../img/silenceImg.png';
 import searchIcon from '../../../img/icons/search.png';
 import shoppingCartIcon from '../../../img/icons/shopping-cart.png';
 import userIcon from '../../../img/icons/user-icon.png';
-// import LoginButton from "../../Authentication/LoginBtn/LoginBtn"
-// import AuthLoginButtton from "../../Authentication/LoginBtn/AuthLoginButtton";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const Head = () => {
-
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
-
-
   return (
     <div className={styles.header1}>
       <MenuHamburger />
@@ -25,25 +18,9 @@ const Head = () => {
       <NavLink to={ROUTES.HOME}>
         <img src={imgLogo} alt='silence' className={styles.silence} />
       </NavLink>
-      {
-        isAuthenticated && (
-          <NavLink to="/profile">
-            <img src={userIcon} alt='user icon' className={styles.userIcon} />
-          </NavLink>
-        )
-      }
-      {
-        !isAuthenticated && (
-          <span onClick={() => loginWithRedirect()}>
-          <img src={userIcon} alt='user icon' className={styles.userIcon} />
-          </span>
-        )
-      }
-
-      {/* <NavLink to={ROUTES.LOGGING}> */}
-        {/* <NavLink to={<AuthLoginButtton />}> */}
-        {/* <img src={userIcon} alt='user icon' className={styles.userIcon} /> */}
-      {/* </NavLink> */}
+      <NavLink to={ROUTES.LOGGING}>
+        <img src={userIcon} alt='user icon' className={styles.userIcon} />
+      </NavLink>
       <img src={shoppingCartIcon} alt="kart market" className={styles.kartMarket} />
     </div>
   );

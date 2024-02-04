@@ -9,9 +9,9 @@ import Cards from "../../Common/ProductList/ProductList";
 import Footer from "../../Common/FooterView/Footer";
 import Descuento from "../../Common/Descuento/Descuento";
 import Sidebar from "../../Common/Sidebar/Sidebar"
-import styles from "./Home.module.css";
+// import Filter from "../../Common/Filters/Filters";
 
-import Filter from "../../Common/Filters/Filters";
+import styles from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,6 @@ const Home = () => {
       </div>
       <Footer />
       <Sidebar />
-      <Filter />
     </div>
   );
 };

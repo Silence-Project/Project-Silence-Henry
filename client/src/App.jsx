@@ -7,11 +7,9 @@ import CreateProduct from './Auth/CreateProduct/CreateProduct';
 import Details from './Components/Common/ProductDetail/ProductDetail';
 
 import PolicyReturn from './Components/Pages/PolicyReturn/PolicyReturn'
-import FAQSection from './Components/Pages/FAQSection/FAQSection'
 import UserRegister from './Components/Pages/userRegister/UserRegister';
 
 import './App.css'
-import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 
 function App() {
 
@@ -34,12 +32,13 @@ function App() {
           element={<LoginForm />}
         ></Route>
 
-        <Route path="/profile" element={<MyProfile />} />
-
+{/*
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
+
+        */}
 
         <Route
           path={ROUTES.REGISTER}
@@ -56,15 +55,11 @@ function App() {
           element={<CreateProduct />}
         ></Route>
 
-
+        
         <Route
           path={ROUTES.PolicyReturn}
           element={<PolicyReturn />}
         ></Route>
-
-
-        {/* Redirigir en ruta no existente */}
-        <Route path='*' element={<Home />} />
 
       </Routes>
 
