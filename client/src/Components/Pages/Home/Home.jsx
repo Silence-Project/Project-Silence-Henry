@@ -9,9 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
 import Head from "../../Common/Header/Head";
 import Cards from "../../Common/ProductList/ProductList";
-import Footer from "../../Common/FooterView/Footer";
-import Descuento from "../../Common/Descuento/Descuento";
-import Sidebar from "../../Common/Sidebar/Sidebar"
 // import Filter from "../../Common/Filters/Filters";
 
 import styles from "./Home.module.css";
@@ -43,7 +40,7 @@ const Home = () => {
       </div>
       <Footer />
       <Sidebar />
-    </div>
+    </>
   );
 };
 
