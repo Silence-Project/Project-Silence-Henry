@@ -40,8 +40,6 @@ const Home = () => {
 
         <Footer/>
       </div>
-      <Footer />
-      <Sidebar />
     </>
   );
 };
