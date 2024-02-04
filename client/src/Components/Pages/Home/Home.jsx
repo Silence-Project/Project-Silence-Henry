@@ -13,6 +13,7 @@ import Cards from "../../Common/ProductList/ProductList";
 
 import styles from "./Home.module.css";
 
+
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
@@ -20,6 +21,13 @@ const Home = () => {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+
+  
+    const sortedProducts = products.slice().sort((a, b) => a.preferencia - b.preferencia);
+  
+
+
+
 
   console.log("PRODUCTOS ->", products);
 
