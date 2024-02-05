@@ -1,0 +1,80 @@
+.absolute {
+  width: auto;
+  height: auto;
+}
+
+.productDetail {
+    height: 350px;
+    width: 250px;
+    display: flex;
+    background-color:#95dada54;         
+    border: 1px solid grey;            
+    border-radius: 50px;
+    padding: 25px;
+    cursor: pointer;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.5s ease-out;
+    text-decoration: none;
+    margin: 20px;
+  }
+  
+  .productDetail:hover {
+    transform: scale(1.1);
+    border-radius: 50px;
+    background: linear-gradient(
+      60deg,
+      #ECEBE8,
+      #FFFFFF,
+      #ECEAE1,
+      #E3E1DA,
+      #D8CDC4,
+      #D3C9C2,
+      #CCCBBF,
+      #C0B3A3,
+      #C5B4A0,
+      #FAD2D1
+
+
+    );
+    /* border-radius: calc(2 * var(--borderWidth)); */
+    /* z-index: -1; */
+    animation: animatedgradient 3s ease infinite;
+  }
+  
+  .productImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  
+  .info {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 15px;
+    color: rgb(226, 226, 226);
+    background-color: #363d47b9;
+    width: 40%;
+    text-decoration: none;
+    justify-content: center;
+    display: flex;
+    margin-left: 28%;
+  
+  }
+  
+  /* .Link-card {
+    text-decoration: none;
+  } */
+  
+  .productName {
+    font-family: 'Now';
+    font-size: 30px;
+    color: #072430;
+    display: flex;
+    justify-content: center;
+  }

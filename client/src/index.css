@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Now';
+  src: url('./assets/fontNow/Now-Regular.otf') format('opentype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Now';
+  /* overflow: hidden; */
+}
+
+#root{
+  background: var(--PureWhite);
+}
+
+:root{
+  /* Paleta de colores */
+  --PureWhite: #ECEBE8;
+  --Snowbound: #FFFFFF;
+  --Alabaster: #ECEAE1;
+  --ModerneWhite: #E3E1DA;
+  --ModerneGray: #D8CDC4;
+  --AgreableGray: #D3C9C2;
+  --ReposeGray: #CCCBBF ;
+  --BalancedGray: #C0B3A3;
+  --WindsorGreige: #C5B4A0;
+
+  --Rose: #FAD2D1;
+}
