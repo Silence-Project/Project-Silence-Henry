@@ -20,7 +20,7 @@ const Home = () => {
   }, [dispatch]);
 
   
-    const sortedProducts = products.slice().sort((a, b) => a.preferencia - b.preferencia);
+    const sortedProducts = products.slice().sort((a, b) => a.preference - b.preference);
   
 
 

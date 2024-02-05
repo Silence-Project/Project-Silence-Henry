@@ -1,47 +1,47 @@
-import React from 'react'
+// import React from 'react'
 
-import { useSelector } from 'react-redux'
-import { useState } from 'react'
+// import { useSelector } from 'react-redux'
+// import { useState } from 'react'
 
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'; 
+// import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'; 
 
-import { createOrder } from '../../../Redux/Store/Slices/CarritoSlice'
+// import { createOrder } from '../../../Redux/Store/Slices/CarritoSlice'
 
-const Checkout = () => {
+// const Checkout = () => {
 
-  const [loading, setLoading] = useState(false);
-  const cartItems = useSelector(state => state.carrito.productos); 
-  useEffect(() => {
-      initMercadoPago("TEST-ead547a8-5635-4432-a1fa-43cb1b3d006f");
-  }, []);
+//   const [loading, setLoading] = useState(false);
+//   const cartItems = useSelector(state => state.carrito.productos); 
+//   useEffect(() => {
+//       initMercadoPago("TEST-ead547a8-5635-4432-a1fa-43cb1b3d006f");
+//   }, []);
 
-  const create = async () => {
-      setLoading(true);
+//   const create = async () => {
+//       setLoading(true);
 
-      try {
+//       try {
          
-          const response = await createOrder(cartItems);
+//           const response = await createOrder(cartItems);
 
 
-          const data = await response.json();
+//           const data = await response.json();
 
-          window.location.href = data.init_point; // Redirige al usuario al flujo de pago de Mercado Pago
+//           window.location.href = data.init_point; // Redirige al usuario al flujo de pago de Mercado Pago
 
-      } catch (error) {
-          console.error('Error creating order:', error);
-          setLoading(false);
-      }
-  };
+//       } catch (error) {
+//           console.error('Error creating order:', error);
+//           setLoading(false);
+//       }
+//   };
 
 
 
-  return (
-    <div>
+//   return (
+//     <div>
 
-        <button onClick={create} disabled={loading}>{loading ? "Loading..." : "Pagar con Mercado Pago"}</button>
+//         <button onClick={create} disabled={loading}>{loading ? "Loading..." : "Pagar con Mercado Pago"}</button>
 
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default Checkout
+// export default Checkout

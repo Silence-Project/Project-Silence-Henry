@@ -75,6 +75,7 @@ function CreateProduct() {
       if (Object.keys(errors).length === 0) {
         dispatch(postProduct(formik.values));
         navigate(ROUTES.HOME);
+        window.location.reload();
       } else {
         alert("Faltan campos por completar o hay codes repetidos");
       }
