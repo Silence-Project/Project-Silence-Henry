@@ -1,4 +1,4 @@
-const { Car, Products } = require('../config/bd');
+const { Car, Products} = require('../config/bd');
 
 // CREATE CAR
 
@@ -29,28 +29,13 @@ const getCarsWithProducts = async () => {
         const cars = await Car.findAll({
             include: [{
                 model: Products,
-                through: 'car_products',
+                through: 'CartProduct',
                 as: 'shoppingCar',
-                attributes: ['id', 'name', 'price']
+                attributes: ['id']
             }],
         });
 
-        const carsWithProducts = cars.map((car) => {
-            return {
-                id: car.id,
-                idUser: car.idUser,
-                products: Array.isArray(car.shoppingCar) ?
-                    car.shoppingCar.map((product) => {
-                        return {
-                            id: product.id,
-                            name: product.name,
-                            price: product.price,
-                        };
-                    }) : []
-            };
-        });
-
-        return carsWithProducts;
+        return cars;
     } catch (error) {
         return error.message;
     }
