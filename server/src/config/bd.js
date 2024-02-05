@@ -43,8 +43,8 @@ Car.belongsToMany(Products, {through: 'CartProduct', as: 'shoppingCar'})
 Products.belongsToMany(Car, {through: 'CartProduct', as: 'shoppingCar'})
 
 //1:N -> User has many Location
-User.hasMany(Location, {foreignKey: 'idUser', as: 'locations'});
-Location.belongsTo(User, {foreignKey: 'idUser', as: 'locations'});
+// User.hasMany(Location, {foreignKey: 'idUser', as: 'locations'});
+// Location.belongsTo(User, {foreignKey: 'idUser', as: 'locations'});
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

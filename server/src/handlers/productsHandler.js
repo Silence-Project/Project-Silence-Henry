@@ -21,7 +21,7 @@ const getProductsHandler = async (req,res)=>{
         }
     }
     catch(error){
-        res.status(400).send(`No se pudo recuperar información del producto ${codigo}`);
+        res.status(400).send(`No se pudo recuperar información del producto ${code}`);
     }
 }
 const getProductsDetailHandler = async(req,res)=>{

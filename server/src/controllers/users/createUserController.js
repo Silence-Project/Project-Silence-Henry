@@ -16,7 +16,7 @@ const createUser = async (firstName, email, password) => {
       // postalCode: ""
     });
 
-    await nuevoUser.addLocation()
+    // await nuevoUser.addLocation()
 
     return nuevoUser;
   } catch (error) {
