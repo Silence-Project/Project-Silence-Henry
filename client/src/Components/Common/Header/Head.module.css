@@ -1,0 +1,33 @@
+.header1 {
+  width: 100vw;
+  min-height: 60px;
+  background-color: var(--WindsorGreige);
+  text-align: center;
+}
+.silence {
+  margin: 5px 0;
+  max-width: 55px;
+}
+.inputSearch {
+  width: 150px;
+  margin: 1.25% 0.2%;
+  padding: 5px;
+  float: left;
+}
+.search {
+  max-width: 25px;
+  float: left;
+  margin: 1.4% 0;
+}
+.search:hover {
+  cursor: pointer;
+}
+.kartMarket, .userIcon {
+  max-width: 30px;
+  float: right;
+  margin: 18px;
+}
+.kartMarket:hover,
+.userIcon:hover {
+  cursor: pointer;
+}

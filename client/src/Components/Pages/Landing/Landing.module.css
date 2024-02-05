@@ -1,0 +1,87 @@
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+.containerLanding {
+  display: flex;
+  justify-content: space-around;
+  height: 100vh;
+  width: 100vw;
+  background-color: #F4F4F4;
+  background: linear-gradient(-45deg, var(--WindsorGreige), #ecd3b6d1,  var(--BalancedGray), #00000046, var(--PureWhite));
+  animation: gradientMovement 0.096s ease infinite; 
+}
+
+@keyframes gradientMovement {
+  0% {
+    background-position: 0% 50%; 
+  }
+  50% {
+    background-position: 100% 50%; 
+  }
+  100% {
+    background-position: 200% 50%; 
+  }
+}
+
+
+.logo {
+  width: 220px;
+  height: auto;
+  margin-top: 15%;
+  margin-left: 20%;
+  border-radius: 50%;
+  border: 2px solid #CCC9C0;
+  animation: slideInLeft 1.5s ease-in-out; 
+}
+
+.welcomeContainer {
+  text-align: center;
+  color: #817667;
+  font-size: 80px;
+  margin-top: 15%;
+  font-family: 'Now';
+  animation: slideInRight 2s ease-in-out; 
+}
+
+.welcomeMessage {
+  display: inline-block;
+  animation: fadeInText 1.5s ease-in-out; /* Ajusta la duración según tus preferencias */
+}
+
+.welcomeMessage span {
+  opacity: 0;
+  transition: opacity 3s ease-in-out; /* Mantén la transición para el texto */
+}
+
+.fadeIn span {
+  opacity: 1;
+}
