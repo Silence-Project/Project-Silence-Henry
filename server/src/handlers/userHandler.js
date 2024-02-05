@@ -49,6 +49,7 @@ userHandler.get("/login", async (req, res) => {
  *  idUser ? Int
  *  email exists ? boolean
  *  isActive ? boolean
+ * isAdmin ? boolean
  * }
  */
 userHandler.get("/", async (req, res) => {

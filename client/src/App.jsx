@@ -14,6 +14,7 @@ import CarritoSlides from "./Components/Common/Carrito/Carrito";
 // import Checkout from "./Components/Common/Checkout/Checkout";
 
 import './App.css'
+import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 
 function App() {
 
@@ -36,7 +37,9 @@ function App() {
           element={<LoginForm />}
         ></Route>
 
-{/*
+        <Route path="/profile" element={<MyProfile />} />
+
+        {/*
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
@@ -59,7 +62,7 @@ function App() {
           element={<CreateProduct />}
         ></Route>
 
-        
+
         <Route
           path={ROUTES.PolicyReturn}
           element={<PolicyReturn />}

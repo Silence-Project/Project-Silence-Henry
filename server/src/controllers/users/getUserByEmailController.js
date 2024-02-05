@@ -4,7 +4,7 @@ const getUserByEmail = async (email) => {
   try {
     const findUserByEmail = await User.findOne({
       where: { email },
-      attributes: ["id", "email", "isActive"],
+      attributes: ["id", "email", "isActive", "isAdmin"],
       // exclude: ["createdAt", "updatedAt"],
       // },
     });
@@ -16,6 +16,7 @@ const getUserByEmail = async (email) => {
       exists: true,
       id: findUserByEmail.id,
       isActive: findUserByEmail.isActive,
+      isAdmin: findUserByEmail.isAdmin
     };
   } catch (error) {
     return error.message;
