@@ -1,0 +1,38 @@
+# Archivos registro
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Directorios de dependencias
+node_modules
+
+# elements construcción
+
+
+# Directorios y archivos del editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Archivos de variables de entorno dotenv
+# Ignorar el archivo .env en la raíz
+.env
+
+# .env de entornos
+.env.test
+
+# .env en el server
+server/.env
+
+# archivos locales de entorno
+*.local
