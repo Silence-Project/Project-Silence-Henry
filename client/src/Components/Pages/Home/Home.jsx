@@ -21,7 +21,7 @@ const Home = () => {
     dispatch(getProducts());
   }, [dispatch]);
   
-  const sortedProducts = products.slice().sort((a, b) => a.preferencia - b.preferencia);
+  const sortedProducts = products ? products.slice().sort((a, b) => a.preferencia - b.preferencia) : '';
   
   console.log("PRODUCTOS ->", products);
 
@@ -31,10 +31,11 @@ const Home = () => {
         <Descuento />
 
         <Head />
-        <Sidebar />
         
+        <Sidebar />
+
         <div className={styles.cardContainer}>
-          <Cards className='card' products={products}/>
+          <Cards className='card' products={sortedProducts}/>
         </div>    
 
         <Footer/>
