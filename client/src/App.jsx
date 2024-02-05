@@ -10,6 +10,10 @@ import PolicyReturn from './Components/Pages/PolicyReturn/PolicyReturn'
 import FAQSection from './Components/Pages/FAQSection/FAQSection'
 import UserRegister from './Components/Pages/userRegister/UserRegister';
 
+import CarritoSlides from "./Components/Common/Carrito/Carrito";
+
+// import Checkout from "./Components/Common/Checkout/Checkout";
+
 import './App.css'
 import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 
@@ -62,9 +66,15 @@ function App() {
           element={<PolicyReturn />}
         ></Route>
 
+        <Route
+          path="/carrito"
+          element={<CarritoSlides />}
+        ></Route>
 
-        {/* Redirigir en ruta no existente */}
-        <Route path='*' element={<Home />} />
+        {/* <Route
+          path="/checkout"
+          element={<Checkout />}
+        ></Route> */}
 
       </Routes>
 
