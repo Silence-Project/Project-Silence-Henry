@@ -78,6 +78,9 @@ module.exports = (sequelize) => {
     min: {
       type: DataTypes.INTEGER,
     },
+    quantity: {
+      type: DataTypes.INTEGER
+    }
   }, { timestamps : false});
 
 };
