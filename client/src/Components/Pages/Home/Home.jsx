@@ -10,6 +10,7 @@ import Footer from "../../Common/FooterView/Footer";
 import Descuento from "../../Common/Descuento/Descuento";
 import styles from "./Home.module.css";
 
+
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
@@ -18,17 +19,24 @@ const Home = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
+  const sortedProducts = products.slice().sort((a, b) => a.preference - b.preference);
+  
   console.log("PRODUCTOS ->", products);
 
   return (
-    <div className={styles.homeContainer}>
-      <Descuento />
-      <Head />
-      <div className={styles.cardContainer}>
-        <Cards className="card" products={products} />
+    <>
+      <div className={styles.homeContainer}>
+        <Descuento />
+
+        <Head />
+        
+        <div className={styles.cardContainer}>
+          <Cards className='card' products={sortedProducts}/>
+        </div>    
+
+        <Footer/>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 

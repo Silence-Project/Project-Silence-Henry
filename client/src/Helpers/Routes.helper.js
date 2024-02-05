@@ -8,7 +8,8 @@ const ROUTES = {
   PRODUCT: "/products",
   CREATE_PRODUCT: "/create",
   REGISTER: "/userRegister/:id",
-  PolicyReturn: "/PolicyReturn"
+  PolicyReturn: "/PolicyReturn",
+  Carrito: '/carrito'
 }
 
 export default ROUTES

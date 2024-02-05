@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -7,8 +7,11 @@ import * as Yup from "yup";
 import styles from "./CreateProduct.module.css";
 import { Link , useNavigate } from "react-router-dom";
 import ROUTES from "../../Helpers/Routes.helper";
-import { useDispatch } from "react-redux";
-import { postProduct } from "../../Redux/Store/Slices/ProductSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { postProduct , getCategories } from "../../Redux/Store/Slices/ProductSlice";
+
+
 
 
 function CreateProduct() {
@@ -21,35 +24,48 @@ function CreateProduct() {
     initialValues: {
       name: "",
       image: "",
-      descripcion: "",
-      precio_base: "",
-      precio_venta: "",
-      codigo: "",
+      description: "",
+      cost: "",
+      price: "",
+      code: "",
       stock: "",
-      categoria: "",
-      color: "",
-      peso: "",
-      talla: "",
+      idCategory: "",
+      color: "#000000",
+      weight: "",
+      size: "",
       material: "",
-
+      preference: "",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("El campo 'nombre' es requerido"),
       image: Yup.string().required("El campo 'imagen' es requerido"),
-      descripcion: Yup.string().required("Añada una descripcion al producto"),
-      precio_base: Yup.number().positive().integer().required("El campo 'precio base' es requerido"),
-      precio_venta: Yup.number().positive().integer().required("El campo 'precio venta' es requerido"),
-      codigo: Yup.string().required("El campo 'Codigo' es requerido"),
+      description: Yup.string().required("Añada una description al producto"),
+      cost: Yup.number().positive().integer().required("El campo 'precio base' es requerido"),
+      price: Yup.number().positive().integer().required("El campo 'precio venta' es requerido"),
+      code: Yup.string().required("El campo 'codigo SKU' es requerido"),
       stock: Yup.string().required("El campo 'stock' es requerido"),
-      categoria: Yup.string().required("El campo 'categoria' es requerido"),
+      idCategory: Yup.string().required("Seleccione una categoria"),
       color: Yup.string().required("El campo 'color' es requerido"),
-      peso: Yup.string().required("El campo 'peso' es requerido"),
-      talla: Yup.string().required("El campo 'talla' es requerido"),
+      weight: Yup.string().required("El campo 'weight' es requerido"),
+      size: Yup.string().required("El campo 'size' es requerido"),
       material: Yup.string().required("El campo 'material' es requerido"),
-      preferencia: Yup.string().required("El campo 'preferencia' es requerido"),
+      preference: Yup.string().required("El campo 'preference' es requerido"),
     }),
   
   });
+
+
+  
+  useEffect(() => {
+    dispatch(getCategories());
+
+ } ,[]);
+
+
+
+
+ 
+  const categories = useSelector((state) => state.product.categories);
 
 
   const handleSubmit = (event) => {
@@ -59,12 +75,15 @@ function CreateProduct() {
       if (Object.keys(errors).length === 0) {
         dispatch(postProduct(formik.values));
         navigate(ROUTES.HOME);
+        window.location.reload();
       } else {
-        alert("Faltan campos por completar o hay codigos repetidos");
+        alert("Faltan campos por completar o hay codes repetidos");
       }
     } )
 
 }
+
+
 
 
 
@@ -115,19 +134,19 @@ function CreateProduct() {
     
 
     <div className={styles.divForm}>
-    <p>Descripcion:</p>
+    <p>description:</p>
         <input
           type="text"
-          name="descripcion"
-          value={formik.values.descripcion}
+          name="description"
+          value={formik.values.description}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="📧 descripcion..."
+          placeholder="📧 description..."
           className={styles.input}
         />
 
-        {formik.touched.descripcion && formik.errors.descripcion ? (
-          <div className={styles.error}>{formik.errors.descripcion}</div>
+        {formik.touched.description && formik.errors.description ? (
+          <div className={styles.error}>{formik.errors.description}</div>
         ) : null}
     </div>
 
@@ -135,15 +154,15 @@ function CreateProduct() {
     <p>Precio Base:</p>
         <input
           type="number"
-          name="precio_base"
-          value={formik.values.precio_base}
+          name="cost"
+          value={formik.values.cost}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="💸precio base..."
           className={styles.input}
         />
-        {formik.touched.precio_base && formik.errors.precio_base ? (
-          <div className={styles.error}>{formik.errors.precio_base}</div>
+        {formik.touched.cost && formik.errors.cost ? (
+          <div className={styles.error}>{formik.errors.cost}</div>
         ) : null}
     </div>
 
@@ -151,34 +170,34 @@ function CreateProduct() {
     <p>Precio Venta:</p>
         <input
           type="number"
-          name="precio_venta"
-          value={formik.values.precio_venta}
+          name="price"
+          value={formik.values.price}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="💸precio venta..."
           className={styles.input}
         />
-        {formik.touched.precio_venta && formik.errors.precio_venta ? (
-          <div className={styles.error}>{formik.errors.precio_venta}</div>
+        {formik.touched.price && formik.errors.price ? (
+          <div className={styles.error}>{formik.errors.price}</div>
         ) : null}
     </div>
 
 
 
     <div className={styles.divForm}>
-    <p>SKU O CODIGO:</p>
+    <p>SKU O codigo:</p>
         <input
         
           type="text"
-          name="codigo"
-          value={formik.values.codigo}
+          name="code"
+          value={formik.values.code}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="📝Codigo ..."
+          placeholder="📝codigo o SKU ..."
           className={styles.input}
         />
-        {formik.touched.codigo && formik.errors.codigo ? (
-          <div className={styles.error}>{formik.errors.codigo}</div>
+        {formik.touched.code && formik.errors.code ? (
+          <div className={styles.error}>{formik.errors.code}</div>
         ) : null}
     </div>
 
@@ -199,19 +218,26 @@ function CreateProduct() {
     </div>
 
     <div className={styles.divForm}>
-    <p>Categoria:</p>
-        <input
-          type="text"
-          name="categoria"
-          value={formik.values.categoria}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="🏷️categoria..."
-          className={styles.input}
-        />
-        {formik.touched.categoria && formik.errors.categoria ? (
-          <div className={styles.error}>{formik.errors.categoria}</div>
-        ) : null}
+          <label htmlFor="idCategory">Categorias:</label>
+          <select
+            name="idCategory"
+            value={formik.values.idCategory}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className={styles.input}
+          >
+              <option value="">Seleccionar Categoria</option>
+              {categories.map((idCategory) => (
+                <option key={idCategory.id} value={idCategory.id}>
+                  {idCategory.name}
+                </option>
+              ))}
+          </select>
+
+          {/* {formik.touched.idCategory && formik.errors.idCategory ? (
+            <div className={styles.error}>{formik.errors.idCategory}</div>
+
+          ) : null} */}
     </div>
     
 
@@ -232,36 +258,36 @@ function CreateProduct() {
     </div>
       
     <div className={styles.divForm}>
-    <p>Peso:</p>
+    <p>weight:</p>
         <input
           type="text"
-          name="peso"
-          value={formik.values.peso}
+          name="weight"
+          value={formik.values.weight}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="🏋️‍♂️ peso..."
+          placeholder="🏋️‍♂️ weight..."
           className={styles.input}
         />
-        {formik.touched.peso && formik.errors.peso ? (
-          <div className={styles.error}>{formik.errors.peso}</div>
+        {formik.touched.weight && formik.errors.weight ? (
+          <div className={styles.error}>{formik.errors.weight}</div>
         ) : null}
 
     </div>
 
     <div className={styles.divForm}>
-    <p>Talla:</p>
+    <p>size:</p>
       
         <input
           type="text"
-          name="talla"
-          value={formik.values.talla}
+          name="size"
+          value={formik.values.size}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="📏talla..."
+          placeholder="📏size..."
           className={styles.input}
         />
-        {formik.touched.talla && formik.errors.talla ? (
-          <div className={styles.error}>{formik.errors.talla}</div>
+        {formik.touched.size && formik.errors.size ? (
+          <div className={styles.error}>{formik.errors.size}</div>
         ) : null}
 
     </div>
@@ -284,18 +310,28 @@ function CreateProduct() {
     </div>
 
     <div className={styles.divForm}>
-    <p>Preferencia:</p>
-        <input
+    <p>preference:</p>
+        <select
           type="text"
-          name="preferencia"
-          value={formik.values.preferencia}
+          name="preference"
+          value={formik.values.preference}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="🌟preferencia..."
+          placeholder="🌟preference..."
           className={styles.input}
-        />
-        {formik.touched.preferencia && formik.errors.preferencia ? (
-          <div className={styles.error}>{formik.errors.preferencia}</div>
+        > 
+
+          <option value="">Seleccionar preference</option>
+          <option value="1">1 - Prioridad maxima</option>
+          <option value="2">2 </option>
+          <option value="3">3 </option>
+          <option value="4">4 </option>
+          <option value="5">5 - Prioridad minima</option>
+
+        </select>
+
+        {formik.touched.preference && formik.errors.preference ? (
+          <div className={styles.error}>{formik.errors.preference}</div>
         ) : null}
     </div>    
 

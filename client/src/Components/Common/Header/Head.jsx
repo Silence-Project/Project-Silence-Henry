@@ -44,7 +44,9 @@ const Head = () => {
         {/* <NavLink to={<AuthLoginButtton />}> */}
         {/* <img src={userIcon} alt='user icon' className={styles.userIcon} /> */}
       {/* </NavLink> */}
-      <img src={shoppingCartIcon} alt="kart market" className={styles.kartMarket} />
+      <NavLink to={ROUTES.Carrito}>      
+        <img src={shoppingCartIcon} alt="kart market" className={styles.kartMarket} />
+      </NavLink>
     </div>
   );
 };
