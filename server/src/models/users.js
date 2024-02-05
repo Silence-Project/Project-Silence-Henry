@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       unique: true,
       validate: {
-        len: [5, 20],
+        len: [5,20],
       },
     },
     firstName: {
@@ -72,7 +72,7 @@ module.exports = (sequelize) => {
         //Min 3 characters, at least one letter a-z, one number 0-9
         is: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/,
         notEmpty: true,
-        len: [3, 30],
+        len: [3,30]
       },
     },
     email: {
@@ -99,18 +99,18 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    // address: {
-    //   type: DataTypes.STRING,
-    // },
-    // city: {
-    //   type: DataTypes.STRING,
-    // },
-    // country: {
-    //   type: DataTypes.STRING,
-    //   defaultValue: "argentina",
-    // },
-    // postalCode: {
-    //   type: DataTypes.STRING,
-    // },
+    address: {
+      type: DataTypes.STRING,
+    },
+    city: {
+      type: DataTypes.STRING,
+    },
+    country: {
+      type: DataTypes.STRING,
+      defaultValue: "argentina",
+    },
+    postalCode: {
+      type: DataTypes.STRING,
+    },
   });
 };

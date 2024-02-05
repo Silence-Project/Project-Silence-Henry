@@ -6,9 +6,22 @@ import ROUTES from '../../../Helpers/Routes.helper'
 
 import style from './ProductCard.module.css'
 
+import { useDispatch } from 'react-redux';
+
+import { anadirProducto } from '../../../Redux/Store/Slices/CarritoSlice';
+
 const ProductCard = ({product}) => {
 
-  const { id, name, image, price, description, stock, color, categoria, peso, codigo } = product
+  const { id, name, image, precio_venta, descripcion, stock, color, categoria, peso, codigo } = product
+
+  const dispatch = useDispatch();
+
+  const handleAddProduct = (product) => {
+    dispatch(anadirProducto(product));
+  }
+
+
+  console.log(product)
 
   return (
 
@@ -19,17 +32,19 @@ const ProductCard = ({product}) => {
 
             <div className='info'>
 
-            <h2 className={style.productName}>{name}</h2>
+            <h2 className={style.productName}>{descripcion}</h2>
 {/* 
             <img src={image.map((image, index) => 
             <p key={index} className="card-image">{image}</p>)} 
             
             alt={name}/> */}
 
-            <img className={style.productImage} src={image} alt={description}/>
+            <img className={style.productImage} src={image} alt={descripcion}/>
 
-             <p>💸 {price}</p>
+             <p>💸 {precio_venta}</p>
           
+            <button className={style.button} onClick={() => handleAddProduct(product)}>Añadir al carrito</button>
+            
           
 {/*             
             <p>{description}</p>

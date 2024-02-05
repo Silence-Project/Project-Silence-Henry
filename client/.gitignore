@@ -20,7 +20,3 @@ node_modules
 *.njsproj
 *.sln
 *.sw?
-
-# dotenv environment variables file
-.env
-.env.test

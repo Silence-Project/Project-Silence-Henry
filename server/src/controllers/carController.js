@@ -11,10 +11,12 @@ const createCar = async (idUser, products) => {
         }
 
         const newCarShopping = await Car.create({
-            idUser
+            idUser,
         });
 
-        await newCarShopping.addShoppingCar(products);
+        if (products && products.length > 0) {
+            await newCarShopping.addShoppingCar(products);
+        }
 
         return [newCarShopping];
     } catch (error) {
@@ -23,15 +25,15 @@ const createCar = async (idUser, products) => {
 };
 
 
-// GET Cars --> ADMI need watch cars when they have products and the user do not has do the checkout 
+// GET Cars
 const getCarsWithProducts = async () => {
     try {
         const cars = await Car.findAll({
             include: [{
                 model: Products,
-                through: 'car_products',
+                through: 'car_products', 
                 as: 'shoppingCar',
-                attributes: ['id', 'name', 'price']
+                attributes: ['id', 'descripcion', 'precio_venta']
             }],
         });
 
@@ -39,14 +41,14 @@ const getCarsWithProducts = async () => {
             return {
                 id: car.id,
                 idUser: car.idUser,
-                products: Array.isArray(car.shoppingCar) ?
+                products: Array.isArray(car.shoppingCar) ? 
                     car.shoppingCar.map((product) => {
                         return {
                             id: product.id,
-                            name: product.name,
-                            price: product.price,
+                            name: product.descripcion,
+                            price: product.precio_venta,
                         };
-                    }) : []
+                    }) : [] 
             };
         });
 
@@ -57,29 +59,6 @@ const getCarsWithProducts = async () => {
 };
 
 
-// GET CAR DETAIL BY USER
-const getDetailCarWithProducts = async (idUser) => {
-    try {
-        const cars = await Car.findAll({
-            where: { idUser: idUser },
-            include: [{
-                model: Products,
-                through: 'car_products',
-                as: 'shoppingCar',
-                attributes: ['id', 'name', 'price']
-            }],
-        });
-
-        console.log(cars);
-
-        return cars
-
-    } catch (error) {
-        return error.message;
-    }
-};
-
-// ADD products to car --> UPDATE
 
 
 // Update --> Add products to car
@@ -93,7 +72,6 @@ const getDetailCarWithProducts = async (idUser) => {
 // Get details about car by user
 
 module.exports = {
-    createCar,
-    getCarsWithProducts,
-    getDetailCarWithProducts
+    createCar, 
+    getCarsWithProducts
 }

@@ -7,11 +7,13 @@ import CreateProduct from './Auth/CreateProduct/CreateProduct';
 import Details from './Components/Common/ProductDetail/ProductDetail';
 
 import PolicyReturn from './Components/Pages/PolicyReturn/PolicyReturn'
-import FAQSection from './Components/Pages/FAQSection/FAQSection'
 import UserRegister from './Components/Pages/userRegister/UserRegister';
 
+import CarritoSlides from "./Components/Common/Carrito/Carrito";
+
+import Checkout from "./Components/Common/Checkout/Checkout";
+
 import './App.css'
-import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 
 function App() {
 
@@ -34,12 +36,13 @@ function App() {
           element={<LoginForm />}
         ></Route>
 
-        <Route path="/profile" element={<MyProfile />} />
-
+{/*
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
+
+        */}
 
         <Route
           path={ROUTES.REGISTER}
@@ -56,15 +59,21 @@ function App() {
           element={<CreateProduct />}
         ></Route>
 
-
+        
         <Route
           path={ROUTES.PolicyReturn}
           element={<PolicyReturn />}
         ></Route>
 
+        <Route
+          path="/carrito"
+          element={<CarritoSlides />}
+        ></Route>
 
-        {/* Redirigir en ruta no existente */}
-        <Route path='*' element={<Home />} />
+        <Route
+          path="/checkout"
+          element={<Checkout />}
+        ></Route>
 
       </Routes>
 

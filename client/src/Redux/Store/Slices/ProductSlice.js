@@ -51,6 +51,20 @@ export const postProduct = createAsyncThunk(
 
 )
 
+export const getCategories = createAsyncThunk(
+    "categories",
+    async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:3001/categories/allCategory");
+
+            return response.data;
+        } 
+        catch (error) {
+        console.log(error);
+    }
+    } 
+)
+
 
 
 const productSlice = createSlice({
@@ -59,6 +73,7 @@ const productSlice = createSlice({
         loading: false,
         products: [],
         productsDetails: [],
+        categories: [],
         error: null,
     },
     // name: "productDetail",
@@ -118,7 +133,24 @@ const productSlice = createSlice({
             state.loading = false;
             state.products = "ERROR FORM POST";
             state.error = action.error.message;
-          });
+          })
+
+          .addCase(getCategories.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+
+          .addCase(getCategories.fulfilled, (state, action) => {
+            state.loading = false;
+            state.categories = action.payload;
+            state.error = null;
+          })
+
+          .addCase(getCategories.rejected, (state, action) => {
+            state.loading = false;
+            state.categories = [];
+            state.error = action.error.message;
+          })
       }
     });
 //     extraReducers: (builder) => {

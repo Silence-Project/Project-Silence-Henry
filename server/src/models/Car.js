@@ -7,10 +7,6 @@ module.exports = (database) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
-        },
-        totalPrice: {
-            type: DataTypes.INTEGER,
-            defaultValue: "0"
         }
     })
 }

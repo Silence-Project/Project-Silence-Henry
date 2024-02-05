@@ -1,10 +1,11 @@
 import "./Category.css";
-import Input from "../../Input.jsx"
+
+import Input from "../../../Common/Input";
 
 function Category({ handleChange }) {
   return (
     <div>
-      <h5 className="sidebar-title">Categoria</h5>
+      <h2 className="sidebar-title">Categoria</h2>
         <div>
       <label className="sidebar-label-container">
         <input onChange={handleChange} type="radio" value="" name="test" />

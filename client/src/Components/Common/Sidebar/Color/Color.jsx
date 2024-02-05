@@ -1,5 +1,6 @@
 import React from 'react';
-import Input from "../../Input.jsx"
+import Input from '../../Input';
+
 
 const Colors = ({ handleChange }) => {
   const handleRadioChange = (e) => {
@@ -14,7 +15,7 @@ const Colors = ({ handleChange }) => {
 
   return (
     <div>
-      <h5 className="sidebar-title color-title">Colors</h5>
+      <h2 className="sidebar-title color-title">Colors</h2>
 
       <label className="sidebar-label-container">
         <input onChange={handleRadioChange} type="radio" value="" name="test1" />
@@ -27,6 +28,13 @@ const Colors = ({ handleChange }) => {
         title="Negro"
         name="test1"
         color="black"
+      />
+      <Input 
+        handleChange={handleRadioChange}
+        value="azul"
+        title="Azul"
+        name="test1"
+        color="blue"
       />
       <Input 
         handleChange={handleRadioChange}
