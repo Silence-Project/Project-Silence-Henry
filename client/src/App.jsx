@@ -7,7 +7,6 @@ import CreateProduct from './Auth/CreateProduct/CreateProduct';
 import Details from './Components/Common/ProductDetail/ProductDetail';
 
 import PolicyReturn from './Components/Pages/PolicyReturn/PolicyReturn'
-import FAQSection from './Components/Pages/FAQSection/FAQSection'
 import UserRegister from './Components/Pages/userRegister/UserRegister';
 
 import CarritoSlides from "./Components/Common/Carrito/Carrito";
@@ -40,10 +39,13 @@ function App() {
 
         <Route path="/profile" element={<MyProfile />} />
 
+        {/*
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
+
+        */}
 
         <Route
           path={ROUTES.REGISTER}
