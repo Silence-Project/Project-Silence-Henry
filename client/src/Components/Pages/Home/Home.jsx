@@ -19,13 +19,8 @@ const Home = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
+  const sortedProducts = products.slice().sort((a, b) => a.preference - b.preference);
   
-    const sortedProducts = products.slice().sort((a, b) => a.preference - b.preference);
-  
-
-
-
-
   console.log("PRODUCTOS ->", products);
 
   return (
@@ -41,7 +36,6 @@ const Home = () => {
 
         <Footer/>
       </div>
-      <Footer />
     </>
   );
 };

@@ -1,5 +1,6 @@
 // carritoSlice.js
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios'
 
 
 // export const getCarrito = createAsyncThunk(
@@ -35,10 +36,10 @@ export const carritoSlice = createSlice({
   reducers: {
     anadirProducto: (state, action) => {
         
-      const { producto } = action.payload;
+      const producto = action.payload;
 
 
-      console.log("ACA ESTA EL PRODUCTO DEL AÑADIR " + producto)
+      console.log(producto)
       const existingProduct = state.productos.find(item => item.id === producto.id);
 
       if (existingProduct) {

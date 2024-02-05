@@ -13,29 +13,22 @@ import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
 
 export default function Details(props) {
 
-  const dispatch = useDispatch();
+const dispatch = useDispatch();
 
-  const {id} = useParams();
+const {id} = useParams();
 
+const productsDetails = useSelector((state) => state.product.productsDetails);
 
-
- const productsDetails = useSelector((state) => state.product.productsDetails);
- const categories = useSelector((state) => state.product.categories);
-
+const categories = useSelector((state) => state.product.categories);
  
 useEffect(() => {
       dispatch(getById(id));
       dispatch(getCategories());
   }, [dispatch]);
   
-
-  const handleAddProduct = (product) => {
-    dispatch(anadirProducto(product));
-   
+  const handleAddProduct = (product) => {    
+    dispatch(anadirProducto(product[0]));
   }
-
-
-
 
   return (
     <div className="general">
