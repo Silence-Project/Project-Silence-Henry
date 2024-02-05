@@ -9,6 +9,7 @@ const modelOrder = require('../models/order.js');
 const modelPayments = require('../models/Payments.js');
 const modelFavorite = require('../models/favorites.js');
 const favorites = require('../models/favorites.js');
+const modelLocation = require('../models/location.js');
 
 
 
@@ -23,9 +24,9 @@ modelShopingCar(sequelize);
 modelOrder(sequelize);
 modelPayments(sequelize);
 modelFavorite(sequelize);
+modelLocation(sequelize);
 
-
-const { Products, User, Category, Car, Order, Payments, Favorite } = sequelize.models;
+const { Products, User, Location, Category, Car, Order, Payments, Favorite } = sequelize.models;
 
 //Category has many products. 
 Category.hasMany(Products, {foreignKey: 'idCategory', as: 'products'})
@@ -40,6 +41,9 @@ Car.belongsTo(User, {foreignKey: 'idUser', as: 'cars'})
 Car.belongsToMany(Products, {through: 'car_products', as: 'shoppingCar'})
 Products.belongsToMany(Car, {through: 'car_products', as: 'shoppingCar'})
 
+//1:N -> User has many Location
+User.hasMany(Location, {foreignKey: 'idUser', as: 'locations'});
+Location.belongsTo(User, {foreignKey: 'idUser', as: 'locations'});
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

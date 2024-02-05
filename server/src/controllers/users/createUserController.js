@@ -1,4 +1,4 @@
-const { User } = require("../../config/bd");
+const { User, Location } = require("../../config/bd");
 
 const createUser = async (firstName, email, password) => {
   // console.log(`nombre: ${firstName}, email: ${email}, y password: ${password}`);
@@ -10,11 +10,13 @@ const createUser = async (firstName, email, password) => {
       lastName: "", //providing default values
       phoneNumber: "0000000000",
       // birthday: "1900-08-08",
-      allowPrivacy: false,
-      address: "",
-      city: "",
-      postalCode: ""
+      allowPrivacy: true,
+      // address: "",
+      // city: "",
+      // postalCode: ""
     });
+
+    await nuevoUser.addLocation()
 
     return nuevoUser;
   } catch (error) {
