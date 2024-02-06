@@ -1,24 +1,28 @@
-import React  from "react";
+import React, { useState, useEffect }  from "react";
 import { useFormik } from "formik";
+import { AdvancedImage } from '@cloudinary/react'
+import { Cloudinary } from '@cloudinary/url-gen';
 import * as Yup from "yup";
-
-// import styles from "../Login/SingUp.module.css";
-
-import styles from "./CreateProduct.module.css";
 import { Link , useNavigate } from "react-router-dom";
 import ROUTES from "../../Helpers/Routes.helper";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { postProduct , getCategories } from "../../Redux/Store/Slices/ProductSlice";
+import styles from "./CreateProduct.module.css";
 
 
 
 
 function CreateProduct() {
 
+  const [images, setImages] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
+
+const upLoadImage = async (e) => {
+  const files = e.target.file;
+  
+}
 
   const formik = useFormik({
     initialValues: {
@@ -116,14 +120,13 @@ function CreateProduct() {
    
 
     <div className={styles.divForm}>
-    <p>Imagen URL:</p>
+    <p>Imagen del producto:</p>
         <input
-          type="text"
-          name="image"
+          type="file"
+          name="file"
           value={formik.values.image}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder="🎴Imagen..."
           className={styles.input}
         />
 
