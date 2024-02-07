@@ -1,28 +1,23 @@
-import React, { useState, useEffect }  from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { AdvancedImage } from '@cloudinary/react'
-import { Cloudinary } from '@cloudinary/url-gen';
 import * as Yup from "yup";
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../../Helpers/Routes.helper";
 import { useDispatch, useSelector } from "react-redux";
-import { postProduct , getCategories } from "../../Redux/Store/Slices/ProductSlice";
+import {
+  postProduct,
+  getCategories,
+} from "../../Redux/Store/Slices/ProductSlice";
 import styles from "./CreateProduct.module.css";
 
-
-
-
 function CreateProduct() {
+  const [fieldValue, setFieldValue] = useState([]);
+  const [uploadedFileName, setUploadedFileName] = useState("");
+  const [fileError, setFileError] = useState("");
+  const [uploadedFileUrl, setUploadedFileUrl] = useState("");
 
-  const [images, setImages] = useState("");
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-const upLoadImage = async (e) => {
-  const files = e.target.file;
-  
-}
 
   const formik = useFormik({
     initialValues: {
@@ -40,12 +35,19 @@ const upLoadImage = async (e) => {
       material: "",
       preference: "",
     },
+
     validationSchema: Yup.object({
       name: Yup.string().required("El campo 'nombre' es requerido"),
-      image: Yup.string().required("El campo 'imagen' es requerido"),
+      image: Yup.string().url("Debe ser una URL válida"),
       description: Yup.string().required("Añada una description al producto"),
-      cost: Yup.number().positive().integer().required("El campo 'precio base' es requerido"),
-      price: Yup.number().positive().integer().required("El campo 'precio venta' es requerido"),
+      cost: Yup.number()
+        .positive()
+        .integer()
+        .required("El campo 'precio base' es requerido"),
+      price: Yup.number()
+        .positive()
+        .integer()
+        .required("El campo 'precio venta' es requerido"),
       code: Yup.string().required("El campo 'codigo SKU' es requerido"),
       stock: Yup.string().required("El campo 'stock' es requerido"),
       idCategory: Yup.string().required("Seleccione una categoria"),
@@ -55,301 +57,321 @@ const upLoadImage = async (e) => {
       material: Yup.string().required("El campo 'material' es requerido"),
       preference: Yup.string().required("El campo 'preference' es requerido"),
     }),
-  
   });
 
+  const upLoadImage = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "video/mp4",
+      ];
 
-  
+      if (allowedTypes.includes(file.type)) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "silence");
+
+        try {
+          const response = await fetch(
+            `https://api.cloudinary.com/v1_1/ddiwcoip8/image/upload`,
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log("Imagen subida a Cloudinary:", data);
+
+            setUploadedFileUrl(data.secure_url);
+            formik.setFieldValue("image", data.secure_url);
+          } else {
+            console.error("Error al cargar la imagen a Cloudinary");
+            setFileError("Error al cargar la imagen a Cloudinary");
+          }
+        } catch (error) {
+          console.error("Error al cargar la imagen:", error);
+          setFileError("Error al cargar la imagen");
+        }
+      } else {
+        setFileError("Solo se permiten imágenes y videos jpeg, png, gif y mp4");
+        e.target.value = null;
+      }
+    }
+  };
+
   useEffect(() => {
     dispatch(getCategories());
+  }, []);
 
- } ,[]);
-
-
-
-
- 
   const categories = useSelector((state) => state.product.categories);
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     formik.validateForm().then((errors) => {
+      console.log("Valores del formulario:", formik.values);
+      console.log("aerrs", Object.keys(errors));
       if (Object.keys(errors).length === 0) {
         dispatch(postProduct(formik.values));
+        console.log();
         navigate(ROUTES.HOME);
         window.location.reload();
       } else {
         alert("Faltan campos por completar o hay codes repetidos");
       }
-    } )
-
-}
-
-
-
-
+    });
+  };
 
   return (
-    <div className="{`${styles.formContainer} ${styles.signUpContainer}`}">
-    
+    <div className="{}">
+      <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <h2>Crear Producto</h2>
 
-      <form onSubmit={handleSubmit} className={styles.form} >
-        <h1>Crear Producto</h1>
-
-        
-    <div className={styles.divForm}>
-          <p>Nombre:</p>
-           <input
-          type="text"
-          name="name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-
-          placeholder="Nombre..."
-          className={styles.input}
-        />
-
-          {formik.touched.name && formik.errors.name ? (
-            <div className={styles.error}>{formik.errors.name}</div>
-          ) : null}
-
-    </div>
-   
-
-    <div className={styles.divForm}>
-    <p>Imagen del producto:</p>
-        <input
-          type="file"
-          name="file"
-          value={formik.values.image}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          className={styles.input}
-        />
-
-        {formik.touched.image && formik.errors.image ? (
-          <div className={styles.error}>{formik.errors.image}</div>
-        ) : null}
-    </div>
-    
-
-    <div className={styles.divForm}>
-    <p>description:</p>
-        <input
-          type="text"
-          name="description"
-          value={formik.values.description}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="📧 description..."
-          className={styles.input}
-        />
-
-        {formik.touched.description && formik.errors.description ? (
-          <div className={styles.error}>{formik.errors.description}</div>
-        ) : null}
-    </div>
-
-    <div className={styles.divForm}>
-    <p>Precio Base:</p>
-        <input
-          type="number"
-          name="cost"
-          value={formik.values.cost}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="💸precio base..."
-          className={styles.input}
-        />
-        {formik.touched.cost && formik.errors.cost ? (
-          <div className={styles.error}>{formik.errors.cost}</div>
-        ) : null}
-    </div>
-
-    <div className={styles.divForm}>
-    <p>Precio Venta:</p>
-        <input
-          type="number"
-          name="price"
-          value={formik.values.price}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="💸precio venta..."
-          className={styles.input}
-        />
-        {formik.touched.price && formik.errors.price ? (
-          <div className={styles.error}>{formik.errors.price}</div>
-        ) : null}
-    </div>
-
-
-
-    <div className={styles.divForm}>
-    <p>SKU O codigo:</p>
-        <input
-        
-          type="text"
-          name="code"
-          value={formik.values.code}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="📝codigo o SKU ..."
-          className={styles.input}
-        />
-        {formik.touched.code && formik.errors.code ? (
-          <div className={styles.error}>{formik.errors.code}</div>
-        ) : null}
-    </div>
-
-    <div className={styles.divForm}>
-    <p>Stock disponible:</p>
-        <input
-          type="text"
-          name="stock"
-          value={formik.values.stock}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="📦stock..."
-          className={styles.input}
-        />
-        {formik.touched.stock && formik.errors.stock ? (
-          <div className={styles.error}>{formik.errors.stock}</div>
-        ) : null}
-    </div>
-
-    <div className={styles.divForm}>
-          <label htmlFor="idCategory">Categorias:</label>
-          <select
-            name="idCategory"
-            value={formik.values.idCategory}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className={styles.input}
-          >
+        <div className={styles.groupOne}>
+          <div className={styles.divForm}>
+            <label>Categorias:</label>
+            <select
+              name="idCategory"
+              value={formik.values.idCategory}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className={styles.input}
+            >
               <option value="">Seleccionar Categoria</option>
               {categories.map((idCategory) => (
                 <option key={idCategory.id} value={idCategory.id}>
                   {idCategory.name}
                 </option>
               ))}
-          </select>
+            </select>
 
-          {/* {formik.touched.idCategory && formik.errors.idCategory ? (
+            {/* {formik.touched.idCategory && formik.errors.idCategory ? (
             <div className={styles.error}>{formik.errors.idCategory}</div>
 
           ) : null} */}
-    </div>
-    
+          </div>
 
-    <div className={styles.divForm}>
-    <p>Color:</p>
-        <input
-          type="color"
-          name="color"
-          value={formik.values.color}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="🎨color..."
-          className={styles.input}
-        />
-        {formik.touched.color && formik.errors.color ? (
-          <div className={styles.error}>{formik.errors.color}</div>
-        ) : null}
-    </div>
-      
-    <div className={styles.divForm}>
-    <p>weight:</p>
-        <input
-          type="text"
-          name="weight"
-          value={formik.values.weight}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="🏋️‍♂️ weight..."
-          className={styles.input}
-        />
-        {formik.touched.weight && formik.errors.weight ? (
-          <div className={styles.error}>{formik.errors.weight}</div>
-        ) : null}
+          <div className={styles.divForm}>
+          <label>Preferencias:</label>
+            <select
+              type="text"
+              name="preference"
+              value={formik.values.preference}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="🌟preference..."
+              className={styles.input}
+            >
+              <option value="">Seleccionar preference</option>
+              <option value="1">1 - Prioridad maxima</option>
+              <option value="2">2 </option>
+              <option value="3">3 </option>
+              <option value="4">4 </option>
+              <option value="5">5 - Prioridad minima</option>
+            </select>
 
-    </div>
+            {formik.touched.preference && formik.errors.preference ? (
+              <div className={styles.error}>{formik.errors.preference}</div>
+            ) : null}
+          </div>
 
-    <div className={styles.divForm}>
-    <p>size:</p>
-      
-        <input
-          type="text"
-          name="size"
-          value={formik.values.size}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="📏size..."
-          className={styles.input}
-        />
-        {formik.touched.size && formik.errors.size ? (
-          <div className={styles.error}>{formik.errors.size}</div>
-        ) : null}
+          <div className={styles.divForm}>
+            <label>Nombre:</label>
+            <input
+              type="text"
+              name="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="Nombre..."
+              className={styles.input}
+            />
+            {formik.touched.name && formik.errors.name ? (
+              <div className={styles.error}>{formik.errors.name}</div>
+            ) : null}
+          </div>
 
-    </div>
+          <div className={styles.divForm}>
+            <label>Imagen del producto:</label>
+            <input
+              type="file"
+              name="image"
+              onChange={upLoadImage}
+              onBlur={formik.handleBlur}
+              className={styles.input}
+              accept="image/jpeg, image/png, image/gif, video/mp4"
+            />
+            {fileError && <div className={styles.error}>{fileError}</div>}
+            <img
+              src={uploadedFileUrl}
+              alt={uploadedFileName}
+              className={styles.image}
+            />
+          </div>
+        </div>
 
-    <div className={styles.divForm}>
-          
-    <p>Material de la tela:</p>
-        <input
-          type="text"
-          name="material"
-          value={formik.values.material}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="🎨material..."
-          className={styles.input}
-        />
-        {formik.touched.material && formik.errors.material ? (
-          <div className={styles.error}>{formik.errors.material}</div>
-        ) : null}
-    </div>
+        <div className={styles.groupOne}>
+          <div className={styles.divForm}>
+            <label>Precio Base:</label>
+            <input
+              type="number"
+              name="cost"
+              value={formik.values.cost}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="💸precio base..."
+              className={styles.input}
+            />
+            {formik.touched.cost && formik.errors.cost ? (
+              <div className={styles.error}>{formik.errors.cost}</div>
+            ) : null}
+          </div>
 
-    <div className={styles.divForm}>
-    <p>preference:</p>
-        <select
-          type="text"
-          name="preference"
-          value={formik.values.preference}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="🌟preference..."
-          className={styles.input}
-        > 
+          <div className={styles.divForm}>
+            <label>Precio Venta:</label>
+            <input
+              type="number"
+              name="price"
+              value={formik.values.price}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="💸precio venta..."
+              className={styles.input}
+            />
+            {formik.touched.price && formik.errors.price ? (
+              <div className={styles.error}>{formik.errors.price}</div>
+            ) : null}
+          </div>
 
-          <option value="">Seleccionar preference</option>
-          <option value="1">1 - Prioridad maxima</option>
-          <option value="2">2 </option>
-          <option value="3">3 </option>
-          <option value="4">4 </option>
-          <option value="5">5 - Prioridad minima</option>
+          <div className={styles.divForm}>
+            <label>SKU O codigo:</label>
+            <input
+              type="text"
+              name="code"
+              value={formik.values.code}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="📝codigo o SKU ..."
+              className={styles.input}
+            />
+            {formik.touched.code && formik.errors.code ? (
+              <div className={styles.error}>{formik.errors.code}</div>
+            ) : null}
+          </div>
 
-        </select>
+          <div className={styles.divForm}>
+            <label>Stock disponible:</label>
+            <input
+              type="text"
+              name="stock"
+              value={formik.values.stock}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="📦stock..."
+              className={styles.input}
+            />
+            {formik.touched.stock && formik.errors.stock ? (
+              <div className={styles.error}>{formik.errors.stock}</div>
+            ) : null}
+          </div>
+        </div>
 
-        {formik.touched.preference && formik.errors.preference ? (
-          <div className={styles.error}>{formik.errors.preference}</div>
-        ) : null}
-    </div>    
+        <div className={styles.groupOne}>
+          <div className={styles.divForm}>
+            <label>Color:</label>
+            <input
+              type="color"
+              name="color"
+              value={formik.values.color}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="🎨color..."
+              className={styles.inputColor}
+            />
+            {formik.touched.color && formik.errors.color ? (
+              <div className={styles.error}>{formik.errors.color}</div>
+            ) : null}
+          </div>
 
-    <button type="submit"  className={styles.btnSubmit}>
-          Crear Producto
-        </button>
+          <div className={styles.divForm}>
+            <label>weight:</label>
+            <input
+              type="text"
+              name="weight"
+              value={formik.values.weight}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="🏋️‍♂️ weight..."
+              className={styles.input}
+            />
+            {formik.touched.weight && formik.errors.weight ? (
+              <div className={styles.error}>{formik.errors.weight}</div>
+            ) : null}
+          </div>
+
+          <div className={styles.divForm}>
+            <label>size:</label>
+
+            <input
+              type="text"
+              name="size"
+              value={formik.values.size}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="📏size..."
+              className={styles.input}
+            />
+            {formik.touched.size && formik.errors.size ? (
+              <div className={styles.error}>{formik.errors.size}</div>
+            ) : null}
+          </div>
+
+          <div className={styles.divForm}>
+            <label>Material de la tela:</label>
+            <input
+              type="text"
+              name="material"
+              value={formik.values.material}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="🎨material..."
+              className={styles.input}
+            />
+            {formik.touched.material && formik.errors.material ? (
+              <div className={styles.error}>{formik.errors.material}</div>
+            ) : null}
+          </div>
+        </div>
+
+        <div className={styles.groupOne}>
+          <div className={styles.divForm}>
+            <label>description:</label>
+            <input
+              type="text"
+              name="description"
+              value={formik.values.description}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="📧 description..."
+              className={styles.input}
+            />
+
+            {formik.touched.description && formik.errors.description ? (
+              <div className={styles.error}>{formik.errors.description}</div>
+            ) : null}
+          </div>
+
+          <button type="submit" className={styles.btnSubmit}>
+            Crear Producto
+          </button>
+        </div>
       </form>
-
-      <Link to={ROUTES.HOME} className={styles.btnSubmit}>Volver al home</Link>
-
-        
-      
     </div>
-
-    
   );
 }
 
