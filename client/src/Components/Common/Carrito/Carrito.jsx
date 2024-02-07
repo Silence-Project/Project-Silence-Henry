@@ -10,7 +10,7 @@ const CarritoSlides = () => {
 
   const productos = useSelector(state => state.carrito.productos);
 
-  
+
 
   const totales = []
 
@@ -50,7 +50,7 @@ const CarritoSlides = () => {
           </tr>
       </table>
 
-      <Link to="/checkout" props={productos.quantity}>
+      <Link to="/checkout" >
         <button>Comprar</button>
       </Link>
     

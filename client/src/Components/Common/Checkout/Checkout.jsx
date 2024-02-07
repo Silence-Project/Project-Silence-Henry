@@ -34,21 +34,43 @@ const Checkout = () => {
 //     window.location.href = response.data
 // }
 
-console.log("EL ESTADO DE CARRITO:");
-cartItems.forEach(producto => {
-    console.log(`Nombre: ${producto.name}, Cantidad: ${producto.quantity}`);
-});
+// console.log("EL ESTADO DE CARRITO:");
+// cartItems.forEach(producto => {
+//     console.log(`Nombre: ${producto.name}, Cantidad: ${producto.quantity}`);
+// });
+
+
+//   console.log("EL CARRITO CART ITEMSSSSS: " + JSON.stringify(cartItems, null, 2))
+
+
+//   const {carrito_plano} = JSON.stringify(cartItems, null, 2)
 
 
 
-  const create = async (cartItems) => {
-      setLoading(true);
+  const create = async () => {
+ 
+
+    // console.log("EL CARRITO CART ITEMSSSSS PLANO: " + carrito_plano)
+
+
+    setLoading(true);
       try {
-        console.log("EL ERROR DE PRODUCTO: " + cartItems.name);
+
+        const productosParaEnviar = {
+            items: cartItems.map(producto => ({
+              title: producto.name,
+              unit_price: producto.price,
+              quantity: producto.quantity,
+              currency_id: "ARS"
+            }))
+          };
+        
+
+
         const response = await axios.post(
-            "http://127.0.0.1:3001/payment",
-            cartItems
+            "http://127.0.0.1:3001/payment", productosParaEnviar
           )
+          
         
           window.location.href = response.data;// Redirige al usuario al flujo de pago de Mercado Pago
 
