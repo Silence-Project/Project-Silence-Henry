@@ -1,15 +1,20 @@
+const { Order } = require('../config/bd');
 
-// Create order
-// Tiene relación muchos a muchos con: payments, envío, carro de compras 
+const createOrder = async (statePayment, shippingMethod, idUserOrder) => {
+    try {
+        const newOrder = await Order.create({
+            statePayment,
+            shippingMethod,
+            idUserOrder
+        })
 
+        return newOrder
+    }catch(error) {
+        return error.message
+    }
 
+}
 
-// Get orders 
-
-
-// Get orders by user --> Detail 
-
-
-// Cancel order
-
-
+module.exports = {
+    createOrder
+}

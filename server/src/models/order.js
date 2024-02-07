@@ -10,17 +10,11 @@ module.exports = (database) => {
             autoIncrement: true,
             primaryKey: true
         },
-        userId: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+        statePayment: {
+            type: DataTypes.STRING
         },
-        PaymentId: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        totalOrder: {
-            type: DataTypes.FLOAT,
-            allowNull: false,
+        ShippingMethod: {
+            type: DataTypes.STRING
         }
     })
 }

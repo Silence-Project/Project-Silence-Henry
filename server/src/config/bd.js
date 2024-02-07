@@ -7,8 +7,6 @@ const modelUser = require('../models/users.js');
 const modelShopingCar = require('../models/Car.js');
 const modelOrder = require('../models/order.js');
 const modelPayments = require('../models/Payments.js');
-const modelFavorite = require('../models/favorites.js');
-const modelfavorites = require('../models/favorites.js');
 const modelCarProducts = require('../models/CarProducts.js');
 
 
@@ -22,11 +20,11 @@ modelUser(sequelize);
 modelShopingCar(sequelize);
 modelOrder(sequelize);
 modelPayments(sequelize);
-modelFavorite(sequelize);
+// modelFavorite(sequelize);
 modelCarProducts(sequelize);
 
 
-const { Products, User, Category, Car, CartProduct} = sequelize.models;
+const { Products, User, Category, Car, CartProduct, Order} = sequelize.models;
 
 //Category has many products. 
 Category.hasMany(Products, {foreignKey: 'idCategory', as: 'products'})
@@ -40,6 +38,10 @@ Car.belongsTo(User, {foreignKey: 'idUser', as: 'cars'})
 // Every car can have so much products and products can to be in every car created 
 Car.belongsToMany(Products, {through: 'CartProduct', as: 'shoppingCar'})
 Products.belongsToMany(Car, {through: 'CartProduct', as: 'shoppingCar'})
+
+// User has many orders
+User.hasMany(Order, {foreignKey: 'idUserOrder', as: 'ordersList'})
+Order.belongsTo(User, {foreignKey: 'idUserOrder', as: 'ordersList'})
 
 
 module.exports = {
