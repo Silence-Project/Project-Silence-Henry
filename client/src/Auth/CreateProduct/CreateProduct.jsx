@@ -29,7 +29,7 @@ function CreateProduct() {
       code: "",
       stock: "",
       idCategory: "",
-      color: "#000000",
+      color: "#7eb19c",
       weight: "",
       size: "",
       material: "",
@@ -157,7 +157,7 @@ function CreateProduct() {
           </div>
 
           <div className={styles.divForm}>
-          <label>Preferencias:</label>
+            <label>Preferencias:</label>
             <select
               type="text"
               name="preference"
@@ -351,14 +351,15 @@ function CreateProduct() {
         <div className={styles.groupOne}>
           <div className={styles.divForm}>
             <label>description:</label>
-            <input
+            <textarea
               type="text"
               name="description"
               value={formik.values.description}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="📧 description..."
-              className={styles.input}
+              className={styles.textArea}
+              
             />
 
             {formik.touched.description && formik.errors.description ? (

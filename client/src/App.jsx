@@ -15,6 +15,7 @@ import CarritoSlides from "./Components/Common/Carrito/Carrito";
 
 import './App.css'
 import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
+import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
 
 function App() {
 
@@ -60,6 +61,11 @@ function App() {
         <Route
           path={ROUTES.CREATE_PRODUCT}
           element={<CreateProduct />}
+        ></Route>
+
+        <Route
+          path={ROUTES.USERSADMIN}
+          element={<UsersAdmin />}
         ></Route>
 
 

@@ -9,7 +9,8 @@ const ROUTES = {
   CREATE_PRODUCT: "/create",
   REGISTER: "/userRegister/:id",
   PolicyReturn: "/PolicyReturn",
-  Carrito: '/carrito'
+  Carrito: '/carrito',
+  USERSADMIN: '/usersAdmin'
 }
 
 export default ROUTES
