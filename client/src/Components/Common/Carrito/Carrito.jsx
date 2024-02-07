@@ -7,7 +7,10 @@ import ROUTES from '../../../Helpers/Routes.helper';
 import styles from './Carrito.module.css'
 
 const CarritoSlides = () => {
+
   const productos = useSelector(state => state.carrito.productos);
+
+  
 
   const totales = []
 
@@ -47,7 +50,7 @@ const CarritoSlides = () => {
           </tr>
       </table>
 
-      <Link to="/checkout">
+      <Link to="/checkout" props={productos.quantity}>
         <button>Comprar</button>
       </Link>
     
