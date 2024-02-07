@@ -26,13 +26,13 @@ modelOrder(sequelize);
 modelPayments(sequelize);
 modelFavorite(sequelize);
 
+modelLocation(sequelize);
 
-const { Products, User,Location, Category, Car, Order, Payments, Favorite } = sequelize.models;
+const { Products, User, Location, Category, Car, Order, Payments, Favorite } = sequelize.models;
 
 //Category has many products. 
 Category.hasMany(Products, {foreignKey: 'idCategory', as: 'products'})
 Products.belongsTo(Category, {foreignKey: 'idCategory', as: 'products'})
-
 
 // User has one car and that car belongs to one specific user
 User.hasOne(Car, {foreignKey: 'idUser', as: 'cars'})
@@ -43,8 +43,23 @@ Car.belongsToMany(Products, {through: 'CartProduct', as: 'shoppingCar'})
 Products.belongsToMany(Car, {through: 'CartProduct', as: 'shoppingCar'})
 
 //1:N -> User has many Location
-// User.hasMany(Location, {foreignKey: 'idUser', as: 'locations'});
-// Location.belongsTo(User, {foreignKey: 'idUser', as: 'locations'});
+User.hasMany(Location, {foreignKey: 'idUser', as: 'locations'});
+Location.belongsTo(User, {foreignKey: 'idUser', as: 'locations'});
+
+//VIEWS
+// sequelize.query(`
+//     CREATE OR REPLACE VIEW UserAddress AS
+//     SELECT "User"."id", "User"."firstName", "User"."lastName", "Location"."country", "Location"."city", "Location"."address", "Location"."postalCode"
+//     FROM "Users" AS "User"
+//     INNER JOIN "Locations" AS "Location"
+//     ON "User"."id" = "Location"."idUser";
+// `, { type: sequelize.QueryTypes.SELECT })
+// .then(results => {
+//     console.log('results de useraddress view: ', results);
+// })
+// .catch(error => {
+//     console.log("Error executing query: ", error);
+// })
 
 module.exports = {
     ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
