@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./UsersAdmin.module.css";
 
-const UsersAdmin = () => {
+const UsersAdmin = ({ handleCloseCreateProduct }) => {
   const [usuarios, setUsuarios] = useState([]);
 
   const toggleEstadoUsuario = (id, isActive) => {
@@ -44,9 +45,27 @@ const UsersAdmin = () => {
       });
   }, []);
 
+  const handleCancel = () => {
+    handleCloseCreateProduct();
+  };
+
   return (
     <div className={styles.formContainer}>
-      <h2>Usuarios Silence:</h2>
+      <div className={styles.btnCloseContainer}>
+        <h2>Usuarios Silence:</h2>
+        <img
+          src={IMGCLOSE}
+          alt="Close"
+          className={styles.btnClose}
+          onClick={handleCancel}
+          style={{
+            marginLeft: "99%",
+            width: "40px",
+            height: "40px",
+            cursor: "pointer",
+          }}
+        />
+      </div>
       <ul>
         {usuarios.map((usuario, index) => (
           <li key={index} className={styles.user}>

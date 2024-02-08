@@ -10,7 +10,8 @@ const ROUTES = {
   REGISTER: "/userRegister/:id",
   PolicyReturn: "/PolicyReturn",
   Carrito: '/carrito',
-  USERSADMIN: '/usersAdmin'
+  USERSADMIN: '/usersAdmin',
+  ADMIN: '/admin-view'
 }
 
 export default ROUTES

@@ -8,9 +8,10 @@ import {
   postProduct,
   getCategories,
 } from "../../Redux/Store/Slices/ProductSlice";
+import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./CreateProduct.module.css";
 
-function CreateProduct() {
+function CreateProduct({ handleCloseCreateProduct }) {
   const [fieldValue, setFieldValue] = useState([]);
   const [uploadedFileName, setUploadedFileName] = useState("");
   const [fileError, setFileError] = useState("");
@@ -127,11 +128,23 @@ function CreateProduct() {
     });
   };
 
+  const handleCancel = () => {
+    handleCloseCreateProduct();
+  };
+
   return (
-    <div className="{}">
+    <div className={styles.formWrapper}>
       <form onSubmit={handleSubmit} className={styles.formContainer}>
         <h2>Crear Producto</h2>
-
+        <div className={styles.btnCloseContainer}>
+          <img
+            src={IMGCLOSE}
+            alt="Close"
+            className={styles.btnClose}
+            onClick={handleCancel}
+            style={{ width: "24px", height: "24px", cursor: "pointer" }}
+          />
+        </div>
         <div className={styles.groupOne}>
           <div className={styles.divForm}>
             <label>Categorias:</label>
@@ -214,7 +227,6 @@ function CreateProduct() {
             />
           </div>
         </div>
-
         <div className={styles.groupOne}>
           <div className={styles.divForm}>
             <label>Precio Base:</label>
@@ -280,7 +292,6 @@ function CreateProduct() {
             ) : null}
           </div>
         </div>
-
         <div className={styles.groupOne}>
           <div className={styles.divForm}>
             <label>Color:</label>
@@ -347,7 +358,6 @@ function CreateProduct() {
             ) : null}
           </div>
         </div>
-
         <div className={styles.groupOne}>
           <div className={styles.divForm}>
             <label>description:</label>
@@ -359,7 +369,6 @@ function CreateProduct() {
               onBlur={formik.handleBlur}
               placeholder="📧 description..."
               className={styles.textArea}
-              
             />
 
             {formik.touched.description && formik.errors.description ? (

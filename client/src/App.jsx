@@ -16,6 +16,7 @@ import CarritoSlides from "./Components/Common/Carrito/Carrito";
 import './App.css'
 import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
+import AdminView from "./Components/Pages/AdminView/AdminView";
 
 function App() {
 
@@ -64,8 +65,8 @@ function App() {
         ></Route>
 
         <Route
-          path={ROUTES.USERSADMIN}
-          element={<UsersAdmin />}
+          path={ROUTES.ADMIN}
+          element={<AdminView />}
         ></Route>
 
 
