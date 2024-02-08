@@ -43,7 +43,7 @@
   font-family: 'Now';
   width: 5%;
   height: 100%;
-  background: linear-gradient(45deg, transparent, rgba(225, 255, 0, 0.526), transparent);
+  background: linear-gradient(45deg, transparent, rgba(169, 169, 169, 0.085), transparent);
   box-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
   transition: 1.8s;
 }

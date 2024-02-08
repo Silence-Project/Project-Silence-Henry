@@ -8,6 +8,7 @@ import {
   postProduct,
   getCategories,
 } from "../../Redux/Store/Slices/ProductSlice";
+import CreateCategoryModal from "./CreateCategoryModal";
 import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./CreateProduct.module.css";
 
@@ -16,6 +17,7 @@ function CreateProduct({ handleCloseCreateProduct }) {
   const [uploadedFileName, setUploadedFileName] = useState("");
   const [fileError, setFileError] = useState("");
   const [uploadedFileUrl, setUploadedFileUrl] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -128,8 +130,20 @@ function CreateProduct({ handleCloseCreateProduct }) {
     });
   };
 
+  const reloadCategories = () => {
+    dispatch(getCategories());
+  };
+
   const handleCancel = () => {
     handleCloseCreateProduct();
+  };
+
+  const showModalCreateCategory = () => {
+    setShowModal(true);
+  };
+
+  const hideModalCreateCategory = () => {
+    setShowModal(false);
   };
 
   return (
@@ -151,11 +165,20 @@ function CreateProduct({ handleCloseCreateProduct }) {
             <select
               name="idCategory"
               value={formik.values.idCategory}
-              onChange={formik.handleChange}
+              onChange={(e) => {
+                formik.handleChange(e);
+                if (e.target.value === "createCategory") {
+                  showModalCreateCategory();
+                }
+              }}
               onBlur={formik.handleBlur}
               className={styles.input}
             >
-              <option value="">Seleccionar Categoria</option>
+              {/* La opción "Seleccionar Categoria" deshabilitada */}
+              <option value="" disabled>
+                Seleccionar Categoria
+              </option>
+              <option value="createCategory">CREAR CATEGORÍA</option>
               {categories.map((idCategory) => (
                 <option key={idCategory.id} value={idCategory.id}>
                   {idCategory.name}
@@ -381,6 +404,9 @@ function CreateProduct({ handleCloseCreateProduct }) {
           </button>
         </div>
       </form>
+      {showModal && (
+        <CreateCategoryModal onClose={hideModalCreateCategory} reloadCategories={reloadCategories} />
+      )}
     </div>
   );
 }

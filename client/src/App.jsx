@@ -17,6 +17,7 @@ import './App.css'
 import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
 import AdminView from "./Components/Pages/AdminView/AdminView";
+import CreateCategoryModal from "./Auth/CreateProduct/CreateCategoryModal";
 
 function App() {
 
@@ -73,6 +74,11 @@ function App() {
         <Route
           path={ROUTES.PolicyReturn}
           element={<PolicyReturn />}
+        ></Route>
+     
+        <Route
+          path={ROUTES.MODAL}
+          element={<CreateCategoryModal />}
         ></Route>
 
         <Route

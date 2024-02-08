@@ -11,6 +11,7 @@ const ROUTES = {
   PolicyReturn: "/PolicyReturn",
   Carrito: '/carrito',
   USERSADMIN: '/usersAdmin',
+  MODAL: '/modal',
   ADMIN: '/admin-view'
 }
 
