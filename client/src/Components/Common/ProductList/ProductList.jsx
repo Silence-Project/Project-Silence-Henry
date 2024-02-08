@@ -5,6 +5,8 @@ import Card from "../ProductCard/ProductCard";
 
 import styles from './ProductList.module.css'
 
+import { NavLink } from 'react-router-dom';
+import ROUTES from '../../../Helpers/Routes.helper';
 
 const ProductList = ({ products }) => {
 
@@ -35,8 +37,11 @@ const ProductList = ({ products }) => {
   } else {
     return (
       <div className={styles.productList}>
-        <p>No se encontraron productos en la base de datos.</p>
-      </div>
+        <p>No se encontraron productos en la base de datos.</p>        
+        <NavLink to={ROUTES.HOME}>
+          <button className="botondetail">Go Home</button>
+        </NavLink>   
+      </div>   
     );
   }
 };

@@ -9,7 +9,7 @@ import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
-
+import { createCarrito, getCarrito } from "../../../Redux/Store/Slices/CarritoSlice";
 
 export default function Details(props) {
 
@@ -20,14 +20,36 @@ const {id} = useParams();
 const productsDetails = useSelector((state) => state.product.productsDetails);
 
 const categories = useSelector((state) => state.product.categories);
- 
-useEffect(() => {
-      dispatch(getById(id));
-      dispatch(getCategories());
+
+  useEffect(() => {
+    dispatch(getById(id));
+    dispatch(getCategories());
   }, [dispatch]);
-  
-  const handleAddProduct = (product) => {    
-    dispatch(anadirProducto(product[0]));
+    
+  const productos = useSelector(state => state.carrito.productos)
+
+  const handleAddProduct = async(product) => {    
+    if(productos){
+      try {
+
+        const carritoa = await dispatch(getCarrito())
+        const carritob = carritoa.payload ? carritoa.payload : null
+        
+        if(carritob.length === 0){
+          console.log('Creando carrito para el usuario en la base de datos.');
+          const carritoCreado = await dispatch(createCarrito())
+          console.log(carritoCreado);
+        }
+        else{
+          console.log('Carrito ya existente en la base de datos.');
+        }
+        dispatch(anadirProducto(product[0]))
+      } 
+      catch (error) {
+        console.error('Error al crear carrito:', error)
+      }
+      
+    }    
   }
 
   return (
@@ -69,69 +91,5 @@ useEffect(() => {
     </Link>
   </div>
 
-
-//     <div className="general">
-
-//       <div key={productsDetails.id}>
-// {/* 
-//         <h1 className="nombre">{productsDetails.name}</h1> */}
-
-//         <img className="image-principal"
-//           src={'https://i.pinimg.com/236x/0e/4f/ce/0e4fce603341659d87362c2666530f3d.jpg'}
-//           alt="hola"
-//           width="400px"
-//           height="250px"
-//         />
-
-//         {/* <img className="image-secundaria"
-//           src={productsDetails.image.map((image, index) => <p key={index} className="card-image">{image}</p>)}
-//           alt={productsDetails.name} /> */}
-
-//         <div  className="h4">
-
-//             <h4 >📜 Description:</h4> 
-            
-//             <p className="description"> Descripcion: {productsDetails.descripcion} </p> 
-
-//             <h4>SKU : a {productsDetails.codigo}</h4>
-
-//             <h4>🏷️ Categoría: {productsDetails.categoria}</h4>
-            
-//             <h4>📦 Stock disponible: {productsDetails.stock}</h4>
-        
-//             <h4>🎨 Color: {productsDetails.color}</h4>
-
-//             <h4>🧱 Peso: {productsDetails.peso}</h4>
-
-//             {/* <h4>📏 Tallas disponibles: <br/>
-//             {productsDetails.tallas?.map((talla, i) => (
-//               <li key={i}>{talla.name}</li>
-//             ))}</h4> */}
-
-//             <h4>👘 Caracteristicas de la tela: {productsDetails.caracteristicasTela}</h4>
-
-//             <h4>💸 Precio: {productsDetails.price}</h4>
-         
-//          {/* Características de los productos:
-//           puesto de Relevancia en la visualización, rating, comparación con los otros talles,
-//            características de la tela.  */}
-          
-//            {/* <h4>🌟 Rating: {COMPONENTE.rating} </h4> */}
-//             {/* <h4>🌟 Carrito: {COMPONENTE.carrito} </h4> */}
-
-        
-
-//             <div>HOLA</div>
-             
-//         </div>
-
-//       </div>
-
-
-//         <Link to={ROUTES.HOME}>
-//           <button className="botondetail">Go Home</button>
-//         </Link>
-      
-//     </div>
   );
 }

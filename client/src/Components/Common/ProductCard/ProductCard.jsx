@@ -32,20 +32,18 @@ const ProductCard = ({product}) => {
         <Link to={/detail/+id}>
           <h2 className={style.productName}>{name}</h2>
         </Link>
-{/* 
-        <img src={image.map((image, index) => 
-        <p key={index} className="card-image">{image}</p>)} 
-        
-        alt={name}/> */}
+        {/* 
+          <img src={image.map((image, index) => 
+          <p key={index} className="card-image">{image}</p>)} 
+          
+          alt={name}/> 
+        */}
 
         <img className={style.productImage} src={image} alt={description}/>
 
-        <p>💸 {price}</p>
+        <p>💸 {price}</p>        
       
-        <button className={style.button} onClick={() => handleAddProduct(product)}>Añadir al carrito</button>
-        
-      
-{/*             
+        {/*             
         <p>{description}</p>
         <p>{stock}</p>
         

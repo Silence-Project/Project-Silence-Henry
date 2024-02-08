@@ -19,7 +19,7 @@ const Home = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const sortedProducts = products.slice().sort((a, b) => a.preference - b.preference);
+  const sortedProducts = products ? products.slice().sort((a, b) => a.preference - b.preference) : [];
   
   console.log("PRODUCTOS ->", products);
 

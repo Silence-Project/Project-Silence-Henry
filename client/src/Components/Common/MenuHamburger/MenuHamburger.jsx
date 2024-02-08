@@ -7,6 +7,8 @@ import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import ROUTES from "../../../Helpers/Routes.helper"
 
+import Sidebar from "../../../Components/Common/Sidebar/Sidebar"
+
 const MenuHamburger = () => {
 
   const [isOpen, setOpen] = useState(false)
@@ -27,6 +29,7 @@ const MenuHamburger = () => {
           </div>
           <div className={styles.option1}>
             <NavLink className={styles.createProducts} to={ROUTES.CREATE_PRODUCT}>Crear Producto</NavLink>
+            <Sidebar />
           </div>
           {/* <div className={styles.option2}>
             <NavLink className={styles.login} to={ROUTES.LOGGING}>Inicia Sesión</NavLink>

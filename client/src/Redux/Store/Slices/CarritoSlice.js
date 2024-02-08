@@ -1,32 +1,46 @@
 // carritoSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
 import axios from 'axios'
 
+export const getCarrito = createAsyncThunk(
+  'carrito/obtener',
+  async () => {
+    const config = {
+      method: 'get',
+      url: 'http://127.0.0.1:3001/car/cars',
+    };
 
-// export const getCarrito = createAsyncThunk(
-//   "carrito",
-//   async () => {
-//     try {
-//       const response = await axios.get("http://127.0.0.1:3001/carrito");
-
-//       return response.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// )
-
-export const createOrder = async () => {
-  try {
-    const response = await axios.post("http://127.0.0.1:3001/carrito");
-
-    return response.data;
+    try {
+      const response = await axios(config);
+      return await response.data;
+    } catch (error) {
+      // Retornar un objeto con el error para manejarlo en el reducer
+      return { error: error.message };
+    }
   }
-  catch (error) {
-    console.log(error);
-  }
-}
+)
 
+export const createCarrito = createAsyncThunk(
+  'carrito/crear',
+  async () => {
+    const config = {
+      method: 'post',
+      url: 'http://127.0.0.1:3001/car/new',
+      data: {
+        idUser: 1,
+      },
+    };
+
+    try {
+      const response = await axios(config);
+      return await response.data;
+    } catch (error) {
+      // Retornar un objeto con el error para manejarlo en el reducer
+      return { error: error.message };
+    }
+  }
+)
 
 export const carritoSlice = createSlice({
   name: 'carrito',
@@ -38,8 +52,6 @@ export const carritoSlice = createSlice({
         
       const producto = action.payload;
 
-
-      console.log(producto)
       const existingProduct = state.productos.find(item => item.id === producto.id);
 
       if (existingProduct) {

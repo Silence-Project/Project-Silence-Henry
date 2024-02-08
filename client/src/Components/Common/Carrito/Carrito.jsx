@@ -57,7 +57,6 @@ const CarritoSlides = () => {
       <button>Home</button>
     </Link>
 
-
     </div>
 
   );
