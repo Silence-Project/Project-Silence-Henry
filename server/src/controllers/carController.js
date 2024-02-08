@@ -1,7 +1,6 @@
-const { Car, Products} = require('../config/bd');
+const { Car, Products, CartProduct } = require('../config/bd');
 
 // CREATE CAR
-
 const createCar = async (idUser, products) => {
     try {
         const existingCar = await Car.findOne({ where: { idUser: idUser } });
@@ -49,7 +48,7 @@ const getDetailCarWithProducts = async (idUser) => {
             where: { idUser: idUser },
             include: [{
                 model: Products,
-                through: 'car_products',
+                through: 'CartProduct',
                 as: 'shoppingCar',
                 attributes: ['id', 'name', 'price']
             }],
@@ -61,24 +60,113 @@ const getDetailCarWithProducts = async (idUser) => {
 
     } catch (error) {
         return error.message;
+    };
+};
+
+// UPDATE QUANTITY
+const editQuantityProductByCar = async (idCar, idProduct, quantity) => {
+    try {
+        const car = await Car.findByPk(idCar);
+
+        if (!car) {
+            throw new Error('No se encontró ningún carro con el ID proporcionado');
+        }
+
+        // Busca el producto en el carrito
+        const cartProduct = await CartProduct.findOne({
+            where: {
+                CarId: idCar,
+                ProductId: idProduct
+            }
+        });
+
+        if (!cartProduct) {
+            throw new Error('El producto no se encontró en el carrito');
+        }
+
+        // Actualiza la cantidad del producto
+        await cartProduct.update({ quantity });
+
+        return `La cantidad del producto con ID ${idProduct} ha sido actualizada a ${quantity} en el carrito con ID ${idCar}.`;
+
+    } catch (error) {
+        return error.message;
     }
 };
 
-// ADD products to car --> UPDATE
+// ADD PRODUCTS BY CAR
+const addProductToCart = async (carId, productId, quantity) => {
+    try {
+        // Verificar si el carrito existe
+        const car = await Car.findByPk(carId);
+        if (!car) {
+            throw new Error('No se encontró ningún carro con el ID proporcionado');
+        }
+
+        // Verificar si el producto ya está en el carrito
+        let cartProduct = await CartProduct.findOne({
+            where: {
+                CarId: carId,
+                ProductId: productId
+            }
+        });
+
+        if (cartProduct) {
+            // Si el producto ya está en el carrito, actualiza la cantidad
+            const newQuantity = cartProduct.quantity + 1;
+            await cartProduct.update({ quantity: newQuantity });
+        } else {
+            // Si el producto no está en el carrito, añádelo al carrito y crea una nueva instancia en CartProduct
+            // Crea una nueva instancia en CartProduct
+            const newCartProduct = await CartProduct.create({
+                quantity: quantity,
+                CarId: carId,
+                ProductId: productId
+            });
+        }
+
+        return `Producto con ID ${productId} añadido correctamente al carrito con ID ${carId}.`;
+
+    } catch (error) {
+        return error.message;
+    }
+};
+
+const removeProductFromCart = async (carId, productId) => {
+    try {
+        const car = await Car.findByPk(carId);
+        if (!car) {
+            throw new Error('No se encontró ningún carro con el ID proporcionado');
+        }
+
+        const cartProduct = await CartProduct.findOne({
+            where: {
+                CarId: carId,
+                ProductId: productId
+            }
+        });
+
+        if (!cartProduct) {
+            throw new Error('El producto no está en el carrito');
+        }
+
+        await cartProduct.destroy();
+
+        return `Producto con ID ${productId} eliminado correctamente del carrito con ID ${carId}.`;
+
+    } catch (error) {
+        return error.message;
+    }
+};
 
 
-// Update --> Add products to car
 
-
-
-// Update --> Remover products to car
-
-
-
-// Get details about car by user
 
 module.exports = {
     createCar,
     getCarsWithProducts,
-    getDetailCarWithProducts
+    getDetailCarWithProducts,
+    editQuantityProductByCar,
+    addProductToCart, 
+    removeProductFromCart
 }
