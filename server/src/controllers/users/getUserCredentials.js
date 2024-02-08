@@ -2,7 +2,11 @@ const { User } = require("../../config/bd");
 
 const getUserCredentials = async (email, password) => {
   try {
-    const validateUserCredentials = await User.findOne({ where: { email } });
+    const validateUserCredentials = await User.findOne({ where: { email }, include: [{
+      model: Location,
+      as: 'locations',
+      attributes: ["id", "country", "city", "address", "postalCode"]
+    }], });
 
     if (
       !validateUserCredentials ||

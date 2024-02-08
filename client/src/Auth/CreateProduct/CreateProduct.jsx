@@ -1,6 +1,7 @@
 import React  from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useOutletContext } from "react-router-dom";
 
 // import styles from "../Login/SingUp.module.css";
 
@@ -85,9 +86,12 @@ function CreateProduct() {
 
 
 
+const [localUserData] = useOutletContext();
+// console.log('reicbi algo de localUserData?? ', localUserData);
 
 
   return (
+    !localUserData.isAdmin ? (<span>Necesitas permiso de admin para acceder...</span>) : 
     <div className="{`${styles.formContainer} ${styles.signUpContainer}`}">
     
 
