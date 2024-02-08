@@ -27,11 +27,11 @@ const ProductCard = ({product}) => {
 
     <div className={style.absolute}>
       <div className={style.productDetail}>
-
+      <Link to={/detail/+id}>
         <div className='info'>
-        <Link to={/detail/+id}>
+        
           <h2 className={style.productName}>{name}</h2>
-        </Link>
+        
 {/* 
         <img src={image.map((image, index) => 
         <p key={index} className="card-image">{image}</p>)} 
@@ -56,9 +56,11 @@ const ProductCard = ({product}) => {
 
         {/*  <button>{COMPONENT.carrito}</button> */}
         {/* <p>{COMPONENT.rating}</p> */}
-
+        
         </div>
+        </Link>
       </div>
+      
     </div>
 
   )

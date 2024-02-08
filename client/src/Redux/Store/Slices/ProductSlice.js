@@ -153,6 +153,7 @@ const productSlice = createSlice({
             state.error = action.error.message;
           })
       }
+    
     });
 //     extraReducers: (builder) => {
 //         builder
