@@ -10,7 +10,8 @@
   background-color: var(--Snowbound);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 990px 990px #c5b4a0b1;
+  border: 5px solid rgba(0, 0, 0, 0.603);
   z-index: 1000;
   width: 400px;
 }
@@ -28,19 +29,13 @@
   margin-bottom: 20px;
 }
 
-.formGroup label {
-  font-family: "Now", sans-serif;
-  color: rgb(39, 39, 39);
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
 
 .formGroup input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--ModerneGray);
+  width: 90%;
+  padding: 10px;
+  border: 1px solid rgba(63, 63, 63, 0.794);
   border-radius: 4px;
+  cursor: pointer;
   font-size: 1rem;
 }
 

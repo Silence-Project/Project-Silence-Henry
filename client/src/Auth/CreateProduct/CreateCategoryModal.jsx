@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "./CreateCategoryModal.module.css";
 
-const CreateCategoryModal = ({ onClose, reloadCategories })=> {
+const CreateCategoryModal = ({ onClose, reloadCategories }) => {
   const [categoryName, setCategoryName] = useState("");
 
   const handleSubmit = async (event) => {
@@ -12,7 +12,7 @@ const CreateCategoryModal = ({ onClose, reloadCategories })=> {
         name: categoryName,
       });
       onClose();
-      reloadCategories(); 
+      reloadCategories();
     } catch (error) {
       console.error("Error al crear la categoría:", error);
     }
@@ -25,14 +25,14 @@ const CreateCategoryModal = ({ onClose, reloadCategories })=> {
   return (
     <>
       <div className={styles.containerCreateCategoryModal}>
-        <h2>Crear Nueva Categoría</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label>Nombre de la categoría:</label>
+            <h2>Crear Categoría Silence:</h2>
             <input
               type="text"
               value={categoryName}
               onChange={handleChange}
+              className={styles.inputCat}
               placeholder="Ingrese el nombre de la categoría"
               required
             />

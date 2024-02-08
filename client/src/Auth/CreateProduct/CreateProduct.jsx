@@ -134,16 +134,23 @@ function CreateProduct({ handleCloseCreateProduct }) {
     dispatch(getCategories());
   };
 
-  const handleCancel = () => {
-    handleCloseCreateProduct();
-  };
-
   const showModalCreateCategory = () => {
     setShowModal(true);
   };
 
   const hideModalCreateCategory = () => {
     setShowModal(false);
+  };
+
+  const handleCancel = () => {
+    if (typeof handleCloseCreateProduct === "function") {
+      handleCloseCreateProduct();
+    } else {
+      console.error(
+        "handleCloseCreateProduct is not a function",
+        handleCloseCreateProduct
+      );
+    }
   };
 
   return (
@@ -405,7 +412,10 @@ function CreateProduct({ handleCloseCreateProduct }) {
         </div>
       </form>
       {showModal && (
-        <CreateCategoryModal onClose={hideModalCreateCategory} reloadCategories={reloadCategories} />
+        <CreateCategoryModal
+          onClose={hideModalCreateCategory}
+          reloadCategories={reloadCategories}
+        />
       )}
     </div>
   );

@@ -13,18 +13,17 @@ const AdminView = () => {
   const handleCloseCreateProduct = () => {
     setSelectedCard(null);
   };
-
+  
   return (
     <div className={styles.containerAdminView}>
       {selectedCard ? (
         <div className={styles.CreateProduct}>
           {selectedCard === "createProduct" ? (
-            <CreateProduct
-              handleCloseCreateProduct={handleCloseCreateProduct}
+            <CreateProduct handleCloseCreateProduct={handleCloseCreateProduct}
             />
-          ) : (
-            <UsersAdmin handleCloseCreateProduct={handleCloseCreateProduct}/>
-          )}
+            ) : (
+              <UsersAdmin handleCloseCreateProduct={handleCloseCreateProduct}/>
+              )}
         </div>
       ) : (
         <>
@@ -32,7 +31,8 @@ const AdminView = () => {
             <div
               className={styles.card}
               onClick={() => handleCardClick("createProduct")}
-            >
+              
+              >
               <h2>Creación de productos & Categorías</h2>
               <p>Creación de colecciones Silence.</p>
             </div>
