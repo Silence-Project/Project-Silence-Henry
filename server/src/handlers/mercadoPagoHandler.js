@@ -7,21 +7,23 @@ const mercadoPagoHandler = Router();
 
 mercadoPagoHandler.post('/', async (req, res) => {
     try {
-        const { title, unit_price, currency_id, quantity } = req.body;
+        const product = req.body;
 
         mercadopago.configure({
             access_token: ACCESS_TOKEN
         });
 
+        const arrayProducts = product.map( (e) => {
+            return {
+                title: e.title,
+                unit_price: e.unit_price,
+                currency_id: e.currency_id,
+                quantity: e.quantity
+            }
+        })
+
         const preference = {
-            items: [
-                {
-                    title: title,
-                    unit_price: unit_price,
-                    currency_id: currency_id,
-                    quantity: quantity
-                }
-            ],
+            items: arrayProducts,
             back_urls: {
                 success: 'http://127.0.0.1:3000/home' ,
                 failure: 'http://127.0.0.1:3000/home' 
