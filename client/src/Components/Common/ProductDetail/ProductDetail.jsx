@@ -9,22 +9,25 @@ import ROUTES from "../../../Helpers/Routes.helper";
 import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice";
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
-import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import requiereUserBd from "../../../Helpers/requireUserBd";
-import { createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
+import { anadirProducto, createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
 
-export default function Details(props) {
+export default function Details() {
 
-const dispatch = useDispatch();
-const { user  = { email: 'null@null.null' } } = useAuth0();
+  const dispatch = useDispatch();
+  const { user  = { email: 'null@null.null' } } = useAuth0();
+
+  async function traerDataUser() { 
+    const isRegisterededUser = await requiereUserBd(user.email);
+    const idUser = isRegisterededUser.id
+    return idUser
+  }
 
   const {id} = useParams();
 
   const productsDetails = useSelector((state) => state.product.productsDetails);
   const categories = useSelector((state) => state.product.categories);
-
-  const idUser = 1
 
   useEffect(() => {
     dispatch(getById(id));
@@ -34,19 +37,22 @@ const { user  = { email: 'null@null.null' } } = useAuth0();
     // const productos = useSelector(state => state.carrito.productos)
 
   const handleAddProduct = async(product) => {    
+
+    const idUser = await traerDataUser()
     
     if(product){
       try {
 
-        const carritoa = await dispatch(getCarrito(1))
+        const carritoa = await dispatch(getCarrito(idUser))
         const carritob = carritoa.payload ? carritoa.payload : null
 
-        console.log('Carrito al usuario 1');
-        console.log(carritob);
+        console.log('--------------------------------');
+        console.log(idUser);
+        console.log('--------------------------------');
 
         if(carritob.length === 0){
           console.log('Creando carrito para el usuario en la base de datos.');
-          const carritoCreado = await dispatch(createCarrito(1))
+          const carritoCreado = await dispatch(createCarrito(idUser))
           console.log(carritoCreado.payload);
         }
         else{
@@ -64,11 +70,6 @@ const { user  = { email: 'null@null.null' } } = useAuth0();
       
     }    
   }
-
-  // const [localUserData] = useOutletContext()
-
-  // console.log('local user data, es el obj usuario: ')
-  // console.log(localUserData.id)
 
   return (
     <div className="general">

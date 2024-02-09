@@ -21,40 +21,6 @@ export const deleteProductDb = createAsyncThunk(
   }
 )
 
-export const getCar = createAsyncThunk(
-  "cars",
-  async () => {
-      try {
-          const response = await axios.get("http://127.0.0.1:3001/car/cars");
-          localStorage.setItem("car", JSON.stringify(response.data));
-
-          return response.data;
-      }
-
-      catch (error) {
-          console.log(error);
-      }}
-)
-
-
-export const postCar = createAsyncThunk(
-  "car/new",
-  async (car) => {
-      try {
-          const response = await axios.post("http://127.0.0.1:3001/car/new" , car);
-
-          return response.data;
-      }
-
-      catch (error) {
-          console.log(error);
-      }
-  }
-
-)
-
-
-
 export const saveProductDb = createAsyncThunk(
   'carrito/saveProductDb',
   async (idUser, idProduct, quantity = 1) => {
@@ -109,7 +75,11 @@ export const getCarrito = createAsyncThunk(
 export const createCarrito = createAsyncThunk(
   'carrito/crear',
   async (idUser) => {
-    
+
+    console.log('--------------------------------');
+    console.log(idUser);
+    console.log('--------------------------------');
+
     const config = {
       method: 'post',
       url: 'http://127.0.0.1:3001/car/new',
@@ -138,7 +108,7 @@ export const carritoSlice = createSlice({
         
       const producto = action.payload;
 
-      console.log("QUANTITY ACA ->" + producto.quantity)
+      //console.log("QUANTITY ACA ->" + producto.quantity)
       const existingProduct = state.productos.find(item => item.id === producto.id);
 
       if (existingProduct) {
@@ -155,30 +125,8 @@ export const carritoSlice = createSlice({
     limpiarCarrito: state => {
       state.productos = [];
     },
-    
-  } ,
-  extraReducers: (builder) => {
-    builder
-      .addCase(getCar.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getCar.fulfilled, (state, action) => {
-        state.loading = false;
-        state.productos = action.payload;
-        state.error = null;
-      })
-      .addCase(getCar.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      })
-      .addCase(postCar.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-    }
-  
-  });
+  }
+});
 
 
 export const { anadirProducto, eliminarProducto, limpiarCarrito } = carritoSlice.actions;
