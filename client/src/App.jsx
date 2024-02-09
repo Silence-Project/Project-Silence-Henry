@@ -62,7 +62,7 @@ function App() {
 
         <Route
           path={ROUTES.CREATE_PRODUCT}
-          element={<CreateProduct />}
+          element={<AdminView />}
         ></Route>
 
         <Route
