@@ -3,12 +3,63 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from 'axios'
 
+export const deleteProductDb = createAsyncThunk(
+  'carrito/deleteProductDb',
+  async (idCarrito, idProduct) => {
+    const config = {
+      method: 'delete',
+      url: `http://127.0.0.1:3001/car/remove/${idCarrito}/${idProduct}`
+    };
+
+    try {
+      const response = await axios(config);
+      return await response;
+    } catch (error) {
+      // Retornar un objeto con el error para manejarlo en el reducer
+      return { error: error.message };
+    }
+  }
+)
+
+export const saveProductDb = createAsyncThunk(
+  'carrito/saveProductDb',
+  async (idUser, idProduct, quantity = 1) => {
+
+    // console.log('dates Save Products');
+    // console.log(idUser);
+    // console.log('Id Producto: ');
+    // console.log(idProduct);
+    // console.log(`${idProduct}`);
+    // console.log(quantity);
+
+    const config = {
+      method: 'post',
+      url: 'http://127.0.0.1:3001/car/newProduct'
+    };
+
+    const data = {
+      carId: idUser,
+      productId: idProduct,
+      quantity: quantity
+    };
+
+    try {
+      const response = await axios(config, data);
+      return await response;
+    } catch (error) {
+      // Retornar un objeto con el error para manejarlo en el reducer
+      return { error: error.message };
+    }
+  }
+)
+
 export const getCarrito = createAsyncThunk(
   'carrito/obtener',
-  async () => {
+  async (idUser) => {
+
     const config = {
       method: 'get',
-      url: 'http://127.0.0.1:3001/car/cars',
+      url: `http://127.0.0.1:3001/car/car/${idUser}`
     };
 
     try {
@@ -23,14 +74,15 @@ export const getCarrito = createAsyncThunk(
 
 export const createCarrito = createAsyncThunk(
   'carrito/crear',
-  async () => {
+  async (idUser) => {
+    
     const config = {
       method: 'post',
       url: 'http://127.0.0.1:3001/car/new',
       data: {
-        idUser: 1,
+        idUser: idUser,
       },
-    };
+    };    
 
     try {
       const response = await axios(config);

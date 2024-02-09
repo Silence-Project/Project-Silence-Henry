@@ -10,6 +10,8 @@ const MyProfile = () => {
 
   const { user, isAuthenticated, loginWithRedirect, isLoading, logout } = useAuth0();
 
+  console.log(user);
+
   if (isLoading) {
     return <div>Cargando...</div>
   }

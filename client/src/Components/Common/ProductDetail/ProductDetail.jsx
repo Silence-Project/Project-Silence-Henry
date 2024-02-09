@@ -1,5 +1,6 @@
 // ProductDetail.jsx
 import React from "react";
+// import { useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -9,39 +10,48 @@ import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
-import { createCarrito, getCarrito } from "../../../Redux/Store/Slices/CarritoSlice";
+import { createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
 
 export default function Details(props) {
 
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-const {id} = useParams();
+  const {id} = useParams();
 
-const productsDetails = useSelector((state) => state.product.productsDetails);
+  const productsDetails = useSelector((state) => state.product.productsDetails);
+  const categories = useSelector((state) => state.product.categories);
 
-const categories = useSelector((state) => state.product.categories);
+  const idUser = 1
 
   useEffect(() => {
     dispatch(getById(id));
     dispatch(getCategories());
   }, [dispatch]);
-    
-  const productos = useSelector(state => state.carrito.productos)
+      
+    // const productos = useSelector(state => state.carrito.productos)
 
   const handleAddProduct = async(product) => {    
-    if(productos){
+    
+    if(product){
       try {
 
-        const carritoa = await dispatch(getCarrito())
+        const carritoa = await dispatch(getCarrito(1))
         const carritob = carritoa.payload ? carritoa.payload : null
-        
+
+        console.log('Carrito al usuario 1');
+        console.log(carritob);
+
         if(carritob.length === 0){
           console.log('Creando carrito para el usuario en la base de datos.');
-          const carritoCreado = await dispatch(createCarrito())
-          console.log(carritoCreado);
+          const carritoCreado = await dispatch(createCarrito(1))
+          console.log(carritoCreado.payload);
         }
         else{
           console.log('Carrito ya existente en la base de datos.');
+          const idProduct = product[0].id
+          const saveP = await dispatch(saveProductDb(idUser, idProduct))
+          console.log('Respuesta del saveCarrito');
+          console.log(saveP.payload.data)
         }
         dispatch(anadirProducto(product[0]))
       } 
@@ -51,6 +61,11 @@ const categories = useSelector((state) => state.product.categories);
       
     }    
   }
+
+  // const [localUserData] = useOutletContext()
+
+  // console.log('local user data, es el obj usuario: ')
+  // console.log(localUserData.id)
 
   return (
     <div className="general">
