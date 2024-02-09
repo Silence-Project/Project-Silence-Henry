@@ -67,26 +67,27 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
         />
       </div>
       <ul>
-        {usuarios.map((usuario, index) => (
-          <li key={index} className={styles.user}>
-            <div className={styles.userName}>
-              <p>Nombres: {usuario.fullName}</p>
-            </div>{" "}
-            <br />
-            <div className={styles.userState}>
-              <p>
-                Estado: {usuario.isActive ? "Activo" : "Inactivo"}
-                <button
-                  onClick={() =>
-                    toggleEstadoUsuario(usuario.id, usuario.isActive)
-                  }
-                >
-                  {usuario.isActive ? "Desactivar" : "Activar"}
-                </button>{" "}
-              </p>
-            </div>
-          </li>
-        ))}
+        {Array.isArray(usuarios) &&
+          usuarios.map((usuario, index) => (
+            <li key={index} className={styles.user}>
+              <div className={styles.userName}>
+                <p>Nombres: {usuario.fullName}</p>
+              </div>{" "}
+              <br />
+              <div className={styles.userState}>
+                <p>
+                  Estado: {usuario.isActive ? "Activo" : "Inactivo"}
+                  <button
+                    onClick={() =>
+                      toggleEstadoUsuario(usuario.id, usuario.isActive)
+                    }
+                  >
+                    {usuario.isActive ? "Desactivar" : "Activar"}
+                  </button>{" "}
+                </p>
+              </div>
+            </li>
+          ))}
       </ul>
     </div>
   );
