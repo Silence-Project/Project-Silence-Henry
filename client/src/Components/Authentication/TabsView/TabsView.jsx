@@ -1,35 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
 import CreateProduct from '../../../Auth/CreateProduct/CreateProduct'
 
-const API_USER_URL = "http://localhost:3001/usuarios"
-
-const TabsView = () => {
-  const { user } = useAuth0() || { nickname: "otro", email: "otro" };
+const TabsView = ({localUserData}) => {
+  const { user } = useAuth0();
   const { nickname, email } = user;
-
-  const [localUserData, setLocalUserData] = useState({})
-
-  const authLocal = async () => {
-    try {
-      const response = await axios(`${API_USER_URL}?email=${email}`);
-      // console.log('que es response??? ', response);
-      const { data } = response;
-      // console.log('ques data??? ', data);
-      setLocalUserData(data);
-      // console.log('quesss localUserData??? ', localUserData);
-    } catch (error) {
-      alert(error);
-    }
-  }
-
-  useEffect(() => {
-    authLocal();
-    // console.log('quesss localUserData??? ', localUserData);
-  }, [])
-
-  // authLocal();
 
   const [activeTab, setActiveTab] = useState('myInfo');
 

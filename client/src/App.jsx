@@ -15,6 +15,7 @@ import CarritoSlides from "./Components/Common/Carrito/Carrito";
 
 import './App.css'
 import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
+import PrivateRouting from "./Components/Authentication/PrivateRouting/Privaterouting";
 
 function App() {
 
@@ -37,7 +38,9 @@ function App() {
           element={<LoginForm />}
         ></Route>
 
-        <Route path="/profile" element={<MyProfile />} />
+        <Route element={<PrivateRouting />}>
+          <Route path="/profile" element={<MyProfile />} />
+        </Route>
 
         {/*
         <Route
@@ -57,10 +60,12 @@ function App() {
           element={<Details />}>
         </Route>
 
-        <Route
-          path={ROUTES.CREATE_PRODUCT}
-          element={<CreateProduct />}
-        ></Route>
+        <Route element={<PrivateRouting />}>
+          <Route
+            path={ROUTES.CREATE_PRODUCT}
+            element={<CreateProduct />}
+          ></Route>
+        </Route>
 
 
         <Route

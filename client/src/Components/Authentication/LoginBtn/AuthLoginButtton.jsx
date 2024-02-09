@@ -8,4 +8,3 @@ const AuthLoginButtton = () => {
 };
 
 export default AuthLoginButtton;
-//https://i.postimg.cc/9z5FwpW7/silence-logo.jpg

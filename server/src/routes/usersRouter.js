@@ -1,8 +1,19 @@
 const { Router } = require("express");
-const { userHandler } = require("../handlers/userHandler");
+// const { userHandler } = require("../handlers/userHandler");
+const {
+  postNewUserHandler,
+  getLoginUser,
+  findUserByEmailOrAll,
+  getUserDetailHandler,
+  updateUserHandler,
+} = require("../handlers/userHandler");
+const userRouter = Router();
 
-const router = Router();
+userRouter.post("/", postNewUserHandler);
+userRouter.get("/:id", getUserDetailHandler);
+userRouter.get("/", findUserByEmailOrAll);
+userRouter.get("/login", getLoginUser);
+userRouter.patch("/:id", updateUserHandler);
+// userRouter.use("/", userHandler);
 
-router.use("/", userHandler);
-
-module.exports = router;
+module.exports = userRouter;
