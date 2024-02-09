@@ -9,10 +9,13 @@ import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
+import { useAuth0 } from "@auth0/auth0-react";
+import requiereUserBd from "../../../Helpers/requireUserBd";
 
 
 export default function Details(props) {
 
+const { user  = { email: 'null@null.null' } } = useAuth0();
 const dispatch = useDispatch();
 
 const {id} = useParams();
@@ -29,6 +32,12 @@ useEffect(() => {
   const handleAddProduct = (product) => {    
     dispatch(anadirProducto(product[0]));
   }
+
+  async function traerDataUser() {
+    const isRegisterededUser = await requiereUserBd(user.email);
+    // console.log('objeto usuario', isRegisterededUser);
+  }
+  traerDataUser(); //objeto { id: 1, isActive: true, isAdmin: true }
 
   return (
     <div className="general">
