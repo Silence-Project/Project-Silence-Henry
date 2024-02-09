@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@cloudinary/react": "^1.12.0",
+    "@cloudinary/url-gen": "^1.16.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mercadopago/sdk-react": "^0.0.16",
     "@reduxjs/toolkit": "^2.1.0",
     "axios": "^1.6.7",
     "formik": "^2.4.5",

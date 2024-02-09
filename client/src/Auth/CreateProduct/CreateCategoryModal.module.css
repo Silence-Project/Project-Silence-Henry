@@ -1,0 +1,65 @@
+
+
+.containerCreateCategoryModal {
+  font-family: "Now", sans-serif;
+  color: black;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--Snowbound);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 990px 990px #c5b4a0b1;
+  border: 5px solid rgba(0, 0, 0, 0.603);
+  z-index: 1000;
+  width: 400px;
+}
+
+.containerCreateCategoryModal h2 {
+  font-family: "Now", sans-serif;
+  color: rgb(39, 39, 39);
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.formGroup {
+  font-family: "Now", sans-serif;
+  color: rgb(39, 39, 39);
+  margin-bottom: 20px;
+}
+
+
+.formGroup input[type="text"] {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid rgba(63, 63, 63, 0.794);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.buttons {
+  display: flex;
+  font-family: "Now", sans-serif;
+  color: rgb(39, 39, 39);
+  justify-content: space-between;
+}
+
+.buttons button {
+  background-color: var(--BalancedGray);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Now", sans-serif;
+  color: rgb(39, 39, 39);
+  font-size: 1rem;
+}
+
+.buttons button:hover {
+  background-color: black;
+  color: var(--Snowbound);
+}
+
+

@@ -18,6 +18,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+  
 
   const sortedProducts = products ? products.slice().sort((a, b) => a.preference - b.preference) : [];
   

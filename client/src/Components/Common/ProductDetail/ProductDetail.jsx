@@ -10,11 +10,15 @@ import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
+import { useAuth0 } from "@auth0/auth0-react";
+import requiereUserBd from "../../../Helpers/requireUserBd";
 import { createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
 
 export default function Details(props) {
 
   const dispatch = useDispatch();
+const { user  = { email: 'null@null.null' } } = useAuth0();
+const dispatch = useDispatch();
 
   const {id} = useParams();
 

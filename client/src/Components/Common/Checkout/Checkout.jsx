@@ -1,47 +1,79 @@
-// import React from 'react'
-
-// import { useSelector } from 'react-redux'
-// import { useState } from 'react'
-
-// import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'; 
-
+import React from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useEffect } from "react";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { Link } from "react-router-dom";
+import ROUTES from "../../../Helpers/Routes.helper";
 // import { createOrder } from '../../../Redux/Store/Slices/CarritoSlice'
 
-// const Checkout = () => {
+const Checkout = () => {
+  const [loading, setLoading] = useState(false);
+  const cartItems = useSelector((state) => state.carrito.productos);
 
-//   const [loading, setLoading] = useState(false);
-//   const cartItems = useSelector(state => state.carrito.productos); 
-//   useEffect(() => {
-//       initMercadoPago("TEST-ead547a8-5635-4432-a1fa-43cb1b3d006f");
-//   }, []);
+  useEffect(() => {
+    initMercadoPago(
+      "TEST-7924176041102676-020617-c6f7ba24c9f07f0449eb1e0d7aa0d874-1153136192"
+    );
+  }, []);
 
-//   const create = async () => {
-//       setLoading(true);
+  // const comprarProducto = async (producto) => {
+  //     const response = await axios.post(
+  //       "http://localhost:3001/payment",
+  //       producto
+  //     )
 
-//       try {
-         
-//           const response = await createOrder(cartItems);
+  //     window.location.href = response.data
+  // }
 
+  // console.log("EL ESTADO DE CARRITO:");
+  // cartItems.forEach(producto => {
+  //     console.log(`Nombre: ${producto.name}, Cantidad: ${producto.quantity}`);
+  // });
 
-//           const data = await response.json();
+  //   console.log("EL CARRITO CART ITEMSSSSS: " + JSON.stringify(cartItems, null, 2))
 
-//           window.location.href = data.init_point; // Redirige al usuario al flujo de pago de Mercado Pago
+  //   const {carrito_plano} = JSON.stringify(cartItems, null, 2)
 
-//       } catch (error) {
-//           console.error('Error creating order:', error);
-//           setLoading(false);
-//       }
-//   };
+  const create = async () => {
+    setLoading(true);
+    try {
+      const primerProducto = cartItems[0]; //el puerco [0]
 
+      const productoParaEnviar = {
+        title: primerProducto.name,
+        unit_price: primerProducto.price,
+        quantity: primerProducto.quantity,
+        currency_id: "ARS", 
+      };
 
+      console.log("Data send:", productoParaEnviar); // Ver lo enviado
 
-//   return (
-//     <div>
+      const response = await axios.post(
+        "http://127.0.0.1:3001/payment",
+        productoParaEnviar
+      );
 
-//         <button onClick={create} disabled={loading}>{loading ? "Loading..." : "Pagar con Mercado Pago"}</button>
+      console.log("server response data:", response.data); // Ver la respuesta del servidor
 
-//     </div>
-//   )
-// }
+      window.location.href = response.data; // Redirige al usuario al flujo de pago de Mercado Pago
+    } catch (error) {
+      console.error("Error creating order:", error);
+      setLoading(false);
+    }
+  };
+  return (
+    <div>
+      <button onClick={create} disabled={loading}>
+        {loading ? "Loading..." : "Pagar con Mercado Pago"}
+      </button>
 
-// export default Checkout
+      <Link to={ROUTES.HOME}>
+        <button>Home</button>
+      </Link>
+    </div>
+  );
+};
+
+export default Checkout;
