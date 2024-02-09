@@ -1,0 +1,45 @@
+.formContainer {
+  width: 95%;
+  margin: 0 auto; 
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.user {
+  align-items: center; 
+  list-style: none;
+  margin-bottom: 1.5px;
+  padding: 15px;
+  background-color: #e0e0e0;
+}
+
+.user:hover {
+  background-color: #c2c2c2;
+}
+
+.userName p, .userState p {
+  margin: 0;
+  display: block;
+}
+
+
+
+
+.user button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #666766; /* Color de fondo verde */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.user button:hover {
+  background-color: #ccc;
+  color: black;
+  cursor: pointer;
+}
