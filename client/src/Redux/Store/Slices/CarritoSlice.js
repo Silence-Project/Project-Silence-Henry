@@ -21,6 +21,40 @@ export const deleteProductDb = createAsyncThunk(
   }
 )
 
+export const getCar = createAsyncThunk(
+  "cars",
+  async () => {
+      try {
+          const response = await axios.get("http://127.0.0.1:3001/car/cars");
+          localStorage.setItem("car", JSON.stringify(response.data));
+
+          return response.data;
+      }
+
+      catch (error) {
+          console.log(error);
+      }}
+)
+
+
+export const postCar = createAsyncThunk(
+  "car/new",
+  async (car) => {
+      try {
+          const response = await axios.post("http://127.0.0.1:3001/car/new" , car);
+
+          return response.data;
+      }
+
+      catch (error) {
+          console.log(error);
+      }
+  }
+
+)
+
+
+
 export const saveProductDb = createAsyncThunk(
   'carrito/saveProductDb',
   async (idUser, idProduct, quantity = 1) => {
@@ -37,33 +71,62 @@ export const saveProductDb = createAsyncThunk(
       url: 'http://127.0.0.1:3001/car/newProduct'
     };
 
-import { createAsyncThunk } from '@reduxjs/toolkit'
+    const data = {
+      carId: idUser,
+      productId: idProduct,
+      quantity: quantity
+    };
 
-export const getCar = createAsyncThunk(
-  "cars",
-  async () => {
-      try {
-          const response = await axios.get("http://127.0.0.1:3001/car/cars");
-          localStorage.setItem("car", JSON.stringify(response.data));
-
-//       return response.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// )
-
-export const createOrder = async () => {
-  try {
-    const response = await axios.post("http://127.0.0.1:3001/carrito");
-
-    return response.data;
+    try {
+      const response = await axios(config, data);
+      return await response;
+    } catch (error) {
+      // Retornar un objeto con el error para manejarlo en el reducer
+      return { error: error.message };
+    }
   }
-  catch (error) {
-    console.log(error);
-  }
-}
+)
 
+export const getCarrito = createAsyncThunk(
+  'carrito/obtener',
+  async (idUser) => {
+
+    const config = {
+      method: 'get',
+      url: `http://127.0.0.1:3001/car/car/${idUser}`
+    };
+
+    try {
+      const response = await axios(config);
+      return await response.data;
+    } catch (error) {
+      // Retornar un objeto con el error para manejarlo en el reducer
+      return { error: error.message };
+    }
+  }
+)
+
+export const createCarrito = createAsyncThunk(
+  'carrito/crear',
+  async (idUser) => {
+    
+    const config = {
+      method: 'post',
+      url: 'http://127.0.0.1:3001/car/new',
+      data: {
+        idUser: idUser,
+      },
+    };    
+
+    try {
+      const response = await axios(config);
+      return await response.data;
+    } catch (error) {
+      // Retornar un objeto con el error para manejarlo en el reducer
+      return { error: error.message };
+    }
+  }
+)
 
 export const carritoSlice = createSlice({
   name: 'carrito',
@@ -75,6 +138,7 @@ export const carritoSlice = createSlice({
         
       const producto = action.payload;
 
+      console.log("QUANTITY ACA ->" + producto.quantity)
       const existingProduct = state.productos.find(item => item.id === producto.id);
 
       if (existingProduct) {

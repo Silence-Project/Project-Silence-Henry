@@ -16,9 +16,8 @@ import { createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/S
 
 export default function Details(props) {
 
-  const dispatch = useDispatch();
-const { user  = { email: 'null@null.null' } } = useAuth0();
 const dispatch = useDispatch();
+const { user  = { email: 'null@null.null' } } = useAuth0();
 
   const {id} = useParams();
 
