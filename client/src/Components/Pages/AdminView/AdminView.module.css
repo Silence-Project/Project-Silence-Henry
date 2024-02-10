@@ -44,3 +44,21 @@
 .CreateProduct {
   width: 100%;  
 }
+
+.btnHome {
+  padding: 10px 20px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.btnHome:hover {
+  background-color: #ffffff;
+  border: 2px solid #000000; 
+  color: black;
+}

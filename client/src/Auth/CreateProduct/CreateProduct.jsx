@@ -14,7 +14,7 @@ import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./CreateProduct.module.css";
 
 function CreateProduct({ handleCloseCreateProduct }) {
-  const [uploadedFileName, setUploadedFileName] = useState("");
+  const [uploadedFileName, setUploadedFileName] = useState(""); 
   const [fileError, setFileError] = useState("");
   const [uploadedFileUrl, setUploadedFileUrl] = useState("");
   const [showModal, setShowModal] = useState(false);
