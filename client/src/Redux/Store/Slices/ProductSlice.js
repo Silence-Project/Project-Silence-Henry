@@ -35,6 +35,26 @@ export const getById = createAsyncThunk(
     }
 )
 
+// Ruta buscar por nombre 
+
+export const getByName = createAsyncThunk(
+  "productsDetails",
+  async (name) => {
+      try {
+          const response = await axios.get(`http://127.0.0.1:3001/products/name/name?name=${name}`);
+
+          localStorage.setItem("productsDetails", JSON.parse(response.data));
+
+          return response.data;
+      }   
+      catch (error) {
+          console.log(error);
+      }
+  }
+)
+
+//
+
 export const postProduct = createAsyncThunk(
     "products/new",
     async (product) => {
