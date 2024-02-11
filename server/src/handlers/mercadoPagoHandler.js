@@ -25,10 +25,10 @@ mercadoPagoHandler.post('/', async (req, res) => {
         const preference = {
             items: arrayProducts,
             back_urls: {
-                success: 'http://127.0.0.1:3000/home' ,
-                failure: 'http://127.0.0.1:3000/home' 
+                success: 'http://127.0.0.1:3000/home/confirmacion' ,
+                failure: 'http://127.0.0.1:3000/home/error'
             },
-            auto_return: "approved"
+            auto_return: "all"
         };
 
         const response = await mercadopago.preferences.create(preference);
@@ -42,6 +42,7 @@ mercadoPagoHandler.post('/', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 module.exports = {
     mercadoPagoHandler
