@@ -59,11 +59,10 @@ export default function Details() {
           console.log(carritoCreado.payload);
         }
         else{
-          console.log('Carrito ya existente en la base de datos.');
-          //const idProduct = product[0].id
-          const props = {idUser: idUser, arrayIdProduct: arrayIdProduct, quantity: 1}
+          //console.log('Carrito ya existente en la base de datos.');
+          const props = {idCarrito: carritob, arrayIdProduct: arrayIdProduct, quantity: 1}
           const saveP = await dispatch(saveProductDb(props))
-          console.log('Respuesta del saveCarrito: ');
+          console.log('Respuesta del saveProductDb: ');
           console.log(saveP.payload)
         }
         dispatch(anadirProducto(product[0]))
