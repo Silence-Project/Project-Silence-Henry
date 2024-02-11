@@ -15,14 +15,15 @@ const CarritoSlides = () => {
 
   const totales = []
 
-  // if (productos.length === 0) {
-  //   return <p>No hay productos en el carrito</p>;
-  // }
-
+  if (productos.length === 0) {
+    return <p>No hay productos en el carrito</p>;
+  }
+  
   // const handlerDrop = (idProducto)=> {
   //   console.log('Hola Soy el botón eliminar');
   //   const dropProd = dispatch(eliminarProducto(idProducto))
   //   console.log(dropProd);
+  //   return dropProd
   // }
 
   return (
@@ -45,8 +46,7 @@ const CarritoSlides = () => {
               <td className={styles.price}>{producto.price}</td>
               <td className={styles.totalUnitario}>{totales.push(producto.price * producto.cantidad) && producto.price * producto.cantidad}</td>
               <td className={styles.button}> 
-                {/* <button onClick={handlerDrop(producto.id)}>Eliminar</button>  */}
-                <button>Eliminar</button>
+                <button onClick={handlerDrop(producto.id)}>Eliminar</button> 
               </td>
             </tr>
           </>                
