@@ -18,6 +18,8 @@ import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 import PrivateRouting from "./Components/Authentication/PrivateRouting/Privaterouting";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
 
+import QuienesSomos from "./Components/Pages/QuienesSomos/QuienesSomos";
+
 function App() {
   return (
     <>
@@ -32,13 +34,14 @@ function App() {
           <Route path="/profile" element={<MyProfile />} />
         </Route>
 
-        {/*
+        <Route element={<QuienesSomos/>} path="/quienesSomos"></Route>
+
+        {/* {
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
-
-        */}
+        } */}
 
         <Route path={ROUTES.REGISTER} element={<UserRegister />}></Route>
 
