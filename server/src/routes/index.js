@@ -6,7 +6,6 @@ const carRouter = require('./carRouter');
 const orderRouter = require('./orderRouter');
 const mercadoPagoRouter = require('./mercadoPagoRouter');
 const locationRouter = require('./locationRouter');
-const favoriteRouter = require('./favoriteRouter');
 
 const router = Router();
 
@@ -17,6 +16,5 @@ router.use('/categories', categoryRouter);
 router.use('/car', carRouter);
 router.use('/orders', orderRouter);
 router.use('/payment', mercadoPagoRouter);
-router.use('/favorite', favoriteRouter)
 
 module.exports = router;

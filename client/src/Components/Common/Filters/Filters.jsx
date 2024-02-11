@@ -1,11 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import ProductDb from "../../../Redux/Store/Slices/UserSlice.js";
 
-import Sidebar from "../../Common/Sidebar/Sidebar"
+import Sidebar from "../../Common/Sidebar/Sidebar";
 import ProductCard from "../../Common/ProductCard/ProductCard";
 import Recommended from "../../Common/CategoryRecommended/Recommended";
-import 
 // import "../../index.css"
 
 function Filter() {
@@ -15,7 +14,8 @@ function Filter() {
   const [query, setQuery] = useState("");
 
   const handleInputChange = (event) => {
-  
+    // ...
+  };
 
   const filteredItems = products.filter(
     (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
@@ -78,4 +78,3 @@ function Filter() {
 }
 
 export default Filter;
-

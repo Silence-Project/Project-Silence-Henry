@@ -20,6 +20,7 @@ import imgLogo from '../../../img/silenceImg.png';
 import searchIcon from '../../../img/icons/search.png';
 import shoppingCartIcon from '../../../img/icons/shopping-cart.png';
 import userIcon from '../../../img/icons/user-icon.png';
+import Filter from "../../Common/Filters/Filters";
 
 // import LoginButton from "../../Authentication/LoginBtn/LoginBtn"
 // import AuthLoginButtton from "../../Authentication/LoginBtn/AuthLoginButtton";
@@ -62,6 +63,7 @@ const Head = () => {
     <div className={styles.header1}>
       <MenuHamburger />
       <Recommended />
+      {/* <Filter /> */}
     <form>
 
       {/* Input Searh Bar */}

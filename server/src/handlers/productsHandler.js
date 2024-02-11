@@ -49,17 +49,16 @@ const postNewProductHandler = async (req, res) => {
 }
 
 const changeProductHandler = async (req, res) => {
-    const { id } = req.params; 
-
-    const { code, name, description, size, color, material, weight, image, cost, price, preference, state } = req.body;
+    const { code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min } = req.body;
     try {
-        const productUpdate = await changeProducts({ id, code, name, description, size, color, material, weight, image, cost, price, preference, state });
-        res.status(200).json(productUpdate);
+        const product = await changeProducts(code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, min)
+        // console.log('product---> ', product);
+        res.status(200).json(product)
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        // console.log(error);
+        res.status(400).send(`No se pudo actualizar el producto ${code} ${description}`)
     }
-};
-
+}
 
 const deleteProductHandler = async (req, res) => {
     //si sw es true se borra el registro de la tabla, si es false se desactiva el registro y no se elimina
