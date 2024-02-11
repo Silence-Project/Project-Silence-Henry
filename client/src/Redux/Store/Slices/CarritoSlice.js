@@ -23,29 +23,35 @@ export const deleteProductDb = createAsyncThunk(
 
 export const saveProductDb = createAsyncThunk(
   'carrito/saveProductDb',
-  async (idUser, idProduct, quantity = 1) => {
+  async ({idUser, arrayIdProduct, quantity}) => {
 
-    // console.log('dates Save Products');
-    // console.log(idUser);
-    // console.log('Id Producto: ');
-    // console.log(idProduct);
-    // console.log(`${idProduct}`);
-    // console.log(quantity);
+    const stringIdProduct = arrayIdProduct.join("")
+
+    console.log('------------------------------------------------------------------------------');
+    console.log('dates Save Products');
+    console.log('Id User: ');
+    console.log(idUser);
+    console.log('Id Producto: ');
+    console.log(stringIdProduct);
+    console.log('Cantidad, quantity: ')
+    console.log(quantity);
+    console.log('------------------------------------------------------------------------------');
 
     const config = {
       method: 'post',
       url: 'http://127.0.0.1:3001/car/newProduct'
     };
 
-    const data = {
+    let data = {
       carId: idUser,
-      productId: idProduct,
+      productId: stringIdProduct,
       quantity: quantity
     };
 
     try {
       const response = await axios(config, data);
-      return await response;
+      console.log(response.data);
+      return await response.data;
     } catch (error) {
       // Retornar un objeto con el error para manejarlo en el reducer
       return { error: error.message };

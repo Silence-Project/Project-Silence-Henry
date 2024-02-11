@@ -1,24 +1,29 @@
 // Carrito.jsx
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ROUTES from '../../../Helpers/Routes.helper';
+
+import { eliminarProducto } from "../../../Redux/Store/Slices/CarritoSlice";
 
 import styles from './Carrito.module.css'
 
 const CarritoSlides = () => {
 
+  const dispatch = useDispatch();
   const productos = useSelector(state => state.carrito.productos);
-
-
 
   const totales = []
 
-  if (productos.length === 0) {
-    return <p>No hay productos en el carrito</p>;
-  }
+  // if (productos.length === 0) {
+  //   return <p>No hay productos en el carrito</p>;
+  // }
 
-  console.log(productos);
+  // const handlerDrop = (idProducto)=> {
+  //   console.log('Hola Soy el botón eliminar');
+  //   const dropProd = dispatch(eliminarProducto(idProducto))
+  //   console.log(dropProd);
+  // }
 
   return (
     <div className={styles.container}>
@@ -30,6 +35,7 @@ const CarritoSlides = () => {
           <th>Cantidad</th>
           <th>Precio Unitario</th>
           <th>Precio Total</th>
+          <th></th>
         </tr>
         {productos.map(producto => (  
           <>
@@ -38,6 +44,10 @@ const CarritoSlides = () => {
               <td className={styles.cantidad}>{producto.cantidad}</td>
               <td className={styles.price}>{producto.price}</td>
               <td className={styles.totalUnitario}>{totales.push(producto.price * producto.cantidad) && producto.price * producto.cantidad}</td>
+              <td className={styles.button}> 
+                {/* <button onClick={handlerDrop(producto.id)}>Eliminar</button>  */}
+                <button>Eliminar</button>
+              </td>
             </tr>
           </>                
 

@@ -24,7 +24,7 @@ export default function Details() {
     return idUser
   }
 
-  const {id} = useParams();
+  const {id} = useParams()
 
   const productsDetails = useSelector((state) => state.product.productsDetails);
   const categories = useSelector((state) => state.product.categories);
@@ -43,12 +43,15 @@ export default function Details() {
     if(product){
       try {
 
+        let arrayIdProduct = id.split("")
+
+        // console.log('---------------------------------------------------------');
+        // console.log('Console log, id producto: ');
+        // console.log(arrayIdProduct);
+        // console.log('---------------------------------------------------------');
+
         const carritoa = await dispatch(getCarrito(idUser))
         const carritob = carritoa.payload ? carritoa.payload : null
-
-        console.log('--------------------------------');
-        console.log(idUser);
-        console.log('--------------------------------');
 
         if(carritob.length === 0){
           console.log('Creando carrito para el usuario en la base de datos.');
@@ -57,10 +60,11 @@ export default function Details() {
         }
         else{
           console.log('Carrito ya existente en la base de datos.');
-          const idProduct = product[0].id
-          const saveP = await dispatch(saveProductDb(idUser, idProduct))
-          console.log('Respuesta del saveCarrito');
-          console.log(saveP.payload.data)
+          //const idProduct = product[0].id
+          const props = {idUser: idUser, arrayIdProduct: arrayIdProduct, quantity: 1}
+          const saveP = await dispatch(saveProductDb(props))
+          console.log('Respuesta del saveCarrito: ');
+          console.log(saveP.payload)
         }
         dispatch(anadirProducto(product[0]))
       } 
