@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 
-import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice";
+import { getById, getCategories, updateProduct } from "../../../Redux/Store/Slices/ProductSlice";
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
@@ -20,6 +20,19 @@ const {id} = useParams();
 const productsDetails = useSelector((state) => state.product.productsDetails);
 
 const categories = useSelector((state) => state.product.categories);
+
+
+
+
+const handleSubmit = (values, {setSubmitting}) => {
+  
+  dispatch(updateProduct(values));
+
+}
+
+
+
+
  
 useEffect(() => {
       dispatch(getById(id));
@@ -29,6 +42,10 @@ useEffect(() => {
   const handleAddProduct = (product) => {    
     dispatch(anadirProducto(product[0]));
   }
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
 
   return (
     <div className="general">
@@ -57,6 +74,40 @@ useEffect(() => {
         </div>
       </div>
     ))}
+
+
+    <Formik
+      initialValues={{
+        name: productsDetails[0].name,
+        description: productsDetails[0].description,
+        code: productsDetails[0].code,
+        idCategory: productsDetails[0].idCategory,
+        image: productsDetails[0].image,
+        cost: productsDetails[0].cost,
+        price: productsDetails[0].price,
+        preference: productsDetails[0].preference,
+        state: productsDetails[0].state,
+        stock: productsDetails[0].stock,
+        min: productsDetails[0].min,
+        quantity: productsDetails[0].quantity
+      }}
+
+      onSubmit={handleSubmit}
+
+    >
+      <Form>
+
+        <Field type="text" name="name" placeholder="Name" />
+        <ErrorMessage name="name" component="div" />
+
+    
+        <Field type="text" name="description" placeholder="Description" />
+        <ErrorMessage name="description" component="div" />
+
+      </Form>
+
+    </Formik>
+      
 
     <button className="botondetail" onClick={() => handleAddProduct(productsDetails) } >Añadir al carrito de compras</button>
 

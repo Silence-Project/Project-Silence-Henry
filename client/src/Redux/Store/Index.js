@@ -4,6 +4,7 @@ import  userReducer from "./Slices/UserSlice";
 import   productReducer  from "./Slices/ProductSlice";
 import   carritoReducer  from "./Slices/CarritoSlice";
 // import   checkoutReducer  from "./Slices/CheckoutSlice";
+import   favReducer  from "./Slices/FavSlice";
 
 
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
     product: productReducer,
     carrito: carritoReducer,
     // checkout: checkoutReducer,
+    fav: favReducer,
   },
 });
 
