@@ -5,6 +5,7 @@ import Head from "../../Common/Header/Head";
 import Footer from "../../Common/FooterView/Footer";
 import TabsView from "../TabsView/TabsView";
 import TakeUserData from "../TakeUserData/TakeUserData";
+import style from "./MyProfile.module.css"
 
 const MyProfile = () => {
 
@@ -27,21 +28,23 @@ const MyProfile = () => {
   return (
     // !user ? loginWithRedirect() :
     // isAuthenticated && (
-    <div>
+    <>
       <Head />
-      <div>
-        <h2>Hola, {user.nickname}.</h2>
+      <div className={style.profileContainer}>
+        <div>
+          <h2>Hola, {user.nickname}.</h2>
+        </div>
+        <aside>
+          <TabsView localUserData={localUserData} />
+        </aside>
+        <button onClick={() => logoutWithRedirect()}>
+          Cerrar sesión
+        </button>
+        {/* <TakeUserData /> */}
       </div>
-      <aside>
-        <TabsView localUserData={localUserData} />
-      </aside>
-      <button onClick={() => logoutWithRedirect()}>
-        Cerrar sesión
-      </button>
-      <TakeUserData />
       <Footer />
-    </div>
-    //)
+    </>
+    // )
   )
 };
 
