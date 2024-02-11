@@ -27,8 +27,6 @@ const MyProfile = () => {
   console.log('habra llegado herencia?? ', localUserData);
 
   return (
-    // !user ? loginWithRedirect() :
-    // isAuthenticated && (
     <>
       <Head />
       <div className={style.profileContainer}>
@@ -44,7 +42,6 @@ const MyProfile = () => {
         <button onClick={() => logoutWithRedirect()}>
           Cerrar sesión
         </button>
-        {/* <TakeUserData /> */}
       </div>
       <Footer />
     </>
