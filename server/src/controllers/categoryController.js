@@ -1,7 +1,6 @@
 const { Category, Products } = require('../config/bd');
 
-// Create Category
-// Tiene relación uno a muchos con productos
+// CREATE A CATEGORY
 const createCategory = async (name) => {
     try{
         const newCategory = await Category.create({
