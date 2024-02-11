@@ -22,3 +22,22 @@
   transform: translate(-50%, -50%);
   color: green;
 }
+
+
+@media only screen and (max-width: 768px) {
+  .homeContainer {
+    flex-direction: column;
+  }
+
+  .topMessage {
+    height: 10vh; 
+    font-size: 1.2rem; 
+  }
+
+  .cardContainer p {
+    position: static;
+    transform: none;
+    text-align: center; 
+    margin-top: 20px; 
+  }
+}
