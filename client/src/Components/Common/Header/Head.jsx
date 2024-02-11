@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 
 import MenuHamburger from '../MenuHamburger/MenuHamburger';
+import Recommended from '../../../Components/Common/CategoryRecommended/Recommended';
 
 
 import { useState } from "react";
@@ -60,6 +61,7 @@ const Head = () => {
   return (
     <div className={styles.header1}>
       <MenuHamburger />
+      <Recommended />
     <form>
 
       {/* Input Searh Bar */}
