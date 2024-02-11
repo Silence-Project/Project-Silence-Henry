@@ -3,12 +3,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-// const {
-//   REACT_APP_AUTH0_DOMAIN,
-//   REACT_APP_AUTH0_CLIENT_ID,
-//   REACT_APP_AUTH0_CALLBACK_URL,
-// } = process.env;
-
 export const Auth0ProviderWithNavigate = ({ children }) => {
   const navigate = useNavigate();
 
@@ -16,6 +10,7 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
   const domain = import.meta.env.VITE_REACT_APP_AUTH0_DOMAIN;
   const clientId = import.meta.env.VITE_REACT_APP_AUTH0_CLIENT_ID;
   // const redirectUri = "https://silencepage.netlify.app/" || import.meta.env.VITE_REACT_APP_AUTH0_CALLBACK_URL;
+  // const redirectUri = "http://localhost:5173/profile";
   const redirectUri = import.meta.env.VITE_REACT_APP_AUTH0_CALLBACK_URL;
   
   const onRedirectCallback = (appState) => {

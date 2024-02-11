@@ -9,6 +9,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import ProductList from "../../Common/ProductList/ProductList"; 
 import Footer from "../../Common/FooterView/Footer";
 import Descuento from "../../Common/Descuento/Descuento";
+import TakeUserData from "../../../Helpers/TakeUserData";
 import styles from "./Home.module.css";
 
 const Home = () => {
@@ -41,6 +42,7 @@ const Home = () => {
           <ProductList products={sortedProducts} filterTerm={filterTerm} /> {/* Pasar filterTerm */}
         </div>
 
+        <TakeUserData />
         <Footer />
       </div>
     </>
