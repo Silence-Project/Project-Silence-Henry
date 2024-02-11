@@ -6,16 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
 import Head from "../../Common/Header/Head";
 import { unwrapResult } from "@reduxjs/toolkit";
-import ProductList from "../../Common/ProductList/ProductList"; 
+import ProductList from "../../Common/ProductList/ProductList";
 import Footer from "../../Common/FooterView/Footer";
 import Descuento from "../../Common/Descuento/Descuento";
-import TakeUserData from "../../../Helpers/TakeUserData";
 import styles from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const [filterTerm, setFilterTerm] = useState('');
+  const cardsPerPage = 5; 
 
   useEffect(() => {
     dispatch(getProducts())
@@ -35,14 +35,10 @@ const Home = () => {
     <>
       <div className={styles.homeContainer}>
         <Descuento />
-
         <Head setFilterTerm={setFilterTerm} />
-
         <div className={styles.cardContainer}>
-          <ProductList products={sortedProducts} filterTerm={filterTerm} /> {/* Pasar filterTerm */}
+          <ProductList products={sortedProducts} filterTerm={filterTerm} cardsPerPage={cardsPerPage} />
         </div>
-
-        <TakeUserData />
         <Footer />
       </div>
     </>
@@ -50,4 +46,5 @@ const Home = () => {
 };
 
 export default Home;
+
 

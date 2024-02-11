@@ -4,77 +4,89 @@
 }
 
 .productDetail {
-    height: 350px;
-    width: 250px;
-    display: flex;
-    background-color:#95dada54;         
-    border: 1px solid grey;            
-    border-radius: 50px;
-    padding: 25px;
-    cursor: pointer;
-    -moz-osx-font-smoothing: grayscale;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    transition: transform 0.5s ease-out;
-    text-decoration: none;
-    margin: 20px;
-  }
-  
-  .productDetail:hover {
-    transform: scale(1.1);
-    border-radius: 50px;
-    background: linear-gradient(
-      60deg,
-      #ECEBE8,
-      #FFFFFF,
-      #ECEAE1,
-      #E3E1DA,
-      #D8CDC4,
-      #D3C9C2,
-      #CCCBBF,
-      #C0B3A3,
-      #C5B4A0,
-      #FAD2D1
+  height: 280px;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  background-color: #c0f5f554;
+  border: 1px solid rgb(218, 218, 218);
+  border-radius: 20px;
+  padding: 15px;
+  cursor: pointer;
+  transition: transform 0.5s ease-out;
+  margin: 20px;
+}
 
+.productDetail:hover {
+  transform: scale(1.05);
+  background: linear-gradient(
+    60deg,
+    #ecebe8,
+    #ffffff,
+    #eceae1,
+    #e3e1da,
+    #d8cdc4,
+    #d3c9c2,
+    #cccbbf,
+    #c0b3a3,
+    #c5b4a0,
+    #fad2d1
+  );
+  animation: animatedgradient 3s ease infinite;
+}
 
-    );
-    /* border-radius: calc(2 * var(--borderWidth)); */
-    /* z-index: -1; */
-    animation: animatedgradient 3s ease infinite;
-  }
-  
-  .productImage {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 15px;
-  }
-  
-  .info {
-    padding: 5px;
-    margin: 5px;
-    border-radius: 10px;
-    border: 1px solid rgb(0, 0, 0);
-    font-weight: bold;
-    font-size: 15px;
-    color: rgb(226, 226, 226);
-    background-color: #363d47b9;
-    width: 40%;
-    text-decoration: none;
-    justify-content: center;
-    display: flex;
-    margin-left: 28%;
-  
-  }
-  
-  /* .Link-card {
-    text-decoration: none;
-  } */
-  
-  .productName {
-    font-family: 'Now';
-    font-size: 30px;
-    color: #072430;
-    display: flex;
-    justify-content: center;
-  }
+.productImageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.productImage {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.info {
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(226, 226, 226);
+  background-color: #c0c0c1b9;
+  width: 100%;
+  text-align: center;
+}
+
+.productName {
+  font-family: 'Now';
+  font-size: 18px;
+  color: #072430;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.productPrice {
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.button {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #7a7979;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #999;
+}
