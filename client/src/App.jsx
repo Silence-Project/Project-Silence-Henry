@@ -109,6 +109,9 @@ import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 import PrivateRouting from "./Components/Authentication/PrivateRouting/Privaterouting";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
 
+import Fav from "./Components/Common/favoritos/Favoritos";
+
+
 function App() {
   return (
     <>
@@ -152,6 +155,9 @@ function App() {
         <Route path="/carrito" element={<CarritoSlides />}></Route>
 
         <Route path="/checkout" element={<Checkout />}></Route>
+
+        <Route path="/favoritos" element={<Fav />}></Route>
+
       </Routes>
     </>
   );

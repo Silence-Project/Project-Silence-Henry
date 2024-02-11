@@ -10,11 +10,20 @@ import { useDispatch } from 'react-redux';
 
 import { anadirProducto } from '../../../Redux/Store/Slices/CarritoSlice';
 
+import { addFavorito } from "../../../Redux/Store/Slices/FavSlice";
+
+
+
 const ProductCard = ({product}) => {
 
   const { id, name, image, price, description, stock, color, categoria, peso, codigo } = product
 
   const dispatch = useDispatch();
+
+  const handleAddFavorito = (product) => {
+    dispatch(addFavorito(product));
+  }
+
 
   const handleAddProduct = (product) => {
     dispatch(anadirProducto(product));
@@ -59,8 +68,12 @@ const ProductCard = ({product}) => {
         
         </div>
         </Link>
+
+        <button onClick={() => handleAddFavorito(product)}>Agregar a Favoritos</button>
       </div>
       
+      
+
     </div>
 
   )

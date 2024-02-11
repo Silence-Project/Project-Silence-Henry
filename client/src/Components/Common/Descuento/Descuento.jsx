@@ -1,11 +1,17 @@
-import styles from './Descuento.module.css'
+// Descuento.js
+import React from "react";
+import { useSelector } from "react-redux";
+import styles from "./Descuento.module.css";
 
 const Descuento = () => {
-  return(
-    <div className={styles.topMessage}>
-      20% de descuento por pago en efectivo
-    </div>
-  )
-}
+  const descuento = useSelector((state) => state.admin.descuento);
 
-export default Descuento
+  return (
+    <div className={styles.topMessage}>
+      <h2> {descuento}</h2>
+
+    </div>
+  );
+};
+
+export default Descuento;

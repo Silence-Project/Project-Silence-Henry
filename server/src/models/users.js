@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
         },
       },
     },
-    sex: {
+    gender: {
       type: DataTypes.ENUM("hombre", "mujer", "otro"),
       defaultValue: "otro",
     },

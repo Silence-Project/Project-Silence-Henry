@@ -1,5 +1,5 @@
-const { Router } = require("express");
-const { User } = require("../config/bd");
+// const { Router } = require("express");
+const { User, Location } = require("../config/bd");
 const { createUser } = require("../controllers/users/createUserController");
 const {
   getUserByEmail,
@@ -8,10 +8,10 @@ const {
   getUserCredentials,
 } = require("../controllers/users/getUserCredentials");
 
-const userHandler = Router();
+// const userHandler = Router();
 
 //POST
-userHandler.post("/", async (req, res) => {
+const postNewUserHandler = async (req, res) => {
   const { firstName, email, password } = req.body;
 
   try {
@@ -24,10 +24,10 @@ userHandler.post("/", async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-});
+};
 
 //GET validate email&&password - body
-userHandler.get("/login", async (req, res) => {
+const getLoginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -39,7 +39,7 @@ userHandler.get("/login", async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-});
+};
 
 //GET by param email - /email@mail.com
 /**
@@ -52,7 +52,7 @@ userHandler.get("/login", async (req, res) => {
  * isAdmin ? boolean
  * }
  */
-userHandler.get("/", async (req, res) => {
+const findUserByEmailOrAll =  async (req, res) => {
   const { email } = req.query;
 
   try {
@@ -62,6 +62,11 @@ userHandler.get("/", async (req, res) => {
           exclude: ["createdAt", "updatedAt"],
         },
         order: [["id", "ASC"]],
+        include: [{
+          model: Location,
+          as: 'locations',
+          attributes: ["id", "country", "city", "address", "postalCode"]
+        }],
       });
       //return para cortar bloque
       return res.status(200).json(users);
@@ -72,13 +77,19 @@ userHandler.get("/", async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-});
+};
 
 //GET by user ID - /:id params
-userHandler.get("/:id", async (req, res) => {
+const getUserDetailHandler = async (req, res) => {
   const { id } = req.params;
   try {
-    const singleUser = await User.findByPk(id);
+    const singleUser = await User.findByPk(id, {
+      include: [{
+        model: Location,
+        as: 'locations',
+        attributes: ["id", "country", "city", "address", "postalCode"]
+      }],
+    });
 
     if (!singleUser)
       return res.status(404).send(`Usuario con ID ${id} no existe.`);
@@ -87,10 +98,10 @@ userHandler.get("/:id", async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-});
+};
 
 //PATCH update user data - /:id param
-userHandler.patch("/:id", async (req, res) => {
+const updateUserHandler = async (req, res) => {
   const userIdToUpdate = parseInt(req.params.id);
 
   const dataToUpdate = req.body;
@@ -110,8 +121,13 @@ userHandler.patch("/:id", async (req, res) => {
   } catch (error) {
     res.status(400).json({ userUpdated: false, error: error.message });
   }
-});
+};
 
 module.exports = {
-  userHandler,
+  postNewUserHandler,
+  findUserByEmailOrAll,
+  getLoginUser,
+  getUserDetailHandler,
+  updateUserHandler,
+  // userHandler,
 };

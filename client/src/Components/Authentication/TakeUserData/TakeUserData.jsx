@@ -9,7 +9,7 @@ const TakeUserData = () => {
 
   // Realizar el registro del usuario en el backend
   const createLocalSignUp = async () => {
-    console.log("Enviando datos de usuario al servidor para registro...");
+    // console.log("Enviando datos de usuario al servidor para registro...");
     const response = await fetch("http://localhost:3001/usuarios", {
       method: "POST",
       headers: {
@@ -34,7 +34,8 @@ const TakeUserData = () => {
   createLocalSignUp();
 
   return (
-    <h2>nada</h2>
+    // <h2>nada</h2>
+    <></>
   )
 }
 

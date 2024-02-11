@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 
 import ROUTES from '../../../Helpers/Routes.helper';
 
+
+
 const Favoritos = () => {
 
     const favoritos = useSelector((state) => state.fav.favoritos);

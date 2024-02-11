@@ -1,49 +1,92 @@
 .formContainer {
-  /* max-width: 400px; */
-  /* margin: auto; */
-  /* padding: 20px; */
   background-color: var(--PureWhite);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 98vw;
+  height: 100%;
+  margin: 1% auto; 
+  box-shadow: 2px 2px 12px rgba(0, 0, 0);
   text-align: center;
   font-family: 'Now';
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(95, 95, 95, 0.8);
-  /* flex-direction: row; */
+  box-shadow: 0 0 20px rgba(0, 0, 0);
+}
+
+.formWrapper {
+  position: relative;
+}
+
+.btnCloseContainer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.btnCancel img {
+  position: absolute;
+  top: 10px; 
+  right: 10px; 
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
 }
 
 .formContainer::after {
   content: "";
+  font-family: 'Now';
   position: absolute;
   top: 0;
   right: -100%;
-  width: 10%;
+  font-family: 'Now';
+  width: 5%;
   height: 100%;
-  background: linear-gradient(45deg, transparent, rgba(192, 192, 192, 0.8), transparent);
+  background: linear-gradient(45deg, transparent, rgba(169, 169, 169, 0.085), transparent);
   box-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
-  transition: .8s;
+  transition: 1.8s;
 }
 
 .formContainer:hover::after {
   right: 99%;
+  transition: 1.8s;
 }
 
-.socialContainer {
-  margin-top: 15px;
+h2 {
+  margin-bottom: 0.5%;
+  margin-top: 0.5%;
 }
 
+.groupOne {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  padding: 5px; 
+}
 
 .input {
-  margin-left: 30px;
-  width: 20%;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-left: 5px;
+  width: 96%;
+  padding: 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   box-sizing: border-box;
   border: 1px solid var(--ModerneGray);
   border-radius: 4px;
+  font-size: 14px;
 }
+
+
+.divForm {
+  flex-direction: column;
+  margin-bottom: 20px; 
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  justify-content: center; 
+}
+
 
 .error {
   display: flex;
@@ -61,8 +104,22 @@ a {
   color: var(--BalancedGray);
 }
 
-.btnSubmit {
+.home {
+  position: relative;
+  height: 50px;
+  width: 150px;
+  background-color: var(--AgreableGray);
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 15%;
+  margin-left: 100px;
+}
 
+
+.btnSubmit {
   height: 50px;
   width: 150px;
   background-color: var(--AgreableGray);
@@ -71,26 +128,72 @@ a {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 20px;
-  margin-left: 100px;
+  margin-top: 3%;
+  margin-right: 6%;
 }
+
 
 .btnSubmit:hover {
   background-color: var(--ReposeGray);
 }
 
 
-.divForm {
-  
-    
-  flex-direction: column;
 
-  margin-bottom: -10px;
-  height: 100px;
-  width: 2500px;
-  justify-content: center;
-  align-items: center;
-  margin-left: 30px;
-  /* margin-top: 100px; */
-
+.divForm label {
+  display: block; 
+  font-family: 'Now';
+  margin-bottom: 5px; 
+  font-weight: bold; 
+  color: #000000;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
+
+.divForm select {
+  padding: 8px; 
+  font-family: 'Now';
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+}
+
+
+.divForm select option {
+  font-family: 'Now';
+  padding: 5px;
+}
+
+
+.divForm select:focus {
+  outline: none; 
+  border-color: #6e98d1; 
+}
+
+.divForm img {
+  display: block; 
+  width: 30%; 
+  margin-top: -1%; 
+  border: 2px solid rgb(0, 0, 0);
+}
+
+input[type="color"] {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 80%;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+
+.textArea {
+  width: 90%; 
+  height: 100px; 
+  padding: 8px; 
+  font-size: 16px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  resize: none; 
+  box-sizing: border-box; 
+}
+

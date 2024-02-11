@@ -9,10 +9,17 @@ import { getById, getCategories, updateProduct } from "../../../Redux/Store/Slic
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
+import { useAuth0 } from "@auth0/auth0-react";
+import requiereUserBd from "../../../Helpers/requireUserBd";
+
+import { useFormik, Formik, Form, Field, ErrorMessage, } from "formik";
+
+
 
 
 export default function Details(props) {
 
+const { user  = { email: 'null@null.null' } } = useAuth0();
 const dispatch = useDispatch();
 
 const {id} = useParams();
@@ -43,9 +50,13 @@ useEffect(() => {
     dispatch(anadirProducto(product[0]));
   }
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
+  async function traerDataUser() {
+    const isRegisterededUser = await requiereUserBd(user.email);
+    // console.log('objeto usuario', isRegisterededUser);
+  }
+  traerDataUser(); //objeto { id: 1, isActive: true, isAdmin: true }
 
   return (
     <div className="general">
@@ -59,7 +70,7 @@ useEffect(() => {
           height="250px"
         />
         <div className="h4">
-          <h1>Nombre: {product.name}</h1>
+          <h1>Nombre: {product.name } </h1>
           <h1> ID: {product.id}</h1>
           <h4>📜 Description:</h4>
           <p className="description"> Descripcion: {product.description}</p>
@@ -78,18 +89,18 @@ useEffect(() => {
 
     <Formik
       initialValues={{
-        name: productsDetails[0].name,
-        description: productsDetails[0].description,
-        code: productsDetails[0].code,
-        idCategory: productsDetails[0].idCategory,
-        image: productsDetails[0].image,
-        cost: productsDetails[0].cost,
-        price: productsDetails[0].price,
-        preference: productsDetails[0].preference,
-        state: productsDetails[0].state,
-        stock: productsDetails[0].stock,
-        min: productsDetails[0].min,
-        quantity: productsDetails[0].quantity
+        name: productsDetails.name,
+        description: productsDetails.description,
+        code: productsDetails.code,
+        idCategory: productsDetails.idCategory,
+        image: productsDetails.image,
+        cost: productsDetails.cost,
+        price: productsDetails.price,
+        preference: productsDetails.preference,
+        state: productsDetails.state,
+        stock: productsDetails.stock,
+        min: productsDetails.min,
+        quantity: productsDetails.quantity
       }}
 
       onSubmit={handleSubmit}

@@ -47,7 +47,16 @@ const Head = () => {
       <NavLink to={ROUTES.Carrito}>      
         <img src={shoppingCartIcon} alt="kart market" className={styles.kartMarket} />
       </NavLink>
+    
+      <NavLink to= "/favoritos">
+        <button className={styles.favoritos}>Favoritos</button>
+      </NavLink>
+
     </div>
+
+    
+
+
   );
 };
 
