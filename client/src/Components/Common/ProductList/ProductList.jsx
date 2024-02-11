@@ -1,46 +1,37 @@
-import React from 'react';
+import React from "react";
 import Card from "../ProductCard/ProductCard";
-import styles from './ProductList.module.css';
+import styles from "./ProductList.module.css";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, filterTerm }) => {
   console.log("PRODUCTOS EN PRODUCTLIST ->", products);
+  console.log("TERM DE FILTRO ->", filterTerm);
 
-  if (!products) {
+  let filteredProducts = [...products];
+
+  if (filterTerm) {
+    console.log("ENTRO A FILTRAR...");
+    filteredProducts = filteredProducts.filter((product) =>
+      product.name.toLowerCase().includes(filterTerm.toLowerCase())
+    );
+  }
+
+  console.log("PRODUCTOS FILTRADOS ->", filteredProducts);
+
+  if (!filteredProducts.length) {
     return (
       <div className={styles.productList}>
-        <p>No se encontraron productos en la base de datos.</p>
+        <p className={styles.cargandoDatos}>Cargando datos...</p>
       </div>
     );
   }
 
-  if (Array.isArray(products)) {
-    if (products.length === 0) {
-      return (
-        <div className={styles.productList}>
-          <p className={styles.cargandoDatos}>Cargando datos...</p>
-        </div>
-      );
-    }
-    return (
-      <div className={styles.productList}>
-        {products.map((product) => (
-          <Card product={product} key={product.id} />
-        ))}
-      </div>
-    );
-  } else if (typeof products === 'object') {
-    return (
-      <div className={styles.productList}>
-        <Card product={products} key={products.id} />
-      </div>
-    );
-  } else {
-    return (
-      <div className={styles.productList}>
-        <p>No se encontraron productos en la base de datos.</p>
-      </div>
-    );
-  }
+  return (
+    <div className={styles.productList}>
+      {filteredProducts.map((product) => (
+        <Card product={product} key={product.id} />
+      ))}
+    </div>
+  );
 };
 
 export default ProductList;

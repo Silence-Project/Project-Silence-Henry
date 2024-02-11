@@ -1,12 +1,12 @@
 // import { Link } from "react-router-dom";
 // import ROUTES from "../../../Helpers/Routes.helper";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../Redux/Store/Slices/ProductSlice";
 import Head from "../../Common/Header/Head";
 import { unwrapResult } from "@reduxjs/toolkit";
-import Cards from "../../Common/ProductList/ProductList";
+import ProductList from "../../Common/ProductList/ProductList"; 
 import Footer from "../../Common/FooterView/Footer";
 import Descuento from "../../Common/Descuento/Descuento";
 import styles from "./Home.module.css";
@@ -14,6 +14,7 @@ import styles from "./Home.module.css";
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
+  const [filterTerm, setFilterTerm] = useState('');
 
   useEffect(() => {
     dispatch(getProducts())
@@ -34,10 +35,10 @@ const Home = () => {
       <div className={styles.homeContainer}>
         <Descuento />
 
-        <Head />
+        <Head setFilterTerm={setFilterTerm} />
 
         <div className={styles.cardContainer}>
-          <Cards className="card" products={sortedProducts} />
+          <ProductList products={sortedProducts} filterTerm={filterTerm} /> {/* Pasar filterTerm */}
         </div>
 
         <Footer />
@@ -47,3 +48,4 @@ const Home = () => {
 };
 
 export default Home;
+
