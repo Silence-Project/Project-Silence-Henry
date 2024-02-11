@@ -1,6 +1,5 @@
 // import mailInboxIcon from '../../../img/icons/mail-inbox-app.png'
 
-
 // import { NavLink } from "react-router-dom";
 
 import { NavLink } from "react-router-dom";
@@ -56,6 +55,8 @@ const Head = () => {
       document.getElementById("SearchInput").value = "";
     }
   }
+
+
   
   //
   

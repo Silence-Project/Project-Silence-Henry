@@ -3,7 +3,6 @@ import Category from './Category/Category.jsx';
 import Size from './Size/Size.jsx';
 import Color from './Color/Color.jsx';
 
-
 import "./Sidebar.css";
 
 const Sidebar = ({ handleChange }) => {
