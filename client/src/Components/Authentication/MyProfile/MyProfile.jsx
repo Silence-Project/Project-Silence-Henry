@@ -4,8 +4,9 @@ import { useOutletContext } from "react-router-dom";
 import Head from "../../Common/Header/Head";
 import Footer from "../../Common/FooterView/Footer";
 import TabsView from "../TabsView/TabsView";
-import TakeUserData from "../TakeUserData/TakeUserData";
+import TakeUserData from "../../../Helpers/TakeUserData";
 import style from "./MyProfile.module.css"
+import AdminView from "../../Pages/AdminView/AdminView";
 
 const MyProfile = () => {
 
@@ -23,7 +24,7 @@ const MyProfile = () => {
     });
 
   const [localUserData] = useOutletContext();
-  // console.log('habra llegado herencia?? ', localUserData);
+  console.log('habra llegado herencia?? ', localUserData);
 
   return (
     // !user ? loginWithRedirect() :
@@ -37,6 +38,9 @@ const MyProfile = () => {
         <aside>
           <TabsView localUserData={localUserData} />
         </aside>
+{
+  localUserData.isAdmin ? <AdminView /> : null
+}
         <button onClick={() => logoutWithRedirect()}>
           Cerrar sesión
         </button>

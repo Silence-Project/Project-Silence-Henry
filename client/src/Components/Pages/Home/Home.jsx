@@ -9,7 +9,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import ProductList from "../../Common/ProductList/ProductList"; 
 import Footer from "../../Common/FooterView/Footer";
 import Descuento from "../../Common/Descuento/Descuento";
-import TakeUserData from "../../Authentication/TakeUserData/TakeUserData";
+import TakeUserData from "../../../Helpers/TakeUserData";
 import styles from "./Home.module.css";
 
 const Home = () => {

@@ -9,6 +9,8 @@ const TakeUserData = () => {
 
   const { nickname, name, email } = user;
 
+
+  
   // Realizar el registro del usuario en el backend
   const createLocalSignUp = async () => {
     // console.log("Enviando datos de usuario al servidor para registro...");
