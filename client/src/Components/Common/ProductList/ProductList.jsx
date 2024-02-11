@@ -1,14 +1,17 @@
-
-import React from 'react'
-
+import React from 'react';
 import Card from "../ProductCard/ProductCard";
-
-import styles from './ProductList.module.css'
-
+import styles from './ProductList.module.css';
 
 const ProductList = ({ products }) => {
-
   console.log("PRODUCTOS EN PRODUCTLIST ->", products);
+
+  if (!products) {
+    return (
+      <div className={styles.productList}>
+        <p>No se encontraron productos en la base de datos.</p>
+      </div>
+    );
+  }
 
   if (Array.isArray(products)) {
     if (products.length === 0) {
@@ -31,7 +34,6 @@ const ProductList = ({ products }) => {
         <Card product={products} key={products.id} />
       </div>
     );
-
   } else {
     return (
       <div className={styles.productList}>
