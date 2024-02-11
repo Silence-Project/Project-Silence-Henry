@@ -2,16 +2,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import axios from "axios";
 
-export const getProducts = createAsyncThunk("products", async (_, { rejectWithValue }) => {
-  try {
-    const response = await axios.get("http://127.0.0.1:3001/products");
-    localStorage.setItem("products", JSON.stringify(response.data));
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return rejectWithValue([]); // Aquí usamos rejectWithValue para pasar un valor de error personalizado
+export const getProducts = createAsyncThunk(
+  "products",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("http://127.0.0.1:3001/products");
+      localStorage.setItem("products", JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue([]);
+    }
   }
-});
+);
 
 export const getById = createAsyncThunk("productsDetails", async (id) => {
   try {
