@@ -41,7 +41,7 @@ const Home = () => {
   return (
     <>
       <div className={styles.homeContainer}>
-        <Descuento />
+        
         <Head
           setFilterTerm={setFilterTerm}
           handleColorChange={handleColorChange}
