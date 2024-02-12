@@ -1,16 +1,19 @@
-.containerHamburger{
+.containerHamburger {
   float: left;
   margin: 12.5px;
 }
-.hamburger1, .hamburger2{
+.hamburger1,
+.hamburger2 {
   max-width: 30px;
   max-height: 30px;
 }
-.hamburger1, .hamburger2, .option1, .option2 {
+.hamburger1,
+.hamburger2,
+.option1 {
   cursor: pointer;
 }
 
-.option1, .option2{
+.option1 {
   position: absolute;
   left: 10vw;
   transform: translate(-50%, -50%);
@@ -18,22 +21,14 @@
   width: 180px;
   padding: 10px;
   border-radius: 5px;
-  border: solid white 1px;
+  /* border: solid white 1px; */
 }
 
-.option1{
+.option1 {
   top: 15vh;
 }
-.option2{
-  top: 22vh;
-}
 
-.option1:hover, .option2:hover{
-  opacity: 0.5;
-  border: solid black 1px;
-}
-
-.menuOpen{
+.menuOpen {
   position: absolute;
   left: 0;
   top: 0;
@@ -45,15 +40,17 @@
   padding: 5px;
 }
 
-.menuClosed{
+.menuClosed {
   display: none;
 }
 
-.createProducts, .login{
+.createProducts,
+.login {
   color: white;
 }
 
-.imgHover, .imgHover2{
+.imgHover,
+.imgHover2 {
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -62,15 +59,16 @@
   justify-content: center;
   float: left;
 }
-.imgHover:hover, .imgHover2:hover{
+.imgHover:hover,
+.imgHover2:hover {
   background-color: #8080808f;
 }
 
-.imgHover2{
+.imgHover2 {
   margin: 5%;
 }
 
-.navbarVertical{
+.navbarVertical {
   position: absolute;
   left: 0;
   top: 0;

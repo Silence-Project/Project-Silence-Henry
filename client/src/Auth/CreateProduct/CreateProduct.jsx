@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useOutletContext } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import ROUTES from "../../Helpers/Routes.helper";
+import { ROUTES } from "../../Helpers/Routes.helper";
 import { useDispatch, useSelector } from "react-redux";
 import {
   postProduct,
@@ -153,11 +153,9 @@ function CreateProduct({ handleCloseCreateProduct }) {
     }
   };
 
-  const [localUserData] = useOutletContext();
+  // const [localUserData] = useOutletContext();
 
-  return !localUserData.isAdmin ? (
-    <span>Necesitas permiso de admin para acceder...</span>
-  ) : (
+  return (
     <div className={`${styles.formContainer} ${styles.signUpContainer}`}>
       <form onSubmit={handleSubmit} className={styles.formContainer}>
         <h2>Crear Producto</h2>

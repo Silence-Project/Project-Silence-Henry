@@ -90,7 +90,7 @@
 
 
 import { Routes, Route } from "react-router-dom";
-import ROUTES from "./Helpers/Routes.helper";
+import { ROUTES } from "./Helpers/Routes.helper";
 import Landing from "./Components/Pages/Landing/Landing";
 import Home from "./Components/Pages/Home/Home";
 import LoginForm from "./Auth/Login/LoginForm";
@@ -109,6 +109,8 @@ import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 import PrivateRouting from "./Components/Authentication/PrivateRouting/Privaterouting";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
 
+import QuienesSomos from "./Components/Pages/QuienesSomos/QuienesSomos";
+
 import Fav from "./Components/Common/favoritos/Favoritos";
 
 
@@ -126,13 +128,14 @@ function App() {
           <Route path="/profile" element={<MyProfile />} />
         </Route>
 
-        {/*
+        <Route element={<QuienesSomos/>} path="/quienesSomos"></Route>
+
+        {/* {
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
-
-        */}
+        } */}
 
         <Route path={ROUTES.REGISTER} element={<UserRegister />}></Route>
 

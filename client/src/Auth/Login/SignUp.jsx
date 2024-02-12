@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import GMAIL from "../../img/gmail.png";
-import ROUTES from "../../Helpers/Routes.helper";
+import {ROUTES, URLTOCHANGE} from "../../Helpers/Routes.helper";
 import styles from "./SignUp.module.css";
 import { useDispatch } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -66,7 +66,7 @@ function SignUpForm() {
             email: values.email,
             password: values.password,
           };
-          const response = await fetch(`http://localhost:3001/usuarios`, {
+          const response = await fetch(`${URLTOCHANGE}/usuarios`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -100,7 +100,7 @@ function SignUpForm() {
 
     const checkEmailExists = async (email) => {
     try {
-      const response = await fetch(`http://localhost:3001/usuarios?email=${email}`);
+      const response = await fetch(`${URLTOCHANGE}/usuarios?email=${email}`);
       const data = await response.json();
       
       return {

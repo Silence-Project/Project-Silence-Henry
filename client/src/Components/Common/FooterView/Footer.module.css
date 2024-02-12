@@ -1,10 +1,15 @@
-.footer{
+.containerFotter{
   display: flex;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
   margin-top: auto;
   background-color: var(--WindsorGreige);
   min-height: 50px;
   border-top: solid white 1px;
 }
+
+
 .faqSection, .policyreturn{
   color: white;
   margin: 0.8%;

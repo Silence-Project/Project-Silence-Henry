@@ -1,20 +1,27 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { URLTOCHANGE } from "../../../Helpers/Routes.helper";
 
 import axios from "axios";
 
-export const getProducts = createAsyncThunk("products", async (_, { rejectWithValue }) => {
-  try {
-    const response = await axios.get("http://127.0.0.1:3001/products");
-    localStorage.setItem("products", JSON.stringify(response.data));
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return rejectWithValue([]); // Aquí usamos rejectWithValue para pasar un valor de error personalizado
+export const getProducts = createAsyncThunk(
+  "products",
+  async (_, { rejectWithValue }) => {
+    try {
+      // const response = await axios.get(`${URLTOCHANGE}/products`);
+      const response = await axios.get(`http://127.0.0.1:3001/products`);
+
+      localStorage.setItem("products", JSON.stringify(response.data));
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue([]);
+    }
   }
-});
+);
 
 export const getById = createAsyncThunk("productsDetails", async (id) => {
   try {
+    // const response = await axios.get(`${URLTOCHANGE}/products/${id}`);
     const response = await axios.get(`http://127.0.0.1:3001/products/${id}`);
 
     localStorage.setItem("productsDetails", JSON.stringify(response.data));
@@ -29,7 +36,8 @@ export const postProduct = createAsyncThunk("products/new", async (product) => {
   console.log(product);
   try {
     const response = await axios.post(
-      "http://127.0.0.1:3001/products/new",
+      // `${URLTOCHANGE}/products/new`,
+     `http://127.0.0.1:3001/products/new`,
       product
     );
 
@@ -42,7 +50,8 @@ export const postProduct = createAsyncThunk("products/new", async (product) => {
 export const getCategories = createAsyncThunk("categories", async () => {
   try {
     const response = await axios.get(
-      "http://127.0.0.1:3001/categories/allCategory"
+    // `${URLTOCHANGE}/categories/allCategory`
+    `http://127.0.0.1:3001/categories/allCategory`
     );
 
     return response.data;
@@ -54,6 +63,8 @@ export const getCategories = createAsyncThunk("categories", async () => {
 
 export const updateProduct = createAsyncThunk("products/update", async (product) => {
   try {
+    // const response = await axios.put(`${URLTOCHANGE}/products/change/${product.id}`, product);
+
     const response = await axios.put(`http://127.0.0.1:3001/products/change/${product.id}`, product);
 
     return response.data;
@@ -65,6 +76,7 @@ export const updateProduct = createAsyncThunk("products/update", async (product)
 
 export const deleteProduct = createAsyncThunk("products/delete", async (id) => {
   try {
+    // const response = await axios.delete(`${URLTOCHANGE}/products/delete/${id}`);
     const response = await axios.delete(`http://127.0.0.1:3001/products/delete/${id}`);
 
     return response.data;
