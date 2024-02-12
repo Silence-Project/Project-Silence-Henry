@@ -1,6 +1,7 @@
-// carritoSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
+import { URLTOCHANGE } from '../../../Helpers/Routes.helper';
 
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
@@ -9,7 +10,7 @@ export const getCar = createAsyncThunk(
   "cars",
   async () => {
       try {
-          const response = await axios.get("https://silenceback.onrender.com/car/cars");
+          const response = await axios.get(`${URLTOCHANGE}/car/cars`);
           localStorage.setItem("car", JSON.stringify(response.data));
 
           return response.data;
@@ -25,7 +26,7 @@ export const postCar = createAsyncThunk(
   "car/new",
   async (car) => {
       try {
-          const response = await axios.post("https://silenceback.onrender.com/car/new" , car);
+          const response = await axios.post(`${URLTOCHANGE}/car/new` , car);
 
           return response.data;
       }

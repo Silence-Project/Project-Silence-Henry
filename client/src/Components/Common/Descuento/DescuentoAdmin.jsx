@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import ROUTES from "../../../Helpers/Routes.helper";
+import {ROUTES, URLTOCHANGE} from "../../../Helpers/Routes.helper";
 import IMGCLOSE from "../../../img/icons/x-mark.png";
 import { setDescuento } from "../../../Redux/Store/Slices/AdminSlice";
 import styles from "./DescuentoAdmin.module.css";
@@ -18,7 +18,7 @@ const DescuentoAdmin = ({ handleCloseCreateProduct }) => {
     event.preventDefault();
     try {
       console.log("Submitting form...");
-      const response = await fetch("https://silenceback.onrender.com/toptext/1", {
+      const response = await fetch(`${URLTOCHANGE}/toptext/1`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

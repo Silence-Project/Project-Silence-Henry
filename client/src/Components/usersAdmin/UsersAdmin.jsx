@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import IMGCLOSE from "../../img/icons/x-mark.png";
+import { URLTOCHANGE } from "../../Helpers/Routes.helper";
 import styles from "./UsersAdmin.module.css";
 
 const UsersAdmin = ({ handleCloseCreateProduct }) => {
@@ -8,7 +9,7 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
   const toggleEstadoUsuario = (id, isActive) => {
     const newEstado = isActive ? false : true;
 
-    fetch(`https://silenceback.onrender.com/usuarios/${id}`, {
+    fetch(`${URLTOCHANGE}/usuarios/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +36,7 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
   };
 
   useEffect(() => {
-    fetch("https://silenceback.onrender.com/usuarios/")
+    fetch(`${URLTOCHANGE}/usuarios/`)
       .then((response) => response.json())
       .then((data) => {
         setUsuarios(data);

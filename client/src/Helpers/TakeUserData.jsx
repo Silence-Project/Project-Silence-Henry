@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch } from "react-redux";
-import { gettingUser } from "../Redux/Store/Slices/UserSlice";
+import { URLTOCHANGE } from "./Routes.helper";
 
 const TakeUserData = () => {
   const { user } = useAuth0();

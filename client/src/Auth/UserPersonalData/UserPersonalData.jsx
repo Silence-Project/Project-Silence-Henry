@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../Redux/Store/Slices/UserSlice";
+import { URLTOCHANGE } from "../../Helpers/Routes.helper";
 import { useParams } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./UserPersonalData.module.css";
@@ -20,7 +21,7 @@ function UserPersonalData({id}) {
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          `https://silenceback.onrender.com/usuarios/${cleanId}`
+          `${URLTOCHANGE}/usuarios/${cleanId}`
         );
 
         if (!response.ok) {
