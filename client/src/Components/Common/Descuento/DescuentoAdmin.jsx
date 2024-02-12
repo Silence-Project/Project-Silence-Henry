@@ -17,15 +17,17 @@ const DescuentoAdmin = ({ handleCloseCreateProduct }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log("Submitting form...");
       const response = await fetch("http://127.0.0.1:3001/toptext/1", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ nuevoDescuento }),
+        body: JSON.stringify({ description: nuevoDescuento }),
       });
       if (response.ok) {
         // Actualizar el estado global con el nuevo descuento
+        console.log("Descuento actualizado con éxito");
         dispatch(setDescuento(nuevoDescuento));
       } else {
         console.error("Error al actualizar el descuento");
@@ -36,6 +38,7 @@ const DescuentoAdmin = ({ handleCloseCreateProduct }) => {
   };
 
   const handleCancel = () => {
+    console.log("Cancel button clicked");
     if (typeof handleCloseCreateProduct === "function") {
       handleCloseCreateProduct();
     } else {
@@ -45,6 +48,8 @@ const DescuentoAdmin = ({ handleCloseCreateProduct }) => {
       );
     }
   };
+
+  console.log("Rendering DescuentoAdmin component...");
 
   return (
     <div className={styles.container}>
@@ -80,5 +85,6 @@ const DescuentoAdmin = ({ handleCloseCreateProduct }) => {
     </div>
   );
 };
+
 
 export default DescuentoAdmin;
