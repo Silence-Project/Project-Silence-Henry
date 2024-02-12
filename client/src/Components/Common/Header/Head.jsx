@@ -9,12 +9,12 @@ import userIcon from '../../../img/icons/user-icon.png';
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchBar from "../Sidebar/Search/SearchBar";
 
-const Head = ({ setFilterTerm }) => { 
+const Head = ({ setFilterTerm, handleColorChange }) => { 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
     <div className={styles.header1}>
-      <MenuHamburger />
+      <MenuHamburger handleColorChange={handleColorChange} />
       <SearchBar setFilterTerm={setFilterTerm} />  
       <NavLink to={ROUTES.HOME}>
         <img src={imgLogo} alt='silence' className={styles.silence} />
