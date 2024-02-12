@@ -11,6 +11,7 @@ const modelCarProducts = require("../models/CarProducts.js");
 const modelLocation = require("../models/location.js");
 const modelFavorite = require('../models/favorites.js');
 const modelText = require('../models/text.js');
+const modelAboutUs = require('../models/AboutUs.js');
 
 const sequelize = new Sequelize(
   `postgres://${USER}:${PASSWORD}@${HOST}:${PORT}/${BDD}`,
@@ -27,8 +28,9 @@ modelCarProducts(sequelize);
 modelLocation(sequelize);
 modelFavorite(sequelize);
 modelText(sequelize);
+modelAboutUs(sequelize);
 
-const { Products, User, Location, Category, Car, CartProduct, Order, Favorite, Text } =
+const { Products, User, Location, Category, Car, CartProduct, Order, Favorite, Text, AboutUs } =
   sequelize.models;
 
 //Category has many products.
