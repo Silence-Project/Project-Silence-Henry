@@ -1,0 +1,25 @@
+.inputSearch {
+  width: 150px;
+  margin: 1.25% 0.2%;
+  padding: 5px;
+  float: left;
+}
+.search {
+  max-width: 25px;
+  float: left;
+  margin: 1.4% 0;
+}
+.search:hover {
+  cursor: pointer;
+}
+
+
+.userIcon {
+  max-width: 30px;
+  float: right;
+  margin: 18px;
+}
+
+.userIcon:hover {
+  cursor: pointer;
+}

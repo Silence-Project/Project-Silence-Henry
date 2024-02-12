@@ -18,44 +18,28 @@ const Checkout = () => {
     );
   }, []);
 
-  // const comprarProducto = async (producto) => {
-  //     const response = await axios.post(
-  //       "http://localhost:3001/payment",
-  //       producto
-  //     )
 
-  //     window.location.href = response.data
-  // }
-
-  // console.log("EL ESTADO DE CARRITO:");
-  // cartItems.forEach(producto => {
-  //     console.log(`Nombre: ${producto.name}, Cantidad: ${producto.quantity}`);
-  // });
-
-  //   console.log("EL CARRITO CART ITEMSSSSS: " + JSON.stringify(cartItems, null, 2))
-
-  //   const {carrito_plano} = JSON.stringify(cartItems, null, 2)
 
   const create = async () => {
     setLoading(true);
     try {
-      const primerProducto = cartItems[0]; //el puerco [0]
+      const products =  cartItems; //el puerco [0]
 
-      const productoParaEnviar = {
-        title: primerProducto.name,
-        unit_price: primerProducto.price,
-        quantity: primerProducto.quantity,
-        currency_id: "ARS", 
-      };
+      console.log("Data QUE ME ENVIA:", products); // Ver lo enviado
 
-      console.log("Data send:", productoParaEnviar); // Ver lo enviado
+      const dataToSend = products.map((product) => {
+        return {
+          title: product.name,
+          unit_price: product.price,
+          quantity: product.quantity,
+          currency_id: "ARS"
+        }
+      })
 
-      const response = await axios.post(
-        "http://127.0.0.1:3001/payment",
-        productoParaEnviar
-      );
+      console.log(dataToSend);
 
-      console.log("server response data:", response.data); // Ver la respuesta del servidor
+      const response = await axios.post('http://127.0.0.1:3001/payment', dataToSend)
+
 
       window.location.href = response.data; // Redirige al usuario al flujo de pago de Mercado Pago
     } catch (error) {

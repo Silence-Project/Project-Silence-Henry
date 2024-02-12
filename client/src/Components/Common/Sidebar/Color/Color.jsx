@@ -1,36 +1,32 @@
-import React, { useState } from 'react';
-import Input from '../../../Input';
-import getProducts from '../../../../Redux/Store/Slices/ProductSlice';
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-const Color = () => {
-  // Declarar las variables de estado
-  const [selectedColor, setSelectedColor] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState([]);
+import styles from "./Color.module.css";
 
-  // Cambio de color
-  const handleColorChange = (event) => {
-    setSelectedColor(event.target.value);
-    filterProducts(event.target.value);
-  };
-
-  // filtrar los productos por color
-  const filterProducts = (color) => {
-    color.preventDefault();
-    const filteredItems = getProducts.filter((product) => product.color === color);
-    setFilteredProducts(filteredItems);
+const Color = ({ setFilterTerm }) => {
+  const products = useSelector(state => state.products)
+    
+  const handleSearchChange = () => {
+    console.log(products)
+    
   };
 
   return (
+
     <div>
-      <label htmlFor="color">Color:</label>
-      <select id="color" value={selectedColor} onChange={handleColorChange}>
-        <option value="">Todos</option>
-        <option value="red">Rojo</option>
-        <option value="blue">Azul</option>
-        <option value="green">Verde</option>
-        <option value="yellow">Amarillo</option>
-        <option value="white">Blanco</option>
+      <h2 className="sidebar-title">COLORES</h2>
+   
+      <div>
+        <select onChange={handleSearchChange} className={styles.inputSearch}>
+          <option value="todas">Todos los colores</option>
+          <option value="negro">Negro</option>
+          <option value="blanco">Blanco</option>
+          <option value="gris">Gris</option>
+          <option value="rojo">Rojo</option>
+          <option value="azul">Azul</option>
+          <option value="verde">Verde</option>
       </select>
+      </div>
     </div>
   );
 };

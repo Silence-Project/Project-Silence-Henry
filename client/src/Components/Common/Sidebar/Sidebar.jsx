@@ -3,9 +3,10 @@ import Category from './Category/Category.jsx';
 import Size from './Size/Size.jsx';
 import Color from './Color/Color.jsx';
 
+
 import "./Sidebar.css";
 
-const Sidebar = ({ handleChange }) => {
+const Sidebar = ( { setFilterTerm } ) => {
   return (
     <>
       <section className="sidebar">
@@ -15,7 +16,7 @@ const Sidebar = ({ handleChange }) => {
         <Category />
         <Price />
         <Size /> 
-        <Color />
+        <Color setFilterTerm={setFilterTerm} />
       </section>
     </>
   );

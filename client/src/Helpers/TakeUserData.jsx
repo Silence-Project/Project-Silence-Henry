@@ -4,9 +4,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 const TakeUserData = () => {
 
   const { user } = useAuth0();
-  // console.log('comp, y que es user??? ', user);
+
+  if (!user) return null;
+
   const { nickname, name, email } = user;
 
+
+  
   // Realizar el registro del usuario en el backend
   const createLocalSignUp = async () => {
     // console.log("Enviando datos de usuario al servidor para registro...");
