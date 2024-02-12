@@ -24,8 +24,19 @@ const updateTopText = async (textId, description) => {
     }
 }
 
+const getText = async () => {
+    try {
+        const textById = await Text.findAll()
+
+        return textById
+    } catch (error) {
+        return error.message
+    }
+}
+
 
 module.exports = {
     createTopText,
-    updateTopText
+    updateTopText,
+    getText
 }
