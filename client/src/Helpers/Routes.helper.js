@@ -9,15 +9,16 @@ const ROUTES = {
   CREATE_PRODUCT: "/create",
   REGISTER: "/userRegister/:id",
   PolicyReturn: "/PolicyReturn",
-  Carrito: "/carrito",
-  USERSADMIN: "/usersAdmin",
-  MODAL: "/modal",
-  ADMIN: "/admin-view",
-  PROFILE: "/profile",
-};
+  Carrito: '/carrito',
+  USERSADMIN: '/usersAdmin',
+  MODAL: '/modal',
+  ADMIN: '/admin-view',
+  PROFILE: '/profile'
+}
 
-const URLTOCHANGE = {
-  theUrl: "https://silenceback.onrender.com",
-};
+export default ROUTES
 
-export { ROUTES, URLTOCHANGE };
+
+
+
+

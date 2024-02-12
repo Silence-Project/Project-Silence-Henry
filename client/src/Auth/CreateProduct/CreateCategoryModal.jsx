@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { URLTOCHANGE } from "../../Helpers/Routes.helper";
+import URLTOCHANGE from "../../Helpers/routesToChange";
 import axios from "axios";
 import styles from "./CreateCategoryModal.module.css";
 
@@ -9,7 +9,7 @@ const CreateCategoryModal = ({ onClose, reloadCategories }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(`${URLTOCHANGE}/categories/new`, {
+      await axios.post(`${URLTOCHANGE.theUrl}/categories/new`, {
         name: categoryName,
       });
       onClose();

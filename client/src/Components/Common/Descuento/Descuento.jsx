@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // Importa Axios
-import { URLTOCHANGE } from "../../../Helpers/Routes.helper";
+import URLTOCHANGE from "../../../Helpers/routesToChange";
 import styles from "./Descuento.module.css";
 
 const Descuento = () => {
@@ -8,7 +8,7 @@ const Descuento = () => {
 
   useEffect(() => {
     axios
-      .get(`${URLTOCHANGE}/toptext/texts`)
+      .get(`${URLTOCHANGE.theUrl}/toptext/texts`)
       .then((response) => {
         console.log("RTA MSJE", response);
         setMensaje(response.data[0].description);

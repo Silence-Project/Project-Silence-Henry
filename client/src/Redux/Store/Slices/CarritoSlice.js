@@ -1,7 +1,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
-import { URLTOCHANGE } from '../../../Helpers/Routes.helper';
+import URLTOCHANGE from '../../../Helpers/routesToChange';
 
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
@@ -10,7 +10,7 @@ export const getCar = createAsyncThunk(
   "cars",
   async () => {
       try {
-          const response = await axios.get(`${URLTOCHANGE}/car/cars`);
+          const response = await axios.get(`${URLTOCHANGE.theUrl}/car/cars`);
           localStorage.setItem("car", JSON.stringify(response.data));
 
           return response.data;
@@ -26,7 +26,7 @@ export const postCar = createAsyncThunk(
   "car/new",
   async (car) => {
       try {
-          const response = await axios.post(`${URLTOCHANGE}/car/new` , car);
+          const response = await axios.post(`${URLTOCHANGE.theUrl}/car/new` , car);
 
           return response.data;
       }
