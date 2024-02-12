@@ -16,7 +16,7 @@ const TakeUserData = () => {
 
         /******************primera peticion, POST trying */
         // Fetch user data from backend
-        const response = await fetch(`http://localhost:3001/usuarios`, {
+        const response = await fetch(`${URLTOCHANGE}/usuarios`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const TakeUserData = () => {
           /******************segunda peticion, GET */
           // Fetch user data again from backend using the generated userId
           const userDataResponse = await fetch(
-            `http://localhost:3001/usuarios/${userId}`
+            `${URLTOCHANGE}/usuarios/${userId}`
           );
 
           // Check if the user data was successfully fetched
@@ -62,7 +62,7 @@ const TakeUserData = () => {
 
   console.log("puedo usar el obj userData: ", userData);
 
-  return <></>; // Render your component here
+  return <></>; // Render nada
 };
 
 export default TakeUserData;
