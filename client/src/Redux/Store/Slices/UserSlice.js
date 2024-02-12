@@ -55,6 +55,18 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const gettingUser = createAsyncThunk("user/gettingUser", async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:3001/usuarios/${id}`);
+
+    localStorage.setItem("user", JSON.stringify(response.data));
+    console.log("gettingUser Response:", response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -113,6 +125,23 @@ const userSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) => {
         console.log("UpdateUser Rejected", action.error);
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(gettingUser.pending, (state) => {
+        // console.log("gettingUser Pending");
+        state.loading = true;
+        state.user = null;
+        state.error = null;
+      })
+      .addCase(gettingUser.fulfilled, (state, action) => {
+        // console.log("gettingUser Fulfilled", action.payload);
+        state.loading = false;
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(gettingUser.rejected, (state, action) => {
+        // console.log("gettingUser Rejected", action.error);
         state.loading = false;
         state.error = action.error.message;
       });
