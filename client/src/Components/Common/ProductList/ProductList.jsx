@@ -1,35 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../ProductCard/ProductCard";
 import styles from "./ProductList.module.css";
 
-const ProductList = ({ products, filterTerm }) => {
-  console.log("PRODUCTOS EN PRODUCTLIST ->", products);
-  console.log("TERM DE FILTRO ->", filterTerm);
+const ProductList = ({ products, filterTerm, cardsPerPage }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastItem = currentPage * cardsPerPage;
+  const indexOfFirstItem = indexOfLastItem - cardsPerPage;
 
   let filteredProducts = [...products];
-
   if (filterTerm) {
-    console.log("ENTRO A FILTRAR...");
     filteredProducts = filteredProducts.filter((product) =>
       product.name.toLowerCase().includes(filterTerm.toLowerCase())
     );
   }
 
-  console.log("PRODUCTOS FILTRADOS ->", filteredProducts);
+  const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
 
-  if (!filteredProducts.length) {
-    return (
-      <div className={styles.productList}>
-        <p className={styles.cargandoDatos}>Cargando datos...</p>
-      </div>
-    );
-  }
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filterTerm]);
 
   return (
     <div className={styles.productList}>
-      {filteredProducts.map((product) => (
+      {currentItems.map((product) => (
         <Card product={product} key={product.id} />
       ))}
+      <div className={styles.pagination}>
+        <button
+          onClick={() => paginate(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
+        <span>{currentPage}</span>
+        <button
+          onClick={() => paginate(currentPage + 1)}
+          disabled={currentItems.length < cardsPerPage}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

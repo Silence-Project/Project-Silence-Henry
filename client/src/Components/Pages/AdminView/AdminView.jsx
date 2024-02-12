@@ -6,6 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 import DescuentoAdmin from "../../Common/Descuento/DescuentoAdmin";
 import AdminDataViews from "../../../Auth/AdminDataViews/AdminDataViews";
+import { useAuth0 } from "@auth0/auth0-react";
+import requiereUserBd from "../../../Helpers/requireUserBd";
+
+
 
 const AdminView = () => {
   const navigate = useNavigate();
@@ -17,12 +21,28 @@ const AdminView = () => {
 
   const handleCloseCreateProduct = () => {
     setSelectedCard(null);
-    navigate(ROUTES.ADMIN);
+    // navigate(ROUTES.ADMIN);
+    navigate(ROUTES.PROFILE);
   };
 
   const handleGoToHome = () => {
     navigate(ROUTES.HOME); 
   };
+
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+
+  if(user) {
+    const { email } = user;
+
+    async function traerDataUser() {
+      const isRegisterededUser = await requiereUserBd(email);
+      console.log('objeto usuario en ADMINVIEW???', isRegisterededUser);
+    }
+    traerDataUser(); //objeto { id: 1, isActive: true, isAdmin: true }
+
+  } else {
+    loginWithRedirect();
+  }
 
   return (
     <div className={styles.containerAdminView}>

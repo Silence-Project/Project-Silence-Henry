@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
-import Input from '../../../Input';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../../../../Redux/Store/Slices/ProductSlice";
 
 const Color = () => {
-  const [selectedColor, setSelectedColor] = useState('');
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
+  const [uniqueColors, setUniqueColors] = useState([]);
 
-  const handleColorChange = (event) => {
-    setSelectedColor(event.target.value);
-  };
+  useEffect(() => {
+    console.log("ESTOS", products);
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      const colors = [...new Set(products.map((product) => product.color))];
+      setUniqueColors(colors);
+    }
+  }, [products]);
+
+  console.log("Rendering Color component with unique colors: ", uniqueColors);
 
   return (
     <div>
-      <label htmlFor="color">Color:</label>
-      <select id="color" value={selectedColor} onChange={handleColorChange}>
-        <option value="red">Rojo</option>
-        <option value="blue">Azul</option>
-        <option value="green">Verde</option>
-        <option value="yellow">Amarillo</option>
-      </select>
-      <Input value={selectedColor} />
+      <h2>Colores Disponibles</h2>
+      <ul>
+        {uniqueColors.map((color, index) => (
+          <li key={index}>{color}</li>
+        ))}
+      </ul>
     </div>
   );
 };

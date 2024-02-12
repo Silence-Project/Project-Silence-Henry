@@ -39,9 +39,6 @@ const MenuHamburger = () => {
           <div className={styles.option1}>
             <Sidebar />
           </div>
-          {/* <div className={styles.option2}>
-            <NavLink className={styles.login} to={ROUTES.LOGGING}>Inicia Sesión</NavLink>
-          </div> */}
         </div>
       </div>
     </div>

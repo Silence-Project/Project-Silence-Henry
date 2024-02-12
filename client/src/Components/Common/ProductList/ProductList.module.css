@@ -13,13 +13,56 @@
     margin-right: 30px;
     margin: 50px;
     text-decoration: none;
-    margin-top: 20px;
+    margin-top: 9px;
     margin-bottom: 160px;
+    flex-direction: row;
+    align-items: center;
   }
   
 
   .card {
-    /* Agrega estilos adicionales para las cards según tus preferencias */
     margin: 10px;
     border-radius: 50px;
+    
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    background-color: #7b7b7b;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .pagination button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    background-color: #7b7b7b;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 5px;
   }
