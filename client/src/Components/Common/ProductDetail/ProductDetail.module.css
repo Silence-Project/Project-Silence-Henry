@@ -1,0 +1,44 @@
+.general {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-principal {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  max-width: 100px;
+  max-height: 200px; 
+  width: 100%;
+  height: auto;
+}
+
+.h4 {
+  text-align: center;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.botondetail {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.botondetail:hover {
+  background-color: #0056b3;
+}
