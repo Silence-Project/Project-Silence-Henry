@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../ProductCard/ProductCard";
 import styles from "./ProductList.module.css";
 
-const ProductList = ({ products, filterTerm, cardsPerPage, selectedColor }) => {
+const ProductList = ({ products, filterTerm, cardsPerPage, selectedColor, selectedSize, selectedPrice, selectedCategory }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastItem = currentPage * cardsPerPage;
@@ -22,6 +22,31 @@ const ProductList = ({ products, filterTerm, cardsPerPage, selectedColor }) => {
     );
   }
 
+  if (selectedSize) {
+    filteredProducts = filteredProducts.filter(
+      (product) => product.size.toLowerCase() === selectedSize.toLowerCase()
+    );
+  }
+
+  // if (selectedPrice) {
+  //   filteredProducts = filteredProducts.filter(
+  //     (product) => product.price.toLowerCase() === selectedPrice.toLowerCase()
+  //   );
+  // }
+
+  if (selectedPrice) {
+    filteredProducts = filteredProducts.filter(
+      (product) => String(product.price).toLowerCase() === String(selectedPrice).toLowerCase()
+    );
+  }
+
+  if (selectedCategory) {
+    filteredProducts = filteredProducts.filter(
+      (product) => product.size.toLowerCase() === selectedCategory.toLowerCase()
+    );
+  }
+  
+
   const currentItems = filteredProducts.slice(
     indexOfFirstItem,
     indexOfLastItem
@@ -31,7 +56,7 @@ const ProductList = ({ products, filterTerm, cardsPerPage, selectedColor }) => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [filterTerm, selectedColor]);
+  }, [filterTerm, selectedColor, selectedSize, selectedPrice]);
 
   return (
     <div className={styles.productList}>

@@ -1,37 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../../Redux/Store/Slices/ProductSlice";
+import styles from "./Size.module.css"; 
 
-const Talla = () => {
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
-  const [uniqueSize, setUniqueSize] = useState([]);
+  const Size = ({ handleSizeChange }) => {
+    const dispatch = useDispatch();
+    const products = useSelector((state) => state.product.products);
+    const [uniqueSize, setUniqueSize] = useState([]);
 
-  useEffect(() => {
-    console.log("ESTOS", products);
-    dispatch(getProducts());
-  }, [dispatch]);
+    useEffect(() => {
+      dispatch(getProducts());
+    }, [dispatch]);
+  
+    useEffect(() => {
+      if (products && products.length > 0) {
+        const sizes = [...new Set(products.map((product) => product.size))];
+        setUniqueSize(sizes);
+      }
+    }, [products]);
 
-  useEffect(() => {
-    if (products && products.length > 0) {
-      const sizes = [...new Set(products.map((product) => product.size))];
-      setUniqueSize(sizes);
-    }
-  }, [products]);
+  const handleSizeChangeTwo = (event) => {
+    handleSizeChange(event.target.value);
+    console.log("Talla seleccionada:", event.target.value);
+  };
 
-  console.log("Rendering Sizes component with unique colors: ", uniqueSize);
-
+  //
   return (
-
     <div>
-      <h2>Tallas Disponibles</h2>
-      <ul>
+      <h2 className={styles["color-title"]}>Tallas Disponibles</h2>
+      <select
+        onChange={handleSizeChangeTwo}
+        className={styles["sidebar-items"]}
+      >
         {uniqueSize.map((size, index) => (
-          <li key={index}>{size}</li>
+          <option key={index} value={size} className={styles["color-option"]}>
+            <span
+              className={styles["color-square"]}
+              style={{ backgroundColor: size }}
+            ></span>
+            {size}
+          </option>
         ))}
-      </ul>
+      </select>
     </div>
   );
 };
 
-export default Talla;
+export default Size;

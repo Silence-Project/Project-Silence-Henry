@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../../Redux/Store/Slices/ProductSlice";
+import styles from "./Price.module.css"; 
 
-const Price = () => {
+const Price = ({ handlePriceChange }) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const [uniquePrice, setUniquePrice] = useState([]);
 
   useEffect(() => {
-    console.log("ESTOS", products);
     dispatch(getProducts());
   }, [dispatch]);
 
@@ -19,17 +19,28 @@ const Price = () => {
     }
   }, [products]);
 
-  console.log("Rendering Prices component with unique colors: ", uniquePrice);
+  const handlePriceChangeTwo = (event) => {
+    handlePriceChange(event.target.value);
+    console.log("Precio seleccionado:", event.target.value);
+  };
 
   return (
-
     <div>
-      <h2>Tallas Disponibles</h2>
-      <ul>
+      <h2 className={styles["color-title"]}>Precios Disponibles</h2>
+      <select
+        onChange={handlePriceChangeTwo}
+        className={styles["sidebar-items"]}
+      >
         {uniquePrice.map((price, index) => (
-          <li key={index}>{price}</li>
+          <option key={index} value={price} className={styles["color-option"]}>
+            <span
+              className={styles["color-square"]}
+              style={{ backgroundColor: price }}
+            ></span>
+            {price}
+          </option>
         ))}
-      </ul>
+      </select>
     </div>
   );
 };

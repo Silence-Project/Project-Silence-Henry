@@ -8,14 +8,22 @@ import Head from "../../Common/Header/Head";
 import { unwrapResult } from "@reduxjs/toolkit";
 import ProductList from "../../Common/ProductList/ProductList";
 import Footer from "../../Common/FooterView/Footer";
+
 import Color from "../../Common/Sidebar/Color/Color";
+import Size from "../../Common/Sidebar/Size/Size";
+import Price from "../../Common/Sidebar/Price/Price";
+
 import Descuento from "../../Common/Descuento/Descuento";
+
 import styles from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
   const cardsPerPage = 5;
 
@@ -32,6 +40,21 @@ const Home = () => {
     setSelectedColor(color);
   };
 
+  const handleSizeChange = (size) => {
+    console.log(size)
+    setSelectedSize(size);
+  };
+
+  const handlePriceChange = (price) => {
+    console.log(price)
+    setSelectedPrice(price);
+  };
+
+  const handleCategoryChange = (idCategory) => {
+    console.log(idCategory)
+    setSelectedCategory(idCategory);
+  };
+
   const sortedProducts = products
     .slice()
     .sort((a, b) => a.preference - b.preference);
@@ -45,6 +68,9 @@ const Home = () => {
         <Head
           setFilterTerm={setFilterTerm}
           handleColorChange={handleColorChange}
+          handleSizeChange={handleSizeChange}
+          handlePriceChange={handlePriceChange}
+          handleCategoryChange={handleCategoryChange}
         />
         <div className={styles.cardContainer}>
           <ProductList
@@ -52,6 +78,9 @@ const Home = () => {
             filterTerm={filterTerm}
             cardsPerPage={cardsPerPage}
             selectedColor={selectedColor}
+            selectedSize={selectedSize}
+            selectedPrice={selectedPrice}
+            selectedCategory={selectedCategory}
           />
         </div>
         <Footer />

@@ -74,6 +74,7 @@ export default function Details(props) {
               </h4>
               <h4>📦 Stock disponible: {product.stock}</h4>
               <h4>🎨 Color: {product.color}</h4>
+              <h4> Color: {product.size}</h4>
               <h4>🧱 Peso: {product.weight}</h4>
               <h4>👘 Caracteristicas de la tela: {product.material}</h4>
               <h4>💸 Precio: {product.price}</h4>

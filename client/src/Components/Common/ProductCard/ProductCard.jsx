@@ -6,7 +6,7 @@ import style from "./ProductCard.module.css";
 import Details from "../ProductDetail/ProductDetail";
 
 const ProductCard = ({ product }) => {
-  const { id, name, image, price, description, color } = product;
+  const { id, name, image, price, description, color, size } = product;
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
@@ -35,6 +35,7 @@ const ProductCard = ({ product }) => {
             </button>
             <div className={style.productPrice}>💸 {price}</div>
             <div className={style.productPrice}>{color}</div>
+            <div className={style.productPrice}>{size}</div>
           </div>
         </Link>
       </div>

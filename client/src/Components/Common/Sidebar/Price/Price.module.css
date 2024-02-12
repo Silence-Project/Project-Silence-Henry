@@ -1,15 +1,8 @@
-.price-title {
-  margin-top: 20px;
-}
-
-.ml {
-  margin-left: 20px;
-}
-
-.sidebar-title {
-  font-size: 22px;
-  font-weight: normal;
-  margin-bottom: 20px;
+.color-title {
+  margin-top: 1rem;
+  font-size: 13px;
+  font-family: 'Now', sans-serif;
+  font-weight: lighter;
 }
 
 .sidebar-items {
@@ -19,10 +12,8 @@
 .sidebar-label-container {
   display: block;
   position: relative;
-  padding-left: 50px;
-  padding: -5px;
-  margin-bottom: 8px;
-  font-size: .75rem;
+  padding-left: 35px;
+  margin-bottom: 12px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -47,7 +38,7 @@
 }
 
 .all {
-  background: linear-gradient(blue, crimson);
+  background: linear-gradient(gray, black);
 }
 
 .sidebar-label-container:hover input ~ .checkmark {
@@ -80,4 +71,28 @@
 .line {
   margin-top: 3rem;
   border-color: #f7f7f7;
+}
+
+
+.color-title {
+  margin-top: 2rem;
+}
+
+.color-option {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-family: 'Now', sans-serif;
+  font-weight: lighter;
+}
+
+.color-square {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid #000;
+}
+
+.sidebar-items {
+  margin-top: 20px;
 }
