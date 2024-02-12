@@ -8,15 +8,16 @@ import Head from "../../Common/Header/Head";
 import { unwrapResult } from "@reduxjs/toolkit";
 import ProductList from "../../Common/ProductList/ProductList";
 import Footer from "../../Common/FooterView/Footer";
+import Color from "../../Common/Sidebar/Color/Color";
 import Descuento from "../../Common/Descuento/Descuento";
 import styles from "./Home.module.css";
-import Color from "../../Common/Sidebar/Color/Color"
 
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
-  const [filterTerm, setFilterTerm] = useState('');
-  const cardsPerPage = 5; 
+  const [selectedColor, setSelectedColor] = useState("");
+  const [filterTerm, setFilterTerm] = useState("");
+  const cardsPerPage = 5;
 
   useEffect(() => {
     dispatch(getProducts())
@@ -25,6 +26,11 @@ const Home = () => {
         console.error("Error:", error);
       });
   }, [dispatch]);
+
+  const handleColorChange = (color) => {
+    console.log(color)
+    setSelectedColor(color);
+  };
 
   const sortedProducts = products
     .slice()
@@ -35,12 +41,18 @@ const Home = () => {
   return (
     <>
       <div className={styles.homeContainer}>
-        <Descuento />
-        <Head setFilterTerm={setFilterTerm} />
-        <Color setFilterTerm={setFilterTerm} />
-
+        
+        <Head
+          setFilterTerm={setFilterTerm}
+          handleColorChange={handleColorChange}
+        />
         <div className={styles.cardContainer}>
-          <ProductList products={sortedProducts} filterTerm={filterTerm} cardsPerPage={cardsPerPage} />
+          <ProductList
+            products={sortedProducts}
+            filterTerm={filterTerm}
+            cardsPerPage={cardsPerPage}
+            selectedColor={selectedColor}
+          />
         </div>
         <Footer />
       </div>
@@ -49,5 +61,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
