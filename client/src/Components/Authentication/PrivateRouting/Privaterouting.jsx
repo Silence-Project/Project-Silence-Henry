@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useAuth0 } from "@auth0/auth0-react";
 
-const API_USER_URL = "http://localhost:3001/usuarios"
+const API_USER_URL = "https://silenceback.onrender.com/usuarios"
 
 const PrivateRouting = () => {
 

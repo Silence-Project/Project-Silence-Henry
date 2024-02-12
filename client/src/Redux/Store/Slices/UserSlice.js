@@ -6,7 +6,7 @@ export const signUp = createAsyncThunk(
   async (userCredentials) => {
     try {
       const response = await axios.post(
-        `http://localhost:3001/usuarios`,
+        `https://silenceback.onrender.com/usuarios`,
         userCredentials
       );
       localStorage.setItem("user", JSON.stringify(response.data));
@@ -22,7 +22,7 @@ export const signIn = createAsyncThunk(
   "user/signIn",
   async (userCredentials) => {
     const request = await axios.get(
-      `http://localhost:3001/usuarios/login`,
+      `https://silenceback.onrender.com/usuarios/login`,
       userCredentials
     );
     const response = await request.data.data;
@@ -38,7 +38,7 @@ export const updateUser = createAsyncThunk(
   async ({ id, userData }) => {
     try {
       const response = await axios.patch(
-        `http://localhost:3001/usuarios/${id}`,
+        `https://silenceback.onrender.com/usuarios/${id}`,
         userData,
         {
           headers: {

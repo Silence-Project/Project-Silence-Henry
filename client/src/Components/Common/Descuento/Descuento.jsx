@@ -7,7 +7,7 @@ const Descuento = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:3001/toptext/texts")
+      .get("https://silenceback.onrender.com/toptext/texts")
       .then((response) => {
         console.log("RTA MSJE", response);
         setMensaje(response.data[0].description);

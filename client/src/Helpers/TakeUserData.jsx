@@ -14,7 +14,7 @@ const TakeUserData = () => {
   // Realizar el registro del usuario en el backend
   const createLocalSignUp = async () => {
     // console.log("Enviando datos de usuario al servidor para registro...");
-    const response = await fetch("http://localhost:3001/usuarios", {
+    const response = await fetch("https://silenceback.onrender.com/usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

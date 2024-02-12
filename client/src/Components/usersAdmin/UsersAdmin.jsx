@@ -8,7 +8,7 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
   const toggleEstadoUsuario = (id, isActive) => {
     const newEstado = isActive ? false : true;
 
-    fetch(`http://localhost:3001/usuarios/${id}`, {
+    fetch(`https://silenceback.onrender.com/usuarios/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3001/usuarios/")
+    fetch("https://silenceback.onrender.com/usuarios/")
       .then((response) => response.json())
       .then((data) => {
         setUsuarios(data);

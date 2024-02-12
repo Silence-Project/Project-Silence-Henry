@@ -20,7 +20,7 @@ function UserPersonalData({id}) {
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/usuarios/${cleanId}`
+          `https://silenceback.onrender.com/usuarios/${cleanId}`
         );
 
         if (!response.ok) {

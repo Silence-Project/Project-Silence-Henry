@@ -18,7 +18,7 @@ const DescuentoAdmin = ({ handleCloseCreateProduct }) => {
     event.preventDefault();
     try {
       console.log("Submitting form...");
-      const response = await fetch("http://127.0.0.1:3001/toptext/1", {
+      const response = await fetch("https://silenceback.onrender.com/toptext/1", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
