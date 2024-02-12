@@ -8,7 +8,6 @@ const Color = () => {
   const [uniqueColors, setUniqueColors] = useState([]);
 
   useEffect(() => {
-    console.log("ESTOS", products);
     dispatch(getProducts());
   }, [dispatch]);
 
@@ -19,16 +18,21 @@ const Color = () => {
     }
   }, [products]);
 
-  console.log("Rendering Color component with unique colors: ", uniqueColors);
+  const handleColorChange = (event) => {
+    // Aquí puedes manejar la lógica para cuando cambia el color seleccionado
+    console.log("Color seleccionado:", event.target.value);
+  };
 
   return (
     <div>
       <h2>Colores Disponibles</h2>
-      <ul>
+      <select onChange={handleColorChange}>
         {uniqueColors.map((color, index) => (
-          <li key={index}>{color}</li>
+          <option key={index} value={color}>
+            {color}
+          </option>
         ))}
-      </ul>
+      </select>
     </div>
   );
 };
