@@ -17,6 +17,7 @@ import "./App.css";
 import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 import PrivateRouting from "./Components/Authentication/PrivateRouting/Privaterouting";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
+import FAQSection from './Components/Pages/FAQSection/FAQSection'
 
 function App() {
   return (
@@ -32,13 +33,10 @@ function App() {
           <Route path="/profile" element={<MyProfile />} />
         </Route>
 
-        {/*
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
-
-        */}
 
         <Route path={ROUTES.REGISTER} element={<UserRegister />}></Route>
 

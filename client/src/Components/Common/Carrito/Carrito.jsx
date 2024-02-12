@@ -1,17 +1,60 @@
 // Carrito.jsx
 import React from 'react';
+import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ROUTES from '../../../Helpers/Routes.helper';
 
-import { eliminarProducto } from "../../../Redux/Store/Slices/CarritoSlice";
-
 import styles from './Carrito.module.css'
+
+import { useAuth0 } from "@auth0/auth0-react";
+import requiereUserBd from "../../../Helpers/requireUserBd"
+import { getCarrito, sincronizarDB, deleteProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
 
 const CarritoSlides = () => {
 
   const dispatch = useDispatch();
   const productos = useSelector(state => state.carrito.productos);
+
+  const { user  = { email: 'null@null.null' } } = useAuth0();
+
+  const syncronized = async() => {
+    const isRegisterededUser = await requiereUserBd(user.email);
+    const idUser = isRegisterededUser.id
+
+    const carritoa = await dispatch(getCarrito(idUser))
+    const carritob = carritoa.payload ? carritoa.payload : null
+
+    const productosDb = carritob
+    dispatch(sincronizarDB({productos, productosDb}))
+  }
+
+  const handlerDrop = async (idProducto) => {
+
+    const isRegisterededUser = await requiereUserBd(user.email);
+    const idUser = isRegisterededUser.id
+
+    const carritoa = await dispatch(getCarrito(idUser))
+    const carritob = carritoa.payload ? carritoa.payload : null
+
+    const idCarrito = carritob[0].id
+
+    let arrayIdProduct = idProducto.split("")
+
+    const response = await dispatch(deleteProductDb({idCarrito, arrayIdProduct}))
+    console.log(response.payload);
+
+  }
+
+  const handlerBorrarTodo = async(idProductos) => {
+    console.log(idProductos);    
+    const resultados = idProductos.map(element => handlerDrop(element));
+    console.log(resultados);
+  }
+
+  useEffect(() => {
+    syncronized()
+  }, [productos]);
 
   const totales = []
 
@@ -25,6 +68,8 @@ const CarritoSlides = () => {
   //   console.log(dropProd);
   //   return dropProd
   // }
+
+  const idProducts = productos.map(element => element.id);
 
   return (
     <div className={styles.container}>
@@ -47,7 +92,7 @@ const CarritoSlides = () => {
               <td className={styles.totalUnitario}>{totales.push(producto.price * producto.cantidad) && producto.price * producto.cantidad}</td>
               <td className={styles.button}> 
                 {/* <button onClick={handlerDrop(producto.id)}>Eliminar</button>  */}
-                <button>Eliminar</button>
+                <button onClick={() => handlerDrop(producto.id)}>Eliminar</button>
               </td>
             </tr>
           </>                
@@ -60,6 +105,8 @@ const CarritoSlides = () => {
             <td className={styles.totalCompras}>{totales ? totales.reduce((acumulador, valorActual) => acumulador + valorActual, 0) : 0}</td>
           </tr>
       </table>
+
+      <button onClick={() => handlerBorrarTodo(idProducts)}>Borrar todo</button>
 
       <Link to="/checkout" >
         <button>Comprar</button>

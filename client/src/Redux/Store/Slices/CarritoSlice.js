@@ -5,17 +5,16 @@ import axios from 'axios'
 
 export const deleteProductDb = createAsyncThunk(
   'carrito/deleteProductDb',
-  async (idCarrito, idProduct) => {
-    const config = {
-      method: 'delete',
-      url: `http://127.0.0.1:3001/car/remove/${idCarrito}/${idProduct}`
-    };
+  async ({idCarrito, arrayIdProduct}) => {
+
+    const idProduct = arrayIdProduct.join("")
+
+    console.log(idProduct);
 
     try {
-      const response = await axios(config);
+      const response = await axios.delete(`http://127.0.0.1:3001/car/remove/${idCarrito}/${idProduct}`);
       return await response;
     } catch (error) {
-      // Retornar un objeto con el error para manejarlo en el reducer
       return { error: error.message };
     }
   }
@@ -26,12 +25,7 @@ export const saveProductDb = createAsyncThunk(
   async ({idCarrito, arrayIdProduct, quantity}) => {
 
     const stringIdProduct = arrayIdProduct.join("")
-
-    const config = {
-      method: 'post',
-      url: 'http://127.0.0.1:3001/car/newProduct'
-    };
-
+    
     let data = {
       carId: idCarrito[0]['id'],
       productId: stringIdProduct,
@@ -39,10 +33,9 @@ export const saveProductDb = createAsyncThunk(
     };
 
     try {
-      const response = await axios(config, data);
+      const response = await axios.post('http://127.0.0.1:3001/car/newProduct', data);
       return await response.data;
     } catch (error) {
-      // Retornar un objeto con el error para manejarlo en el reducer
       return { error: error.message };
     }
   }
@@ -61,7 +54,6 @@ export const getCarrito = createAsyncThunk(
       const response = await axios(config);
       return await response.data;
     } catch (error) {
-      // Retornar un objeto con el error para manejarlo en el reducer
       return { error: error.message };
     }
   }
@@ -70,11 +62,6 @@ export const getCarrito = createAsyncThunk(
 export const createCarrito = createAsyncThunk(
   'carrito/crear',
   async (idUser) => {
-
-    // console.log('--------------------------------');
-    // console.log(idUser);
-    // console.log('--------------------------------');
-
     const config = {
       method: 'post',
       url: 'http://127.0.0.1:3001/car/new',
@@ -87,7 +74,6 @@ export const createCarrito = createAsyncThunk(
       const response = await axios(config);
       return await response.data;
     } catch (error) {
-      // Retornar un objeto con el error para manejarlo en el reducer
       return { error: error.message };
     }
   }
@@ -99,31 +85,35 @@ export const carritoSlice = createSlice({
     productos: [],
   },
   reducers: {
-    anadirProducto: (state, action) => {
-        
-      const producto = action.payload;
+    sincronizarDB: (state, action) => {
 
-      //console.log("QUANTITY ACA ->" + producto.quantity)
-      const existingProduct = state.productos.find(item => item.id === producto.id);
+      const {productosDb} = action.payload
 
-      if (existingProduct) {
-        existingProduct.cantidad++;
-        existingProduct.quantity = existingProduct.cantidad
-      } else {
-        state.productos.push({ ...producto, cantidad: 1, quantity: 1 });
+      const productosFinal = []
+      const productosSho = productosDb[0]['shoppingCar'] ? productosDb[0]['shoppingCar'] : []
+      state.productos = []
+      for (const iterator of productosSho) {
+        let valor = iterator.CartProduct
+        let formatedInfo = {
+          id: iterator.id,
+          cantidad: valor.quantity,
+          price: iterator.price,
+          name: iterator.name
+        }
+        const existingProduct = state.productos.find((element) => element.id === formatedInfo.id);
+
+        if (!existingProduct) {          
+          state.productos.push({ ...formatedInfo, cantidad: valor.quantity, quantity: valor.quantity });
+        }
+
+        productosFinal.push(formatedInfo)
       }
-    },
-    eliminarProducto: (state, action) => {
-      const { id } = action.payload;
-      state.productos = state.productos.filter(producto => producto.id !== id);
-    },
-    limpiarCarrito: state => {
-      state.productos = [];
-    },
+      
+    }
   }
 });
 
 
-export const { anadirProducto, eliminarProducto, limpiarCarrito } = carritoSlice.actions;
+export const { anadirProducto, eliminarProducto, limpiarCarrito, sincronizarDB } = carritoSlice.actions;
 
 export default carritoSlice.reducer;

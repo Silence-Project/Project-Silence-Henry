@@ -11,11 +11,15 @@ import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import requiereUserBd from "../../../Helpers/requireUserBd";
-import { anadirProducto, createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
+import { sincronizarDB, createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
 
 export default function Details() {
 
   const dispatch = useDispatch();
+  const productos = useSelector(state => state.carrito.productos);
+  const productsDetails = useSelector((state) => state.product.productsDetails);
+  const categories = useSelector((state) => state.product.categories);
+
   const { user  = { email: 'null@null.null' } } = useAuth0();
 
   async function traerDataUser() { 
@@ -26,46 +30,39 @@ export default function Details() {
 
   const {id} = useParams()
 
-  const productsDetails = useSelector((state) => state.product.productsDetails);
-  const categories = useSelector((state) => state.product.categories);
-
   useEffect(() => {
     dispatch(getById(id));
     dispatch(getCategories());
-  }, [dispatch]);
-      
-    // const productos = useSelector(state => state.carrito.productos)
+    
+  }, [dispatch, id]);
 
   const handleAddProduct = async(product) => {    
 
     const idUser = await traerDataUser()
+
+    let arrayIdProduct = id.split("")
+
+    const carritoa = await dispatch(getCarrito(idUser))
+    const carritob = carritoa.payload ? carritoa.payload : null
+
+    const productosDb = carritob
     
     if(product){
       try {
-
-        let arrayIdProduct = id.split("")
-
-        // console.log('---------------------------------------------------------');
-        // console.log('Console log, id producto: ');
-        // console.log(arrayIdProduct);
-        // console.log('---------------------------------------------------------');
-
-        const carritoa = await dispatch(getCarrito(idUser))
-        const carritob = carritoa.payload ? carritoa.payload : null
-
         if(carritob.length === 0){
           console.log('Creando carrito para el usuario en la base de datos.');
           const carritoCreado = await dispatch(createCarrito(idUser))
           console.log(carritoCreado.payload);
+          dispatch(sincronizarDB({productos, productosDb}))
         }
         else{
           //console.log('Carrito ya existente en la base de datos.');
           const props = {idCarrito: carritob, arrayIdProduct: arrayIdProduct, quantity: 1}
           const saveP = await dispatch(saveProductDb(props))
+          dispatch(sincronizarDB({productos, productosDb}))
           console.log('Respuesta del saveProductDb: ');
-          console.log(saveP.payload)
+          console.log(saveP.payload)          
         }
-        dispatch(anadirProducto(product[0]))
       } 
       catch (error) {
         console.error('Error al crear carrito:', error)
