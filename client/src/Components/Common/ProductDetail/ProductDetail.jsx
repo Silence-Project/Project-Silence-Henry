@@ -1,20 +1,18 @@
 // ProductDetail.jsx
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 
-import { getById, getCategories, updateProduct } from "../../../Redux/Store/Slices/ProductSlice";
+import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice";
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import requiereUserBd from "../../../Helpers/requireUserBd";
 
-import { useFormik, Formik, Form, Field, ErrorMessage, } from "formik";
-
-
+import Editproduct from "../editProduct/editproduct";
 
 
 export default function Details(props) {
@@ -28,16 +26,7 @@ const productsDetails = useSelector((state) => state.product.productsDetails);
 
 const categories = useSelector((state) => state.product.categories);
 
-
-
-
-const handleSubmit = (values, {setSubmitting}) => {
-  
-  dispatch(updateProduct(values));
-
-}
-
-
+const [isEditing, setIsEditing] = useState(false);
 
 
  
@@ -58,9 +47,15 @@ useEffect(() => {
   }
   traerDataUser(); //objeto { id: 1, isActive: true, isAdmin: true }
 
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  }
+
+
   return (
     <div className="general">
-    {productsDetails.map((product, index) => (
+    {productsDetails && productsDetails.map((product, index) => (
       <div key={index}>
         <img
           className="image-principal"
@@ -83,41 +78,15 @@ useEffect(() => {
           <h4>👘 Caracteristicas de la tela: {product.material}</h4>
           <h4>💸 Precio: {product.price}</h4>
         </div>
+
+        
       </div>
     ))}
 
+    <button className="botondetail" onClick={handleEditClick}>Editar</button>
 
-    <Formik
-      initialValues={{
-        name: productsDetails.name,
-        description: productsDetails.description,
-        code: productsDetails.code,
-        idCategory: productsDetails.idCategory,
-        image: productsDetails.image,
-        cost: productsDetails.cost,
-        price: productsDetails.price,
-        preference: productsDetails.preference,
-        state: productsDetails.state,
-        stock: productsDetails.stock,
-        min: productsDetails.min,
-        quantity: productsDetails.quantity
-      }}
+    {isEditing && <Editproduct /> }
 
-      onSubmit={handleSubmit}
-
-    >
-      <Form>
-
-        <Field type="text" name="name" placeholder="Name" />
-        <ErrorMessage name="name" component="div" />
-
-    
-        <Field type="text" name="description" placeholder="Description" />
-        <ErrorMessage name="description" component="div" />
-
-      </Form>
-
-    </Formik>
       
 
     <button className="botondetail" onClick={() => handleAddProduct(productsDetails) } >Añadir al carrito de compras</button>

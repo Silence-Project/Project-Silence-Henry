@@ -54,7 +54,7 @@ export const getCategories = createAsyncThunk("categories", async () => {
 
 export const updateProduct = createAsyncThunk("products/update", async (product) => {
   try {
-    const response = await axios.put(`http://127.0.0.1:3001/products/update/${product.id}`, product);
+    const response = await axios.put(`http://127.0.0.1:3001/products/change/${product.id}`, product);
 
     return response.data;
   }
