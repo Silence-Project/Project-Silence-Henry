@@ -1,23 +1,46 @@
-import React, { useState } from 'react';
-import Input from '../../../Input';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../../../../Redux/Store/Slices/ProductSlice";
+import styles from "./Color.module.css"; 
 
-const Color = () => {
-  const [selectedColor, setSelectedColor] = useState('');
+const Color = ({ handleColorChange }) => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
+  const [uniqueColors, setUniqueColors] = useState([]);
 
-  const handleColorChange = (event) => {
-    setSelectedColor(event.target.value);
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      const colors = [...new Set(products.map((product) => product.color))];
+      setUniqueColors(colors);
+    }
+  }, [products]);
+
+  const handleColorChangeTwo = (event) => {
+    handleColorChange(event.target.value);
+    console.log("Color seleccionado:", event.target.value);
   };
 
   return (
     <div>
-      <label htmlFor="color">Color:</label>
-      <select id="color" value={selectedColor} onChange={handleColorChange}>
-        <option value="red">Rojo</option>
-        <option value="blue">Azul</option>
-        <option value="green">Verde</option>
-        <option value="yellow">Amarillo</option>
+      <h2 className={styles["color-title"]}>Colores Disponibles</h2>
+      <select
+        onChange={handleColorChangeTwo}
+        className={styles["sidebar-items"]}
+      >
+        {uniqueColors.map((color, index) => (
+          <option key={index} value={color} className={styles["color-option"]}>
+            <span
+              className={styles["color-square"]}
+              style={{ backgroundColor: color }}
+            ></span>
+            {color}
+          </option>
+        ))}
       </select>
-      <Input value={selectedColor} />
     </div>
   );
 };

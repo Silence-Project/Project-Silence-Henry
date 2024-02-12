@@ -8,6 +8,7 @@ import DescuentoAdmin from "../../Common/Descuento/DescuentoAdmin";
 import AdminDataViews from "../../../Auth/AdminDataViews/AdminDataViews";
 import { useAuth0 } from "@auth0/auth0-react";
 import requiereUserBd from "../../../Helpers/requireUserBd";
+import Head from "../../Common/Header/Head";
 
 
 
@@ -44,6 +45,8 @@ const AdminView = () => {
   }
 
   return (
+    <div> 
+      <Head />
     <div className={styles.containerAdminView}>
       <div className={styles.CreateProduct}>
         {selectedCard === "createProduct" ? (
@@ -96,6 +99,7 @@ const AdminView = () => {
           <button className={styles.btnHome} onClick={handleGoToHome}>Ir a Home</button>
         </>
       )}
+    </div>
     </div>
   );
 };

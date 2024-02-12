@@ -8,7 +8,7 @@ const CreateCategoryModal = ({ onClose, reloadCategories }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://127.0.0.1:3001/categories/new", {
+      await axios.post("https://silenceback.onrender.com/categories/new", {
         name: categoryName,
       });
       onClose();

@@ -6,8 +6,8 @@ import searchIcon from "../../../../img/icons/search.png";
 
 const SearchBar = ({ setFilterTerm }) => {
   const handleSearchChange = (e) => {
-    const searchTerm = e.target.value.trim(); // Obtener el valor del campo de búsqueda y eliminar espacios en blanco al principio y al final
-    setFilterTerm(searchTerm); // Actualizar el término de búsqueda
+    const searchTerm = e.target.value.trim();
+    setFilterTerm(searchTerm);
   };
 
   return (

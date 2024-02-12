@@ -9,7 +9,7 @@ export const getCar = createAsyncThunk(
   "cars",
   async () => {
       try {
-          const response = await axios.get("http://127.0.0.1:3001/car/cars");
+          const response = await axios.get("https://silenceback.onrender.com/car/cars");
           localStorage.setItem("car", JSON.stringify(response.data));
 
           return response.data;
@@ -25,7 +25,7 @@ export const postCar = createAsyncThunk(
   "car/new",
   async (car) => {
       try {
-          const response = await axios.post("http://127.0.0.1:3001/car/new" , car);
+          const response = await axios.post("https://silenceback.onrender.com/car/new" , car);
 
           return response.data;
       }
