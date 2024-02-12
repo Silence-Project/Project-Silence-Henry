@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
               Añadir al carrito
             </button>
             <div className={style.productPrice}>💸 {price}</div>
-            <div className={style.productPrice}>{color}</div>
+            <div className={style.productPrice}>💸 {color}</div>
           </div>
         </Link>
       </div>
@@ -47,6 +47,7 @@ const ProductCard = ({ product }) => {
             <h2>{name}</h2>
             <img src={image} alt={description} />
             <p>{description}</p>
+            <p>{color}</p>
             <p>💸 {price}</p>
             <button onClick={() => handleAddProduct(product)}>
               Añadir al carrito

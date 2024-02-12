@@ -1,30 +1,36 @@
-import React, { useState } from 'react';
-import "./Price.css";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../../../../Redux/Store/Slices/ProductSlice";
 
-const Price = ({ handleChange }) => {
-  const [selectedValue, setSelectedValue] = useState('');
+const Price = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
+  const [uniquePrice, setUniquePrice] = useState([]);
 
-  const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
-    handleChange(event);
-  };
+  useEffect(() => {
+    console.log("ESTOS", products);
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      const prices = [...new Set(products.map((product) => product.price))];
+      setUniquePrice(prices);
+    }
+  }, [products]);
+
+  console.log("Rendering Prices component with unique colors: ", uniquePrice);
 
   return (
-    <>
-      <div className="ml">
-        <h1 className="sidebar-title price-title">Precio</h1>
 
-        <label className="sidebar-label-container">
-          <select onChange={handleSelectChange} value={selectedValue}>
-            <option value="">Todos</option>
-            <option value="20000">$20000 - $25000</option>
-            <option value="25000">$25000 - $30000</option>
-            <option value="30000">$30000 - $35000</option>
-            <option value="35000">Más de $35000</option>
-          </select>
-        </label>
-      </div>
-    </>
+    <div>
+      <h2>Tallas Disponibles</h2>
+      <ul>
+        {uniquePrice.map((price, index) => (
+          <li key={index}>{price}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

@@ -13,9 +13,9 @@ const Sidebar = ( { setFilterTerm } ) => {
         <div className="logo-container">
           <h3>FILTRO</h3>
         </div>
-        <Category />
-        <Price />
-        <Size /> 
+        <Category setFilterTerm={setFilterTerm}/>
+        <Price setFilterTerm={setFilterTerm} />
+        <Size setFilterTerm={setFilterTerm} />
         <Color setFilterTerm={setFilterTerm} />
       </section>
     </>

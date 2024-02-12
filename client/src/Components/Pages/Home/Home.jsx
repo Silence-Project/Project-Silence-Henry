@@ -10,6 +10,7 @@ import ProductList from "../../Common/ProductList/ProductList";
 import Footer from "../../Common/FooterView/Footer";
 import Descuento from "../../Common/Descuento/Descuento";
 import styles from "./Home.module.css";
+import Color from "../../Common/Sidebar/Color/Color"
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,8 @@ const Home = () => {
       <div className={styles.homeContainer}>
         <Descuento />
         <Head setFilterTerm={setFilterTerm} />
+        <Color setFilterTerm={setFilterTerm} />
+
         <div className={styles.cardContainer}>
           <ProductList products={sortedProducts} filterTerm={filterTerm} cardsPerPage={cardsPerPage} />
         </div>

@@ -1,33 +1,37 @@
-import React from 'react';
-import "./Size.css"
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../../../../Redux/Store/Slices/ProductSlice";
 
-const Sizes = ({ handleChange }) => {
-  const handleRadioChange = (e) => {
-    if (e.target.value !== "") {
-      const allOption = document.querySelector('input[value=""]');
-      if (allOption.checked) {
-        allOption.checked = false;
-      }
+const Talla = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
+  const [uniqueSize, setUniqueSize] = useState([]);
+
+  useEffect(() => {
+    console.log("ESTOS", products);
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      const sizes = [...new Set(products.map((product) => product.size))];
+      setUniqueSize(sizes);
     }
-    handleChange(e);
-  };
+  }, [products]);
+
+  console.log("Rendering Sizes component with unique colors: ", uniqueSize);
 
   return (
-    <div>
-      <h2 className="sidebar-title color-title">Talla</h2>
-      <label className="sidebar-label-container">
-        <input onChange={handleRadioChange} type="radio" value="" name="test3" />
-        <span className="checkmark all"></span>Todos
-      </label>
 
-      <select onChange={handleRadioChange} name="test3">
-        <option value="S">Small</option>
-        <option value="M">Medium</option>
-        <option value="L">Large</option>
-        <option value="XL">Extra Largo</option>
-      </select>
+    <div>
+      <h2>Tallas Disponibles</h2>
+      <ul>
+        {uniqueSize.map((size, index) => (
+          <li key={index}>{size}</li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default Sizes;
+export default Talla;

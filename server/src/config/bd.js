@@ -23,9 +23,7 @@ modelUser(sequelize);
 modelShopingCar(sequelize);
 modelOrder(sequelize);
 modelPayments(sequelize);
-// modelFavorite(sequelize);
 modelCarProducts(sequelize);
-
 modelLocation(sequelize);
 modelFavorite(sequelize);
 modelText(sequelize);
@@ -40,6 +38,14 @@ Products.belongsTo(Category, { foreignKey: "idCategory", as: "products" });
 // User has one car and that car belongs to one specific user
 User.hasOne(Car, { foreignKey: "idUser", as: "cars" });
 Car.belongsTo(User, { foreignKey: "idUser", as: "cars" });
+
+// User has a favorite list
+User.hasOne(Favorite, {foreignKey: "userId", as: "favorite_list"});
+Favorite.belongsTo(User, {foreignKey: "userId", as: "favorite_list"})
+
+// One favorite list can have many products and products can to be in many favorite list
+Favorite.belongsToMany(Products, { through: "favoriteProducts"})
+Products.belongsToMany(Favorite, { through: "favoriteProducts"})
 
 // Every car can have so much products and products can to be in every car created
 Car.belongsToMany(Products, { through: "CartProduct", as: "shoppingCar" });
