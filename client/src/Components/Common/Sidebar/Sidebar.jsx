@@ -6,7 +6,7 @@ import Color from './Color/Color.jsx';
 
 import "./Sidebar.css";
 
-const Sidebar = ({ handleChange }) => {
+const Sidebar = ({ handleChange, handleColorChange }) => {
   return (
     <>
       <section className="sidebar">
@@ -16,7 +16,7 @@ const Sidebar = ({ handleChange }) => {
         <Category />
         <Price />
         <Size /> 
-        <Color />
+        <Color handleColorChange={handleColorChange} />
       </section>
     </>
   );

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../../Redux/Store/Slices/ProductSlice";
+import styles from "./Color.module.css"; 
 
-const Color = () => {
+const Color = ({ handleColorChange }) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const [uniqueColors, setUniqueColors] = useState([]);
 
   useEffect(() => {
-    console.log("ESTOS", products);
     dispatch(getProducts());
   }, [dispatch]);
 
@@ -19,16 +19,28 @@ const Color = () => {
     }
   }, [products]);
 
-  console.log("Rendering Color component with unique colors: ", uniqueColors);
+  const handleColorChangeTwo = (event) => {
+    handleColorChange(event.target.value);
+    console.log("Color seleccionado:", event.target.value);
+  };
 
   return (
     <div>
-      <h2>Colores Disponibles</h2>
-      <ul>
+      <h2 className={styles["color-title"]}>Colores Disponibles</h2>
+      <select
+        onChange={handleColorChangeTwo}
+        className={styles["sidebar-items"]}
+      >
         {uniqueColors.map((color, index) => (
-          <li key={index}>{color}</li>
+          <option key={index} value={color} className={styles["color-option"]}>
+            <span
+              className={styles["color-square"]}
+              style={{ backgroundColor: color }}
+            ></span>
+            {color}
+          </option>
         ))}
-      </ul>
+      </select>
     </div>
   );
 };
