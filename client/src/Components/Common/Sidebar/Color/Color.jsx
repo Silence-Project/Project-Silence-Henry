@@ -1,32 +1,35 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../../../../Redux/Store/Slices/ProductSlice";
 
-import styles from "./Color.module.css";
+const Color = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
+  const [uniqueColors, setUniqueColors] = useState([]);
 
-const Color = ({ setFilterTerm }) => {
-  const products = useSelector(state => state.products)
-    
-  const handleSearchChange = () => {
-    console.log(products)
-    
-  };
+  useEffect(() => {
+    console.log("ESTOS", products);
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      const colors = [...new Set(products.map((product) => product.color))];
+      setUniqueColors(colors);
+    }
+  }, [products]);
+
+  console.log("Rendering Color component with unique colors: ", uniqueColors);
 
   return (
 
     <div>
-      <h2 className="sidebar-title">COLORES</h2>
-   
-      <div>
-        <select onChange={handleSearchChange} className={styles.inputSearch}>
-          <option value="todas">Todos los colores</option>
-          <option value="negro">Negro</option>
-          <option value="blanco">Blanco</option>
-          <option value="gris">Gris</option>
-          <option value="rojo">Rojo</option>
-          <option value="azul">Azul</option>
-          <option value="verde">Verde</option>
-      </select>
-      </div>
+      <h2>Colores Disponibles</h2>
+      <ul>
+        {uniqueColors.map((color, index) => (
+          <li key={index}>{color}</li>
+        ))}
+      </ul>
     </div>
   );
 };
