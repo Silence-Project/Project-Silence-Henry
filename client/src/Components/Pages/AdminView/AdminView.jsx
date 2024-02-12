@@ -21,7 +21,6 @@ const AdminView = () => {
 
   const handleCloseCreateProduct = () => {
     setSelectedCard(null);
-    // navigate(ROUTES.ADMIN);
     navigate(ROUTES.PROFILE);
   };
 
@@ -36,7 +35,7 @@ const AdminView = () => {
 
     async function traerDataUser() {
       const isRegisterededUser = await requiereUserBd(email);
-      console.log('objeto usuario en ADMINVIEW???', isRegisterededUser);
+      // console.log('objeto usuario en ADMINVIEW???', isRegisterededUser);
     }
     traerDataUser(); //objeto { id: 1, isActive: true, isAdmin: true }
 
