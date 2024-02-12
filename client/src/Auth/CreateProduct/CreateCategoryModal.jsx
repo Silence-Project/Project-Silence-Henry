@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { URLTOCHANGE } from "../../Helpers/Routes.helper";
 import axios from "axios";
 import styles from "./CreateCategoryModal.module.css";
 
@@ -8,7 +9,7 @@ const CreateCategoryModal = ({ onClose, reloadCategories }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("https://silenceback.onrender.com/categories/new", {
+      await axios.post(`${URLTOCHANGE}/categories/new`, {
         name: categoryName,
       });
       onClose();
