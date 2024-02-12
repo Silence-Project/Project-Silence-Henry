@@ -1,15 +1,26 @@
-// Descuento.js
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Importa Axios
 import styles from "./Descuento.module.css";
 
 const Descuento = () => {
-  const descuento = useSelector((state) => state.admin.descuento);
+  const [mensaje, setMensaje] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("https://silenceback.onrender.com/toptext/texts")
+      .then((response) => {
+        console.log("RTA MSJE", response);
+        setMensaje(response.data[0].description);
+        console.log("RTA MSJE2", mensaje);
+      })
+      .catch((error) => {
+        console.error("Error al obtener el mensaje:", error);
+      });
+  }, []);
 
   return (
     <div className={styles.topMessage}>
-      <h2> {descuento}</h2>
-
+      <h2>{mensaje}</h2>
     </div>
   );
 };

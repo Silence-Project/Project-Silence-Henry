@@ -7,6 +7,7 @@ import ROUTES from "../../Helpers/Routes.helper";
 import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./AdminDataViews.module.css";
 
+
 const AdminDataViews = ({ handleCloseCreateProduct }) => {
   const dispatch = useDispatch();
   const [stateVariable, setstateVariable] = useState();
@@ -23,6 +24,7 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
   };
 
   return (
+    <div> 
     <div className={styles.container}>
       <div className={styles.btnCloseContainer}>
         <img
@@ -34,6 +36,7 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
         />
       </div>
       <div className={styles.chartOne}>
+    
         {" "}
         Ventas linea
         <Line
@@ -123,6 +126,7 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
           Inicio
         </Link>{" "}
       </button>
+    </div>
     </div>
   );
 };

@@ -17,9 +17,9 @@ const Sidebar = ({ handleChange, handleColorChange }) => {
         <NavLink to={ROUTES.ADMIN} className={StyleSheet.linkBtn}>
           Administración ⚙️
         </NavLink>
-        <Category handleColorChange={handleColorChange}/>
-        <Price handleColorChange={handleColorChange}/>
-        <Size handleColorChange={handleColorChange}/>
+        <Category />
+        <Price />
+        <Size />
         <Color handleColorChange={handleColorChange} />
       </section>
     </>

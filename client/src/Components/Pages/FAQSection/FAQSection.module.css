@@ -1,3 +1,7 @@
+:root {
+  --BalancedGray: #888; /* Define un color gris */
+}
+
 .container {
   background-color: var(--BalancedGray);
   max-width: 600px;
@@ -14,8 +18,8 @@
   padding: 10px 0 20px 0;
 }
 
-.info{
-  border-bottom: 15px var(--BalancedGray) solid;
+.info {
+  border-bottom: 15px solid var(--BalancedGray); /* Cambia el color del borde a gris */
 }
 
 .button {
@@ -28,7 +32,7 @@
   cursor: pointer;
 }
 
-.heading{
+.heading {
   margin: 25px;
 }
 

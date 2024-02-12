@@ -1,13 +1,19 @@
 .general {
+  position: relative; 
+  display: flex;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  width: 300px;
+  margin-top: 15%;
   max-width: 600px;
   margin: 0 auto;
-  background-color: #f9f9f9;
+  background-color: #f9f9f913;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.761);
+  justify-content: space-between; 
+  align-items: center; 
 }
 
 .image-principal {
@@ -28,11 +34,13 @@
 }
 
 .botondetail {
-  background-color: #007bff;
+  background-color: #ffffff;
   color: white;
   border: none;
   padding: 10px 20px;
+  color: black;
   border-radius: 5px;
+  border: 2px solid black;
   margin-top: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -40,5 +48,20 @@
 }
 
 .botondetail:hover {
-  background-color: #0056b3;
+  background-color: #000000;
+  color: white;
+}
+
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  color: #242424;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.closeButton:hover {
+  color: #000;
 }
