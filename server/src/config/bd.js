@@ -17,6 +17,7 @@ const sequelize = new Sequelize(
   `postgres://${USER}:${PASSWORD}@${HOST}:${PORT}/${BDD}`,
   {
     dialectOptions: {
+      //HABILITAR SOLO EN PRODUCCIÓN
       ssl: {
         require: true,
         rejectUnauthorized: false,
