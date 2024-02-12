@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // Importa Axios
+import { URLTOCHANGE } from "../../../Helpers/Routes.helper";
 import styles from "./Descuento.module.css";
 
 const Descuento = () => {
@@ -7,7 +8,7 @@ const Descuento = () => {
 
   useEffect(() => {
     axios
-      .get("https://silenceback.onrender.com/toptext/texts")
+      .get(`${URLTOCHANGE}/toptext/texts`)
       .then((response) => {
         console.log("RTA MSJE", response);
         setMensaje(response.data[0].description);

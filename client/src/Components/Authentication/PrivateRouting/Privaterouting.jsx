@@ -2,8 +2,9 @@ import { Outlet, Navigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useAuth0 } from "@auth0/auth0-react";
+import { URLTOCHANGE } from "../../../Helpers/Routes.helper";
 
-const API_USER_URL = "https://silenceback.onrender.com/usuarios"
+const API_USER_URL = `${URLTOCHANGE}/usuarios`
 
 const PrivateRouting = () => {
 
