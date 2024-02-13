@@ -2,6 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from 'axios'
+import URLTOCHANGE from '../../../Helpers/routesToChange';
 
 export const deleteProductDb = createAsyncThunk(
   'carrito/deleteProductDb',

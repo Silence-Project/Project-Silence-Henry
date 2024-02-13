@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../Redux/Store/Slices/UserSlice";
+import URLTOCHANGE from "../../Helpers/routesToChange";
 import { useParams } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./UserPersonalData.module.css";
@@ -20,7 +21,7 @@ function UserPersonalData({id}) {
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/usuarios/${cleanId}`
+          `${URLTOCHANGE.theUrl}/usuarios/${cleanId}`
         );
 
         if (!response.ok) {

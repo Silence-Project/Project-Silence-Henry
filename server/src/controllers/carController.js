@@ -15,7 +15,7 @@ const createCar = async (idUser, products) => {
 
         await newCarShopping.addShoppingCar(products);
 
-        return [...newCarShopping];
+        return newCarShopping;
     } catch (error) {
         return error.message;
     }

@@ -14,7 +14,7 @@ import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./CreateProduct.module.css";
 
 function CreateProduct({ handleCloseCreateProduct }) {
-  const [uploadedFileName, setUploadedFileName] = useState("");
+  const [uploadedFileName, setUploadedFileName] = useState(""); 
   const [fileError, setFileError] = useState("");
   const [uploadedFileUrl, setUploadedFileUrl] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -153,11 +153,9 @@ function CreateProduct({ handleCloseCreateProduct }) {
     }
   };
 
-  const [localUserData] = useOutletContext();
+  // const [localUserData] = useOutletContext();
 
-  return !localUserData.isAdmin ? (
-    <span>Necesitas permiso de admin para acceder...</span>
-  ) : (
+  return (
     <div className={`${styles.formContainer} ${styles.signUpContainer}`}>
       <form onSubmit={handleSubmit} className={styles.formContainer}>
         <h2>Crear Producto</h2>

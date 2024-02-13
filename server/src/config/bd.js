@@ -9,10 +9,22 @@ const modelOrder = require("../models/order.js");
 const modelPayments = require("../models/Payments.js");
 const modelCarProducts = require("../models/CarProducts.js");
 const modelLocation = require("../models/location.js");
+const modelFavorite = require("../models/favorites.js");
+const modelText = require("../models/text.js");
+const modelAboutUs = require("../models/AboutUs.js");
 
 const sequelize = new Sequelize(
   `postgres://${USER}:${PASSWORD}@${HOST}:${PORT}/${BDD}`,
-  { logging: false, native: false }
+  {
+    dialectOptions: {
+     ssl: {
+      require: true,
+      rejectUnauthorized: false,
+      },
+    },
+    logging: false,
+    native: false,
+  }
 );
 
 modelCategory(sequelize);
@@ -21,13 +33,24 @@ modelUser(sequelize);
 modelShopingCar(sequelize);
 modelOrder(sequelize);
 modelPayments(sequelize);
-// modelFavorite(sequelize);
 modelCarProducts(sequelize);
-
 modelLocation(sequelize);
+modelFavorite(sequelize);
+modelText(sequelize);
+modelAboutUs(sequelize);
 
-const { Products, User, Location, Category, Car, CartProduct, Order } =
-  sequelize.models;
+const {
+  Products,
+  User,
+  Location,
+  Category,
+  Car,
+  CartProduct,
+  Order,
+  Favorite,
+  Text,
+  AboutUs,
+} = sequelize.models;
 
 //Category has many products.
 Category.hasMany(Products, { foreignKey: "idCategory", as: "products" });
@@ -36,6 +59,14 @@ Products.belongsTo(Category, { foreignKey: "idCategory", as: "products" });
 // User has one car and that car belongs to one specific user
 User.hasOne(Car, { foreignKey: "idUser", as: "cars" });
 Car.belongsTo(User, { foreignKey: "idUser", as: "cars" });
+
+// User has a favorite list
+User.hasOne(Favorite, { foreignKey: "userId", as: "favorite_list" });
+Favorite.belongsTo(User, { foreignKey: "userId", as: "favorite_list" });
+
+// One favorite list can have many products and products can to be in many favorite list
+Favorite.belongsToMany(Products, { through: "favoriteProducts" });
+Products.belongsToMany(Favorite, { through: "favoriteProducts" });
 
 // Every car can have so much products and products can to be in every car created
 Car.belongsToMany(Products, { through: "CartProduct", as: "shoppingCar" });

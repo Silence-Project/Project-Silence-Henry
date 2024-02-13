@@ -34,7 +34,24 @@ const getAllLocationsHandler = async (req, res) => {
   } catch (error) {
     res.status(400).json({error:error.message})
   }
+}
 
+//UPDATE location
+const updateLocationHandler = async (req, res) => {
+
+  const idLocationToUpdate = parseInt(req.body.id);
+
+  const dataToUpdate = req.body;
+
+  try {
+    await Location.update(dataToUpdate, {
+      where: {
+        id: idLocationToUpdate
+      },
+    })
+  } catch (error) {
+    res.status(400).json({error:error.message})
+  }
 }
 
 

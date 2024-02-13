@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useOutletContext } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import Head from "../../Common/Header/Head";
 import Footer from "../../Common/FooterView/Footer";
 import TabsView from "../TabsView/TabsView";
-import TakeUserData from "../TakeUserData/TakeUserData";
+import style from "./MyProfile.module.css"
+import AdminView from "../../Pages/AdminView/AdminView";
+
 
 const MyProfile = () => {
 
@@ -26,24 +29,28 @@ const MyProfile = () => {
   const [localUserData] = useOutletContext();
   // console.log('habra llegado herencia?? ', localUserData);
 
+  const currentUser = useSelector((state) => state.user.user)
+  // console.log('existo? ', currentUser);
+
   return (
-    // !user ? loginWithRedirect() :
-    // isAuthenticated && (
-    <div>
+    <>
       <Head />
-      <div>
-        <h2>Hola, {user.nickname}.</h2>
+      <div className={style.profileContainer}>
+        <div>
+          <h2>Hola, {user.nickname}.</h2>
+        </div>
+        <aside>
+          <TabsView localUserData={localUserData} currentUser={currentUser} />
+        </aside>
+        {
+          localUserData.isAdmin ? <AdminView /> : null
+        }
+        <button onClick={() => logoutWithRedirect()}>
+          Cerrar sesión
+        </button>
       </div>
-      <aside>
-        <TabsView localUserData={localUserData} />
-      </aside>
-      <button onClick={() => logoutWithRedirect()}>
-        Cerrar sesión
-      </button>
-      <TakeUserData />
       <Footer />
-    </div>
-    //)
+    </>
   )
 };
 

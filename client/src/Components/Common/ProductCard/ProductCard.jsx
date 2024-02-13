@@ -1,68 +1,60 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
+import style from "./ProductCard.module.css";
+import Details from "../ProductDetail/ProductDetail";
 
-import { Link, NavLink } from 'react-router-dom'
-
-import ROUTES from '../../../Helpers/Routes.helper'
-
-import style from './ProductCard.module.css'
-
-import { useDispatch } from 'react-redux';
-
-import { anadirProducto } from '../../../Redux/Store/Slices/CarritoSlice';
-
-const ProductCard = ({product}) => {
-
-  const { id, name, image, price, description, stock, color, categoria, peso, codigo } = product
-
+const ProductCard = ({ product }) => {
+  const { id, name, image, price, description } = product;
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
   const handleAddProduct = (product) => {
     dispatch(anadirProducto(product));
-  }
+  };
 
-
-  // console.log(product)
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
-
     <div className={style.absolute}>
       <div className={style.productDetail}>
-      <Link to={/detail/+id}>
-        <div className='info'>
-        
-          <h2 className={style.productName}>{name}</h2>
-        
-{/* 
-        <img src={image.map((image, index) => 
-        <p key={index} className="card-image">{image}</p>)} 
-        
-        alt={name}/> */}
-
-        <img className={style.productImage} src={image} alt={description}/>
-
-        <p>💸 {price}</p>        
-      
-        {/*             
-        <p>{description}</p>
-        <p>{stock}</p>
-        
-        <p>{color}</p>
-        <p>{categoria}</p>
-        <p>{peso}</p> */}
-
-
-        {/*  <button>{COMPONENT.carrito}</button> */}
-        {/* <p>{COMPONENT.rating}</p> */}
-        
-        </div>
+        <Link to={`/detail/${id}`}>
+          <div className={style.productImageContainer} onClick={toggleModal}>
+            <img className={style.productImage} src={image} alt={description} />
+          </div>
+          <div className={style.info}>
+            <h2 className={style.productName}>{name}</h2>
+            <button
+              className={style.button}
+              onClick={() => handleAddProduct(product)}
+            >
+              Añadir al carrito
+            </button>
+            <div className={style.productPrice}>💸 {price}</div>
+          </div>
         </Link>
       </div>
-      
+      {showModal && (
+        <div className={style.modal}>
+          <div className={style.modalContent}>
+            <span className={style.close} onClick={toggleModal}>
+              &times;
+            </span>
+            <h2>{name}</h2>
+            <img src={image} alt={description} />
+            <p>{description}</p>
+            <p>💸 {price}</p>
+            <button onClick={() => handleAddProduct(product)}>
+              Añadir al carrito
+            </button>
+          </div>
+        </div>
+      )}
     </div>
-
-  )
-}
+  );
+};
 
 export default ProductCard;
-
-

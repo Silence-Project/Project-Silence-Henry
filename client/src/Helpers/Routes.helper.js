@@ -12,7 +12,13 @@ const ROUTES = {
   Carrito: '/carrito',
   USERSADMIN: '/usersAdmin',
   MODAL: '/modal',
-  ADMIN: '/admin-view'
+  ADMIN: '/admin-view',
+  PROFILE: '/profile'
 }
 
 export default ROUTES
+
+
+
+
+

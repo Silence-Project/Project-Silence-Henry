@@ -1,8 +1,8 @@
-// ProductDetail.jsx
 import React from "react";
 // import { useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { FaTimes } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 
@@ -11,6 +11,32 @@ import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import requiereUserBd from "../../../Helpers/requireUserBd";
+import styles from "./ProductDetail.module.css";
+import Head from "../Header/Head";
+
+export default function Details(props) {
+  const { user = { email: "null@null.null" } } = useAuth0();
+  const dispatch = useDispatch();
+
+  const { id } = useParams();
+
+  const productsDetails = useSelector((state) => state.product.productsDetails);
+
+  const categories = useSelector((state) => state.product.categories);
+
+  useEffect(() => {
+    dispatch(getById(id));
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  const handleAddProduct = (product) => {
+    dispatch(anadirProducto(product[0]));
+  };
+
+  async function traerDataUser() {
+    const isRegisterededUser = await requiereUserBd(user.email);
+  }
+  traerDataUser();
 import { sincronizarDB, createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
 
 export default function Details() {
@@ -72,41 +98,61 @@ export default function Details() {
   }
 
   return (
-    <div className="general">
-    {productsDetails.map((product, index) => (
-      <div key={index}>
-        <img
-          className="image-principal"
-          src={product.image}
-          alt="Product"
-          width="400px"
-          height="250px"
-        />
-        <div className="h4">
-          <h1>Nombre: {product.name}</h1>
-          <h1> ID: {product.id}</h1>
-          <h4>📜 Description:</h4>
-          <p className="description"> Descripcion: {product.description}</p>
-          <h4>SKU : {product.code}</h4>
-          <h4>🏷️ Categoría : {" "}
-            {categories.find((category) => category.id === product.idCategory)?.name}</h4>
-          <h4>📦 Stock disponible: {product.stock}</h4>
-          <h4>🎨 Color: {product.color}</h4>
-          <h4>🧱 Peso: {product.weight}</h4>
-          <h4>👘 Caracteristicas de la tela: {product.material}</h4>
-          <h4>💸 Precio: {product.price}</h4>
-        </div>
-      </div>
-    ))}
+    <div>
+      {" "}
+      <Head />
+      <div className={styles.general}>
+        <Link to={ROUTES.HOME}>
+          <div className={styles.closeButton}>
+            <FaTimes />
+          </div>
+        </Link>
+        {productsDetails.map((product, index) => (
+          <div key={index}>
+            <img
+              className={styles["image-principal"]}
+              src={product.image}
+              alt="Product"
+              width="400px"
+              height="250px"
+            />
+            <div className={styles.h4}>
+              <h2>{product.name}</h2>
+              <h4>📜 Description:</h4>
+              <p className={styles.description}>
+                {" "}
+                Descripcion: {product.description}
+              </p>
+              <h4>
+                🏷️ Categoría :{" "}
+                {
+                  categories.find(
+                    (category) => category.id === product.idCategory
+                  )?.name
+                }
+              </h4>
+              <h4>📦 Stock disponible: {product.stock}</h4>
+              <h4>🎨 Color: {product.color}</h4>
+              <h4>🧱 Peso: {product.weight}</h4>
+              <h4>👘 Caracteristicas de la tela: {product.material}</h4>
+              <h4>💸 Precio: {product.price}</h4>
+            </div>
+          </div>
+        ))}
 
-    <button className="botondetail" onClick={() => handleAddProduct(productsDetails) } >Añadir al carrito de compras</button>
+        <button
+          className={styles.botondetail}
+          onClick={() => handleAddProduct(productsDetails)}
+        >
+          Añadir al carrito de compras
+        </button>
 
     <Link to="/carrito">
-      <button className="botondetail">Ir al carrito</button>
+      <button {styles.botondetail}>Ir al carrito</button>
     </Link>
 
     <Link to={ROUTES.HOME}>
-      <button className="botondetail">Go Home</button>
+      <button className={styles.botondetail}>Go Home</button>
     </Link>
   </div>
 
