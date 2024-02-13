@@ -5,7 +5,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { Link } from "react-router-dom";
-import {ROUTES, URLTOCHANGE} from "../../../Helpers/Routes.helper";
+import ROUTES from "../../../Helpers/Routes.helper";
+import URLTOCHANGE from "../../../Helpers/routesToChange";
 // import { createOrder } from '../../../Redux/Store/Slices/CarritoSlice'
 
 const Checkout = () => {
@@ -38,7 +39,7 @@ const Checkout = () => {
 
       console.log(dataToSend);
 
-      const response = await axios.post(`${URLTOCHANGE}/payment`, dataToSend)
+      const response = await axios.post(`${URLTOCHANGE.theUrl}/payment`, dataToSend)
 
 
       window.location.href = response.data; // Redirige al usuario al flujo de pago de Mercado Pago

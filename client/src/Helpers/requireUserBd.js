@@ -1,10 +1,9 @@
-import { URLTOCHANGE } from "./Routes.helper";
-
+import URLTOCHANGE from "./routesToChange";
 
 async function requiereUserBd(email = "null@null.null") {
   try {
     const response = await fetch(
-      `${URLTOCHANGE}/usuarios/?email=${email}`
+      `${URLTOCHANGE.theUrl}/usuarios/?email=${email}`
     );
     const data = await response.json();
     // console.log("que fue la dataaaa: ", data);

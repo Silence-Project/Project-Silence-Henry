@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { URLTOCHANGE } from "./Routes.helper";
+import URLTOCHANGE from "./routesToChange";
 
 const TakeUserData = () => {
 
@@ -15,7 +15,7 @@ const TakeUserData = () => {
   // Realizar el registro del usuario en el backend
   const createLocalSignUp = async () => {
     // console.log("Enviando datos de usuario al servidor para registro...");
-    const response = await fetch(`${URLTOCHANGE}/usuarios`, {
+    const response = await fetch(`${URLTOCHANGE.theUrl}/usuarios`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

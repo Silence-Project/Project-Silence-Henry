@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import URLTOCHANGE  from "../../../Helpers/Routes.helper";
+import URLTOCHANGE from "../../../Helpers/routesToChange";
 
 export const signUp = createAsyncThunk(
   "user/signUp",
   async (userCredentials) => {
     try {
       const response = await axios.post(
-        `${URLTOCHANGE}/usuarios`,
+        `${URLTOCHANGE.theUrl}/usuarios`,
         userCredentials
       );
       localStorage.setItem("user", JSON.stringify(response.data));
@@ -23,7 +23,7 @@ export const signIn = createAsyncThunk(
   "user/signIn",
   async (userCredentials) => {
     const request = await axios.get(
-      `${URLTOCHANGE}/usuarios/login`,
+      `${URLTOCHANGE.theUrl}/usuarios/login`,
       userCredentials
     );
     const response = await request.data.data;
@@ -39,7 +39,7 @@ export const updateUser = createAsyncThunk(
   async ({ id, userData }) => {
     try {
       const response = await axios.patch(
-        `${URLTOCHANGE}/usuarios/${id}`,
+        `${URLTOCHANGE.theUrl}/usuarios/${id}`,
         userData,
         {
           headers: {
