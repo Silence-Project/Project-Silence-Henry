@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 
 import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice";
+import { sincronizarDB, createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -21,7 +22,7 @@ export default function Details(props) {
   const { id } = useParams();
 
   const productsDetails = useSelector((state) => state.product.productsDetails);
-
+  const productos = useSelector(state => state.carrito.productos);
   const categories = useSelector((state) => state.product.categories);
 
   useEffect(() => {
@@ -29,32 +30,11 @@ export default function Details(props) {
     dispatch(getCategories());
   }, [dispatch]);
 
-  const handleAddProduct = (product) => {
-    dispatch(anadirProducto(product[0]));
-  };
-
-  async function traerDataUser() {
-    const isRegisterededUser = await requiereUserBd(user.email);
-  }
-  traerDataUser();
-import { sincronizarDB, createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
-
-export default function Details() {
-
-  const dispatch = useDispatch();
-  const productos = useSelector(state => state.carrito.productos);
-  const productsDetails = useSelector((state) => state.product.productsDetails);
-  const categories = useSelector((state) => state.product.categories);
-
-  const { user  = { email: 'null@null.null' } } = useAuth0();
-
   async function traerDataUser() { 
     const isRegisterededUser = await requiereUserBd(user.email);
     const idUser = isRegisterededUser.id
     return idUser
   }
-
-  const {id} = useParams()
 
   useEffect(() => {
     dispatch(getById(id));
@@ -147,13 +127,14 @@ export default function Details() {
           Añadir al carrito de compras
         </button>
 
-    <Link to="/carrito">
-      <button {styles.botondetail}>Ir al carrito</button>
-    </Link>
+      <Link to="/carrito">
+        <button className={styles.botondetail}>Ir al carrito</button>
+      </Link>
 
-    <Link to={ROUTES.HOME}>
-      <button className={styles.botondetail}>Go Home</button>
-    </Link>
+      <Link to={ROUTES.HOME}>
+        <button className={styles.botondetail}>Go Home</button>
+      </Link>
+    </div>
   </div>
 
   );
