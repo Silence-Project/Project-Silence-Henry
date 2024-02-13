@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import React, { useState } from 'react';
 import CreateProduct from '../../../Auth/CreateProduct/CreateProduct'
 import Locations from '../../Common/Locations/Locations';
-import MyDataForm from '../MyDataForm/MyDataForm';
 import BasicData from '../../FormsUser/BasicData/BAsicData';
 
 const TabsView = ({ currentUser }) => {
@@ -25,7 +23,6 @@ const TabsView = ({ currentUser }) => {
       case 'updatePersonal':
         return <div>Actualizar Información Personal
           <BasicData currentUser={currentUser} />
-          {/* <MyDataForm currentUser={currentUser} /> */}
         </div>;
       default:
         return null;
