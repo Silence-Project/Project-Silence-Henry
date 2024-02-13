@@ -3,7 +3,7 @@ import styles from "./AdminView.module.css";
 import CreateProduct from "../../../Auth/CreateProduct/CreateProduct";
 import UsersAdmin from "../../usersAdmin/UsersAdmin";
 import { Link, useNavigate } from "react-router-dom";
-import {ROUTES} from "../../../Helpers/Routes.helper";
+import ROUTES from "../../../Helpers/Routes.helper";
 import DescuentoAdmin from "../../Common/Descuento/DescuentoAdmin";
 import AdminDataViews from "../../../Auth/AdminDataViews/AdminDataViews";
 import { useAuth0 } from "@auth0/auth0-react";

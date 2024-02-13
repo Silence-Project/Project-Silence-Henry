@@ -2,7 +2,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {ROUTES} from '../../../Helpers/Routes.helper';
+import ROUTES from '../../../Helpers/Routes.helper';
 
 import styles from './Carrito.module.css'
 

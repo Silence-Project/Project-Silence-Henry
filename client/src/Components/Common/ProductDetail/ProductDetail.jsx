@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
-import {ROUTES} from "../../../Helpers/Routes.helper";
+import ROUTES from "../../../Helpers/Routes.helper";
 import {
   getById,
   getCategories,
