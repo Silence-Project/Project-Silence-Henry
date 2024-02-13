@@ -1,6 +1,6 @@
 const server = require('./src/server');
-// const PORT = 5432;
-const PORT = 3001;
+ const PORT = 5432;
+//const PORT = 3001;
 const { conn } = require('./src/config/bd');
 
 conn.sync({ force: false })
