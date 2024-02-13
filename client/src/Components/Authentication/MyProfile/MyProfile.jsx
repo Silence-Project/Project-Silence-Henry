@@ -13,6 +13,9 @@ const MyProfile = () => {
 
   const { user, isAuthenticated, loginWithRedirect, isLoading, logout } = useAuth0();
 
+  const currentUser = useSelector((state) => state.user.user)
+  // console.log('existo? ', currentUser);
+
   if (isLoading) {
     return <div>Cargando...</div>
   }
@@ -24,24 +27,18 @@ const MyProfile = () => {
       }
     });
 
-  const [localUserData] = useOutletContext();
-  // console.log('habra llegado herencia?? ', localUserData);
-
-  const currentUser = useSelector((state) => state.user.user)
-  // console.log('existo? ', currentUser);
-
   return (
     <>
       <Head />
       <div className={style.profileContainer}>
         <div>
-          <h2>Hola, {user.nickname}.</h2>
+          <h2>Hola, {currentUser.firstName}.</h2>
         </div>
         <aside>
-          <TabsView localUserData={localUserData} currentUser={currentUser} />
+          <TabsView currentUser={currentUser} />
         </aside>
         {
-          localUserData.isAdmin ? <AdminView /> : null
+          currentUser.isAdmin ? <AdminView /> : null
         }
         <button onClick={() => logoutWithRedirect()}>
           Cerrar sesión

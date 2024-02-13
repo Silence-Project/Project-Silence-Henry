@@ -3,13 +3,11 @@ import { useAuth0 } from '@auth0/auth0-react';
 import CreateProduct from '../../../Auth/CreateProduct/CreateProduct'
 import Locations from '../../Common/Locations/Locations';
 import MyDataForm from '../MyDataForm/MyDataForm';
+import BasicData from '../../FormsUser/BasicData/BAsicData';
 
-const TabsView = ({ localUserData, currentUser }) => {
-  const { user } = useAuth0();
-  const { nickname, email } = user;
-
-  // console.log('que es userData???? ', userData);
-  //ESTO NO FUNCIONAAAAAAA, porser
+const TabsView = ({ currentUser }) => {
+  // const { user } = useAuth0();
+  // const { nickname, email } = user;
 
   const [activeTab, setActiveTab] = useState('myInfo');
 
@@ -17,8 +15,8 @@ const TabsView = ({ localUserData, currentUser }) => {
     switch (activeTab) {
       case 'myInfo':
         return <div>
-          <p>Nombre: {email}</p>
-          <p>Email: {email}</p>
+          <p>Nombre: {currentUser.firstName}</p>
+          <p>Email: {currentUser.email}</p>
         </div>;
       case 'createProd':
         return <div> <CreateProduct /> </div>;
@@ -26,7 +24,8 @@ const TabsView = ({ localUserData, currentUser }) => {
         return <div><p>Ubicaciones</p><Locations currentUser={currentUser} /></div>;
       case 'updatePersonal':
         return <div>Actualizar Información Personal
-          <MyDataForm currentUser={currentUser} />
+          <BasicData currentUser={currentUser} />
+          {/* <MyDataForm currentUser={currentUser} /> */}
         </div>;
       default:
         return null;
@@ -43,7 +42,7 @@ const TabsView = ({ localUserData, currentUser }) => {
           Actualizar Mis Datos
         </button>
         {
-          localUserData.isAdmin ? (<button onClick={() => setActiveTab('createProd')} className={activeTab === 'createProd' ? 'active' : ''}>
+          currentUser.isAdmin ? (<button onClick={() => setActiveTab('createProd')} className={activeTab === 'createProd' ? 'active' : ''}>
             Crear Producto
           </button>) : null
         }

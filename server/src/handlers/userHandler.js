@@ -52,7 +52,7 @@ const getLoginUser = async (req, res) => {
  * isAdmin ? boolean
  * }
  */
-const findUserByEmailOrAll =  async (req, res) => {
+const findUserByEmailOrAll = async (req, res) => {
   const { email } = req.query;
 
   try {
@@ -62,11 +62,13 @@ const findUserByEmailOrAll =  async (req, res) => {
           exclude: ["createdAt", "updatedAt"],
         },
         order: [["id", "ASC"]],
-        include: [{
-          model: Location,
-          as: 'locations',
-          attributes: ["id", "country", "city", "address", "postalCode"]
-        }],
+        include: [
+          {
+            model: Location,
+            as: "locations",
+            attributes: ["id", "country", "city", "address", "postalCode"],
+          },
+        ],
       });
       //return para cortar bloque
       return res.status(200).json(users);
@@ -84,11 +86,13 @@ const getUserDetailHandler = async (req, res) => {
   const { id } = req.params;
   try {
     const singleUser = await User.findByPk(id, {
-      include: [{
-        model: Location,
-        as: 'locations',
-        attributes: ["id", "country", "city", "address", "postalCode"]
-      }],
+      include: [
+        {
+          model: Location,
+          as: "locations",
+          attributes: ["id", "country", "city", "address", "postalCode"],
+        },
+      ],
     });
 
     if (!singleUser)
@@ -113,10 +117,22 @@ const updateUserHandler = async (req, res) => {
     // console.log(updatedUser);
     if (updatedUser[0] === 0) throw Error("User not found.");
 
+    const myUser = await User.findOne({
+      where: { id: userIdToUpdate },
+      include: [
+        {
+          model: Location,
+          as: "locations",
+          attributes: ["id", "country", "city", "address", "postalCode"],
+        },
+      ],
+    });
+
     res.status(200).json({
       userUpdated: true,
       message: "User successfully updated!",
       updatedUser,
+      myUser,
     });
   } catch (error) {
     res.status(400).json({ userUpdated: false, error: error.message });
@@ -129,5 +145,4 @@ module.exports = {
   getLoginUser,
   getUserDetailHandler,
   updateUserHandler,
-  // userHandler,
 };

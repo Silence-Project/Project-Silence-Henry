@@ -1,4 +1,5 @@
 import React from "react";
+import LocationForm from "../../FormsUser/LocationForm/LocationForm";
 
 const Locations = ({ currentUser }) => {
 
@@ -19,6 +20,11 @@ const Locations = ({ currentUser }) => {
           </div>
         ))
       }
+      <br />
+      <button>
+        Añadir dirección
+      </button>
+      <LocationForm currentUser={currentUser}/>
     </div>
   )
 }
