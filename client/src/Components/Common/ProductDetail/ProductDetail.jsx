@@ -24,11 +24,16 @@ export default function Details(props) {
   const productsDetails = useSelector((state) => state.product.productsDetails);
   const productos = useSelector(state => state.carrito.productos);
   const categories = useSelector((state) => state.product.categories);
+  const currentUser = useSelector((state) => state.user.user)
 
   useEffect(() => {
     dispatch(getById(id));
     dispatch(getCategories());
   }, [dispatch]);
+
+  console.log('-------------------------------------------');
+  console.log(currentUser);
+  console.log('-------------------------------------------');
 
   async function traerDataUser() { 
     const isRegisterededUser = await requiereUserBd(user.email);

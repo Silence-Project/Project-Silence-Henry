@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { USER, PASSWORD, HOST, SERVER_PORT, BDD } = process.env;
+const { USER, PASSWORD, HOST, PORT, BDD } = process.env;
 const { Sequelize } = require("sequelize");
 const modelCategory = require("../models/Category.js");
 const modelProducts = require("../models/products");
@@ -14,14 +14,14 @@ const modelText = require("../models/text.js");
 const modelAboutUs = require("../models/AboutUs.js");
 
 const sequelize = new Sequelize(
-  `postgres://${USER}:${PASSWORD}@${HOST}:${SERVER_PORT}/${BDD}`,
+  `postgres://${USER}:${PASSWORD}@${HOST}:${PORT}/${BDD}`,
   {
-    // dialectOptions: {
+    dialectOptions: {
     //  ssl: {
     //   require: true,
     //   rejectUnauthorized: false,
     //   },
-    // },
+    },
     logging: false,
     native: false,
   }

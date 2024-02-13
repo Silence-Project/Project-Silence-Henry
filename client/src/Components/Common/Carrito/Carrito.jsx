@@ -15,6 +15,7 @@ const CarritoSlides = () => {
 
   const dispatch = useDispatch();
   const productos = useSelector(state => state.carrito.productos);
+  const products = useSelector((state) => state.product.products);
 
   const { user  = { email: 'null@null.null' } } = useAuth0();
 
@@ -26,7 +27,7 @@ const CarritoSlides = () => {
     const carritob = carritoa.payload ? carritoa.payload : null
 
     const productosDb = carritob
-    dispatch(sincronizarDB({productos, productosDb}))
+    dispatch(sincronizarDB({productos, productosDb, products}))    
   }
 
   const handlerDrop = async (idProducto) => {

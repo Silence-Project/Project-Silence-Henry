@@ -2,7 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from 'axios'
-import URLTOCHANGE from '../../../Helpers/routesToChange';
+// import URLTOCHANGE from '../../../Helpers/routesToChange';
 
 export const deleteProductDb = createAsyncThunk(
   'carrito/deleteProductDb',
@@ -88,24 +88,40 @@ export const carritoSlice = createSlice({
   reducers: {
     sincronizarDB: (state, action) => {
 
-      const {productosDb} = action.payload
+      const {productosDb, products} = action.payload
 
       const productosFinal = []
       const productosSho = productosDb[0]['shoppingCar'] ? productosDb[0]['shoppingCar'] : []
       state.productos = []
       for (const iterator of productosSho) {
-        let valor = iterator.CartProduct
+        let valorCantidad = iterator.CartProduct
         let formatedInfo = {
+          cantidad: valorCantidad.quantity,
+          code: "563456",
+          color: "#ff0000",
+          cost: 5674,
+          description: "56ertfgh",
           id: iterator.id,
-          cantidad: valor.quantity,
+          idCategory: 3,
+          image: "www.google.com",
+          material: "Materialc",
+          min: null,
+          name: "Productoc",
+          preference: 3,
           price: iterator.price,
-          name: iterator.name
+          quantity: 2,
+          size: "9871",
+          state: true,
+          stock: 654367,
+          weight: 643
         }
         const existingProduct = state.productos.find((element) => element.id === formatedInfo.id);
 
         if (!existingProduct) {          
-          state.productos.push({ ...formatedInfo, cantidad: valor.quantity, quantity: valor.quantity });
+          state.productos.push({ ...formatedInfo, cantidad: valorCantidad.quantity, quantity: valorCantidad.quantity });
         }
+
+        state.productos.push(...products)
 
         productosFinal.push(formatedInfo)
       }
