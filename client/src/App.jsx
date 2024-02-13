@@ -37,12 +37,12 @@ function App() {
 
         <Route element={<QuienesSomos/>} path="/quienesSomos"></Route>
 
-        {/* {
+        {
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
-        } */}
+        }
 
         <Route path={ROUTES.REGISTER} element={<UserRegister />}></Route>
 
