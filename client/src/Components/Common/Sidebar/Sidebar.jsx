@@ -1,6 +1,6 @@
 import Category from "./Category/Category.jsx";
 import { NavLink } from "react-router-dom";
-import ROUTES from "../../../Helpers/Routes.helper.js";
+import {ROUTES} from "../../../Helpers/Routes.helper.js";
 import Size from "./Size/Size.jsx";
 import Color from "./Color/Color.jsx";
 import Price from "./Price/Price.jsx";

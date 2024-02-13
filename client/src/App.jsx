@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import ROUTES from "./Helpers/Routes.helper";
+import {ROUTES} from "./Helpers/Routes.helper";
 import Landing from "./Components/Pages/Landing/Landing";
 import Home from "./Components/Pages/Home/Home";
 import LoginForm from "./Auth/Login/LoginForm";

@@ -1,4 +1,4 @@
-import ROUTES from "../../Helpers/Routes.helper";
+import {ROUTES} from "../../Helpers/Routes.helper";
 import { Link } from "react-router-dom";
 import SignInForm from "./SignIn";
 import SignUpForm from "./SignUp";

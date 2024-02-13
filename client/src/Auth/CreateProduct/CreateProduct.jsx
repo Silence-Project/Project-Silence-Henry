@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useOutletContext } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import ROUTES from "../../Helpers/Routes.helper";
+import {ROUTES} from "../../Helpers/Routes.helper";
 import { useDispatch, useSelector } from "react-redux";
 import {
   postProduct,
