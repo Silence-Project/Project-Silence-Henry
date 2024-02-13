@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import URLTOCHANGE from "./routesToChange";
+// import URLTOCHANGE from "./routesToChange";
 
 const TakeUserData = () => {
   const { user } = useAuth0();
@@ -16,7 +17,7 @@ const TakeUserData = () => {
 
         /******************primera peticion, POST trying */
         // Fetch user data from backend
-        const response = await fetch(`${URLTOCHANGE}/usuarios`, {
+        const response = await fetch(`http://127.0.0.1:3001/usuarios`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +39,7 @@ const TakeUserData = () => {
           /******************segunda peticion, GET */
           // Fetch user data again from backend using the generated userId
           const userDataResponse = await fetch(
-            `${URLTOCHANGE}/usuarios/${userId}`
+            `http://127.0.0.1:3001/usuarios/${userId}`
           );
 
           // Check if the user data was successfully fetched
