@@ -58,7 +58,7 @@ export const updateUser = createAsyncThunk(
 
 export const gettingUser = createAsyncThunk("user/gettingUser", async (id) => {
   try {
-    const response = await axios.get(`http://localhost:3001/usuarios/${id}`);
+    const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/${id}`);
 
     localStorage.setItem("user", JSON.stringify(response.data));
     console.log("gettingUser Response:", response.data);
