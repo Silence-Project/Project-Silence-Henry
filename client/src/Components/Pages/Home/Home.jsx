@@ -105,10 +105,12 @@ const Home = () => {
   };
 
 
+  
 
-  const sortedProducts = products
-    // .slice()
-    // .sort((a, b) => a.preference - b.preference);
+
+  const sortedProducts = products.length > 0
+  ? products.slice().sort((a, b) => a.preference - b.preference)
+  : [];
 
 
     

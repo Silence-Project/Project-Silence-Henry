@@ -4,19 +4,57 @@ import { useDispatch } from "react-redux";
 import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
 import style from "./ProductCard.module.css";
 
+import { useSelector } from "react-redux";
 import Details from "../ProductDetail/ProductDetail";
 
-import { addFavorito }  from "../../../Redux/Store/Slices/FavSlice";
+import { addFavorito , deleteFavorito }  from "../../../Redux/Store/Slices/FavSlice";
+
+import { deleteProduct } from "../../../Redux/Store/Slices/ProductSlice";
+
+import emptyHeart from "../favoritos/images/corazon_vacio.png";
+import filledHeart from "../favoritos/images/corazon_lleno.png";
+
 
 const ProductCard = ({ product }) => {
   const { id, name, image, price, description } = product;
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  const handleAddFavorito = (product) => {
-    dispatch(addFavorito(product));
+  const favoritos = useSelector((state) => state.fav.favoritos);
+  const isFavorito = favoritos.some((favProduct) => favProduct.id === id);
+
+
+  const [sw , setSw] = useState(false)
+
+  const handleSw = (aceptar) =>{
+    if(aceptar){
+      setSw(true)
+    } else {
+      setSw(false)
+    }
+  }
+  
+  const handleDeleteProduct = () => {
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que quieres eliminar este producto?"
+    )
+    if (confirmDelete) {
+      setSw(true)
+      dispatch(deleteProduct({ id: product.id, sw: true }));
+    } else {
+      setSw(false)
+    }
+    
+    
   }
 
+ const handleToggleFavorito = () => {
+   if (isFavorito) {
+     dispatch(deleteFavorito(id));
+   } else {
+     dispatch(addFavorito(product));
+   }
+ }
 
   const handleAddProduct = (product) => {
     dispatch(anadirProducto(product));
@@ -32,20 +70,38 @@ const ProductCard = ({ product }) => {
         <Link to={`/detail/${id}`}>
           <div className={style.productImageContainer} onClick={toggleModal}>
             <img className={style.productImage} src={image} alt={description} />
+         
+         
           </div>
+
+         
           <div className={style.info}>
+    
             <h2 className={style.productName}>{name}</h2>
-            <button
-              className={style.button}
-              onClick={() => handleAddProduct(product)}
-            >
-              Añadir al carrito
-            </button>
+            
+         
             <div className={style.productPrice}>💸 {price}</div>
           </div>
-        </Link>
+        
+          </Link>
 
-        <button onClick={() => handleAddFavorito(product)}>Agregar a Favoritos</button>
+          <div className={style.info}>
+            <button
+                className={style.button}
+                onClick={() => handleAddProduct(product)}
+              >
+                Añadir al carrito
+            </button>
+
+              <button className={style.button} onClick={handleToggleFavorito}>
+                 <img src={isFavorito ? filledHeart : emptyHeart  } alt="Heart Icon" className={style.heartIcon} />
+              </button>
+
+            <button onClick={handleDeleteProduct} className={style.button}>Eliminar Producto</button>
+
+          </div>
+
+        
       </div>
       {showModal && (
         <div className={style.modal}>
@@ -57,12 +113,16 @@ const ProductCard = ({ product }) => {
             <img src={image} alt={description} />
             <p>{description}</p>
             <p>💸 {price}</p>
-            <button onClick={() => handleAddProduct(product)}>
-              Añadir al carrito
-            </button>
+           
           </div>
+                  <button onClick={() => handleAddProduct(product)}>
+                    Añadir al carrito
+                  </button>
+
+
         </div>
       )}
+           
     </div>
   );
 };

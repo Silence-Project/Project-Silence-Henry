@@ -74,15 +74,16 @@ export const updateProduct = createAsyncThunk("products/update", async (product)
   }})
 
 
-export const deleteProduct = createAsyncThunk("products/delete", async (id) => {
+export const deleteProduct = createAsyncThunk("products/delete", async ({id  , sw }, { rejectWithValue } ) => {
   try {
     // const response = await axios.delete(`${URLTOCHANGE}/products/delete/${id}`);
-    const response = await axios.delete(`http://127.0.0.1:3001/products/delete/${id}`);
+    const response = await axios.delete(`http://127.0.0.1:3001/products/delete?id=${id}&sw=${sw}`);
 
     return response.data;
   }
   catch (error) {
     console.log(error);
+    return rejectWithValue([]);
   }
 })
 
@@ -172,7 +173,40 @@ const productSlice = createSlice({
         state.loading = false;
         state.categories = [];
         state.error = action.error.message;
-      });
+      })
+
+      .addCase(updateProduct.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        state.loading = false;
+        state.productsDetails = action.payload;
+        state.error = null;
+      })
+
+      .addCase(updateProduct.rejected, (state, action) => {
+        state.loading = false;
+        state.productsDetails = [];
+        state.error = action.error.message;
+      })
+
+      .addCase(deleteProduct.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = state.products.filter(product => product.id !== action.payload.id);
+        state.error = null;
+      })
+
+      .addCase(deleteProduct.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
 
 
   },

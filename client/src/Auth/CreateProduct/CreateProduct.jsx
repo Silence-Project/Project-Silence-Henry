@@ -70,6 +70,8 @@ function CreateProduct({ handleCloseCreateProduct }) {
         "image/png",
         "image/gif",
         "video/mp4",
+        "image/heic",
+        "image/webp",
       ];
 
       if (allowedTypes.includes(file.type)) {
@@ -121,7 +123,6 @@ function CreateProduct({ handleCloseCreateProduct }) {
       console.log("aerrs", Object.keys(errors));
       if (Object.keys(errors).length === 0) {
         dispatch(postProduct(formik.values));
-        console.log();
         navigate(ROUTES.HOME);
         window.location.reload();
       } else {

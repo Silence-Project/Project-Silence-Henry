@@ -5,14 +5,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const favoritosSlice = createSlice({
     name: "favoritos",
     initialState: {
-        favoritos: [],
+        favoritos: JSON.parse(localStorage.getItem('favoritos')) || [],
     },
     reducers: {
         addFavorito: (state, action) => {
             state.favoritos.push(action.payload);
+            localStorage.setItem('favoritos', JSON.stringify(state.favoritos));
         },
         deleteFavorito: (state, action) => {
-            state.favoritos.filter((favorito) => favorito.id !== action.payload);
+            state.favoritos = state.favoritos.filter((favorito) => favorito.id !== action.payload);
+            localStorage.setItem('favoritos', JSON.stringify(state.favoritos));
         },
     },
 });

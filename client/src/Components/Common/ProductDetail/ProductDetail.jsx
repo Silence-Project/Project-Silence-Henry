@@ -30,6 +30,15 @@ const [isEditing, setIsEditing] = useState(false);
 
 
 
+
+const [edit, setEdit] = useState("");
+
+  const actualizarDetail = (editado) => {
+    setEdit(editado)
+  }
+
+
+
   useEffect(() => {
     dispatch(getById(id));
     dispatch(getCategories());
@@ -48,6 +57,10 @@ const [isEditing, setIsEditing] = useState(false);
   const handleEditClick = () => {
     setIsEditing(true);
   }
+
+
+
+console.log(productsDetails, "PRODUCTDETAILS")
 
 
   return (
@@ -70,7 +83,7 @@ const [isEditing, setIsEditing] = useState(false);
               height="250px"
             />
             <div className={styles.h4}>
-              <h2>{product.name } </h2>
+              <h2>{product.name}</h2>
               <h4>📜 Description:</h4>
               <p className={styles.description}>
                 {" "}
@@ -97,7 +110,7 @@ const [isEditing, setIsEditing] = useState(false);
 
         <button className="botondetail" onClick={handleEditClick}>Editar</button>
 
-    {isEditing && <Editproduct /> }
+    {isEditing && <Editproduct props={productsDetails} actualizarDetail={actualizarDetail}  /> }
 
       
 
