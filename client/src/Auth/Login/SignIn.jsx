@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import GMAIL from "../../img/gmail.png";
 import { useDispatch } from "react-redux";
-import ROUTES from "../../Helpers/Routes.helper";
+import {ROUTES} from "../../Helpers/Routes.helper";
 import { signIn } from "../../Redux/Store/Slices/UserSlice";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignIn.module.css";

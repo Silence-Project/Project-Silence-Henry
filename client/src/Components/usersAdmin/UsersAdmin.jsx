@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import IMGCLOSE from "../../img/icons/x-mark.png";
-import { URLTOCHANGE } from "../../Helpers/Routes.helper";
+import URLTOCHANGE from "../../Helpers/routesToChange";
 import styles from "./UsersAdmin.module.css";
 
 const UsersAdmin = ({ handleCloseCreateProduct }) => {
@@ -9,7 +9,7 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
   const toggleEstadoUsuario = (id, isActive) => {
     const newEstado = isActive ? false : true;
 
-    fetch(`${URLTOCHANGE}/usuarios/${id}`, {
+    fetch(`${URLTOCHANGE.theUrl}/usuarios/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
   };
 
   useEffect(() => {
-    fetch(`${URLTOCHANGE}/usuarios/`)
+    fetch(`${URLTOCHANGE.theUrl}/usuarios/`)
       .then((response) => response.json())
       .then((data) => {
         setUsuarios(data);
