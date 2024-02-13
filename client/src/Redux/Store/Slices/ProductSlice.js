@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { URLTOCHANGE } from "../../../Helpers/Routes.helper";
+import URLTOCHANGE from "../../../Helpers/routesToChange";
 
 import axios from "axios";
 
@@ -7,7 +7,7 @@ export const getProducts = createAsyncThunk(
   "products",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${URLTOCHANGE}/products`);
+      const response = await axios.get(`${URLTOCHANGE.theUrl}/products`);
       localStorage.setItem("products", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
@@ -19,7 +19,7 @@ export const getProducts = createAsyncThunk(
 
 export const getById = createAsyncThunk("productsDetails", async (id) => {
   try {
-    const response = await axios.get(`${URLTOCHANGE}/products/${id}`);
+    const response = await axios.get(`${URLTOCHANGE.theUrl}/products/${id}`);
 
     localStorage.setItem("productsDetails", JSON.stringify(response.data));
 
@@ -32,10 +32,7 @@ export const getById = createAsyncThunk("productsDetails", async (id) => {
 export const postProduct = createAsyncThunk("products/new", async (product) => {
   console.log(product);
   try {
-    const response = await axios.post(
-      `${URLTOCHANGE}/products/new`,
-      product
-    );
+    const response = await axios.post(`${URLTOCHANGE.theUrl}/products/new`, product);
 
     return response.data;
   } catch (error) {
@@ -45,9 +42,7 @@ export const postProduct = createAsyncThunk("products/new", async (product) => {
 
 export const getCategories = createAsyncThunk("categories", async () => {
   try {
-    const response = await axios.get(
-      `${URLTOCHANGE}/categories/allCategory`
-    );
+    const response = await axios.get(`${URLTOCHANGE.theUrl}/categories/allCategory`);
 
     return response.data;
   } catch (error) {
