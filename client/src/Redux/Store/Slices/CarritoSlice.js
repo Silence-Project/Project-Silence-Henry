@@ -1,45 +1,84 @@
+// carritoSlice.js
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
-import URLTOCHANGE from '../../../Helpers/routesToChange';
+// import URLTOCHANGE from '../../../Helpers/routesToChange';
 
+export const deleteProductDb = createAsyncThunk(
+  'carrito/deleteProductDb',
+  async ({idCarrito, arrayIdProduct}) => {
 
-import { createAsyncThunk } from '@reduxjs/toolkit'
+    const idProduct = arrayIdProduct.join("")
 
-export const getCar = createAsyncThunk(
-  "cars",
-  async () => {
-      try {
-          const response = await axios.get(`${URLTOCHANGE.theUrl}/car/cars`);
-          localStorage.setItem("car", JSON.stringify(response.data));
+    console.log(idProduct);
 
-          return response.data;
-      }
-
-      catch (error) {
-          console.log(error);
-      }}
-)
-
-
-export const postCar = createAsyncThunk(
-  "car/new",
-  async (car) => {
-      try {
-          const response = await axios.post(`${URLTOCHANGE.theUrl}/car/new` , car);
-
-          return response.data;
-      }
-
-      catch (error) {
-          console.log(error);
-      }
+    try {
+      const response = await axios.delete(`http://127.0.0.1:3001/car/remove/${idCarrito}/${idProduct}`);
+      return await response;
+    } catch (error) {
+      return { error: error.message };
+    }
   }
-
 )
 
+export const saveProductDb = createAsyncThunk(
+  'carrito/saveProductDb',
+  async ({idCarrito, arrayIdProduct, quantity}) => {
 
+    const stringIdProduct = arrayIdProduct.join("")
 
+    let data = {
+      carId: idCarrito[0]['id'],
+      productId: stringIdProduct,
+      quantity: quantity
+    };
+
+    try {
+      const response = await axios.post('http://127.0.0.1:3001/car/newProduct', data);
+      return await response.data;
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+)
+
+export const getCarrito = createAsyncThunk(
+  'carrito/obtener',
+  async (idUser) => {
+
+    const config = {
+      method: 'get',
+      url: `http://127.0.0.1:3001/car/car/${idUser}`
+    };
+
+    try {
+      const response = await axios(config);
+      return await response.data;
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+)
+
+export const createCarrito = createAsyncThunk(
+  'carrito/crear',
+  async (idUser) => {
+    const config = {
+      method: 'post',
+      url: 'http://127.0.0.1:3001/car/new',
+      data: {
+        idUser: idUser,
+      },
+    };    
+
+    try {
+      const response = await axios(config);
+      return await response.data;
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+)
 
 export const carritoSlice = createSlice({
   name: 'carrito',
@@ -47,56 +86,35 @@ export const carritoSlice = createSlice({
     productos: [],
   },
   reducers: {
-    anadirProducto: (state, action) => {
-        
-      const producto = action.payload;
+    sincronizarDB: (state, action) => {
 
+      const {productosDb} = action.payload
 
+      const productosFinal = []
+      const productosSho = productosDb[0]['shoppingCar'] ? productosDb[0]['shoppingCar'] : []
+      state.productos = []
+      for (const iterator of productosSho) {
+        let valorCantidad = iterator.CartProduct
+        let formatedInfo = {
+          cantidad: valorCantidad.quantity,
+          id: iterator.id,
+          price: iterator.price,
+          quantity: valorCantidad.quantity
+        }
+        const existingProduct = state.productos.find((element) => element.id === formatedInfo.id);
 
+        if (!existingProduct) {          
+          state.productos.push({ ...formatedInfo, cantidad: valorCantidad.quantity, quantity: valorCantidad.quantity });
+        }
 
-      console.log("QUANTITY ACA ->" + producto.quantity)
-      const existingProduct = state.productos.find(item => item.id === producto.id);
-
-      if (existingProduct) {
-        existingProduct.cantidad++;
-        existingProduct.quantity = existingProduct.cantidad
-      } else {
-        state.productos.push({ ...producto, cantidad: 1, quantity: 1 });
+        productosFinal.push(formatedInfo)
       }
-    },
-    eliminarProducto: (state, action) => {
-      const { id } = action.payload;
-      state.productos = state.productos.filter(producto => producto.id !== id);
-    },
-    limpiarCarrito: state => {
-      state.productos = [];
-    },
-    
-  } ,
-  extraReducers: (builder) => {
-    builder
-      .addCase(getCar.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getCar.fulfilled, (state, action) => {
-        state.loading = false;
-        state.productos = action.payload;
-        state.error = null;
-      })
-      .addCase(getCar.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      })
-      .addCase(postCar.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
+      
     }
-  
-  });
+  }
+});
 
 
-export const { anadirProducto, eliminarProducto, limpiarCarrito } = carritoSlice.actions;
+export const { eliminarProducto, limpiarCarrito, sincronizarDB } = carritoSlice.actions;
 
 export default carritoSlice.reducer;
