@@ -38,17 +38,19 @@ const getAllLocationsHandler = async (req, res) => {
 
 //UPDATE location
 const updateLocationHandler = async (req, res) => {
+  // console.log('que es params', req.params)
+  const idLocationToUpdate = parseInt(req.params.id);
 
-  const idLocationToUpdate = parseInt(req.body.id);
-
+  // console.log('quessss idLocationToUpdate', idLocationToUpdate);
   const dataToUpdate = req.body;
 
   try {
-    await Location.update(dataToUpdate, {
+    const updatedLocation = await Location.update(dataToUpdate, {
       where: {
         id: idLocationToUpdate
       },
     })
+    res.status(200).json(updatedLocation);
   } catch (error) {
     res.status(400).json({error:error.message})
   }
@@ -58,4 +60,5 @@ const updateLocationHandler = async (req, res) => {
 module.exports = {
   postNewLocationHandler,
   getAllLocationsHandler,
+  updateLocationHandler,
 };

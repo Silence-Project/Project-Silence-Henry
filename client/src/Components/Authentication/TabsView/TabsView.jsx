@@ -1,32 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import React, { useState } from 'react';
 import CreateProduct from '../../../Auth/CreateProduct/CreateProduct'
 import Locations from '../../Common/Locations/Locations';
-import MyDataForm from '../MyDataForm/MyDataForm';
+import BasicData from '../../FormsUser/BasicData/BasicData';
+import UserOrders from '../../UserOrders/UserOrders';
+import style from './TabsView.module.css';
+import AdminView from '../../Pages/AdminView/AdminView';
 
-const TabsView = ({ localUserData, currentUser }) => {
-  const { user } = useAuth0();
-  const { nickname, email } = user;
-
-  // console.log('que es userData???? ', userData);
-  //ESTO NO FUNCIONAAAAAAA, porser
+const TabsView = ({ currentUser }) => {
 
   const [activeTab, setActiveTab] = useState('myInfo');
 
   const renderTabContent = () => {
     switch (activeTab) {
       case 'myInfo':
-        return <div>
-          <p>Nombre: {email}</p>
-          <p>Email: {email}</p>
+        return <div className={style.uniqueItemContainer}>
+          <p>Nombre: {currentUser.firstName}</p>
+          <br />
+          <p>Email: {currentUser.email}</p>
         </div>;
+      case 'viewOrders':
+        return <div className={style.uniqueItemContainer}>
+          <h3>Mis órdenes</h3>
+          <UserOrders currentUser={currentUser} />
+        </div>
       case 'createProd':
-        return <div> <CreateProduct /> </div>;
+        return <div className={style.uniqueItemContainer}> 
+          {/* <CreateProduct />  */}
+          <AdminView />
+        </div>;
       case 'updateLocations':
-        return <div><p>Ubicaciones</p><Locations currentUser={currentUser} /></div>;
+        return <div className={style.uniqueItemContainer}>
+          <Locations currentUser={currentUser} />
+        </div>;
       case 'updatePersonal':
-        return <div>Actualizar Información Personal
-          <MyDataForm currentUser={currentUser} />
+        return <div className={style.uniqueItemContainer}>
+          <BasicData currentUser={currentUser} />
         </div>;
       default:
         return null;
@@ -34,25 +42,27 @@ const TabsView = ({ localUserData, currentUser }) => {
   };
 
   return (
-    <div>
-      <div className="myTabs">
-        <button onClick={() => setActiveTab('myInfo')} className={activeTab === 'myInfo' ? 'active' : ''}>
-          Mis datos
-        </button>
-        <button onClick={() => setActiveTab('updatePersonal')} className={activeTab === 'updatePersonal' ? 'active' : ''}>
-          Actualizar Mis Datos
-        </button>
+    <div className={style.fullTabsContainer}>
+      <div className={`${style.myTabsContainer} ${style.otraCosa}`}>
         {
-          localUserData.isAdmin ? (<button onClick={() => setActiveTab('createProd')} className={activeTab === 'createProd' ? 'active' : ''}>
-            Crear Producto
+          currentUser.isAdmin ? (<button onClick={() => setActiveTab('createProd')} className={activeTab === 'createProd' ? `active ${style.tabsNavigate}` : `${style.tabsNavigate}`}>
+            Panel de administrador
           </button>) : null
         }
-
-        <button onClick={() => setActiveTab('updateLocations')} className={activeTab === 'updateLocations' ? 'active' : ''}>
+        <button onClick={() => setActiveTab('myInfo')} className={activeTab === 'myInfo' ? `active ${style.tabsNavigate}` : `${style.tabsNavigate}`}>
+          Mis datos
+        </button>
+        <button onClick={() => setActiveTab('updatePersonal')} className={activeTab === 'updatePersonal' ? `active ${style.tabsNavigate}` : `${style.tabsNavigate}`}>
+          Actualizar Mis Datos
+        </button>
+        <button onClick={() => setActiveTab('viewOrders')} className={activeTab === 'viewOrders' ? `active ${style.tabsNavigate}` : `${style.tabsNavigate}`}>
+          Mis pedidos
+        </button>
+        <button onClick={() => setActiveTab('updateLocations')} className={activeTab === 'updateLocations' ? `active ${style.tabsNavigate}` : `${style.tabsNavigate}`}>
           Actualizar Ubicaciones
         </button>
       </div>
-      <div className="myTab-content">
+      <div className="myTabContent">
         {renderTabContent()}
       </div>
     </div>
