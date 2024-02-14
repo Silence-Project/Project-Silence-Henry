@@ -1,6 +1,6 @@
 import Head from "../../Common/Header/Head";
 import Footer from "../../Common/FooterView/Footer";
-import Descuento from "../../Common/Descuento/Descuento";
+// import Descuento from "../../Common/Descuento/Descuento";
 import { NavLink } from "react-router-dom";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
@@ -18,7 +18,7 @@ function QuienesSomos() {
     const fetchInformation = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:3001/informationAboutUs/information"
+          "https://silenceback.onrender.com/informationAboutUs/information"
         );
         setInformation(response.data);
       } catch (error) {
