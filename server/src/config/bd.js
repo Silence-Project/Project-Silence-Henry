@@ -16,12 +16,12 @@ const modelAboutUs = require("../models/AboutUs.js");
 const sequelize = new Sequelize(
   `postgres://${USER}:${PASSWORD}@${HOST}:${PORT}/${BDD}`,
   {
-    dialectOptions: {
-       ssl: {
-        require: true,
-        rejectUnauthorized: false,
-        },
-    },
+    // dialectOptions: {
+    //    ssl: {
+    //     require: true,
+    //     rejectUnauthorized: false,
+    //     },
+    // },
     logging: false,
     native: false,
   }
