@@ -14,7 +14,7 @@ import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./CreateProduct.module.css";
 
 function CreateProduct({ handleCloseCreateProduct }) {
-  const [uploadedFileName, setUploadedFileName] = useState(""); 
+  const [uploadedFileName, setUploadedFileName] = useState("");
   const [fileError, setFileError] = useState("");
   const [uploadedFileUrl, setUploadedFileUrl] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -62,18 +62,56 @@ function CreateProduct({ handleCloseCreateProduct }) {
     }),
   });
 
+// const upLoadImage = async (e) => {
+//   const file = e.target.files[0];
+//   if (file) {
+//     const formData = new FormData();
+//     formData.append("file", file);
+//     formData.append("upload_preset", "silence");
+
+//     try {
+//       const response = await fetch(
+//         `https://api.cloudinary.com/v1_1/ddiwcoip8/image/upload`,
+//         {
+//           method: "POST",
+//           body: formData,
+//         }
+//       );
+
+//       if (response.ok) {
+//         const data = await response.json();
+//         console.log("Imagen subida a Cloudinary:", data);
+
+//         setUploadedFileUrl(data.secure_url);
+//         formik.setFieldValue("image", data.secure_url);
+//       } else {
+//         console.error("Error al cargar la imagen a Cloudinary");
+//         setFileError("Error al cargar la imagen a Cloudinary");
+//       }
+//     } catch (error) {
+//       console.error("Error al cargar la imagen:", error);
+//       setFileError("Error al cargar la imagen");
+//     }
+//   }
+// };
+
+
+
   const upLoadImage = async (e) => {
     const file = e.target.files[0];
     if (file) {
       const allowedTypes = [
         "image/jpeg",
         "image/png",
+        "image/webp",
+        "image/HEIC",
         "image/gif",
         "video/mp4",
         "image/heic",
         "image/webp",
       ];
 
+      
       if (allowedTypes.includes(file.type)) {
         const formData = new FormData();
         formData.append("file", file);
@@ -158,7 +196,7 @@ function CreateProduct({ handleCloseCreateProduct }) {
 
   return (
     <div className={`${styles.formContainer} ${styles.signUpContainer}`}>
-      <form onSubmit={handleSubmit} className={styles.formContainer}>
+      <form onSubmit={handleSubmit}>
         <h2>Crear Producto</h2>
         <div className={styles.btnCloseContainer}>
           <img
@@ -184,7 +222,6 @@ function CreateProduct({ handleCloseCreateProduct }) {
               onBlur={formik.handleBlur}
               className={styles.input}
             >
-              {/* La opción "Seleccionar Categoria" deshabilitada */}
               <option value="" disabled>
                 Seleccionar Categoria
               </option>
@@ -250,7 +287,7 @@ function CreateProduct({ handleCloseCreateProduct }) {
               onChange={upLoadImage}
               onBlur={formik.handleBlur}
               className={styles.input}
-              accept="image/jpeg, image/png, image/gif, video/mp4"
+              accept="image/jpeg, image/png, image/gif, video/mp4, image/webp, image/HEIC, image/gif"
             />
             {fileError && <div className={styles.error}>{fileError}</div>}
             <img

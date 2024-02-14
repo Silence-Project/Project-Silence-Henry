@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { URLTOCHANGE }  from "../../../Helpers/Routes.helper";
+import URLTOCHANGE from "../../../Helpers/routesToChange";
 
 export const signUp = createAsyncThunk(
   "user/signUp",
   async (userCredentials) => {
     try {
       const response = await axios.post(
-        `${URLTOCHANGE}/usuarios`,
+        `${URLTOCHANGE.theUrl}/usuarios`,
         userCredentials
       );
       localStorage.setItem("user", JSON.stringify(response.data));
@@ -23,7 +23,7 @@ export const signIn = createAsyncThunk(
   "user/signIn",
   async (userCredentials) => {
     const request = await axios.get(
-      `${URLTOCHANGE}/usuarios/login`,
+      `${URLTOCHANGE.theUrl}/usuarios/login`,
       userCredentials
     );
     const response = await request.data.data;
@@ -36,25 +36,48 @@ export const signIn = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   "user/updateUser",
-  async ({ id, userData }) => {
+  async ({ id, values }) => {
     try {
       const response = await axios.patch(
-        `${URLTOCHANGE}/usuarios/${id}`,
-        userData,
+        `${URLTOCHANGE.theUrl}/usuarios/${id}`,
+        values,
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      localStorage.setItem("user", JSON.stringify(response.data));
-      console.log("UpdateUser Response:", response.data);
+
+    //   const updateProfile = (values) => {
+    //     const profile = {
+    //         ...JSON.parse(localStorage.getItem('user')),
+    //         ...values
+    //     };
+    //     localStorage.setItem('user', JSON.stringify(profile));
+    // }
+    // updateProfile(values);
+
+      localStorage.setItem("user", JSON.stringify(response.data.myUser));
+      // console.log("UpdateUser Response:", response.data);
+      // console.log('myUser deberia ser el obj usuario: ', response.data.myUser);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
     }
   }
 );
+
+export const gettingUser = createAsyncThunk("user/gettingUser", async (id) => {
+  try {
+    const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/${id}`);
+
+    localStorage.setItem("user", JSON.stringify(response.data));
+    // console.log("gettingUser Response:", response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -103,7 +126,7 @@ const userSlice = createSlice({
       .addCase(updateUser.pending, (state) => {
         console.log("UpdateUser Pending");
         state.loading = true;
-        state.user = null;
+        // state.user = null;
         state.error = null;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
@@ -114,6 +137,23 @@ const userSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) => {
         console.log("UpdateUser Rejected", action.error);
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(gettingUser.pending, (state) => {
+        // console.log("gettingUser Pending");
+        state.loading = true;
+        // state.user = null;
+        state.error = null;
+      })
+      .addCase(gettingUser.fulfilled, (state, action) => {
+        // console.log("gettingUser Fulfilled", action.payload);
+        state.loading = false;
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(gettingUser.rejected, (state, action) => {
+        // console.log("gettingUser Rejected", action.error);
         state.loading = false;
         state.error = action.error.message;
       });

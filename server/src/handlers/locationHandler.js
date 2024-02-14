@@ -34,11 +34,31 @@ const getAllLocationsHandler = async (req, res) => {
   } catch (error) {
     res.status(400).json({error:error.message})
   }
+}
 
+//UPDATE location
+const updateLocationHandler = async (req, res) => {
+  // console.log('que es params', req.params)
+  const idLocationToUpdate = parseInt(req.params.id);
+
+  // console.log('quessss idLocationToUpdate', idLocationToUpdate);
+  const dataToUpdate = req.body;
+
+  try {
+    const updatedLocation = await Location.update(dataToUpdate, {
+      where: {
+        id: idLocationToUpdate
+      },
+    })
+    res.status(200).json(updatedLocation);
+  } catch (error) {
+    res.status(400).json({error:error.message})
+  }
 }
 
 
 module.exports = {
   postNewLocationHandler,
   getAllLocationsHandler,
+  updateLocationHandler,
 };

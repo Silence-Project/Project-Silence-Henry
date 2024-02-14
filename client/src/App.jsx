@@ -106,7 +106,7 @@ import Checkout from "./Components/Common/Checkout/Checkout";
 
 import "./App.css";
 import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
-import PrivateRouting from "./Components/Authentication/PrivateRouting/Privaterouting";
+import PrivateRouting from "./Helpers/Privaterouting";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
 
 import QuienesSomos from "./Components/Pages/QuienesSomos/QuienesSomos";
@@ -149,7 +149,9 @@ function App() {
           <Route path={ROUTES.CREATE_PRODUCT} element={<UsersAdmin />} />
         </Route>
 
+        <Route element={<PrivateRouting />}>
         <Route path={ROUTES.ADMIN} element={<AdminView />}></Route>
+        </Route>
 
         <Route path={ROUTES.PolicyReturn} element={<PolicyReturn />}></Route>
 

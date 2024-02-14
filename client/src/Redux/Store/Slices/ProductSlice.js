@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { URLTOCHANGE } from "../../../Helpers/Routes.helper";
+import URLTOCHANGE from "../../../Helpers/routesToChange";
 
 import axios from "axios";
 
