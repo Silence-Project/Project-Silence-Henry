@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CreateProduct from '../../../Auth/CreateProduct/CreateProduct'
 import Locations from '../../Common/Locations/Locations';
-import BasicData from '../../FormsUser/BasicData/BAsicData';
+import BasicData from '../../FormsUser/BasicData/BasicData';
 import UserOrders from '../../UserOrders/UserOrders';
 import style from './TabsView.module.css';
 import AdminView from '../../Pages/AdminView/AdminView';
