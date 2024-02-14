@@ -61,7 +61,7 @@ const TakeUserData = () => {
     fetchData();
   }, [user]);
 
-  console.log("puedo usar el obj userData: ", userData);
+  // console.log("puedo usar el obj userData: ", userData);
 
   return <></>; // Render nada
 };

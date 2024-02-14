@@ -19,7 +19,9 @@ const postNewLocationController = async (country, city, address, postalCode, idU
 
 // GET all
 const getAllLocationsController = async () => {
-  const allLocations = await Location.findAll();
+  const allLocations = await Location.findAll({
+    order: [['id', 'ASC']],
+  });
 
   return allLocations;
   

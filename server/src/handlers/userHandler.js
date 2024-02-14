@@ -67,6 +67,7 @@ const findUserByEmailOrAll = async (req, res) => {
             model: Location,
             as: "locations",
             attributes: ["id", "country", "city", "address", "postalCode"],
+            order: [['id', 'ASC']],
           },
         ],
       });
@@ -91,6 +92,7 @@ const getUserDetailHandler = async (req, res) => {
           model: Location,
           as: "locations",
           attributes: ["id", "country", "city", "address", "postalCode"],
+          order: [['id', 'ASC']],
         },
       ],
     });
@@ -124,6 +126,7 @@ const updateUserHandler = async (req, res) => {
           model: Location,
           as: "locations",
           attributes: ["id", "country", "city", "address", "postalCode"],
+          order: [['id', 'ASC']],
         },
       ],
     });
