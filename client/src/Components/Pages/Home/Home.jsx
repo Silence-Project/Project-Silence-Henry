@@ -25,6 +25,7 @@ const Home = () => {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedMaterial, setSelectedMaterial] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
   const cardsPerPage = 5;
 
@@ -51,6 +52,11 @@ const Home = () => {
     setSelectedPrice(price);
   };
 
+  const handleMaterialChange = (material) => {
+    console.log(material)
+    setSelectedMaterial(material);
+  };
+
   const handleCategoryChange = (idCategory) => {
     console.log(idCategory)
     setSelectedCategory(idCategory);
@@ -72,6 +78,7 @@ const Home = () => {
           handleSizeChange={handleSizeChange}
           handlePriceChange={handlePriceChange}
           handleCategoryChange={handleCategoryChange}
+          handleMaterialChange={handleMaterialChange}
         />
         <div className={styles.cardContainer}>
           <ProductList
@@ -81,6 +88,7 @@ const Home = () => {
             selectedColor={selectedColor}
             selectedSize={selectedSize}
             selectedPrice={selectedPrice}
+            selectedMaterial={selectedMaterial}
             selectedCategory={selectedCategory}
           />
         </div>

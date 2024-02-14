@@ -4,10 +4,12 @@ import ROUTES from "../../../Helpers/Routes.helper.js";
 import Size from "./Size/Size.jsx";
 import Color from "./Color/Color.jsx";
 import Price from "./Price/Price.jsx";
+import Material from "./Material/Material.jsx";
 
 import "./Sidebar.css";
 
-const Sidebar = ({ handleChange, handleColorChange, handleSizeChange, handlePriceChange, handleCategoryChange }) => {
+const Sidebar = ({ handleChange, handleColorChange, handleSizeChange, handlePriceChange, 
+  handleCategoryChange, handleMaterialChange }) => {
   return (
     <>
     <div className="sideBarContainer">
@@ -22,7 +24,8 @@ const Sidebar = ({ handleChange, handleColorChange, handleSizeChange, handlePric
         <Size handleSizeChange={handleSizeChange}/>
         <Price handlePriceChange={handlePriceChange}/>
         <Color handleColorChange={handleColorChange} />
-        <Category handleCategoryChange={handleCategoryChange}/>
+        <Material handleMaterialChange={handleMaterialChange} />
+        {/* <Category handleCategoryChange={handleCategoryChange}/> */}
       </section>
     </div>
     </>

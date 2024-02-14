@@ -10,7 +10,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SearchBar from "../Sidebar/Search/SearchBar";
 import Descuento from "../Descuento/Descuento";
 
-const Head = ({ setFilterTerm, handleColorChange, handleSizeChange, handlePriceChange, handleCategoryChange }) => { 
+const Head = ({ setFilterTerm, handleColorChange, handleSizeChange, handlePriceChange, 
+  handleCategoryChange, handleMaterialChange }) => { 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
@@ -20,7 +21,8 @@ const Head = ({ setFilterTerm, handleColorChange, handleSizeChange, handlePriceC
       <MenuHamburger handleColorChange={handleColorChange} 
                       handleSizeChange={handleSizeChange}
                       handlePriceChange={handlePriceChange}
-                      handleCategoryChange={handleCategoryChange}/>
+                      handleCategoryChange={handleCategoryChange}
+                      handleMaterialChange={handleMaterialChange}/>
       <SearchBar setFilterTerm={setFilterTerm} />  
       <NavLink to={ROUTES.HOME}>
         <img src={imgLogo} alt='silence' className={styles.silence} />
