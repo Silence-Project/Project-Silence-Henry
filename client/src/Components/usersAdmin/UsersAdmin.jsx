@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import IMGCLOSE from "../../img/icons/x-mark.png";
 import URLTOCHANGE from "../../Helpers/routesToChange";
 import styles from "./UsersAdmin.module.css";
+import { useSelector } from "react-redux";
 
 const UsersAdmin = ({ handleCloseCreateProduct }) => {
   const [usuarios, setUsuarios] = useState([]);
