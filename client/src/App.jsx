@@ -19,6 +19,7 @@ import PrivateRouting from "./Helpers/Privaterouting";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
 
 import QuienesSomos from "./Components/Pages/QuienesSomos/QuienesSomos";
+import PayConfirmation from "./Components/Pages/PayConfirmation";
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
           <Route path="/profile" element={<MyProfile />} />
         </Route>
 
-        <Route element={<QuienesSomos/>} path="/quienesSomos"></Route>
+        <Route element={<QuienesSomos/>} path="/about"></Route>
 
         {/* {
         <Route
@@ -66,6 +67,8 @@ function App() {
         <Route path="/carrito" element={<CarritoSlides />}></Route>
 
         <Route path="/checkout" element={<Checkout />}></Route>
+
+        <Route path="/paymentconfirmation" element={<PayConfirmation/>}></Route>
       </Routes>
     </>
   );
