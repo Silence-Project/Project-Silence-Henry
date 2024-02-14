@@ -53,7 +53,7 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
   return (
     <div className={styles.formContainer}>
       <div className={styles.btnCloseContainer}>
-        <h2>Usuarios Silence:</h2>
+        <h2 className={styles.title}>Usuarios Silence:</h2>
         <img
           src={IMGCLOSE}
           alt="Close"
@@ -61,8 +61,8 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
           onClick={handleCancel}
           style={{
             marginLeft: "99%",
-            width: "40px",
-            height: "40px",
+            width: "30px",
+            height: "30px",
             cursor: "pointer",
           }}
         />

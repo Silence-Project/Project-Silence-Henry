@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { gettingUser } from "../Redux/Store/Slices/UserSlice";
 import { useAuth0 } from "@auth0/auth0-react";
-// import URLTOCHANGE from "./routesToChange";
+import URLTOCHANGE from "./routesToChange";
 
 const TakeUserData = () => {
   const { user } = useAuth0();
@@ -10,14 +11,13 @@ const TakeUserData = () => {
 
   useEffect(() => {
 
-
     const fetchData = async () => {
       try {
         if (!user) return;
 
         /******************primera peticion, POST trying */
         // Fetch user data from backend
-        const response = await fetch(`http://127.0.0.1:3001/usuarios`, {
+        const response = await fetch(`${URLTOCHANGE.theUrl}/usuarios`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -33,13 +33,13 @@ const TakeUserData = () => {
         if (response.ok) {
           const data = await response.json();
           const userId = data[0].id;
-          console.log("Registro de usuario exitoso. ID de usuario:", userId);
-          console.log("la DATA: ", data);
+          // console.log("Registro de usuario exitoso. ID de usuario:", userId);
+          // console.log("la DATA: ", data);
 
           /******************segunda peticion, GET */
           // Fetch user data again from backend using the generated userId
-          const userDataResponse = await fetch(
-            `http://127.0.0.1:3001/usuarios/${userId}`
+          const userDataResponse = await fetch( 
+            `${URLTOCHANGE.theUrl}/usuarios/${userId}`
           );
 
           // Check if the user data was successfully fetched
@@ -61,7 +61,7 @@ const TakeUserData = () => {
     fetchData();
   }, [user]);
 
-  console.log("puedo usar el obj userData: ", userData);
+  // console.log("puedo usar el obj userData: ", userData);
 
   return <></>; // Render nada
 };

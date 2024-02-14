@@ -36,19 +36,30 @@ export const signIn = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   "user/updateUser",
-  async ({ id, userData }) => {
+  async ({ id, values }) => {
     try {
       const response = await axios.patch(
         `${URLTOCHANGE.theUrl}/usuarios/${id}`,
-        userData,
+        values,
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      localStorage.setItem("user", JSON.stringify(response.data));
-      console.log("UpdateUser Response:", response.data);
+
+    //   const updateProfile = (values) => {
+    //     const profile = {
+    //         ...JSON.parse(localStorage.getItem('user')),
+    //         ...values
+    //     };
+    //     localStorage.setItem('user', JSON.stringify(profile));
+    // }
+    // updateProfile(values);
+
+      localStorage.setItem("user", JSON.stringify(response.data.myUser));
+      // console.log("UpdateUser Response:", response.data);
+      // console.log('myUser deberia ser el obj usuario: ', response.data.myUser);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -58,10 +69,10 @@ export const updateUser = createAsyncThunk(
 
 export const gettingUser = createAsyncThunk("user/gettingUser", async (id) => {
   try {
-    const response = await axios.get(`http://localhost:3001/usuarios/${id}`);
+    const response = await axios.get(`${URLTOCHANGE.theUrl}/usuarios/${id}`);
 
     localStorage.setItem("user", JSON.stringify(response.data));
-    console.log("gettingUser Response:", response.data);
+    // console.log("gettingUser Response:", response.data);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -115,7 +126,7 @@ const userSlice = createSlice({
       .addCase(updateUser.pending, (state) => {
         console.log("UpdateUser Pending");
         state.loading = true;
-        state.user = null;
+        // state.user = null;
         state.error = null;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
@@ -132,7 +143,7 @@ const userSlice = createSlice({
       .addCase(gettingUser.pending, (state) => {
         // console.log("gettingUser Pending");
         state.loading = true;
-        state.user = null;
+        // state.user = null;
         state.error = null;
       })
       .addCase(gettingUser.fulfilled, (state, action) => {
