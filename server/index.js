@@ -1,7 +1,6 @@
-require("dotenv").config();
 const server = require('./src/server');
-//PORT  = 5432;
- PORT = 3001;
+const PORT  = 5432;
+// PORT = 3001;
 
 /**
  * Para PRODUCCIÓN, utilizar puerto '5432
