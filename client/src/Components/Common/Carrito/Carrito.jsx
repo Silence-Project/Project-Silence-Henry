@@ -80,7 +80,7 @@ const CarritoSlides = () => {
   // }
 
   const idProducts = productos.map(element => element.id);
-
+  console.log(productos)
   return (
     <>
       <Head/>
@@ -97,7 +97,6 @@ const CarritoSlides = () => {
           </tr>
           {productos.map(producto => (  
             <>
-              {console.log(producto)}
               <tr key={producto.id}>
                 <td className={styles.name}>{producto.name}</td>
                 <td className={styles.cantidad}>{producto.cantidad}</td>
