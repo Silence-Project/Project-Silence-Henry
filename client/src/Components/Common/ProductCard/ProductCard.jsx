@@ -14,9 +14,11 @@ import { deleteProduct } from "../../../Redux/Store/Slices/ProductSlice";
 import emptyHeart from "../favoritos/images/corazon_vacio.png";
 import filledHeart from "../favoritos/images/corazon_lleno.png";
 
+import { toggleSuspension } from "../../../Redux/Store/Slices/ProductSlice";
+
 
 const ProductCard = ({ product }) => {
-  const { id, name, image, price, description } = product;
+  const { id, name, image, price, description, state } = product;
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
@@ -64,9 +66,19 @@ const ProductCard = ({ product }) => {
     setShowModal(!showModal);
   };
 
+
+//SUSPENSION
+  const handleToggleSuspension = () => {
+    dispatch(toggleSuspension({ id: product.id, state: !product.state }));
+  }
+
+
   return (
     <div className={style.absolute}>
       <div className={style.productDetail}>
+
+        <button onClick={handleToggleSuspension} className={style.button}>{state ? "Suspender" : "Reactivar"}</button>
+
         <Link to={`/detail/${id}`}>
           <div className={style.productImageContainer} onClick={toggleModal}>
             <img className={style.productImage} src={image} alt={description} />

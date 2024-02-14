@@ -151,7 +151,7 @@ const Editproduct = ({props, actualizarDetail} ) => {
       }
     };
 
-    
+
 
     useEffect(() => {
       dispatch(getCategories());
@@ -294,6 +294,7 @@ const Editproduct = ({props, actualizarDetail} ) => {
                 name="idCategory"
                 value={formik.values.idCategory}
                 onChange={formik.handleChange}
+                
               >
                 {/* Opciones de categorías */}
                 {categories.map((idCategory) => (

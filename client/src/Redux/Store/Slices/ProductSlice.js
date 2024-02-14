@@ -96,10 +96,18 @@ const productSlice = createSlice({
     products: [],
     productsDetails: [],
     categories: [],
+      
     error: null,
   },
 
   reducers: { 
+    toggleSuspension(state, action) {
+      const { id, state: newState } = action.payload;
+      const product = state.products.find((product) => product.id === id);
+      if(product) {
+        product.state = newState;
+      }
+    },
     editProduct(state, action) {
       // Aquí deberías conectar el endpoint PUT /api/products/:productId para actualizar el producto en el backend
       // Luego, puedes actualizar el estado con los datos actualizados del producto
@@ -213,6 +221,6 @@ const productSlice = createSlice({
 });
 
 
-export const { editProduct } = productSlice.actions;
+export const { editProduct , toggleSuspension } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -85,6 +85,7 @@ import Descuento from "../../Common/Descuento/Descuento";
 import styles from "./Home.module.css";
 import TakeUserData from "../../../Helpers/TakeUserData";
 
+
 const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);

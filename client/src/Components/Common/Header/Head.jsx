@@ -44,6 +44,10 @@ const Head = ({ setFilterTerm, handleColorChange }) => {
           <button className={styles.favoritos}>Favoritos</button>
         </NavLink>
 
+        <NavLink to= "/suspension">
+          <button className={styles.suspension}>Suspension</button>
+        </NavLink>
+
       </div>
     </div>
   );

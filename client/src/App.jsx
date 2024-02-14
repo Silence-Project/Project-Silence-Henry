@@ -113,6 +113,8 @@ import QuienesSomos from "./Components/Pages/QuienesSomos/QuienesSomos";
 
 import Fav from "./Components/Common/favoritos/Favoritos";
 
+import Suspension from "./Components/Common/Suspencion/Suspencion.jsx";
+
 
 function App() {
   return (
@@ -162,6 +164,8 @@ function App() {
         <Route path="/checkout" element={<Checkout />}></Route>
 
         <Route path="/favoritos" element={<Fav />}></Route>
+
+        <Route path="/suspension" element={<Suspension  />}></Route>
 
       </Routes>
     </>
