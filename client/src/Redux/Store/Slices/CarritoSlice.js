@@ -5,6 +5,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios'
 import URLTOCHANGE from '../../../Helpers/routesToChange';
 
+const link = URLTOCHANGE.theUrl
+
 export const deleteProductDb = createAsyncThunk(
   'carrito/deleteProductDb',
   async ({idCarrito, arrayIdProduct}) => {
@@ -14,7 +16,7 @@ export const deleteProductDb = createAsyncThunk(
     console.log(idProduct);
 
     try {
-      const response = await axios.delete(`${URLTOCHANGE}/car/remove/${idCarrito}/${idProduct}`);
+      const response = await axios.delete(`${link}/car/remove/${idCarrito}/${idProduct}`);
       return await response;
     } catch (error) {
       return { error: error.message };
@@ -35,7 +37,7 @@ export const saveProductDb = createAsyncThunk(
     };
 
     try {
-      const response = await axios.post(`${URLTOCHANGE}/car/newProduct`, data);
+      const response = await axios.post(`${link}/car/newProduct`, data);
       return await response.data;
     } catch (error) {
       return { error: error.message };
@@ -49,7 +51,7 @@ export const getCarrito = createAsyncThunk(
 
     const config = {
       method: 'get',
-      url: `${URLTOCHANGE}/car/car/${idUser}`
+      url: `${link}/car/car/${idUser}`
     };
 
     try {
@@ -66,7 +68,7 @@ export const createCarrito = createAsyncThunk(
   async (idUser) => {
     const config = {
       method: 'post',
-      url: `${URLTOCHANGE}/car/new`,
+      url: `${link}/car/new`,
       data: {
         idUser: idUser,
       },

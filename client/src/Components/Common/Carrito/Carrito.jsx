@@ -22,7 +22,6 @@ const CarritoSlides = () => {
   const currentUser = useSelector((state) => state.user.user)
 
   const IdUserConsu = ()=>{
-    console.log(currentUser.id);
     return currentUser.id
   }
 
@@ -64,7 +63,13 @@ const CarritoSlides = () => {
   const totales = []
 
   if (productos.length === 0) {
-    return <p>No hay productos en el carrito</p>;
+    return (
+      <>
+        <Head/>
+          <p>No hay productos en el carrito</p>
+        <Footer/>
+      </>
+    )
   }
   
   // const handlerDrop = (idProducto)=> {
