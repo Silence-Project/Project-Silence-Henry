@@ -21,15 +21,15 @@ function MyDataForm({ currentUser }) {
       formik.setValues({
         firstName: currentUser.firstName || "",
         lastName: currentUser.lastName || "",
-        ageUser: currentUser.ageUser || "",
+        // ageUser: currentUser.ageUser || "",
         dniUser: currentUser.dniUser || "",
         phoneNumber: currentUser.phoneNumber || "",
         dateOfBirth: currentUser.dateOfBirth || "",
         password: currentUser.password || "",
         email: currentUser.email || "",
-        address: currentUser.address || "",
-        city: currentUser.city || "",
-        postalCode: currentUser.postalCode || "",
+        // address: currentUser.address || "",
+        // city: currentUser.city || "",
+        // postalCode: currentUser.postalCode || "",
       });
     }
   }, [currentUser]);
@@ -66,14 +66,27 @@ function MyDataForm({ currentUser }) {
         )
         .min(3, "La contraseña debe tener al menos 3 caracteres")
         .max(30, "La contraseña no puede tener más de 30 caracteres"),
-      address: Yup.string(),
-      city: Yup.string(),
-      postalCode: Yup.string(),
+      // address: Yup.string(),
+      // city: Yup.string(),
+      // postalCode: Yup.string(),
     }),
 
-    onSubmit: async (values) => {
+    onSubmit: (values, actions) => {
+      console.log('que son values??? ', values);
+      console.log('y que son actions??', actions);
+
+      // try {
+      //   dispatch(updateUser({id, values}));
+      //   actions.setSubmitting(false); 
+        
+      // } catch (error) {
+      //   console.error("Error al enviar los datos:", error);
+      //   setError("Error al enviar los datos: " + error.message);
+      // }
+
       try {
-        await dispatch(updateUser({ id, currentUser: values }));
+        dispatch(updateUser({ id, values }));
+        actions.setSubmitting(false); 
       } catch (error) {
         setError("Error al enviar los datos: " + error.message);
         console.error("Error al enviar los datos:", error);
@@ -86,10 +99,10 @@ function MyDataForm({ currentUser }) {
   };
 
   return (
-    <div
-      className={`${styles.formContainer} ${styles.userPersonalDataContainer}`}
-    >
-      <form onSubmit={formik.handleSubmit} className={styles.form}>
+    // <div
+    //   className={`${styles.formContainer} ${styles.userPersonalDataContainer}`}
+    // >
+      <form onSubmit={(e) => { e.preventDefault(); formik.handleSubmit(e); }} className={styles.form}>
         <h2>Datos Personales </h2>
         <div className={styles.questionsOne}>
           <div>
@@ -229,7 +242,7 @@ function MyDataForm({ currentUser }) {
         </button>
         {error && <div className={styles.error}>{error}</div>}
       </form>
-    </div>
+
   );
 }
 
