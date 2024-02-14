@@ -97,13 +97,13 @@ const CarritoSlides = () => {
           </tr>
           {productos.map(producto => (  
             <>
+              {console.log(producto)}
               <tr key={producto.id}>
                 <td className={styles.name}>{producto.name}</td>
                 <td className={styles.cantidad}>{producto.cantidad}</td>
                 <td className={styles.price}>{producto.price}</td>
                 <td className={styles.totalUnitario}>{totales.push(producto.price * producto.cantidad) && producto.price * producto.cantidad}</td>
                 <td className={styles.button}> 
-                  {/* <button onClick={handlerDrop(producto.id)}>Eliminar</button>  */}
                   <button onClick={() => handlerDrop(producto.id)}>Eliminar</button>
                 </td>
               </tr>
