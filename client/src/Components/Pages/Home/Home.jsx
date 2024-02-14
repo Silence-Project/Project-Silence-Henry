@@ -22,7 +22,7 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedMaterial, setSelectedMaterial] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
-  const cardsPerPage = 5;
+  const cardsPerPage = 4;
 
   useEffect(() => {
     dispatch(getProducts())

@@ -1,12 +1,12 @@
 .color-title {
-    margin-top: 1rem;
+    margin-top: 12px;
     font-size: 18px;
     font-family: 'Now', sans-serif;
     font-weight: lighter;
   }
   
   .sidebar-items {
-    margin-top: 30px;
+    margin-top: 15px;
     font-size: 20px;
     border-radius: 6px;
     outline: none;
@@ -15,7 +15,7 @@
   .sidebar-label-container {
     display: block;
     position: relative;
-    padding-left: 30px;
+    padding-left: 15px;
     margin-bottom: 12px;
     cursor: pointer;
     -webkit-user-select: none;
