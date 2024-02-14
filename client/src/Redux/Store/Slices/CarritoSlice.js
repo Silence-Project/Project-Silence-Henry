@@ -1,8 +1,9 @@
 // carritoSlice.js
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from 'axios'
-// import URLTOCHANGE from '../../../Helpers/routesToChange';
+import URLTOCHANGE from '../../../Helpers/routesToChange';
 
 export const deleteProductDb = createAsyncThunk(
   'carrito/deleteProductDb',
@@ -13,7 +14,7 @@ export const deleteProductDb = createAsyncThunk(
     console.log(idProduct);
 
     try {
-      const response = await axios.delete(`http://127.0.0.1:3001/car/remove/${idCarrito}/${idProduct}`);
+      const response = await axios.delete(`${URLTOCHANGE}/car/remove/${idCarrito}/${idProduct}`);
       return await response;
     } catch (error) {
       return { error: error.message };
@@ -34,7 +35,7 @@ export const saveProductDb = createAsyncThunk(
     };
 
     try {
-      const response = await axios.post('http://127.0.0.1:3001/car/newProduct', data);
+      const response = await axios.post(`${URLTOCHANGE}/car/newProduct`, data);
       return await response.data;
     } catch (error) {
       return { error: error.message };
@@ -48,7 +49,7 @@ export const getCarrito = createAsyncThunk(
 
     const config = {
       method: 'get',
-      url: `http://127.0.0.1:3001/car/car/${idUser}`
+      url: `${URLTOCHANGE}/car/car/${idUser}`
     };
 
     try {
@@ -65,7 +66,7 @@ export const createCarrito = createAsyncThunk(
   async (idUser) => {
     const config = {
       method: 'post',
-      url: 'http://127.0.0.1:3001/car/new',
+      url: `${URLTOCHANGE}/car/new`,
       data: {
         idUser: idUser,
       },
