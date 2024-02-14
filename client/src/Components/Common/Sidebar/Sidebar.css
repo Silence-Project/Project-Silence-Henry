@@ -5,8 +5,8 @@
   margin-top: -20px;
   padding: .5rem;
   left: -30px;
-  width: 15vw;
-  height: 80vh;
+  width: 19vw;
+  height: 74vh;
   overflow: hidden;
   overflow-x: hidden;
   background-color: #0000007c;
@@ -23,8 +23,12 @@
   align-items: center;
 }
 
+.title-filtros {
+  margin-bottom: -1rem;
+}
+
 .logo-container {
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
 }
 
 .logo-container h1 {
