@@ -3,11 +3,7 @@ const server = require('./src/server');
 PORT  = 5432;
 // PORT = 3001;
 
-//const { SERVER_PORT } = process.env;
-
 /**
- * la variable 'PORT' pasa a ser nombrada 'SERVER_PORT'
- * y está ubicada en el archivo '.env'.
  * Para PRODUCCIÓN, utilizar puerto '5432
  * para DESARROLLO (entorno local), utilizar puerto 3001
  */

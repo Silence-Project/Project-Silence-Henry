@@ -37,9 +37,9 @@ const MyProfile = () => {
         <aside>
           <TabsView currentUser={currentUser} />
         </aside>
-        {
+        {/* {
           currentUser.isAdmin ? <AdminView /> : null
-        }
+        } */}
         <button onClick={() => logoutWithRedirect()}>
           Cerrar sesión
         </button>
