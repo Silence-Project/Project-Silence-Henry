@@ -65,3 +65,8 @@
 .closeButton:hover {
   color: #000;
 }
+
+.heartIcon {
+  width: 30px;
+  height: 30px;
+}

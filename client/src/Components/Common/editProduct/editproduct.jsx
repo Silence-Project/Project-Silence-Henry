@@ -94,7 +94,7 @@ const Editproduct = ({props, actualizarDetail} ) => {
             name: ProductID[0].name,
             description: ProductID[0].description,
             price: ProductID[0].price,
-            idCategory: "",
+            idCategory: ProductID[0].idCategory,
             code: ProductID[0].code,
             stock: ProductID[0].stock,
             size: ProductID[0].size,
@@ -151,6 +151,7 @@ const Editproduct = ({props, actualizarDetail} ) => {
       }
     };
 
+    
 
     useEffect(() => {
       dispatch(getCategories());

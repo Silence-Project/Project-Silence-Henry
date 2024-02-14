@@ -1,7 +1,7 @@
 import styles from './Footer.module.css'
 
 import { NavLink } from "react-router-dom";
-import { ROUTES } from "../../../Helpers/Routes.helper";
+import ROUTES from "../../../Helpers/Routes.helper";
 
 const Footer = () => {
   return (

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
-import { ROUTES } from "../../../Helpers/Routes.helper";
+import ROUTES from "../../../Helpers/Routes.helper";
 import {
   getById,
   getCategories,
@@ -15,6 +15,12 @@ import requiereUserBd from "../../../Helpers/requireUserBd";
 import Editproduct from "../editProduct/editproduct";
 import styles from "./ProductDetail.module.css";
 import Head from "../Header/Head";
+
+import { addFavorito , deleteFavorito }  from "../../../Redux/Store/Slices/FavSlice";
+import emptyHeart from "../favoritos/images/corazon_vacio.png";
+import filledHeart from "../favoritos/images/corazon_lleno.png";
+
+
 
 export default function Details(props) {
   const { user = { email: "null@null.null" } } = useAuth0();
@@ -29,6 +35,18 @@ export default function Details(props) {
 const [isEditing, setIsEditing] = useState(false);
 
 
+
+
+const favoritos = useSelector((state) => state.fav.favoritos);
+const isFavorito = favoritos.some((favProduct) => favProduct.id === id);
+
+const handleToggleFavorito = () => {
+  if (isFavorito) {
+    dispatch(deleteFavorito(id));
+  } else {
+    dispatch(addFavorito(productsDetails[0]));
+  }
+}
 
 
 const [edit, setEdit] = useState("");
@@ -69,10 +87,20 @@ console.log(productsDetails, "PRODUCTDETAILS")
       <Head />
       <div className={styles.general}>
         <Link to={ROUTES.HOME}>
-          <div className={styles.closeButton}>
+      <div className={styles.closeButton}>
+        
+           
+
+
             <FaTimes />
           </div>
         </Link>
+
+        <button className={styles.button} onClick={handleToggleFavorito}>
+                 <img src={isFavorito ? filledHeart : emptyHeart  } alt="Heart Icon" className={styles.heartIcon} />
+        </button>
+
+
         {productsDetails && productsDetails.map((product, index) => (
           <div key={index}>
             <img

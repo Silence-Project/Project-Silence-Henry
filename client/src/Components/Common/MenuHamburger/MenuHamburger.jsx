@@ -5,7 +5,7 @@ import xmark from "../../../img/icons/x-mark.png";
 
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { ROUTES } from "../../../Helpers/Routes.helper";
+import  ROUTES  from "../../../Helpers/Routes.helper";
 
 import Sidebar from "../../../Components/Common/Sidebar/Sidebar";
 

@@ -5,7 +5,7 @@ import UsersAdmin from "../../usersAdmin/UsersAdmin";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { ROUTES } from "../../../Helpers/Routes.helper";
+import ROUTES from "../../../Helpers/Routes.helper";
 import DescuentoAdmin from "../../Common/Descuento/DescuentoAdmin";
 import AdminDataViews from "../../../Auth/AdminDataViews/AdminDataViews";
 import Footer from "../../Common/FooterView/Footer";

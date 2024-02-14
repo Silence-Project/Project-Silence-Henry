@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
-import { ROUTES } from "../../Helpers/Routes.helper";
+import ROUTES from "../../Helpers/Routes.helper";
 import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./AdminDataViews.module.css";
 

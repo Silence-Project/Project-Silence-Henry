@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ROUTES } from "../../../Helpers/Routes.helper";
+import  ROUTES  from "../../../Helpers/Routes.helper";
 import MenuHamburger from '../MenuHamburger/MenuHamburger';
 import styles from './Head.module.css';
 import imgLogo from '../../../img/silenceImg.png';
