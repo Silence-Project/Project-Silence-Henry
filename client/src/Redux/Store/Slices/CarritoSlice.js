@@ -26,11 +26,12 @@ export const deleteProductDb = createAsyncThunk(
 
 export const saveProductDb = createAsyncThunk(
   'carrito/saveProductDb',
-  async ({idCarrito, arrayIdProduct, quantity}) => {
+  async ({idCarrito, arrayIdProduct, quantity, name}) => {
 
     const stringIdProduct = arrayIdProduct.join("")
 
     let data = {
+      name: name,
       carId: idCarrito[0]['id'],
       productId: stringIdProduct,
       quantity: quantity
