@@ -5,6 +5,8 @@ import styles from "./UsersAdmin.module.css";
 
 const UsersAdmin = ({ handleCloseCreateProduct }) => {
   const [usuarios, setUsuarios] = useState([]);
+  
+  const productos = useSelector(state => state.carrito.productos);
 
   const toggleEstadoUsuario = (id, isActive) => {
     const newEstado = isActive ? false : true;
@@ -86,6 +88,9 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
                     {usuario.isActive ? "Desactivar" : "Activar"}
                   </button>{" "}
                 </p>
+              </div>
+              <div>
+                <p>Carrito: {productos.length}</p>
               </div>
             </li>
           ))}

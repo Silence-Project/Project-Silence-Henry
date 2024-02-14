@@ -80,7 +80,6 @@ const CarritoSlides = () => {
   // }
 
   const idProducts = productos.map(element => element.id);
-  console.log(productos)
   return (
     <>
       <Head/>
