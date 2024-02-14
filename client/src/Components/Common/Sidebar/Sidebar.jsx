@@ -17,9 +17,6 @@ const Sidebar = ({ handleChange, handleColorChange, handleSizeChange, handlePric
         <div className="logo-container">
           <h3>FILTRO</h3>
         </div>
-        <NavLink to={ROUTES.ADMIN} className={StyleSheet.linkBtn}>
-          Administración ⚙️
-        </NavLink>
         <Size handleSizeChange={handleSizeChange}/>
         <Price handlePriceChange={handlePriceChange}/>
         <Color handleColorChange={handleColorChange} />
