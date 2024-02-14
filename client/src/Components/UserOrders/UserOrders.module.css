@@ -1,0 +1,12 @@
+.fullOrderContainer {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.orderContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  padding: 10px;
+}
