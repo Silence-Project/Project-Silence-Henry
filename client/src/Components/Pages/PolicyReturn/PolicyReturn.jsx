@@ -1,6 +1,7 @@
 import styles from "./PolicyReturn.module.css";
 import Head from "../../Common/Header/Head.jsx";
 import Footer from "../../Common/FooterView/Footer.jsx";
+import { NavLink } from "react-router-dom";
 
 const PolicyReturn = () => {
   return (
@@ -60,6 +61,11 @@ const PolicyReturn = () => {
           <h3>Gracias por confiar en Silence.</h3>
         </p>
       </div>
+      <div>
+          <button className={styles.floating_btn}>
+            <NavLink to={"/home"}>Back home</NavLink>
+          </button>
+        </div>
       <Footer />
     </>
   );

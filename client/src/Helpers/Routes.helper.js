@@ -13,7 +13,8 @@ const ROUTES = {
   USERSADMIN: '/usersAdmin',
   MODAL: '/modal',
   ADMIN: '/admin-view',
-  PROFILE: '/profile'
+  PROFILE: '/profile',
+  ABOUT: '/about'
 }
 
 export default ROUTES

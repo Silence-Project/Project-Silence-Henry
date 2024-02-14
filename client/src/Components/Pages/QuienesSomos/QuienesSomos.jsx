@@ -78,7 +78,7 @@ function QuienesSomos() {
         </div>
         <div>
           <button className={styles.floating_btn}>
-            <NavLink to={"/home"}>Back</NavLink>
+            <NavLink to={"/home"}>Back home</NavLink>
           </button>
         </div>
       </div>

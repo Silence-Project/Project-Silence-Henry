@@ -4,6 +4,7 @@ import Head from "../../Common/Header/Head";
 import Footer from "../../Common/FooterView/Footer";
 import QuestionDataDevoluciones from "./QuestionDataDevoluciones";
 import Question from "./Question";
+import { NavLink } from "react-router-dom";
 
 export default function App() {
   const headings = [
@@ -37,6 +38,11 @@ export default function App() {
           })}
         </div>
       </div>
+      <div>
+          <button className={styles.floating_btn}>
+            <NavLink to={"/home"}>Back home</NavLink>
+          </button>
+        </div>
       <Footer />
     </>
   );
