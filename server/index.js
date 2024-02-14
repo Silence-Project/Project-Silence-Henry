@@ -1,6 +1,10 @@
 require("dotenv").config();
 const server = require('./src/server');
-const { SERVER_PORT } = process.env;
+PORT  = 5432;
+// PORT = 3001;
+
+//const { SERVER_PORT } = process.env;
+
 /**
  * la variable 'PORT' pasa a ser nombrada 'SERVER_PORT'
  * y está ubicada en el archivo '.env'.
@@ -12,7 +16,7 @@ const { conn } = require('./src/config/bd');
 
 conn.sync({ force: false })
     .then(() => {
-        server.listen(SERVER_PORT, () => {
-            console.log(`listening on PORT ${SERVER_PORT}`)
+        server.listen(PORT, () => {
+            console.log(`listening on PORT ${PORT}`)
         })
     }).catch(error => console.error(error))
