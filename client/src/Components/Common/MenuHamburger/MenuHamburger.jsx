@@ -9,7 +9,8 @@ import ROUTES from "../../../Helpers/Routes.helper";
 
 import Sidebar from "../../../Components/Common/Sidebar/Sidebar";
 
-const MenuHamburger = ({handleColorChange}) => {
+const MenuHamburger = ({handleColorChange, handleSizeChange, handlePriceChange, 
+  handleMaterialChange, handleCategoryChange }) => {
   const [isOpen, setOpen] = useState(false);
 
   const handlerMenu = () => {
@@ -37,7 +38,11 @@ const MenuHamburger = ({handleColorChange}) => {
             />
           </div>
           <div className={styles.option1}>
-            <Sidebar handleColorChange={handleColorChange}/>
+            <Sidebar handleColorChange={handleColorChange} 
+                      handleSizeChange={handleSizeChange} 
+                      handlePriceChange={handlePriceChange}
+                      handleMaterialChange={handleMaterialChange}
+                      handleCategoryChange={handleCategoryChange}/>
           </div>
         </div>
       </div>
