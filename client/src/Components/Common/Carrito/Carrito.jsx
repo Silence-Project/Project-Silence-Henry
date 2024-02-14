@@ -7,8 +7,6 @@ import ROUTES from '../../../Helpers/Routes.helper';
 
 import styles from './Carrito.module.css'
 
-import { useAuth0 } from "@auth0/auth0-react";
-import requiereUserBd from "../../../Helpers/requireUserBd"
 import { getCarrito, sincronizarDB, deleteProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
 
 const CarritoSlides = () => {
@@ -17,11 +15,16 @@ const CarritoSlides = () => {
   const productos = useSelector(state => state.carrito.productos);
   const products = useSelector((state) => state.product.products);
 
-  const { user  = { email: 'null@null.null' } } = useAuth0();
+  const currentUser = useSelector((state) => state.user.user)
+
+  const IdUserConsu = ()=>{
+    console.log(currentUser.id);
+    return currentUser.id
+  }
+
+  const idUser = IdUserConsu()
 
   const syncronized = async() => {
-    const isRegisterededUser = await requiereUserBd(user.email);
-    const idUser = isRegisterededUser.id
 
     const carritoa = await dispatch(getCarrito(idUser))
     const carritob = carritoa.payload ? carritoa.payload : null
@@ -31,9 +34,6 @@ const CarritoSlides = () => {
   }
 
   const handlerDrop = async (idProducto) => {
-
-    const isRegisterededUser = await requiereUserBd(user.email);
-    const idUser = isRegisterededUser.id
 
     const carritoa = await dispatch(getCarrito(idUser))
     const carritob = carritoa.payload ? carritoa.payload : null

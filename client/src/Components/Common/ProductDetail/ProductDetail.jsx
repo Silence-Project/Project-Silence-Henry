@@ -10,13 +10,10 @@ import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice
 import { sincronizarDB, createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
 
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
-import { useAuth0 } from "@auth0/auth0-react";
-import requiereUserBd from "../../../Helpers/requireUserBd";
 import styles from "./ProductDetail.module.css";
 import Head from "../Header/Head";
 
 export default function Details(props) {
-  const { user = { email: "null@null.null" } } = useAuth0();
   const dispatch = useDispatch();
 
   const { id } = useParams();
@@ -31,25 +28,19 @@ export default function Details(props) {
     dispatch(getCategories());
   }, [dispatch]);
 
-  console.log('-------------------------------------------');
-  console.log(currentUser);
-  console.log('-------------------------------------------');
-
-  async function traerDataUser() { 
-    const isRegisterededUser = await requiereUserBd(user.email);
-    const idUser = isRegisterededUser.id
-    return idUser
-  }
-
   useEffect(() => {
     dispatch(getById(id));
     dispatch(getCategories());
     
   }, [dispatch, id]);
 
+  const IdUserConsu = ()=>{
+    return currentUser.id
+  }
+
   const handleAddProduct = async(product) => {    
 
-    const idUser = await traerDataUser()
+    const idUser = IdUserConsu()
 
     let arrayIdProduct = id.split("")
 
@@ -76,7 +67,7 @@ export default function Details(props) {
         }
       } 
       catch (error) {
-        console.error('Error al crear carrito:', error)
+        console.log('Error al crear carrito:', error)
       }
       
     }    

@@ -26,7 +26,7 @@ export const saveProductDb = createAsyncThunk(
   async ({idCarrito, arrayIdProduct, quantity}) => {
 
     const stringIdProduct = arrayIdProduct.join("")
-    
+
     let data = {
       carId: idCarrito[0]['id'],
       productId: stringIdProduct,
@@ -88,7 +88,7 @@ export const carritoSlice = createSlice({
   reducers: {
     sincronizarDB: (state, action) => {
 
-      const {productosDb, products} = action.payload
+      const {productosDb} = action.payload
 
       const productosFinal = []
       const productosSho = productosDb[0]['shoppingCar'] ? productosDb[0]['shoppingCar'] : []
@@ -97,31 +97,15 @@ export const carritoSlice = createSlice({
         let valorCantidad = iterator.CartProduct
         let formatedInfo = {
           cantidad: valorCantidad.quantity,
-          code: "563456",
-          color: "#ff0000",
-          cost: 5674,
-          description: "56ertfgh",
           id: iterator.id,
-          idCategory: 3,
-          image: "www.google.com",
-          material: "Materialc",
-          min: null,
-          name: "Productoc",
-          preference: 3,
           price: iterator.price,
-          quantity: 2,
-          size: "9871",
-          state: true,
-          stock: 654367,
-          weight: 643
+          quantity: valorCantidad.quantity
         }
         const existingProduct = state.productos.find((element) => element.id === formatedInfo.id);
 
         if (!existingProduct) {          
           state.productos.push({ ...formatedInfo, cantidad: valorCantidad.quantity, quantity: valorCantidad.quantity });
         }
-
-        state.productos.push(...products)
 
         productosFinal.push(formatedInfo)
       }
@@ -131,6 +115,6 @@ export const carritoSlice = createSlice({
 });
 
 
-export const { anadirProducto, eliminarProducto, limpiarCarrito, sincronizarDB } = carritoSlice.actions;
+export const { eliminarProducto, limpiarCarrito, sincronizarDB } = carritoSlice.actions;
 
 export default carritoSlice.reducer;
