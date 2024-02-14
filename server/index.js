@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 const server = require("./src/server");
-//const PORT  = 5432;
- const PORT = 3001;
-=======
-require("dotenv").config();
-const server = require('./src/server');
-PORT  = 5432;
-//PORT = 3001;
-
-//const { SERVER_PORT } = process.env;
->>>>>>> 3bfb5cff74e7d0d1b6aada586bbf1a7cebbaeb68
+const PORT  = 5432;
+// const PORT = 3001;
 
 /**
  

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Chart as ChartJS } from "chart.js/auto";
-import { getAllUsers } from "../../Redux/Store/Slices/AdminSlice";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
+import { getAllUsers, getAllCars } from "../../Redux/Store/Slices/AdminSlice";
+import { Bar, Doughnut } from "react-chartjs-2";
 import ROUTES from "../../Helpers/Routes.helper";
 import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./AdminDataViews.module.css";
@@ -11,16 +11,20 @@ import styles from "./AdminDataViews.module.css";
 const AdminDataViews = ({ handleCloseCreateProduct }) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.admin.usuarios);
+  const cars = useSelector((state) => state.admin.cars);
   const [activeCount, setActiveCount] = useState(0);
   const [inactiveCount, setInactiveCount] = useState(0);
+  const [totalProductsInCars, setTotalProductsInCars] = useState([]);
 
   useEffect(() => {
     dispatch(getAllUsers());
+    dispatch(getAllCars());
   }, [dispatch]);
 
   useEffect(() => {
     countActiveAndInactiveUsers();
-  }, [users]);
+    countTotalProductsInCars();
+  }, [users, cars]);
 
   const countActiveAndInactiveUsers = () => {
     let active = 0;
@@ -57,6 +61,42 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
     },
   };
 
+
+
+  const countTotalProductsInCars = () => {
+    const totalProducts = cars.map((car) => ({
+      carId: car.id,
+      totalProducts: car.shoppingCar.length,
+    }));
+    setTotalProductsInCars(totalProducts);
+  };
+
+  const carLabels = totalProductsInCars.map((car) => `Carrito ${car.carId}`);
+  const totalProductsData = totalProductsInCars.map((car) => car.totalProducts);
+
+  const barCarData = {
+    labels: carLabels,
+    datasets: [
+      {
+        label: "Total de productos",
+        backgroundColor: "#D3C9C2",
+        borderWidth: 0,
+        data: totalProductsData,
+      },
+    ],
+  };
+
+  const barCarOptions = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+
+
+
   const handleCancel = () => {
     if (typeof handleCloseCreateProduct === "function") {
       handleCloseCreateProduct();
@@ -84,7 +124,11 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
           <div className={styles.chartTwo}>
             <Doughnut data={donutChartData} options={donutOptions} />
           </div>
+          <div className={styles.chartBar}>
+            <Bar data={barCarData} options={barCarOptions} />
+          </div>
         </div>
+        
       </div>
     </div>
   );
