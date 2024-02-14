@@ -10,6 +10,7 @@ const Footer = () => {
       <footer className={styles.footer}>
         <NavLink to={ROUTES.FAQSECTION} className={styles.faqSection}>FaqSection</NavLink>
         <NavLink to={ROUTES.PolicyReturn} className={styles.policyreturn}>PolicyRetun</NavLink>
+        <NavLink to={ROUTES.ABOUT} className={styles.policyreturn}>About us</NavLink>
       </footer>
     </div>
   )

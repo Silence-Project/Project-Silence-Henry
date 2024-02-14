@@ -13,7 +13,7 @@ export default function Question({ question }) {
       </div>
       <div className={styles.info}>
         {isOpen && <p>{question.info}</p>}
-      </div>      
+      </div>   
     </section>
   )
 }

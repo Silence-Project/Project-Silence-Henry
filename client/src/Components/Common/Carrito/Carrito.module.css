@@ -28,8 +28,16 @@
   text-align: right;
 }
 
-.name, .cantidad, .price, .totalUnitario, .totalCompras{
+.name, .cantidad, .price, .totalUnitario, .totalCompras, .button{
   text-align: center;
+}
+.button button{
+  background-color: red;
+  padding: 5px;
+  border: solid 1px transparent;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
 }
 
 /* td:last-child {

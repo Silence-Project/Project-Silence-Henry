@@ -21,6 +21,7 @@ const TabsView = ({ currentUser }) => {
       case 'viewOrders':
         return <div className={style.uniqueItemContainer}>
           <h3>Mis órdenes</h3>
+          <p>Consulta aquí el historial de tus órdenes</p>
           <UserOrders currentUser={currentUser} />
         </div>
       case 'createProd':

@@ -15,6 +15,29 @@ const createOrder = async (statePayment, shippingMethod, idUserOrder) => {
 
 }
 
+const getOrders = async () => {
+    try {
+        const orders = await Order.findAll();
+        return orders
+    } catch (error) {
+        return error.message      
+    }
+}
+
+const getOrderListByUser = async (idUserOrder) => {
+    try {
+        const ordersByUser = await Order.findAll({where: {
+            idUserOrder: idUserOrder
+        }})
+
+        return ordersByUser
+    } catch (error) {
+        return error.message      
+    }
+}
+
 module.exports = {
-    createOrder
+    createOrder,
+    getOrders,
+    getOrderListByUser
 }

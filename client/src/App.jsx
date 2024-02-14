@@ -17,8 +17,11 @@ import "./App.css";
 import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 import PrivateRouting from "./Helpers/Privaterouting";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
+import FAQSection from './Components/Pages/FAQSection/FAQSection'
 
 import QuienesSomos from "./Components/Pages/QuienesSomos/QuienesSomos";
+import PayConfirmation from "./Components/Pages/PayConfirmation";
+import PayFailed from "./Components/Pages/PayFailed";
 
 function App() {
   return (
@@ -34,14 +37,14 @@ function App() {
           <Route path="/profile" element={<MyProfile />} />
         </Route>
 
-        <Route element={<QuienesSomos/>} path="/quienesSomos"></Route>
+        <Route element={<QuienesSomos />} path="/about"></Route>
 
-        {/* {
+        {
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
-        } */}
+        }
 
         <Route path={ROUTES.REGISTER} element={<UserRegister />}></Route>
 
@@ -56,7 +59,7 @@ function App() {
         </Route>
 
         <Route element={<PrivateRouting />}>
-        <Route path={ROUTES.ADMIN} element={<AdminView />}></Route>
+          <Route path={ROUTES.ADMIN} element={<AdminView />}></Route>
         </Route>
 
         <Route path={ROUTES.PolicyReturn} element={<PolicyReturn />}></Route>
@@ -66,6 +69,9 @@ function App() {
         <Route path="/carrito" element={<CarritoSlides />}></Route>
 
         <Route path="/checkout" element={<Checkout />}></Route>
+
+        <Route path="/paymentconfirmation" element={<PayConfirmation />}></Route>
+        <Route path="/paymenterror" element={<PayFailed />}></Route>
       </Routes>
     </>
   );

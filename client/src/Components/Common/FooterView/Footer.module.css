@@ -1,5 +1,7 @@
-.containerFotter{
+.containerFotter {
   display: flex;
+  justify-content: center; 
+  align-items: center; 
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -7,15 +9,17 @@
   background-color: var(--WindsorGreige);
   min-height: 50px;
   border-top: solid white 1px;
+  flex-wrap: wrap; 
 }
 
-
-.faqSection, .policyreturn{
+.faqSection, .policyreturn {
   color: white;
-  margin: 0.8%;
-  font-size: 25px;
+  font-size: 20px;
+  padding: 5px; 
+  border-radius: 4px; 
+  transition: color 0.2s ease-in-out;
 }
 
-.faqSection:hover, .policyreturn:hover{
-  color: black
+.faqSection:hover, .policyreturn:hover {
+  color: black;
 }

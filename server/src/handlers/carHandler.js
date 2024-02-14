@@ -54,7 +54,7 @@ carHandler.put("/car/:idCar", async (req, res) => {
     }
 })
 
-carHandler.post('/newProduct', async (req, res) => {
+carHandler.put('/newProduct', async (req, res) => {
     const {carId, productId, quantity} = req.body 
     try {
         newProductInCar = await  addProductToCart (carId, productId, quantity);

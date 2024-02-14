@@ -1,16 +1,61 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Chart as ChartJS } from "chart.js/auto";
+import { getAllUsers } from "../../Redux/Store/Slices/AdminSlice";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import ROUTES from "../../Helpers/Routes.helper";
 import IMGCLOSE from "../../img/icons/x-mark.png";
 import styles from "./AdminDataViews.module.css";
 
-
 const AdminDataViews = ({ handleCloseCreateProduct }) => {
   const dispatch = useDispatch();
-  const [stateVariable, setstateVariable] = useState();
+  const users = useSelector((state) => state.admin.usuarios);
+  const [activeCount, setActiveCount] = useState(0);
+  const [inactiveCount, setInactiveCount] = useState(0);
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
+    countActiveAndInactiveUsers();
+  }, [users]);
+
+  const countActiveAndInactiveUsers = () => {
+    let active = 0;
+    let inactive = 0;
+    users.forEach((user) => {
+      if (user.isActive) {
+        active++;
+      } else {
+        inactive++;
+      }
+    });
+    setActiveCount(active);
+    setInactiveCount(inactive);
+  };
+
+  const donutChartData = {
+    labels: ["Usuarios Activos", "Usuarios Retirados"],
+    datasets: [
+      {
+        data: [activeCount, inactiveCount],
+        backgroundColor: ["#D3C9C2", "#000"],
+        borderWidth: 0,
+      },
+    ],
+  };
+
+  const donutOptions = {
+    cutoutPercentage: 70,
+    elements: {
+      arc: {
+        borderWidth: 5,
+        borderColor: "#fff",
+      },
+    },
+  };
 
   const handleCancel = () => {
     if (typeof handleCloseCreateProduct === "function") {
@@ -24,109 +69,23 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
   };
 
   return (
-    <div> 
-    <div className={styles.container}>
-      <div className={styles.btnCloseContainer}>
-        <img
-          src={IMGCLOSE}
-          alt="Close"
-          className={styles.btnClose}
-          onClick={handleCancel}
-          style={{ width: "24px", height: "24px", cursor: "pointer" }}
-        />
-      </div>
-      <div className={styles.chartOne}>
-    
-        {" "}
-        Ventas linea
-        <Line
-          data={{
-            labels: ["Sem 1", "Sem 2", "Sem 3"],
-            datasets: [
-              {
-                label: "Ventas",
-                data: [200, 500, 800],
-                borderColor: "rgba(54, 162, 235, 1)",
-                backgroundColor: "rgba(54, 162, 235, 0.2)",
-                borderWidth: 2,
-                pointBackgroundColor: "rgba(54, 162, 235, 1)",
-                pointBorderColor: "#fff",
-                pointBorderWidth: 1,
-                pointRadius: 5,
-              },
-              {
-                label: "Costos",
-                data: [50, 120, 600],
-                borderColor: "rgba(255, 99, 132, 1)",
-                backgroundColor: "rgba(255, 99, 132, 0.2)",
-                borderWidth: 2,
-                pointBackgroundColor: "rgba(255, 99, 132, 1)",
-                pointBorderColor: "#fff",
-                pointBorderWidth: 1,
-                pointRadius: 5,
-              },
-            ],
-          }}
-        />
-      </div>
-      <div className={styles.chartContainer}>
-        <div className={styles.chartTwo}>
-          {" "}
-          Ventas en histograma
-          <Bar
-            data={{
-              labels: ["Sem 1", "Sem 2", "Sem 3"],
-              datasets: [
-                {
-                  label: "VENTAS SILENCE",
-                  data: [200, 500, 800],
-                  borderRadius: 5,
-                  borderColor: "rgba(0, 99, 102, 1)",
-                  backgroundColor: "rgba(0, 99, 102, 1)",
-                  borderWidth: 2,
-                  pointBackgroundColor: "rgba(0, 99, 102, 1)",
-                  pointBorderColor: "#fff",
-                  pointBorderWidth: 1,
-                  pointRadius: 5,
-                },
-                {
-                  borderColor: "rgba(255, 99, 132, 1)",
-                  backgroundColor: "rgba(255, 99, 132, 0.2)",
-                  borderWidth: 2,
-                  pointBackgroundColor: "rgba(255, 99, 132, 1)",
-                  pointBorderColor: "#fff",
-                  pointBorderWidth: 1,
-                  pointRadius: 5,
-                  label: "CANCELACIONES",
-                  data: [50, 120, 600],
-                },
-              ],
-            }}
-          />{" "}
+    <div>
+      <div className={styles.container}>
+        <div className={styles.btnCloseContainer}>
+          <img
+            src={IMGCLOSE}
+            alt="Close"
+            className={styles.btnClose}
+            onClick={handleCancel}
+            style={{ width: "24px", height: "24px", cursor: "pointer" }}
+          />
         </div>
-        <div className={styles.chartTree}>
-          {"Ventas en tortas"}
-          <Doughnut
-            data={{
-              labels: ["Sem 1", "Sem 2", "Sem 3"],
-              datasets: [
-                {
-                  label: "VENTAS SILENCE",
-                  data: [200, 500, 800],
-                  borderRadius: 5,
-                },
-              ],
-            }}
-          />{" "}
+        <div className={styles.chartContainer}>
+          <div className={styles.chartTwo}>
+            <Doughnut data={donutChartData} options={donutOptions} />
+          </div>
         </div>
       </div>
-      <button className={styles.linkButton}>
-        {" "}
-        <Link className={styles.link} to={ROUTES.HOME}>
-          Inicio
-        </Link>{" "}
-      </button>
-    </div>
     </div>
   );
 };
