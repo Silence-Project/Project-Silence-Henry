@@ -96,7 +96,6 @@ export const carritoSlice = createSlice({
 
       const productosFinal = []
       const productosSho = productosDb[0]['shoppingCar'] ? productosDb[0]['shoppingCar'] : []
-      const name = productosDb[0]['shoppingCar'].name
       state.productos = []
       for (const iterator of productosSho) {
         let valorCantidad = iterator.CartProduct
@@ -105,7 +104,7 @@ export const carritoSlice = createSlice({
           id: iterator.id,
           price: iterator.price,
           quantity: valorCantidad.quantity,
-          name: name
+          name: productosSho.name
         }
         const existingProduct = state.productos.find((element) => element.id === formatedInfo.id);
 
