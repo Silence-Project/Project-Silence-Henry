@@ -1,6 +1,6 @@
 .container {
   position: absolute;
-  top: 50%;
+  top: 63%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -11,6 +11,20 @@
   padding: 20px; 
   height: 200px; 
   width: 50%; 
+}
+
+
+.headerMsj{
+  border: 2px solid rgba(141, 139, 139, 0.26);
+  margin-bottom: 50px;
+  width: 60%;
+}
+
+.btnClose{
+  width: 7%;
+  height: 7%;
+  margin-left: 94%;
+  margin-top: -1.6%;
 }
 
 .btnCloseContainer {
@@ -28,38 +42,32 @@
 
 .label {
   margin-bottom: 10px;
+  margin-right: 15px;
 }
 
 .input {
+  border: 2px solid #818181; 
   padding: 5px;
-  margin-right: 10px;
+  margin-right: 55px;
+  margin-left: 8px;
 }
 
 .button {
   padding: 8px 15px;
   background-color: var(--Snowbound); 
   color: black; 
-  border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .button:hover {
   background-color: #000000; 
-  color: var(--Snowbound);
+  color: white
 }
 
-.linkButton {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
 
-.link {
-  text-decoration: none;
-  color: #000000; 
-}
-
-.link:hover {
-  color: #000000; 
+.cargaCorrecta {
+  background-color: aquamarine;
+  padding: 15px;
+  border-radius: 5px;
 }

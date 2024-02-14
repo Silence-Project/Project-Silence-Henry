@@ -1,8 +1,9 @@
 .formContainer {
-  width: 95%;
+  width: 85%;
   margin: 0 auto; 
   padding: 20px;
   background-color: #f0f0f0;
+  overflow-x: auto;
 }
 
 .user {
@@ -12,6 +13,9 @@
   padding: 15px;
   background-color: #e0e0e0;
 }
+
+
+
 
 .user:hover {
   background-color: #c2c2c2;
@@ -23,12 +27,15 @@
 }
 
 
-
+.title {
+margin-top: 1px;
+margin-bottom: -2.5%;
+}
 
 .user button {
   margin-left: 10px;
   padding: 5px 10px;
-  background-color: #666766; /* Color de fondo verde */
+  background-color: #666766; 
   border: none;
   color: white;
   text-align: center;
