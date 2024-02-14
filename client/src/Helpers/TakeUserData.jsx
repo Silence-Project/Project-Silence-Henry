@@ -33,7 +33,7 @@ const TakeUserData = () => {
         if (response.ok) {
           const data = await response.json();
           const userId = data[0].id;
-          console.log("Registro de usuario exitoso. ID de usuario:", userId);
+          // console.log("Registro de usuario exitoso. ID de usuario:", userId);
           // console.log("la DATA: ", data);
 
           /******************segunda peticion, GET */
@@ -61,7 +61,7 @@ const TakeUserData = () => {
     fetchData();
   }, [user]);
 
-  console.log("puedo usar el obj userData: ", userData);
+  // console.log("puedo usar el obj userData: ", userData);
 
   return <></>; // Render nada
 };

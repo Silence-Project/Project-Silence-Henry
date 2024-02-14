@@ -1,27 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios"; // Importa Axios
-import URLTOCHANGE from "../../../Helpers/routesToChange";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTopMsj } from "../../../Redux/Store/Slices/AdminSlice";
 import styles from "./Descuento.module.css";
 
 const Descuento = () => {
-  const [mensaje, setMensaje] = useState(null);
+  const dispatch = useDispatch();
+  const topMsj = useSelector((state) => state.admin.topMsj);
 
   useEffect(() => {
-    axios
-      .get(`${URLTOCHANGE.theUrl}/toptext/texts`)
-      .then((response) => {
-        console.log("RTA MSJE", response);
-        setMensaje(response.data[0].description);
-        console.log("RTA MSJE2", mensaje);
-      })
-      .catch((error) => {
-        console.error("Error al obtener el mensaje:", error);
-      });
-  }, []);
+    dispatch(getTopMsj());
+  }, [dispatch]);
 
   return (
     <div className={styles.topMessage}>
-      <h2>{mensaje}</h2>
+      <h2>{topMsj}</h2>
     </div>
   );
 };

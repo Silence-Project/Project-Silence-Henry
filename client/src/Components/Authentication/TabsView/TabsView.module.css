@@ -1,0 +1,35 @@
+.fullTabsContainer {
+  display: flex;
+}
+
+.myTabsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 400px;
+}
+
+/* override button css */
+.myTabsContainer button {
+  border: none;
+  outline: none;
+}
+
+.otraCosa {
+  /* background-color: aquamarine; */
+}
+
+
+.myTabContent{
+  display: flex;
+}
+
+.tabsNavigate {
+padding: 30px 10px;
+font-size: 20px;
+}
+
+.uniqueItemContainer {
+  /* display: flex; */
+}
+

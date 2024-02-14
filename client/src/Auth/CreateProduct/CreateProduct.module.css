@@ -1,16 +1,17 @@
 .formContainer {
   background-color: var(--PureWhite);
   border-radius: 8px;
-  width: 98vw;
+  width: 80%;
   height: 100%;
   margin: 1% auto; 
   box-shadow: 2px 2px 12px rgba(0, 0, 0);
   text-align: center;
   font-family: 'Now';
   position: relative;
-  overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0);
 }
+
+
 
 .formWrapper {
   position: relative;
@@ -81,7 +82,7 @@ h2 {
 .divForm {
   flex-direction: column;
   margin-bottom: 20px; 
-  width: 100%;
+  width: 130%;
   justify-content: center;
   align-items: center;
   justify-content: center; 

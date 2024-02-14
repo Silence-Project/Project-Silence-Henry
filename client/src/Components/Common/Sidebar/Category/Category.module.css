@@ -1,17 +1,21 @@
-.sidebar-title {
-  font-size: 22px;
-  font-weight: normal;
-  margin-bottom: 20px;
+.color-title {
+  margin-top: 1rem;
+  font-size: 18px;
+  font-family: 'Now', sans-serif;
+  font-weight: lighter;
 }
 
 .sidebar-items {
-  margin-top: 20px;
+  margin-top: 30px;
+  font-size: 20px;
+  border-radius: 6px;
+  outline: none;
 }
 
 .sidebar-label-container {
   display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: 30px;
   margin-bottom: 12px;
   cursor: pointer;
   -webkit-user-select: none;
@@ -68,6 +72,30 @@
 }
 
 .line {
-  margin-top: 3rem;
+  margin-top: 5rem;
   border-color: #f7f7f7;
+}
+
+
+.color-title {
+  margin-top: 2rem;
+}
+
+.color-option {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-family: 'Now', sans-serif;
+  font-weight: lighter;
+}
+
+.color-square {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border: 12px solid #000;
+}
+
+.sidebar-items {
+  margin-top: 20px;
 }
