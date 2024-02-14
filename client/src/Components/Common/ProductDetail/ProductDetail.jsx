@@ -43,7 +43,6 @@ export default function Details(props) {
     const idUser = IdUserConsu()
 
     let arrayIdProduct = id.split("")
-    let name = productsDetails[0].name
 
     const carritoa = await dispatch(getCarrito(idUser))
     const carritob = carritoa.payload ? carritoa.payload : null
@@ -60,7 +59,7 @@ export default function Details(props) {
         }
         else{
           //console.log('Carrito ya existente en la base de datos.');
-          const props = {idCarrito: carritob, arrayIdProduct: arrayIdProduct, quantity: 1, name: name}
+          const props = {idCarrito: carritob, arrayIdProduct: arrayIdProduct, quantity: 1, name: product[0].name}
           const saveP = await dispatch(saveProductDb(props))
           dispatch(sincronizarDB({productos, productosDb}))
           console.log('Respuesta del saveProductDb: ');
