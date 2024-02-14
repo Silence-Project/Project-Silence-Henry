@@ -9,7 +9,7 @@ import Material from "./Material/Material.jsx";
 import "./Sidebar.css";
 
 const Sidebar = ({ handleChange, handleColorChange, handleSizeChange, handlePriceChange, 
-  handleCategoryChange, handleMaterialChange }) => {
+  handleMaterialChange, handleCategoryChange,  }) => {
   return (
     <>
     <div className="sideBarContainer">
