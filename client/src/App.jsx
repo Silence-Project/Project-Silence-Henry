@@ -17,6 +17,7 @@ import "./App.css";
 import MyProfile from "./Components/Authentication/MyProfile/MyProfile";
 import PrivateRouting from "./Helpers/Privaterouting";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
+import FAQSection from './Components/Pages/FAQSection/FAQSection'
 
 import QuienesSomos from "./Components/Pages/QuienesSomos/QuienesSomos";
 import PayConfirmation from "./Components/Pages/PayConfirmation";
@@ -38,12 +39,12 @@ function App() {
 
         <Route element={<QuienesSomos />} path="/about"></Route>
 
-        {/* {
+        {
         <Route
           path={ROUTES.FAQSECTION}
           element={<FAQSection />}>
         </Route>
-        } */}
+        }
 
         <Route path={ROUTES.REGISTER} element={<UserRegister />}></Route>
 
