@@ -80,7 +80,7 @@ const CarritoSlides = () => {
   // }
 
   const idProducts = productos.map(element => element.id);
-
+  console.log(productos)
   return (
     <>
       <Head/>
@@ -103,7 +103,6 @@ const CarritoSlides = () => {
                 <td className={styles.price}>{producto.price}</td>
                 <td className={styles.totalUnitario}>{totales.push(producto.price * producto.cantidad) && producto.price * producto.cantidad}</td>
                 <td className={styles.button}> 
-                  {/* <button onClick={handlerDrop(producto.id)}>Eliminar</button>  */}
                   <button onClick={() => handlerDrop(producto.id)}>Eliminar</button>
                 </td>
               </tr>

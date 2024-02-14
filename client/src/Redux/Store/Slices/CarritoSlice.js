@@ -26,11 +26,12 @@ export const deleteProductDb = createAsyncThunk(
 
 export const saveProductDb = createAsyncThunk(
   'carrito/saveProductDb',
-  async ({idCarrito, arrayIdProduct, quantity}) => {
+  async ({idCarrito, arrayIdProduct, quantity, name}) => {
 
     const stringIdProduct = arrayIdProduct.join("")
 
     let data = {
+      name: name,
       carId: idCarrito[0]['id'],
       productId: stringIdProduct,
       quantity: quantity
@@ -99,10 +100,11 @@ export const carritoSlice = createSlice({
       for (const iterator of productosSho) {
         let valorCantidad = iterator.CartProduct
         let formatedInfo = {
+          name: iterator.name,
           cantidad: valorCantidad.quantity,
           id: iterator.id,
           price: iterator.price,
-          quantity: valorCantidad.quantity
+          quantity: valorCantidad.quantity          
         }
         const existingProduct = state.productos.find((element) => element.id === formatedInfo.id);
 
