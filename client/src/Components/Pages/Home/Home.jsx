@@ -17,8 +17,12 @@ const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
   const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedMaterial, setSelectedMaterial] = useState("");
   const [filterTerm, setFilterTerm] = useState("");
-  const cardsPerPage = 5;
+  const cardsPerPage = 4;
 
   useEffect(() => {
     dispatch(getProducts())
@@ -29,8 +33,28 @@ const Home = () => {
   }, [dispatch]);
 
   const handleColorChange = (color) => {
-    console.log(color)
+    console.log(color);
     setSelectedColor(color);
+  };
+
+  const handleSizeChange = (size) => {
+    console.log(size);
+    setSelectedSize(size);
+  };
+
+  const handlePriceChange = (price) => {
+    console.log(price);
+    setSelectedPrice(price);
+  };
+
+  const handleMaterialChange = (material) => {
+    console.log(material);
+    setSelectedMaterial(material);
+  };
+
+  const handleCategoryChange = (idCategory) => {
+    console.log(idCategory);
+    setSelectedCategory(idCategory);
   };
 
   const sortedProducts = products
@@ -42,10 +66,13 @@ const Home = () => {
   return (
     <>
       <div className={styles.homeContainer}>
-        
         <Head
           setFilterTerm={setFilterTerm}
           handleColorChange={handleColorChange}
+          handleSizeChange={handleSizeChange}
+          handlePriceChange={handlePriceChange}
+          handleCategoryChange={handleCategoryChange}
+          handleMaterialChange={handleMaterialChange}
         />
         <div className={styles.cardContainer}>
           <ProductList
@@ -53,6 +80,10 @@ const Home = () => {
             filterTerm={filterTerm}
             cardsPerPage={cardsPerPage}
             selectedColor={selectedColor}
+            selectedSize={selectedSize}
+            selectedPrice={selectedPrice}
+            selectedMaterial={selectedMaterial}
+            selectedCategory={selectedCategory}
           />
         </div>
         <Footer />
