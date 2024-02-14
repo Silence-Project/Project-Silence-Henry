@@ -16,7 +16,7 @@ export const deleteProductDb = createAsyncThunk(
     console.log(idProduct);
 
     try {
-      const response = await axios.delete(`${link}/car/remove/${idCarrito}/${idProduct}`);
+      const response = await axios.put(`${link}/car/remove/${idCarrito}/${idProduct}`);
       return await response;
     } catch (error) {
       return { error: error.message };
@@ -37,7 +37,7 @@ export const saveProductDb = createAsyncThunk(
     };
 
     try {
-      const response = await axios.post(`${link}/car/newProduct`, data);
+      const response = await axios.put(`${link}/car/newProduct`, data);
       return await response.data;
     } catch (error) {
       return { error: error.message };
