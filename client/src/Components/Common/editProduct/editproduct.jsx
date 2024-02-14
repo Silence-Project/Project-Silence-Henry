@@ -11,10 +11,19 @@ import { editProduct } from '../../../Redux/Store/Slices/ProductSlice';
 
 import { useState } from 'react';
 
+import CreateCategoryModal from "../../../Auth/CreateProduct/CreateCategoryModal";
+
 
 const Editproduct = ({props, actualizarDetail} ) => {
 
     const [uploadedFileUrl, setUploadedFileUrl] = useState("");
+
+    const [uploadedFileName, setUploadedFileName] = useState(""); 
+    const [fileError, setFileError] = useState("");
+    const [showModal, setShowModal] = useState(false);
+  
+
+
 
     const upLoadImage = async (e) => {
         const file = e.target.files[0];
@@ -85,7 +94,7 @@ const Editproduct = ({props, actualizarDetail} ) => {
             name: ProductID[0].name,
             description: ProductID[0].description,
             price: ProductID[0].price,
-            // category: idCategory[0],
+            idCategory: "",
             code: ProductID[0].code,
             stock: ProductID[0].stock,
             size: ProductID[0].size,
@@ -113,6 +122,52 @@ const Editproduct = ({props, actualizarDetail} ) => {
     if(!ProductID) {
         return <div>Cargando...</div>
     }
+
+
+
+
+
+
+    const reloadCategories = () => {
+      dispatch(getCategories());
+    };
+  
+    const showModalCreateCategory = () => {
+      setShowModal(true);
+    };
+  
+    const hideModalCreateCategory = () => {
+      setShowModal(false);
+    };
+  
+    const handleCancel = () => {
+      if (typeof handleCloseCreateProduct === "function") {
+        handleCloseCreateProduct();
+      } else {
+        console.error(
+          "handleCloseCreateProduct is not a function",
+          handleCloseCreateProduct
+        );
+      }
+    };
+
+
+    useEffect(() => {
+      dispatch(getCategories());
+    }, []);
+  
+    const categories = useSelector((state) => state.product.categories);
+
+    const handleChangeCategory = (e) => {
+      const { name, value } = e.target;
+      console.log("ACA ESTA EL NAME Y EL VALUE DEL CHANGECATEGORY" ,name, value);
+      formik.values[name] = value;
+    };
+    
+
+
+
+    
 
   return (
     <div>
@@ -229,6 +284,30 @@ const Editproduct = ({props, actualizarDetail} ) => {
                     onChange={formik.handleChange}
                     value={formik.values.preference}
                 />
+              <br></br>
+
+                   <div>
+          <div>
+            <label>Categorias:</label>
+            <select
+                name="idCategory"
+                value={formik.values.idCategory}
+                onChange={formik.handleChange}
+              >
+                {/* Opciones de categorías */}
+                {categories.map((idCategory) => (
+                  <option key={idCategory.id} value={idCategory.id}>
+                    {idCategory.name}
+                  </option>
+                ))}
+            </select>
+
+
+           </div>
+          </div>  
+
+
+
 
             
             </div>
@@ -242,3 +321,4 @@ const Editproduct = ({props, actualizarDetail} ) => {
 }
 
 export default Editproduct
+
