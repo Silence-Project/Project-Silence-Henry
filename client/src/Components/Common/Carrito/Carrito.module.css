@@ -28,11 +28,44 @@
   text-align: right;
 }
 
-.name, .cantidad, .price, .totalUnitario, .totalCompras{
+.name, .cantidad, .price, .totalUnitario, .totalCompras, .button{
   text-align: center;
+}
+.button button{
+  background-color: red;
+  padding: 5px;
+  border: solid 1px transparent;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
 }
 
 /* td:last-child {
   width: 25px;
   border-right: none;
 } */
+
+.floating_btn {
+  bottom: 60px;
+  right: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  transition: background-color 0.3s ease;
+}
+
+.floating_btn:hover {
+  background-color: beige;
+  color: black;
+  box-shadow: white
+}
+
+.container_carrito {
+  display: flex;
+  justify-content: center;
+  align-items: center
+}

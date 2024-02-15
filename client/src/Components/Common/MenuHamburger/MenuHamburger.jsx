@@ -4,12 +4,13 @@ import hamburgerIcon from "../../../img/icons/hamburger.png";
 import xmark from "../../../img/icons/x-mark.png";
 
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+
 import  ROUTES  from "../../../Helpers/Routes.helper";
 
 import Sidebar from "../../../Components/Common/Sidebar/Sidebar";
 
-const MenuHamburger = ({handleColorChange}) => {
+const MenuHamburger = ({handleColorChange, handleSizeChange, handlePriceChange, 
+  handleMaterialChange, handleCategoryChange }) => {
   const [isOpen, setOpen] = useState(false);
 
   const handlerMenu = () => {
@@ -37,7 +38,11 @@ const MenuHamburger = ({handleColorChange}) => {
             />
           </div>
           <div className={styles.option1}>
-            <Sidebar handleColorChange={handleColorChange}/>
+            <Sidebar handleColorChange={handleColorChange} 
+                      handleSizeChange={handleSizeChange} 
+                      handlePriceChange={handlePriceChange}
+                      handleMaterialChange={handleMaterialChange}
+                      handleCategoryChange={handleCategoryChange}/>
           </div>
         </div>
       </div>

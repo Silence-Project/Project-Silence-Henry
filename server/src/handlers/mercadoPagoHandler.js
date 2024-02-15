@@ -25,10 +25,10 @@ mercadoPagoHandler.post('/', async (req, res) => {
         const preference = {
             items: arrayProducts,
             back_urls: {
-                success: 'http://127.0.0.1:3000/home/confirmacion' ,
-                failure: 'http://127.0.0.1:3000/home/error'
+                success: 'https://silencepage.netlify.app/paymentconfirmation' ,
+                failure: 'https://silencepage.netlify.app/paymenterror'
             },
-            auto_return: "all"
+            auto_return: "approved"
         };
 
         const response = await mercadopago.preferences.create(preference);

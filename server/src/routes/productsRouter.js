@@ -4,7 +4,8 @@ const { getProductsHandler,
   postNewProductHandler,
   changeProductHandler,
   deleteProductHandler,
-  getProductsByNameHandler
+  getProductsByNameHandler,
+  changeProductStockPatchHandler
 } = require('../handlers/productsHandler')
 
 const productsRouter = Router()
@@ -15,5 +16,6 @@ productsRouter.get('/name/name', getProductsByNameHandler);
 productsRouter.post("/new", postNewProductHandler)
 productsRouter.put("/change/:id", changeProductHandler)
 productsRouter.delete("/delete/", deleteProductHandler)
+productsRouter.patch("/id", changeProductHandler)
 
 module.exports = productsRouter

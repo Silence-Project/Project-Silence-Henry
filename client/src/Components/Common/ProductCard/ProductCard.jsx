@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
 import style from "./ProductCard.module.css";
 
 import { useSelector } from "react-redux";
@@ -58,9 +57,9 @@ const ProductCard = ({ product }) => {
    }
  }
 
-  const handleAddProduct = (product) => {
-    dispatch(anadirProducto(product));
-  };
+  // const handleAddProduct = (product) => {
+  //   dispatch(anadirProducto(product));
+  // };
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -98,12 +97,12 @@ const ProductCard = ({ product }) => {
           </Link>
 
           <div className={style.info}>
-            <button
+            {/* <button
                 className={style.button}
                 onClick={() => handleAddProduct(product)}
               >
                 Añadir al carrito
-            </button>
+            </button> */}
 
               <button className={style.button} onClick={handleToggleFavorito}>
                  <img src={isFavorito ? filledHeart : emptyHeart  } alt="Heart Icon" className={style.heartIcon} />

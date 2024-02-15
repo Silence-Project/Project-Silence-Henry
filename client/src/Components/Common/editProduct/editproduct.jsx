@@ -73,19 +73,16 @@ const Editproduct = ({props, actualizarDetail} ) => {
       };
 
 
-    const cleanProps = props
-
-    console.log("ACA ESTAN LAS PROPS CLEANS" , cleanProps[0].name)
 
 
     const dispatch = useDispatch();
     
     const ProductID = useSelector((state) => state.product.productsDetails);
 
-    const editarlo = (event) => {
-        actualizarDetail(event.target.value);
+    // const editarlo = (event) => {
+    //     actualizarDetail(event.target.value);
         
-      };
+    //   };
 
 
 
@@ -176,7 +173,7 @@ const Editproduct = ({props, actualizarDetail} ) => {
 
 
     {ProductID && (
-        <form onSubmit={formik.handleSubmit} onChange={editarlo}>
+        <form onSubmit={formik.handleSubmit}>
             <div className="form-group">
                 <label htmlFor="name">Nombre</label>
                 <input

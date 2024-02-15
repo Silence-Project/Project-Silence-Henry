@@ -10,36 +10,49 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SearchBar from "../Sidebar/Search/SearchBar";
 import Descuento from "../Descuento/Descuento";
 
-const Head = ({ setFilterTerm, handleColorChange }) => { 
+const Head = ({
+  setFilterTerm,
+  handleColorChange,
+  handleSizeChange,
+  handlePriceChange,
+  handleCategoryChange,
+  handleMaterialChange,
+}) => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
     <div>
-        <Descuento className={styles.descuento}/>
+      <Descuento className={styles.descuento} />
       <div className={styles.header1}>
-        <MenuHamburger handleColorChange={handleColorChange} />
-        <SearchBar setFilterTerm={setFilterTerm} />  
+        <MenuHamburger
+          handleColorChange={handleColorChange}
+          handleSizeChange={handleSizeChange}
+          handlePriceChange={handlePriceChange}
+          handleCategoryChange={handleCategoryChange}
+          handleMaterialChange={handleMaterialChange}
+        />
+        <SearchBar setFilterTerm={setFilterTerm} />
         <NavLink to={ROUTES.HOME}>
-          <img src={imgLogo} alt='silence' className={styles.silence} />
+          <img src={imgLogo} alt="silence" className={styles.silence} />
         </NavLink>
-        {
-          isAuthenticated && (
-            <NavLink to="/profile">
-              <img src={userIcon} alt='user icon' className={styles.userIcon} />
-            </NavLink>
-          )
-        }
-        {
-          !isAuthenticated && (
-            <span onClick={() => loginWithRedirect()}>
-              <img src={userIcon} alt='user icon' className={styles.userIcon} />
-            </span>
-          )
-        }
-        <NavLink to={ROUTES.Carrito}>      
-          <img src={shoppingCartIcon} alt="kart market" className={styles.kartMarket} />
+        {isAuthenticated && (
+          <NavLink to="/profile">
+            <img src={userIcon} alt="user icon" className={styles.userIcon} />
+          </NavLink>
+        )}
+        {!isAuthenticated && (
+          <span onClick={() => loginWithRedirect()}>
+            <img src={userIcon} alt="user icon" className={styles.userIcon} />
+          </span>
+        )}
+        <NavLink to={ROUTES.Carrito}>
+          <img
+            src={shoppingCartIcon}
+            alt="kart market"
+            className={styles.kartMarket}
+          />
         </NavLink>
-      
+
         <NavLink to= "/favoritos">
           <button className={styles.favoritos}>Favoritos</button>
         </NavLink>
@@ -47,7 +60,6 @@ const Head = ({ setFilterTerm, handleColorChange }) => {
         <NavLink to= "/suspension">
           <button className={styles.suspension}>Suspension</button>
         </NavLink>
-
       </div>
     </div>
   );

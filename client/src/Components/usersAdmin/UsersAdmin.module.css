@@ -50,3 +50,12 @@ margin-bottom: -2.5%;
   color: black;
   cursor: pointer;
 }
+
+.kartMarket {
+  max-width: 30px;
+  margin: 18px;
+}
+.kartMarket:hover{
+  cursor: pointer;
+}
+

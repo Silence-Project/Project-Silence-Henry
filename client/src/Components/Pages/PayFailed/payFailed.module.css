@@ -1,0 +1,41 @@
+.image{
+    width: 100px;
+    height: 100px;
+}
+
+.container_approved {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.floating_btn {
+    bottom: 60px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    transition: background-color 0.3s ease;
+}
+
+.floating_btn:hover {
+    background-color: beige;
+    color: black;
+    box-shadow: white
+}
+
+.parent_element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }

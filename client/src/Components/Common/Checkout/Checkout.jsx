@@ -218,10 +218,13 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
 import URLTOCHANGE from "../../../Helpers/routesToChange";
 // import { createOrder } from '../../../Redux/Store/Slices/CarritoSlice'
+import Head from "../Header/Head";
+import Footer from "../FooterView/Footer";
+import styles from "./checkout.module.css";
 
 const Checkout = () => {
   const [loading, setLoading] = useState(false);
@@ -265,13 +268,17 @@ const Checkout = () => {
   };
   return (
     <div>
+      <Head/>
       <button onClick={create} disabled={loading}>
         {loading ? "Loading..." : "Pagar con Mercado Pago"}
       </button>
 
-      <Link to={ROUTES.HOME}>
-        <button>Home</button>
-      </Link>
+      <div>
+          <button className={styles.floating_btn}>
+            <NavLink to={"/home"}>Back home</NavLink>
+          </button>
+        </div>
+      <Footer/>
     </div>
   );
 };

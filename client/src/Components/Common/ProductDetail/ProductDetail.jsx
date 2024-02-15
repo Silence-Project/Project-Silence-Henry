@@ -1,20 +1,20 @@
 import React, { useState } from "react";
+// import { useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import ROUTES from "../../../Helpers/Routes.helper";
-import {
-  getById,
-  getCategories,
-} from "../../../Redux/Store/Slices/ProductSlice";
-import { anadirProducto } from "../../../Redux/Store/Slices/CarritoSlice";
-import { useAuth0 } from "@auth0/auth0-react";
-import requiereUserBd from "../../../Helpers/requireUserBd";
+
+import { getById, getCategories } from "../../../Redux/Store/Slices/ProductSlice";
+import { sincronizarDB, createCarrito, getCarrito, saveProductDb } from "../../../Redux/Store/Slices/CarritoSlice";
+
+// import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 
 import Editproduct from "../editProduct/editproduct";
 import styles from "./ProductDetail.module.css";
 import Head from "../Header/Head";
+import Footer from '../FooterView/Footer';
 
 import { addFavorito , deleteFavorito }  from "../../../Redux/Store/Slices/FavSlice";
 import emptyHeart from "../favoritos/images/corazon_vacio.png";
@@ -23,14 +23,14 @@ import filledHeart from "../favoritos/images/corazon_lleno.png";
 
 
 export default function Details(props) {
-  const { user = { email: "null@null.null" } } = useAuth0();
   const dispatch = useDispatch();
 
   const { id } = useParams();
 
   const productsDetails = useSelector((state) => state.product.productsDetails);
-
+  const productos = useSelector(state => state.carrito.productos);
   const categories = useSelector((state) => state.product.categories);
+  const currentUser = useSelector((state) => state.user.user)
 
 const [isEditing, setIsEditing] = useState(false);
 
@@ -62,23 +62,55 @@ const [edit, setEdit] = useState("");
     dispatch(getCategories());
   }, [dispatch]);
 
-  const handleAddProduct = (product) => {
-    dispatch(anadirProducto(product[0]));
-  };
+  useEffect(() => {
+    dispatch(getById(id));
+    dispatch(getCategories());
+    
+  }, [dispatch, id]);
 
-  async function traerDataUser() {
-    const isRegisterededUser = await requiereUserBd(user.email);
+  const IdUserConsu = ()=>{
+    return currentUser.id
   }
-  traerDataUser();
 
+  const handleAddProduct = async(product) => {    
+
+    const idUser = IdUserConsu()
+
+    let arrayIdProduct = id.split("")
+
+    const carritoa = await dispatch(getCarrito(idUser))
+    const carritob = carritoa.payload ? carritoa.payload : null
+
+    const productosDb = carritob
+    
+    if(product){
+      try {
+        if(carritob.length === 0){
+          console.log('Creando carrito para el usuario en la base de datos.');
+          const carritoCreado = await dispatch(createCarrito(idUser))
+          console.log(carritoCreado.payload);
+          dispatch(sincronizarDB({productos, productosDb}))
+        }
+        else{
+          //console.log('Carrito ya existente en la base de datos.');
+          const props = {idCarrito: carritob, arrayIdProduct: arrayIdProduct, quantity: 1, name: product[0].name}
+          const saveP = await dispatch(saveProductDb(props))
+          dispatch(sincronizarDB({productos, productosDb}))
+          console.log('Respuesta del saveProductDb: ');
+          console.log(saveP.payload)          
+        }
+      } 
+      catch (error) {
+        console.log('Error al crear carrito:', error)
+      }
+      
+    }    
+  }
 
   const handleEditClick = () => {
     setIsEditing(true);
   }
 
-
-
-console.log(productsDetails, "PRODUCTDETAILS")
 
 
   return (
@@ -112,6 +144,7 @@ console.log(productsDetails, "PRODUCTDETAILS")
             />
             <div className={styles.h4}>
               <h2>{product.name}</h2>
+
               <h4>📜 Description:</h4>
               <p className={styles.description}>
                 {" "}
@@ -130,6 +163,7 @@ console.log(productsDetails, "PRODUCTDETAILS")
               <h4>🧱 Peso: {product.weight}</h4>
               <h4>👘 Caracteristicas de la tela: {product.material}</h4>
               <h4>💸 Precio: {product.price}</h4>
+              <h4>📏 Talle: {product.size} </h4>
             </div>
     
         
@@ -149,71 +183,16 @@ console.log(productsDetails, "PRODUCTDETAILS")
           Añadir al carrito de compras
         </button>
 
-        <Link to="/carrito">
-          <button className={styles.botondetail}>Ir al carrito</button>
-        </Link>
-      </div>
+      <Link to="/carrito">
+        <button className={styles.botondetail}>Ir al carrito</button>
+      </Link>
+
+      <Link to={ROUTES.HOME}>
+        <button className={styles.botondetail}>Go Home</button>
+      </Link>
     </div>
+    <Footer/>
+  </div>
 
-    //     <div className="general">
-
-    //       <div key={productsDetails.id}>
-    // {/*
-    //         <h1 className="nombre">{productsDetails.name}</h1> */}
-
-    //         <img className="image-principal"
-    //           src={'https://i.pinimg.com/236x/0e/4f/ce/0e4fce603341659d87362c2666530f3d.jpg'}
-    //           alt="hola"
-    //           width="400px"
-    //           height="250px"
-    //         />
-
-    //         {/* <img className="image-secundaria"
-    //           src={productsDetails.image.map((image, index) => <p key={index} className="card-image">{image}</p>)}
-    //           alt={productsDetails.name} /> */}
-
-    //         <div  className="h4">
-
-    //             <h4 >📜 Description:</h4>
-
-    //             <p className="description"> Descripcion: {productsDetails.descripcion} </p>
-
-    //             <h4>SKU : a {productsDetails.codigo}</h4>
-
-    //             <h4>🏷️ Categoría: {productsDetails.categoria}</h4>
-
-    //             <h4>📦 Stock disponible: {productsDetails.stock}</h4>
-
-    //             <h4>🎨 Color: {productsDetails.color}</h4>
-
-    //             <h4>🧱 Peso: {productsDetails.peso}</h4>
-
-    //             {/* <h4>📏 Tallas disponibles: <br/>
-    //             {productsDetails.tallas?.map((talla, i) => (
-    //               <li key={i}>{talla.name}</li>
-    //             ))}</h4> */}
-
-    //             <h4>👘 Caracteristicas de la tela: {productsDetails.caracteristicasTela}</h4>
-
-    //             <h4>💸 Precio: {productsDetails.price}</h4>
-
-    //          {/* Características de los productos:
-    //           puesto de Relevancia en la visualización, rating, comparación con los otros talles,
-    //            características de la tela.  */}
-
-    //            {/* <h4>🌟 Rating: {COMPONENTE.rating} </h4> */}
-    //             {/* <h4>🌟 Carrito: {COMPONENTE.carrito} </h4> */}
-
-    //             <div>HOLA</div>
-
-    //         </div>
-
-    //       </div>
-
-    //         <Link to={ROUTES.HOME}>
-    //           <button className="botondetail">Go Home</button>
-    //         </Link>
-
-    //     </div>
   );
 }
