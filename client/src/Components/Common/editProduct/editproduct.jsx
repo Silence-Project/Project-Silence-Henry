@@ -113,8 +113,11 @@ const Editproduct = ({props, actualizarDetail} ) => {
 
         onSubmit: (values) => {
             dispatch(updateProduct({id: ProductID[0].id, ...values}))
-            // window.location.reload()
             navigate(ROUTES.HOME)
+            setTimeout(() => {
+              window.location.reload()
+            }, 1500)
+            
             
         }
     })
