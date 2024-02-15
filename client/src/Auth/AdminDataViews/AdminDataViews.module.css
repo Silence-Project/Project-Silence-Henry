@@ -12,25 +12,34 @@
 
 .chartContainer {
   display: flex;
+  justify-content: center; 
   width: 100%;
   height: 50%;
   padding: 10px; 
+  align-items: center; 
 }
 
-.chartTwo {
-  border-radius: 15px;
+
+
+.chartWrapper { 
   padding: 10px;
-  width: 47.9%;
+  flex: 1;  
   height: 100%; 
+  max-width: 100%; 
+  overflow: hidden; 
+  border-radius: 15px; 
 }
 
-.chartBar {
-  border-radius: 15px;
-  padding: 10px;
-  width: 47.9%;
-  height: 100%; 
+.chartWrapperOne {
+  padding: 70px;
+  
 }
 
+
+.doughnutChart {
+  width: 200%; 
+  height: auto; 
+}
 
 
 .btnCloseContainer {

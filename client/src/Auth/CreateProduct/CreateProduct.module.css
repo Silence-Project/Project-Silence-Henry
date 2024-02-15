@@ -1,9 +1,10 @@
 .formContainer {
   background-color: var(--PureWhite);
   border-radius: 8px;
-  width: 80%;
+  width: 90%;
   height: 100%;
-  margin: 1% auto; 
+  margin-top: -4%;
+  margin-left: 6%;
   box-shadow: 2px 2px 12px rgba(0, 0, 0);
   text-align: center;
   font-family: 'Now';
@@ -14,16 +15,19 @@
 
 
 .formWrapper {
+  font-family: 'Now';
   position: relative;
 }
 
 .btnCloseContainer {
+  font-family: 'Now';
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
 .btnCancel img {
+  font-family: 'Now';
   position: absolute;
   top: 10px; 
   right: 10px; 
@@ -36,7 +40,6 @@
 }
 
 .formContainer::after {
-  content: "";
   font-family: 'Now';
   position: absolute;
   top: 0;
@@ -50,23 +53,29 @@
 }
 
 .formContainer:hover::after {
+  font-family: 'Now';
+  content: "";
   right: 99%;
   transition: 1.8s;
 }
 
 h2 {
   margin-bottom: 0.5%;
+  font-family: 'Now';
+  content: "";
   margin-top: 0.5%;
 }
 
 .groupOne {
   display: flex;
+  font-family: 'Now';
   flex-direction: row;
   justify-content: center; 
   padding: 5px; 
 }
 
 .input {
+  font-family: 'Now';
   margin-left: 5px;
   width: 96%;
   padding: 7px;
@@ -80,8 +89,9 @@ h2 {
 
 
 .divForm {
+  font-family: 'Now';
   flex-direction: column;
-  margin-bottom: 20px; 
+  margin-bottom: 18px; 
   width: 130%;
   justify-content: center;
   align-items: center;
@@ -91,22 +101,25 @@ h2 {
 
 .error {
   display: flex;
+  font-family: 'Now';
   flex-wrap: wrap;
   flex-direction: row;
   margin-left: 30px;
   color: #ff0019;
   margin-top: 2px;
   margin-bottom: 12px;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 a {
+  font-family: 'Now';
   text-decoration: none;
   color: var(--BalancedGray);
 }
 
 .home {
   position: relative;
+  font-family: 'Now';
   height: 50px;
   width: 150px;
   background-color: var(--AgreableGray);
@@ -128,20 +141,25 @@ a {
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
+  border: 2px solid black;
   cursor: pointer;
   margin-top: 3%;
+  font-family: 'Now';
   margin-right: 6%;
 }
 
 
 .btnSubmit:hover {
-  background-color: var(--ReposeGray);
+  background-color: black;
+  font-family: 'Now';
+  color: white
 }
 
 
 
 .divForm label {
   display: block; 
+  font-family: 'Now';
   font-family: 'Now';
   margin-bottom: 5px; 
   font-weight: bold; 
@@ -166,9 +184,12 @@ a {
 .divForm select:focus {
   outline: none; 
   border-color: #6e98d1; 
+  font-family: 'Now';
 }
 
 .divForm img {
+  font-family: 'Now';
+  border-color: #6e98d1; 
   display: block; 
   width: 30%; 
   margin-top: -1%; 
@@ -176,8 +197,9 @@ a {
 }
 
 input[type="color"] {
-  width: 50px;
-  height: 50px;
+  font-family: 'Now';
+  width: 20px;
+  height: 20px;
   border: none;
   border-radius: 80%;
   cursor: pointer;
@@ -188,8 +210,9 @@ input[type="color"] {
 
 
 .textArea {
-  width: 90%; 
-  height: 100px; 
+  font-family: 'Now';
+  width: 80%; 
+  height: 40px; 
   padding: 8px; 
   font-size: 16px; 
   border: 1px solid #ccc; 

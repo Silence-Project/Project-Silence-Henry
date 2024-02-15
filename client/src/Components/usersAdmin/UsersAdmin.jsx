@@ -91,15 +91,15 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
                   </button>{" "}
                 </p>
               </div>
-              <div>
+              <div className={styles.kartMarketDiv}>
                 <img
                   src={shoppingCartIcon}
                   alt="kart market"
                   className={styles.kartMarket}
                 />
-                <p>
-                  Carrito: {productos.length}
-                </p>
+                <span className={styles.kartMarketTitle}>
+                  : {productos.length}
+                </span>
               </div>
             </li>
           ))}
