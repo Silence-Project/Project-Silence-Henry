@@ -8,7 +8,7 @@ export const getProducts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       // const response = await axios.get(`${URLTOCHANGE}/products`);
-      const response = await axios.get(`http://127.0.0.1:3001/products`);
+      const response = await axios.get(`https://silenceback.onrender.com/products`);
 
       localStorage.setItem("products", JSON.stringify(response.data));
       return response.data;
@@ -22,7 +22,7 @@ export const getProducts = createAsyncThunk(
 export const getById = createAsyncThunk("productsDetails", async (id) => {
   try {
     // const response = await axios.get(`${URLTOCHANGE}/products/${id}`);
-    const response = await axios.get(`http://127.0.0.1:3001/products/${id}`);
+    const response = await axios.get(`https://silenceback.onrender.com/products/${id}`);
 
     localStorage.setItem("productsDetails", JSON.stringify(response.data));
 
@@ -37,7 +37,7 @@ export const postProduct = createAsyncThunk("products/new", async (product) => {
   try {
     const response = await axios.post(
       // `${URLTOCHANGE}/products/new`,
-     `http://127.0.0.1:3001/products/new`,
+     `https://silenceback.onrender.com/products/new`,
       product
     );
 
@@ -51,7 +51,7 @@ export const getCategories = createAsyncThunk("categories", async () => {
   try {
     const response = await axios.get(
     // `${URLTOCHANGE}/categories/allCategory`
-    `http://127.0.0.1:3001/categories/allCategory`
+    `https://silenceback.onrender.com/categories/allCategory`
     );
 
     return response.data;
@@ -65,7 +65,7 @@ export const updateProduct = createAsyncThunk("products/update", async (product)
   try {
     // const response = await axios.put(`${URLTOCHANGE}/products/change/${product.id}`, product);
 
-    const response = await axios.put(`http://127.0.0.1:3001/products/change/${product.id}`, product);
+    const response = await axios.put(`https://silenceback.onrender.com/products/change/${product.id}`, product);
 
     return response.data;
   }
@@ -77,7 +77,7 @@ export const updateProduct = createAsyncThunk("products/update", async (product)
 export const deleteProduct = createAsyncThunk("products/delete", async ({id  , sw }, { rejectWithValue } ) => {
   try {
     // const response = await axios.delete(`${URLTOCHANGE}/products/delete/${id}`);
-    const response = await axios.delete(`http://127.0.0.1:3001/products/delete?id=${id}&sw=${sw}`);
+    const response = await axios.delete(`https://silenceback.onrender.com/products/delete?id=${id}&sw=${sw}`);
 
     return response.data;
   }
