@@ -33,7 +33,7 @@ export default function Details(props) {
   const currentUser = useSelector((state) => state.user.user)
 
 const [isEditing, setIsEditing] = useState(false);
-
+const [isAdmin, setIsAdmin] = useState(false);
 
 
 
@@ -50,10 +50,6 @@ const handleToggleFavorito = () => {
 
 
 const [edit, setEdit] = useState("");
-
-  const actualizarDetail = (editado) => {
-    setEdit(editado)
-  }
 
 
 
@@ -104,7 +100,7 @@ const [edit, setEdit] = useState("");
         console.log('Error al crear carrito:', error)
       }
       
-      
+
     }    
   }
 
@@ -114,6 +110,98 @@ const [edit, setEdit] = useState("");
 
 
 
+
+
+if(currentUser && currentUser.isAdmin === true){
+    return (
+      <div>
+      {" "}
+      <Head />
+      <div className={styles.general}>
+        <Link to={ROUTES.HOME}>
+      <div className={styles.closeButton}>
+        
+           
+  
+  
+            <FaTimes />
+          </div>
+        </Link>
+  
+        <button className={styles.button} onClick={handleToggleFavorito}>
+                 <img src={isFavorito ? filledHeart : emptyHeart  } alt="Heart Icon" className={styles.heartIcon} />
+        </button>
+  
+  
+        {productsDetails && productsDetails.map((product, index) => (
+          <div key={index}>
+            <img
+              className={styles["image-principal"]}
+              src={product.image}
+              alt="Product"
+              width="400px"
+              height="250px"
+            />
+            <div className={styles.h4}>
+              <h2>{product.name}</h2>
+  
+              <h4>📜 Description:</h4>
+              <p className={styles.description}>
+                {" "}
+                Descripcion: {product.description}
+              </p>
+              <h4>
+                🏷️ Categoría :{" "}
+                {
+                  categories.find(
+                    (category) => category.id === product.idCategory
+                  )?.name
+                }
+              </h4>
+              <h4>📦 Stock disponible: {product.stock}</h4>
+              <h4>🎨 Color: {product.color}</h4>
+              <h4>🧱 Peso: {product.weight}</h4>
+              <h4>👘 Caracteristicas de la tela: {product.material}</h4>
+              <h4>💸 Precio: {product.price}</h4>
+              <h4>📏 Talle: {product.size} </h4>
+            </div>
+    
+        
+      </div>
+        ))}
+  
+      <button className={styles.botondetail} onClick={handleEditClick}> Editar </button>
+  
+  
+        {isEditing && <Editproduct props={productsDetails}  /> }
+  
+  
+  
+    <button
+          className={styles.botondetail}
+          onClick={() => handleAddProduct(productsDetails)}
+        >
+          Añadir al carrito de compras
+        </button>
+  
+      <Link to="/carrito">
+        <button className={styles.botondetail}>Ir al carrito</button>
+      </Link>
+  
+      <Link to={ROUTES.HOME}>
+        <button className={styles.botondetail}>Go Home</button>
+      </Link>
+    </div>
+  
+  
+  
+    <Footer/>
+  </div>
+  
+    )
+  
+  
+} else {
   return (
     <div>
       {" "}
@@ -171,11 +259,8 @@ const [edit, setEdit] = useState("");
       </div>
         ))}
 
-        <button className="botondetail" onClick={handleEditClick}>Editar</button>
-
-    {isEditing && <Editproduct props={productsDetails} actualizarDetail={actualizarDetail}  /> }
-
       
+
 
     <button
           className={styles.botondetail}
@@ -192,8 +277,16 @@ const [edit, setEdit] = useState("");
         <button className={styles.botondetail}>Go Home</button>
       </Link>
     </div>
+
+  
+
     <Footer/>
   </div>
 
   );
+}
+
+
+
+ 
 }

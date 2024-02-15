@@ -9,6 +9,8 @@ import ROUTES from "../../../Helpers/Routes.helper";
 import DescuentoAdmin from "../../Common/Descuento/DescuentoAdmin";
 import AdminDataViews from "../../../Auth/AdminDataViews/AdminDataViews";
 import Footer from "../../Common/FooterView/Footer";
+import Editproduct from "../../Common/editProduct/editproduct";
+
 
 const AdminView = () => {
   const navigate = useNavigate();
@@ -56,6 +58,10 @@ const AdminView = () => {
             />
           ) : selectedCard === "AdminDataViews" ? (
             <AdminDataViews
+              handleCloseCreateProduct={handleCloseCreateProduct}
+            />
+          ) : selectedCard === "editProduct" ? (
+            <Editproduct
               handleCloseCreateProduct={handleCloseCreateProduct}
             />
           ) : null}
