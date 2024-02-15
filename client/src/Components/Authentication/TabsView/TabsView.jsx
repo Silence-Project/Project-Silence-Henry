@@ -25,12 +25,12 @@ const TabsView = ({ currentUser }) => {
           <UserOrders currentUser={currentUser} />
         </div>
       case 'createProd':
-        return <div className={style.uniqueItemContainer}> 
-          {/* <CreateProduct />  */}
+        return <div className={style.uniqueItemContainer}>
           <AdminView />
         </div>;
       case 'updateLocations':
         return <div className={style.uniqueItemContainer}>
+          <h3>Mis ubicaciones guardadas:</h3>
           <Locations currentUser={currentUser} />
         </div>;
       case 'updatePersonal':
@@ -54,13 +54,13 @@ const TabsView = ({ currentUser }) => {
           Mis datos
         </button>
         <button onClick={() => setActiveTab('updatePersonal')} className={activeTab === 'updatePersonal' ? `active ${style.tabsNavigate}` : `${style.tabsNavigate}`}>
-          Actualizar Mis Datos
+          Actualizar mis datos
+        </button>
+        <button onClick={() => setActiveTab('updateLocations')} className={activeTab === 'updateLocations' ? `active ${style.tabsNavigate}` : `${style.tabsNavigate}`}>
+          Actualizar ubicaciones
         </button>
         <button onClick={() => setActiveTab('viewOrders')} className={activeTab === 'viewOrders' ? `active ${style.tabsNavigate}` : `${style.tabsNavigate}`}>
           Mis pedidos
-        </button>
-        <button onClick={() => setActiveTab('updateLocations')} className={activeTab === 'updateLocations' ? `active ${style.tabsNavigate}` : `${style.tabsNavigate}`}>
-          Actualizar Ubicaciones
         </button>
       </div>
       <div className="myTabContent">

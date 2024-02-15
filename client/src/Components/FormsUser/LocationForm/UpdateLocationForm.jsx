@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import URLTOCHANGE from '../../../Helpers/routesToChange';
 import { gettingUser } from '../../../Redux/Store/Slices/UserSlice';
 // import { updateUser } from "../../../Redux/Store/Slices/UserSlice";
+import style from "./LocationForm.module.css";
 
 const validationMyForm = Yup.object({
   country: Yup.string(),
@@ -13,7 +14,7 @@ const validationMyForm = Yup.object({
   address: Yup.string(),
 });
 
-const UpdateLocationForm = ({ currentUser, locationId, locationData }) => {
+const UpdateLocationForm = ({ currentUser, locationId, setEditingLocationId, locationData }) => {
   const dispatch = useDispatch();
   const { id } = currentUser;
 
@@ -24,6 +25,7 @@ const UpdateLocationForm = ({ currentUser, locationId, locationData }) => {
     // console.log('que fue la response? ', response);
     dispatch(gettingUser(currentUser.id)); //para actualizar datos
 
+    setEditingLocationId(false);
     setSubmitting(false);
   };
 
@@ -42,7 +44,7 @@ const UpdateLocationForm = ({ currentUser, locationId, locationData }) => {
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className={style.formContainer}>
             <label htmlFor="country">Pais</label>
             <Field id="country" name="country" placeholder="Pais" />
 
@@ -55,7 +57,7 @@ const UpdateLocationForm = ({ currentUser, locationId, locationData }) => {
             <label htmlFor="postalCode">Código Postal</label>
             <Field id="postalCode" name="postalCode" placeholder="Código postal" />
 
-            <button type="submit" disabled={isSubmitting}>Actualizar ubicación</button>
+            <button type="submit" className={style.btnSubmit} disabled={isSubmitting}>Actualizar ubicación</button>
           </Form>
         )}
       </Formik>
