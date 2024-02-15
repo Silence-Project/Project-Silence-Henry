@@ -14,7 +14,8 @@ const ROUTES = {
   MODAL: '/modal',
   ADMIN: '/admin-view',
   PROFILE: '/profile',
-  ABOUT: '/about'
+  ABOUT: '/about',
+  ANDINO: '/colaboracion'
 }
 
 export default ROUTES
