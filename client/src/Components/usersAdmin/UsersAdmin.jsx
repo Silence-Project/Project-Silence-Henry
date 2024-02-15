@@ -92,12 +92,12 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
                 </p>
               </div>
               <div>
+                <img
+                  src={shoppingCartIcon}
+                  alt="kart market"
+                  className={styles.kartMarket}
+                />
                 <p>
-                  <img
-                    src={shoppingCartIcon}
-                    alt="kart market"
-                    className={styles.kartMarket}
-                  />
                   Carrito: {productos.length}
                 </p>
               </div>
