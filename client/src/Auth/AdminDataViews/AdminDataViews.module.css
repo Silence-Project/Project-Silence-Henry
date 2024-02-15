@@ -4,17 +4,11 @@
   margin-top: 1px;
   margin-right: 2%;
   margin-left: -1%;
-  width: 98vw;
+  width: 86vw;
   display: flex;
   flex-direction: column;
 }
 
-.chartOne {
-  width: 88.5%;
-  height: 40%;
-  border-radius: 15px;
-  padding: 10px;
-}
 
 .chartContainer {
   display: flex;
@@ -30,19 +24,14 @@
   height: 100%; 
 }
 
-
-
-.chartTree {
+.chartBar {
   border-radius: 15px;
   padding: 10px;
   width: 47.9%;
-  height: 92%; 
+  height: 100%; 
 }
 
 
-.chartTree {
-  margin-left: 20%; 
-}
 
 .btnCloseContainer {
   display: flex;

@@ -60,7 +60,7 @@ export default function Details(props) {
         }
         else{
           //console.log('Carrito ya existente en la base de datos.');
-          const props = {idCarrito: carritob, arrayIdProduct: arrayIdProduct, quantity: 1}
+          const props = {idCarrito: carritob, arrayIdProduct: arrayIdProduct, quantity: 1, name: product[0].name}
           const saveP = await dispatch(saveProductDb(props))
           dispatch(sincronizarDB({productos, productosDb}))
           console.log('Respuesta del saveProductDb: ');
@@ -95,6 +95,7 @@ export default function Details(props) {
             />
             <div className={styles.h4}>
               <h2>{product.name}</h2>
+
               <h4>📜 Description:</h4>
               <p className={styles.description}>
                 {" "}

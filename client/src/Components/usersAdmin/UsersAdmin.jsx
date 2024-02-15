@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import IMGCLOSE from "../../img/icons/x-mark.png";
 import URLTOCHANGE from "../../Helpers/routesToChange";
 import styles from "./UsersAdmin.module.css";
+import { useSelector } from "react-redux";
+import shoppingCartIcon from "../../img/icons/shopping-cart.png";
 
 const UsersAdmin = ({ handleCloseCreateProduct }) => {
   const [usuarios, setUsuarios] = useState([]);
+  
+  const productos = useSelector(state => state.carrito.productos);
 
   const toggleEstadoUsuario = (id, isActive) => {
     const newEstado = isActive ? false : true;
@@ -85,6 +89,16 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
                   >
                     {usuario.isActive ? "Desactivar" : "Activar"}
                   </button>{" "}
+                </p>
+              </div>
+              <div>
+                <img
+                  src={shoppingCartIcon}
+                  alt="kart market"
+                  className={styles.kartMarket}
+                />
+                <p>
+                  Carrito: {productos.length}
                 </p>
               </div>
             </li>

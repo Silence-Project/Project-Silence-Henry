@@ -29,13 +29,13 @@ const UserOrders = ({currentUser}) => {
   return(
     <div className={style.fullOrderContainer}>
       {
-        myOrders && myOrders.map(order => (
+        myOrders.length === 0 ? (<span>Aún no tienes órdenes. Comienza a explorar y realiza tu primer compra.</span>) : (myOrders.map(order => (
           <div key={order.id} className={style.orderContainer}>
             <p>Fecha: {order.createdAt}</p>
             <p>Status: {order.statePayment}</p>
             <p>Método de entrega: {order.ShippingMethod}</p>
           </div>
-        ))
+        )))
       }
     </div>
   )

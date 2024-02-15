@@ -11,6 +11,15 @@ export const getAllUsers = createAsyncThunk("admin/getAllUsers", async () => {
   }
 });
 
+export const getAllCars = createAsyncThunk("admin/getAllCars", async () => {
+  try {
+    const response = await axios.get(`${URLTOCHANGE.theUrl}/car/cars`);
+    return response.data;
+  } catch (error) {
+    throw Error("Error al obtener los carros");
+  }
+});
+
 export const getTopMsj = createAsyncThunk("admin/getTopMsj", async () => {
   try {
     const response = await axios.get(`${URLTOCHANGE.theUrl}/toptext/texts`);
@@ -57,6 +66,7 @@ const adminSlice = createSlice({
     loading: false,
     error: null,
     usuarios: [],
+    cars: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -114,6 +124,19 @@ const adminSlice = createSlice({
         state.error = null;
       })
       .addCase(toggleUserStatus.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getAllCars.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllCars.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cars = action.payload;
+        state.error = null;
+      })
+      .addCase(getAllCars.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
