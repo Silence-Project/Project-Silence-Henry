@@ -34,12 +34,21 @@ const MyProfile = () => {
         <div>
           <h2>Hola, {currentUser.firstName}.</h2>
         </div>
-        <aside>
-          <TabsView currentUser={currentUser} />
-        </aside>
-        {/* {
-          currentUser.isAdmin ? <AdminView /> : null
-        } */}
+        {
+          currentUser.isActive ?
+            <aside>
+              <TabsView currentUser={currentUser} />
+            </aside>
+            :
+            <div>
+              <p>Tu cuenta está deshabilitada. Por favor, contacta a soporte para reactivarla.</p>
+              {
+                setTimeout(() => {
+                  logoutWithRedirect();
+                }, 3000)
+              }
+            </div>
+        }
         <button onClick={() => logoutWithRedirect()}>
           Cerrar sesión
         </button>
