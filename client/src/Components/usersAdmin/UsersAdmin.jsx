@@ -3,7 +3,7 @@ import IMGCLOSE from "../../img/icons/x-mark.png";
 import URLTOCHANGE from "../../Helpers/routesToChange";
 import styles from "./UsersAdmin.module.css";
 import { useSelector } from "react-redux";
-import shoppingCartIcon from "../../../img/icons/shopping-cart.png";
+import shoppingCartIcon from "../../img/icons/shopping-cart.png";
 
 const UsersAdmin = ({ handleCloseCreateProduct }) => {
   const [usuarios, setUsuarios] = useState([]);
