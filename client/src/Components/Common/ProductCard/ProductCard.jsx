@@ -15,9 +15,10 @@ import filledHeart from "../favoritos/images/corazon_lleno.png";
 
 import { toggleSuspension } from "../../../Redux/Store/Slices/ProductSlice";
 
+import URLTOCHANGE from "../../../Helpers/routesToChange";
 
 const ProductCard = ({ product }) => {
-  const { id, name, image, price, description, state } = product;
+  const { id, name, image, price, description } = product;
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
@@ -67,9 +68,32 @@ const ProductCard = ({ product }) => {
 
 
 //SUSPENSION
+  const [state, setEstado] = useState(product.state.product);
+
   const handleToggleSuspension = () => {
-    dispatch(toggleSuspension({ id: product.id, state: !product.state }));
-  }
+    const newState = state; // Invierte el valor de state para suspender/reactivar el producto
+    fetch(`https://silenceback.onrender.com/products/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ state: newState }), // Envía el nuevo estado en el cuerpo de la solicitud
+    })
+    .then((response) => {
+      if (response.ok) {
+        // La solicitud se completó correctamente, puedes realizar acciones adicionales si es necesario
+        setEstado(newState); // Actualiza el estado local del producto en el componente
+      } else {
+        // Maneja cualquier error en la respuesta de la solicitud
+        console.error("Error en la solicitud PATCH:", response.statusText);
+      }
+    })
+    .catch((error) => {
+      // Maneja cualquier error de red o del lado del cliente
+      console.error("Error en la solicitud PATCH:", error);
+    });
+  };
+  
 
 console.log("CURRENT USER" ,currentUser)
 
@@ -78,7 +102,7 @@ console.log("CURRENT USER" ,currentUser)
       <div className={style.absolute}>
         <div className={style.productDetail}>
   
-          <button onClick={handleToggleSuspension} className={style.button}>{state ? "Suspender" : "Reactivar"}</button>
+          <button onClick={handleToggleSuspension} className={style.button}>{state ? "Reactivar" : "Suspender"}</button>
   
           <Link to={`/detail/${id}`}>
             <div className={style.productImageContainer} onClick={toggleModal}>

@@ -87,6 +87,16 @@ export const deleteProduct = createAsyncThunk("products/delete", async ({id  , s
   }
 })
 
+export const toggleSuspension = createAsyncThunk("products/suspension", async ({id  , state }, { rejectWithValue } ) => {
+    try {
+      const response = await axios.patch(`${URLTOCHANGE.theUrl}/products/${id}` , { state });
+      // https://silenceback.onrender.com/products/id
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue([]);
+    }
+})
+
 
 
 const productSlice = createSlice({
@@ -101,13 +111,7 @@ const productSlice = createSlice({
   },
 
   reducers: { 
-    toggleSuspension(state, action) {
-      const { id, state: newState } = action.payload;
-      const product = state.products.find((product) => product.id === id);
-      if(product) {
-        product.state = newState;
-      }
-    },
+
     editProduct(state, action) {
       // Aquí deberías conectar el endpoint PUT /api/products/:productId para actualizar el producto en el backend
       // Luego, puedes actualizar el estado con los datos actualizados del producto
@@ -221,6 +225,6 @@ const productSlice = createSlice({
 });
 
 
-export const { editProduct , toggleSuspension } = productSlice.actions;
+export const { editProduct } = productSlice.actions;
 
 export default productSlice.reducer;

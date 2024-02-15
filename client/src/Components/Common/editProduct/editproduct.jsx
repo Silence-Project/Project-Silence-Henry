@@ -13,6 +13,8 @@ import { useState } from 'react';
 
 import CreateCategoryModal from "../../../Auth/CreateProduct/CreateCategoryModal";
 
+import style from "./editproduct.module.css";
+
 
 const Editproduct = ({props, actualizarDetail} ) => {
 

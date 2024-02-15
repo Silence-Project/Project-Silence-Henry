@@ -10,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SearchBar from "../Sidebar/Search/SearchBar";
 import Descuento from "../Descuento/Descuento";
 import { useSelector } from "react-redux";
+import FavIcon from "../../../img/icons/favoritos.png"
 
 const Head = ({
   setFilterTerm,
@@ -59,7 +60,7 @@ const Head = ({
           </NavLink>
   
           <NavLink to= "/favoritos">
-            <button className={styles.favoritos}>Favoritos</button>
+            <img src={FavIcon} className={styles.favoritos} alt="favoritos"></img>
           </NavLink>
 
           <NavLink to= "/suspension">
@@ -104,7 +105,7 @@ const Head = ({
           </NavLink>
   
           <NavLink to= "/favoritos">
-            <button className={styles.favoritos}>Favoritos</button>
+            <img src={FavIcon} className={styles.favoritos} alt="favoritos"></img>
           </NavLink>
   
          

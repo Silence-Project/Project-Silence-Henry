@@ -22,13 +22,14 @@
 .search:hover {
   cursor: pointer;
 }
-.kartMarket, .userIcon {
+.kartMarket, .userIcon , .favoritos {
   max-width: 30px;
   float: right;
   margin: 18px;
 }
 .kartMarket:hover,
-.userIcon:hover {
+.userIcon:hover,
+.favoritos:hover {
   cursor: pointer;
 }
 
@@ -48,3 +49,4 @@
   background-color: white !important; 
   width: 50%; 
 }
+
