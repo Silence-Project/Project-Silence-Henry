@@ -32,8 +32,8 @@ function QuienesSomos() {
   return (
     <div>
       <Head />
+      <div className={styles.frontPage}></div>
       <div className={styles.container_information}>
-        <div className={styles.frontPage}></div>
         <div>
           <h4>Contact us!</h4>
           <div className={styles.redes}>
