@@ -1,12 +1,16 @@
-.fullOrderContainer {
+.fullLocationsContainer {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
 
-.orderContainer {
+.locationContainer {
   display: flex;
   flex-direction: column;
+  width: 250px;
+  min-width: 300px;
+  max-width: 450px;
   background-color: #ffffff;
+  justify-content: center; 
   padding: 10px;
 }

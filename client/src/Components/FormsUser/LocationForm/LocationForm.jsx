@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import URLTOCHANGE from '../../../Helpers/routesToChange';
 import { gettingUser } from '../../../Redux/Store/Slices/UserSlice';
 // import { updateUser } from "../../../Redux/Store/Slices/UserSlice";
+import style from "./LocationForm.module.css";
 
 const validationMyForm = Yup.object({
   country: Yup.string(),
@@ -44,9 +45,9 @@ const LocationForm = ({ currentUser }) => {
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
-          <Form>
-            <label htmlFor="country">Pais</label>
-            <Field id="country" name="country" placeholder="Pais" />
+          <Form className={style.formContainer}>
+            <label htmlFor="country">País</label>
+            <Field id="country" name="country" placeholder="País" />
 
             <label htmlFor="city">Ciudad</label>
             <Field id="city" name="city" placeholder="Ciudad" />
@@ -57,7 +58,7 @@ const LocationForm = ({ currentUser }) => {
             <label htmlFor="postalCode">Código Postal</label>
             <Field id="postalCode" name="postalCode" placeholder="Código postal" />
 
-            <button type="submit" disabled={isSubmitting}>Crear ubicación</button>
+            <button type="submit" className={style.btnSubmit} disabled={isSubmitting}>Crear ubicación</button>
           </Form>
         )}
       </Formik>

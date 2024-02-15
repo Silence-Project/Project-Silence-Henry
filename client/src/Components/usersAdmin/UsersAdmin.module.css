@@ -1,5 +1,5 @@
 .formContainer {
-  width: 300%;
+  width: 172%;
   margin: 0 auto; 
   padding: 20px;
   background-color: #f0f0f0;
@@ -10,11 +10,10 @@
   align-items: center; 
   list-style: none;
   margin-bottom: 1.5px;
+  display: flex;
   padding: 15px;
   background-color: #e0e0e0;
 }
-
-
 
 
 .user:hover {
@@ -59,3 +58,14 @@ margin-bottom: -2.5%;
   cursor: pointer;
 }
 
+
+.kartMarketDiv {
+  display: flex; 
+  align-items: center; 
+  margin-left: 2%;
+}
+
+.kartMarketTitle {
+  margin-left: 5px; 
+  margin-left: -19%;
+}
