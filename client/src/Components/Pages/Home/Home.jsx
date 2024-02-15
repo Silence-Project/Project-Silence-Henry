@@ -12,6 +12,7 @@ import Color from "../../Common/Sidebar/Color/Color";
 import Descuento from "../../Common/Descuento/Descuento";
 import styles from "./Home.module.css";
 import TakeUserData from "../../../Helpers/TakeUserData";
+import ColaborationBanner from "../ColaborationBanner/ColaborationBanner";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ const Home = () => {
         />
         <div className={styles.cardContainer}>
           <ProductList
-            products={sortedProducts}
+            products={sortedProducts}l
             filterTerm={filterTerm}
             cardsPerPage={cardsPerPage}
             selectedColor={selectedColor}
@@ -86,6 +87,7 @@ const Home = () => {
             selectedCategory={selectedCategory}
           />
         </div>
+        {/* <ColaborationBanner /> */}
         <Footer />
       </div>
       <TakeUserData />
