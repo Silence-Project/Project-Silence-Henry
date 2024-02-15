@@ -9,6 +9,7 @@ const locationRouter = require('./locationRouter');
 const favoriteRouter = require('./favoriteRouter');
 const topTextRouter = require('./topTextRouter');
 const aboutUsRouter = require('./aboutUsRouter');
+const votesRouter = require('./votesRouter');
 
 const router = Router();
 
@@ -22,5 +23,6 @@ router.use('/payment', mercadoPagoRouter);
 router.use('/favorite', favoriteRouter);
 router.use('/toptext', topTextRouter);
 router.use('/informationAboutUs', aboutUsRouter);
+router.use('/votes', votesRouter);
 
 module.exports = router;
