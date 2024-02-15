@@ -104,6 +104,7 @@ const [edit, setEdit] = useState("");
         console.log('Error al crear carrito:', error)
       }
       
+      
     }    
   }
 
