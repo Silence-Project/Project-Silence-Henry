@@ -11,8 +11,9 @@
   padding: 20px; 
   height: 200px; 
   width: 50%; 
+  background-color: #000000;  
+  color: white;  
 }
-
 
 .headerMsj{
   border: 2px solid rgba(141, 139, 139, 0.26);
@@ -54,17 +55,16 @@
 
 .button {
   padding: 8px 15px;
-  background-color: var(--Snowbound); 
-  color: black; 
+  background-color: black; 
+  color: white; 
   border-radius: 5px;
   cursor: pointer;
 }
 
 .button:hover {
   background-color: #000000; 
-  color: white
+  color: white;
 }
-
 
 .cargaCorrecta {
   background-color: aquamarine;

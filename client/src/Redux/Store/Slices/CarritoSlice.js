@@ -16,7 +16,7 @@ export const deleteProductDb = createAsyncThunk(
     console.log(idProduct);
 
     try {
-      const response = await axios.put(`${link}/car/remove/${idCarrito}/${idProduct}`);
+      const response = await axios.delete(`${link}/car/remove/${idCarrito}/${idProduct}`);
       return await response;
     } catch (error) {
       return { error: error.message };

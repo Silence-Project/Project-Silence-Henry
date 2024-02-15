@@ -9,17 +9,19 @@
   background-color: var(--WindsorGreige);
   min-height: 50px;
   border-top: solid white 1px;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
+  background-color: black;
 }
 
 .faqSection, .policyreturn {
   color: white;
   font-size: 20px;
-  padding: 5px; 
+  padding: 5px;
+  margin: 0 10px; /* Agrega un margen a la izquierda y derecha para separar las palabras */
   border-radius: 4px; 
   transition: color 0.2s ease-in-out;
 }
 
 .faqSection:hover, .policyreturn:hover {
-  color: black;
+  box-shadow: 0 0 5px 2px white; 
 }
