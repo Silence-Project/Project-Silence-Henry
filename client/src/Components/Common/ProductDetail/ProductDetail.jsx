@@ -92,8 +92,7 @@ const [edit, setEdit] = useState("");
           const props = {idCarrito: carritob, arrayIdProduct: arrayIdProduct, quantity: 1, name: product[0].name}
           const saveP = await dispatch(saveProductDb(props))
           dispatch(sincronizarDB({productos, productosDb}))
-          console.log('Respuesta del saveProductDb: ');
-          console.log(saveP.payload)          
+          console.log('Respuesta del saveProductDb: ');       
         }
       } 
       catch (error) {
