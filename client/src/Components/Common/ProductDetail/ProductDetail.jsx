@@ -19,7 +19,7 @@ import Footer from '../FooterView/Footer';
 import { addFavorito , deleteFavorito }  from "../../../Redux/Store/Slices/FavSlice";
 import emptyHeart from "../favoritos/images/corazon_vacio.png";
 import filledHeart from "../favoritos/images/corazon_lleno.png";
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function Details(props) {
@@ -111,7 +111,10 @@ const [edit, setEdit] = useState("");
 
 
 
+
+
 if(currentUser && currentUser.isAdmin === true){
+  console.log("MIS PRODUCTOS DETAIL", productsDetails)
     return (
       <div>
       {" "}
@@ -131,7 +134,8 @@ if(currentUser && currentUser.isAdmin === true){
                  <img src={isFavorito ? filledHeart : emptyHeart  } alt="Heart Icon" className={styles.heartIcon} />
         </button>
   
-  
+      
+
         {productsDetails && productsDetails.map((product, index) => (
           <div key={index}>
             <img

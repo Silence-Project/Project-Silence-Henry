@@ -15,8 +15,13 @@ import CreateCategoryModal from "../../../Auth/CreateProduct/CreateCategoryModal
 
 import style from "./editproduct.module.css";
 
+import { useNavigate } from "react-router-dom";
+
+import ROUTES from '../../../Helpers/Routes.helper';
 
 const Editproduct = ({props, actualizarDetail} ) => {
+
+  const navigate = useNavigate();
 
     const [uploadedFileUrl, setUploadedFileUrl] = useState("");
 
@@ -104,12 +109,12 @@ const Editproduct = ({props, actualizarDetail} ) => {
             cost: ProductID[0].cost,
             preference: ProductID[0].preference,
 
-
         },
 
         onSubmit: (values) => {
             dispatch(updateProduct({id: ProductID[0].id, ...values}))
-            window.location.reload()
+            // window.location.reload()
+            navigate(ROUTES.HOME)
             
         }
     })
@@ -171,7 +176,6 @@ const Editproduct = ({props, actualizarDetail} ) => {
 
   return (
     <div>
-
 
 
     {ProductID && (
@@ -309,7 +313,6 @@ const Editproduct = ({props, actualizarDetail} ) => {
 
 
 
-
             
             </div>
             <button type="submit">Editar producto</button>
@@ -318,7 +321,7 @@ const Editproduct = ({props, actualizarDetail} ) => {
             
 
     </div>
-  )
+                )
 }
 
 export default Editproduct

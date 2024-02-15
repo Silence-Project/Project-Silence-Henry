@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import   ROUTES  from "../../../Helpers/Routes.helper";
-import LOGO from "../../../img/silenceImg.png";
+import LOGO from "../../../img/silenceImg.svg";
 import styles from "./Landing.module.css";
 
 const Landing = () => {

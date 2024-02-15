@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import  ROUTES  from "../../../Helpers/Routes.helper";
 import MenuHamburger from '../MenuHamburger/MenuHamburger';
 import styles from './Head.module.css';
-import imgLogo from '../../../img/silenceImg.png';
+import imgLogo from '../../../img/silenceImg.svg';
 import shoppingCartIcon from '../../../img/icons/shopping-cart.png';
 import userIcon from '../../../img/icons/user-icon.png';
 import { useAuth0 } from "@auth0/auth0-react";
