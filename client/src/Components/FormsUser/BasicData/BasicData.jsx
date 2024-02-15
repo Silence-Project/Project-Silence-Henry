@@ -49,7 +49,7 @@ const BasicData = ({ currentUser }) => {
 
   return (
     <div>
-      <h3>Actulizar mis datos</h3>
+      <h3>Actualizar  datos</h3>
       <Formik
         initialValues={{
           firstName: currentUser.firstName || "",

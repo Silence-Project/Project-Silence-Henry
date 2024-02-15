@@ -45,8 +45,10 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
     datasets: [
       {
         data: [activeCount, inactiveCount],
-        backgroundColor: ["#D3C9C2", "#000"],
-        borderWidth: 0,
+        backgroundColor: ["#FFFFFF", "#000000"],
+        hoverBackgroundColor: ["#D3C9C2"],
+        borderWidth: 1,
+        borderColor: "rgba(0, 0, 0, 1)",
       },
     ],
   };
@@ -61,8 +63,6 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
     },
   };
 
-
-
   const countTotalProductsInCars = () => {
     const totalProducts = cars.map((car) => ({
       carId: car.id,
@@ -74,13 +74,17 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
   const carLabels = totalProductsInCars.map((car) => `Carrito ${car.carId}`);
   const totalProductsData = totalProductsInCars.map((car) => car.totalProducts);
 
+  const colors = ["#FFFFFF", "#000000"];
+
   const barCarData = {
     labels: carLabels,
     datasets: [
       {
         label: "Total de productos",
-        backgroundColor: "#D3C9C2",
-        borderWidth: 0,
+        backgroundColor: carLabels.map((label, index) => colors[index % 2]),
+        borderWidth: 1,
+        borderColor: "rgba(0, 0, 0, 1)",
+        hoverBackgroundColor: ["#D3C9C2"],
         data: totalProductsData,
       },
     ],
@@ -93,9 +97,6 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
       },
     },
   };
-
-
-
 
   const handleCancel = () => {
     if (typeof handleCloseCreateProduct === "function") {
@@ -120,15 +121,19 @@ const AdminDataViews = ({ handleCloseCreateProduct }) => {
             style={{ width: "24px", height: "24px", cursor: "pointer" }}
           />
         </div>
+
         <div className={styles.chartContainer}>
-          <div className={styles.chartTwo}>
-            <Doughnut data={donutChartData} options={donutOptions} />
+          <div className={styles.chartWrapperOne}>
+            <Doughnut
+              data={donutChartData}
+              options={donutOptions}
+              className={styles.doughnutChart}
+            />
           </div>
-          <div className={styles.chartBar}>
+          <div className={styles.chartWrapper}>
             <Bar data={barCarData} options={barCarOptions} />
           </div>
         </div>
-        
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./AdminView.module.css";
 import CreateProduct from "../../../Auth/CreateProduct/CreateProduct";
 import UsersAdmin from "../../usersAdmin/UsersAdmin";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import ROUTES from "../../../Helpers/Routes.helper";
@@ -79,7 +79,7 @@ const AdminView = () => {
                 onClick={() => handleCardClick("adminUsers")}
               >
                 <h2>Administración de usuario</h2>
-                <p>Estado de usuarios, compras, etc</p>
+                <p>Estado de usuarios, carrito</p>
               </div>
               <div
                 className={`${styles.card} ${
@@ -87,8 +87,8 @@ const AdminView = () => {
                 }`}
                 onClick={() => handleCardClick("adminDescuento")}
               >
-                <h2>Ediciones de información</h2>
-                <p>Explica.</p>
+                <h2>Top Mensaje</h2>
+                <p>Mensaje top para descuento.</p>
               </div>
               <div
                 className={`${styles.card} ${
@@ -96,12 +96,13 @@ const AdminView = () => {
                 }`}
                 onClick={() => handleCardClick("AdminDataViews")}
               >
-                <h2>Otro</h2>
-                <p>Explica.</p>
+                <h2>Estadísticas</h2>
+                <p>Usuarios activos, inactivos, carrito y cantidad de producto.</p>
               </div>
             </div>
           </>
         )}
+           <Link to={ROUTES.HOME}>Ir a Home</Link>
       </div>
       <Footer />
     </div>
