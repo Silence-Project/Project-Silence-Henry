@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import  ROUTES  from "../../../Helpers/Routes.helper";
-import MenuHamburger from '../MenuHamburger/MenuHamburger';
-import styles from './Head.module.css';
-import imgLogo from '../../../img/silenceImg.png';
-import shoppingCartIcon from '../../../img/icons/shopping-cart.png';
-import userIcon from '../../../img/icons/user-icon.png';
+import ROUTES from "../../../Helpers/Routes.helper";
+import MenuHamburger from "../MenuHamburger/MenuHamburger";
+import styles from "./Head.module.css";
+import imgLogo from "../../../img/silenceImg.svg";
+import shoppingCartIcon from "../../../img/icons/shopping-cart.png";
+import userIcon from "../../../img/icons/user-icon.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchBar from "../Sidebar/Search/SearchBar";
 import Descuento from "../Descuento/Descuento";
@@ -51,14 +51,6 @@ const Head = ({
             alt="kart market"
             className={styles.kartMarket}
           />
-        </NavLink>
-
-        <NavLink to= "/favoritos">
-          <button className={styles.favoritos}>Favoritos</button>
-        </NavLink>
-
-        <NavLink to= "/suspension">
-          <button className={styles.suspension}>Suspension</button>
         </NavLink>
       </div>
     </div>
