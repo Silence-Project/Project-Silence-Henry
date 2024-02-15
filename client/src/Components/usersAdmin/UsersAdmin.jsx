@@ -3,6 +3,7 @@ import IMGCLOSE from "../../img/icons/x-mark.png";
 import URLTOCHANGE from "../../Helpers/routesToChange";
 import styles from "./UsersAdmin.module.css";
 import { useSelector } from "react-redux";
+import shoppingCartIcon from "../../../img/icons/shopping-cart.png";
 
 const UsersAdmin = ({ handleCloseCreateProduct }) => {
   const [usuarios, setUsuarios] = useState([]);
@@ -91,7 +92,14 @@ const UsersAdmin = ({ handleCloseCreateProduct }) => {
                 </p>
               </div>
               <div>
-                <p>Carrito: {productos.length}</p>
+                <p>
+                  <img
+                    src={shoppingCartIcon}
+                    alt="kart market"
+                    className={styles.kartMarket}
+                  />
+                  Carrito: {productos.length}
+                </p>
               </div>
             </li>
           ))}
