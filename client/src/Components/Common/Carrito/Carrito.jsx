@@ -21,19 +21,19 @@ const CarritoSlides = () => {
 
   const currentUser = useSelector((state) => state.user.user)
 
-  const IdUserConsu = ()=>{
+  const IdUserConsu = () => {
     return currentUser.id
   }
 
   const idUser = IdUserConsu()
 
-  const syncronized = async() => {
+  const syncronized = async () => {
 
     const carritoa = await dispatch(getCarrito(idUser))
     const carritob = carritoa.payload ? carritoa.payload : null
 
     const productosDb = carritob
-    dispatch(sincronizarDB({productos, productosDb, products}))    
+    dispatch(sincronizarDB({ productos, productosDb, products }))
   }
 
   const handlerDrop = async (idProducto) => {
@@ -45,13 +45,13 @@ const CarritoSlides = () => {
 
     let arrayIdProduct = idProducto.split("")
 
-    const response = await dispatch(deleteProductDb({idCarrito, arrayIdProduct}))
+    const response = await dispatch(deleteProductDb({ idCarrito, arrayIdProduct }))
     console.log(response.payload);
 
   }
 
-  const handlerBorrarTodo = async(idProductos) => {
-    console.log(idProductos);    
+  const handlerBorrarTodo = async (idProductos) => {
+    console.log(idProductos);
     const resultados = idProductos.map(element => handlerDrop(element));
     console.log(resultados);
   }
@@ -65,13 +65,13 @@ const CarritoSlides = () => {
   if (productos.length === 0) {
     return (
       <>
-        <Head/>
-          <p>No hay productos en el carrito</p>
-        <Footer/>
+        <Head />
+        <p>No hay productos en el carrito</p>
+        <Footer />
       </>
     )
   }
-  
+
   // const handlerDrop = (idProducto)=> {
   //   console.log('Hola Soy el botón eliminar');
   //   const dropProd = dispatch(eliminarProducto(idProducto))
@@ -80,58 +80,61 @@ const CarritoSlides = () => {
   // }
 
   const idProducts = productos.map(element => element.id);
+
   return (
     <>
-      <Head/>
-      <div className={styles.container}>
-        <h2 className={styles.h2}>Carrito de Compras</h2>
-        <br />
-        <table className={styles.table}>
-          <tr>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Precio Total</th>
-            <th></th>
-          </tr>
-          {productos.map(producto => (  
-            <>
-              <tr key={producto.id}>
-                <td className={styles.name}>{producto.name}</td>
-                <td className={styles.cantidad}>{producto.cantidad}</td>
-                <td className={styles.price}>{producto.price}</td>
-                <td className={styles.totalUnitario}>{totales.push(producto.price * producto.cantidad) && producto.price * producto.cantidad}</td>
-                <td className={styles.button}> 
-                  <button onClick={() => handlerDrop(producto.id)}>Eliminar</button>
-                </td>
-              </tr>
-            </>                
+      <Head />
+      <div className={styles.container_carrito}>
+        <div className={styles.container}>
+          <h2 className={styles.h2}>Carrito de Compras</h2>
+          <br />
+          <table className={styles.table}>
+            <tr>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Precio Total</th>
+              <th></th>
+            </tr>
+            {productos.map(producto => (
+              <>
+                <tr key={producto.id}>
+                  <td className={styles.name}>{producto.name}</td>
+                  <td className={styles.cantidad}>{producto.cantidad}</td>
+                  <td className={styles.price}>{producto.price}</td>
+                  <td className={styles.totalUnitario}>{totales.push(producto.price * producto.cantidad) && producto.price * producto.cantidad}</td>
+                  <td className={styles.button}>
+                    {/* <button onClick={handlerDrop(producto.id)}>Eliminar</button>  */}
+                    <button onClick={() => handlerDrop(producto.id)}>Eliminar</button>
+                  </td>
+                </tr>
+              </>
 
-          ))}
+            ))}
             <tr className={styles.lastTotal}>
               <td></td>
               <td></td>
               <td className={styles.totalComprasText}>Total de compra:</td>
               <td className={styles.totalCompras}>{totales ? totales.reduce((acumulador, valorActual) => acumulador + valorActual, 0) : 0}</td>
             </tr>
-        </table>
+          </table>
+        </div>
+        <div>
+          <button className={styles.floating_btn} onClick={() => handlerBorrarTodo(idProducts)}>Borrar todo</button>
 
-        <button onClick={() => handlerBorrarTodo(idProducts)}>Borrar todo</button>
+          <Link to="/checkout" >
+            <button className={styles.floating_btn}>Comprar</button>
+          </Link>
 
-        <Link to="/checkout" >
-          <button>Comprar</button>
-        </Link>
-      
-      <br></br>
+          <br></br>
 
-      <Link to={ROUTES.HOME}>
-        <button>Home</button>
-      </Link>
-
+          <Link to={ROUTES.HOME}>
+            <button className={styles.floating_btn}>Home</button>
+          </Link>
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
-
   );
 };
 

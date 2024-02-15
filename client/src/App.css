@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: 'Now';
   src: url('./assets/fontNow/Now-Regular.otf') format('opentype'); 
@@ -6,8 +5,18 @@
   font-style: normal;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Now';
+}
+
+#root {
+  background-color: #EEECE5; /* Fondo blanco */
+}
 
 /*
+Resto de tu paleta de colores
 PURE WHITE SW 7005      👉🏻 #EEECE5
 SNOWBOUND SW 7004       👉🏻#EDEAE4
 ALABASTER SW 7008       👉🏻#EEEAE0

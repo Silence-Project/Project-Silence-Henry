@@ -1,0 +1,66 @@
+.formContainer{
+  padding: 20px;
+  background-color: var(--PureWhite);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); 
+  text-align: center;
+  font-family: 'Now';
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+
+.field {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.formContainer label {
+  display: block; 
+  font-family: 'Now';
+  margin-bottom: 5px; 
+  font-weight: bold; 
+  color: #000000;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+.formContainer > input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.formContainer > input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--ModerneGray);
+  border-radius: 4px;
+}
+
+
+.formContainer select {
+  padding: 8px; 
+  font-family: 'Now';
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+}
+
+.btnSubmit {
+  height: 50px;
+  width: 150px;
+  background-color: var(--AgreableGray);
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 3%;
+  margin-right: 6%;
+}

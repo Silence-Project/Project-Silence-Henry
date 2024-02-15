@@ -12,6 +12,7 @@ import { sincronizarDB, createCarrito, getCarrito, saveProductDb } from "../../.
 // import CarritoSlice from "../../../Redux/Store/Slices/CarritoSlice";
 import styles from "./ProductDetail.module.css";
 import Head from "../Header/Head";
+import Footer from '../FooterView/Footer';
 
 export default function Details(props) {
   const dispatch = useDispatch();
@@ -132,6 +133,7 @@ export default function Details(props) {
         <button className={styles.botondetail}>Go Home</button>
       </Link>
     </div>
+    <Footer/>
   </div>
 
   );

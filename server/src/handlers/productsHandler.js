@@ -5,7 +5,8 @@ const {
     postNewProducts,
     changeProducts,
     deleteProducts,
-    getProductsByName
+    getProductsByName,
+    changeProductStock
 } = require('../controllers/productsController');
 
 const getProductsHandler = async (req, res) => {
@@ -51,9 +52,9 @@ const postNewProductHandler = async (req, res) => {
 const changeProductHandler = async (req, res) => {
     const { id } = req.params; 
 
-    const { code, name, description, size, color, material, weight, image, cost, price, preference, state } = req.body;
+    const { code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, quantity, idCategory } = req.body;
     try {
-        const productUpdate = await changeProducts({ id, code, name, description, size, color, material, weight, image, cost, price, preference, state });
+        const productUpdate = await changeProducts({ id, code, name, description, size, color, material, weight, image, cost, price, preference, state, stock, quantity, idCategory });
         res.status(200).json(productUpdate);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -85,6 +86,19 @@ const getProductsByNameHandler = async (req, res) => {
     }
 };
 
+const changeProductStockPatchHandler = async (req, res) => {
+    const { id } = req.params;
+  
+    const { stock } = req.body;
+  
+    try {
+      const productUpdate = await changeProductStock({ id, stock });
+      res.status(200).json(productUpdate);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
 
 module.exports = {
     getProductsHandler,
@@ -92,5 +106,7 @@ module.exports = {
     postNewProductHandler,
     changeProductHandler,
     deleteProductHandler,
-    getProductsByNameHandler
+    getProductsByNameHandler,
+    changeProductHandler,
+    changeProductStockPatchHandler
 }

@@ -19,6 +19,8 @@ import PrivateRouting from "./Helpers/Privaterouting";
 import UsersAdmin from "./Components/usersAdmin/UsersAdmin";
 import FAQSection from './Components/Pages/FAQSection/FAQSection'
 
+import ColaborationLanding from "./Components/Pages/ColaborationLanding/ColaborationLanding";
+
 import QuienesSomos from "./Components/Pages/QuienesSomos/QuienesSomos";
 import PayConfirmation from "./Components/Pages/PayConfirmation";
 import PayFailed from "./Components/Pages/PayFailed";
@@ -34,10 +36,12 @@ function App() {
         <Route path={ROUTES.LOGGING} element={<LoginForm />}></Route>
 
         <Route element={<PrivateRouting />}>
-          <Route path="/profile" element={<MyProfile />} />
+          <Route path={ROUTES.PROFILE} element={<MyProfile />} />
         </Route>
 
         <Route element={<QuienesSomos />} path="/about"></Route>
+
+        <Route path={ROUTES.ANDINO} element={<ColaborationLanding />} />
 
         {
         <Route
