@@ -92,7 +92,7 @@ export const carritoSlice = createSlice({
   reducers: {
     sincronizarDB: (state, action) => {
 
-      const {productosDb} = action.payload
+      const { productosDb } = action.payload
 
       const productosFinal = []
       const productosSho = productosDb[0]['shoppingCar'] ? productosDb[0]['shoppingCar'] : []
